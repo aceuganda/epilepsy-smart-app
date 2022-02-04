@@ -1,0 +1,37 @@
+export const seizureData = [
+    {
+        id:1,
+        userId:1,
+        questionId:1,
+        response:"Mild",
+        dateOfResponse:"21/2/2021"
+    },
+    {
+        id:1,
+        userId:1,
+        questionId:2,
+        response:"Engaged",
+        dateOfResponse:"21/2/2021"
+    },
+    {
+        id:1,
+        userId:1,
+        questionId:3,
+        response:"School",
+        dateOfResponse:"21/2/2021"
+    },
+    {
+        id:2,
+        userId:3,
+        questionId:1,
+        response:"Destructive",
+        dateOfResponse:"19/2/2021"
+    },
+    {
+        id:2,
+        userId:3,
+        questionId:2,
+        response:"Didn't Engage",
+        dateOfResponse:"19/2/2021"
+    }
+]
