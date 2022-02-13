@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Seizure from './pages/SeizureMonitoring/Seizure';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
@@ -16,6 +17,7 @@ const AppRoutes = () => {
             }>
                 <Routes>
                     <Route path="/home" element={<HomePage/>} />
+                    <Route path="/seizure-form" element={<Seizure/>} />
                 </Routes>
             </Suspense>
         </Router>

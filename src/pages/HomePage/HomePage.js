@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import Footer from '../../components/layouts/Footer';
 
 const HomePage = () => {
@@ -37,12 +38,12 @@ const HomePage = () => {
                         <div className='home-cards'>
                             <div className='col justify-content-between'>
                                 <div className='row mb-5'>
-                                    <div className='card col-5 mr-5'> card 1</div>
-                                    <div className='card col-5'> card 2</div>
+                                    <div className='card col-5 mr-5 text-uppercase font-size-10 font-weight-600'><Link to="/seizure-form"> Seizure Tracking</Link></div>
+                                    <div className='card col-5 text-uppercase font-size-10 font-weight-600'> Medication</div>
                                 </div>
                                 <div className='row mt-5'>
-                                    <div className='card col-5 mr-5'> card 3</div>
-                                    <div className='card col-5'> card 4</div>
+                                    <div className='card col-5 mr-5 text-uppercase font-size-10 font-weight-600'> Resilience tracking</div>
+                                    <div className='card col-5 text-uppercase font-size-10 font-weight-600'> Resilience Activities</div>
                                 </div>
                             </div>
                         </div>
