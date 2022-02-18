@@ -27,6 +27,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "app:build": "npm run build && npx cap sync",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint .",
