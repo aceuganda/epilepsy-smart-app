@@ -1,0 +1,6 @@
+{
+  "appId": "com.epilepsy.smartapp",
+  "appName": "epilespy-smart-app",
+  "webDir": "build",
+  "bundledWebRuntime": false
+}
