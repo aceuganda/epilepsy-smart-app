@@ -3,8 +3,16 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'font-awesome/css/font-awesome.min.css';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducers from './data/redux/reducers'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = createStore(reducers)
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>, document.getElementById('root')
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
