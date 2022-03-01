@@ -4,7 +4,7 @@ import Footer from '../../components/layouts/Footer';
 
 const HomePage = () => {
     const check = () => {
-        console.log('youve reached the home page');
+        console.log('Youve reached the home page');
     }
     useEffect(() => {
         check();
