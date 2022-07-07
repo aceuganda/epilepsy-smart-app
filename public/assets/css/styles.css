@@ -1,12 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Montserrat&display=swap);
 body{
-    font-family: 'Poppins', sans-serif;
-    font-size: .9375rem;
-    color: #1f1f1f;
-    background-color: #f7f7f7;
-    min-height: 100%;
-    overflow-x: hidden;
+    font-family: 'Poppins';
+    display: grid;
+    max-width: 580px;
+    margin: 0;
+    overflow-y: scroll;
+    overflow-x: hidden !important;
 }
 a{
     color: #007bff;
@@ -87,27 +87,8 @@ p{
 }
 
 /* HOME PAGE */
-.smart.home-page{
-  top:0;
-  bottom:0;
-  right:0;
-  left:0;
-  position: relative;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
 
-.smart.home-page .home-header{
-  top:0;
-  background-color: #fff;
-}
-
-.smart.home-page .home-header .top-section{
-  height:110px;
-  position: relative;
-}
-
-.smart.home-page .home-header .top-section span p,
+/* .smart.home-page .home-header .top-section span p,
 .smart.home-page .home-header .top-section span i{
   position: absolute;
   bottom:0;
@@ -117,7 +98,7 @@ p{
   color:rgb(83, 83, 83);
   line-height: 1.5px;
   letter-spacing: -1px;
-}
+} */
 
 .smart.home-page .home-header .banner{
   background-color:#8a2be2;

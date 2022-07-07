@@ -1,0 +1,14 @@
+@import './library/colors.scss';
+
+.landing{
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+    display: flex;
+    justify-content: center;
+
+    img{
+        height: 900px;
+        object-fit: cover;
+        overflow: hidden !important;;
+    }
+}
