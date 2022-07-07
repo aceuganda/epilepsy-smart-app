@@ -1,32 +1,121 @@
 @import './library/colors.scss';
 
-.smart.home-page{
-    margin: 0;
-    .home-header{
-        top: 0;
+$cardHeight: 230px;
+.home-page{
+    margin: 0 auto;
+    background-color: $ema-blue-0;
+    overflow-x: hidden;
+    height: 100%;
+    padding-bottom: 110px;
+    header{
         background-color: $ema-white-0;
-    }
-    .top-section{
-        height: 150px;
-        display: grid;
-        left: 0;
-        right: 0;
+        padding-top: 105px;
+        padding-left: 24px;
+        padding-right: 20px;
+        h4{
+            font-weight: 800;
+            font-size: 24px;
+            line-height: 32px;
+            color: $ema-grey-2;
+        }
         div{
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-self: end;
-            padding-bottom: 8px;
+            margin-top: -18px;
+            .MuiSvgIcon-root{
+                font-size: 32px;
+            }
+        }
+    }
+    .banner{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        background-color: $ema-lilac-1;
+        padding:18px 15px;
+        padding-bottom: 8px;
+        border-bottom-left-radius: 60px;
+        span{
+            display: flex;
+            flex-direction: row;
+            img{
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                background-color: $ema-grey-0;
+            }
+            .name{
+                font-weight: 700;
+                color: $ema-white-0;
+                font-size: 14px;
+                margin-left: 8px;
+            }
+        }
+        div{
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            align-items: flex-end;
+            width: 180px;
+            h3{
+                font-weight: 700;
+                font-size: 22px;
+                line-height: 28px;
+                text-align: right;
+                color: $ema-white-0;
+                position: relative;;
+                hr{
+                    position: absolute;
+                    top: 43px;
+                    right: 0;
+                    width: 20px;
+                    border: 0.6px solid $ema-white-0;
+                }
+            }
             span{
-                font-size: 20px;
-                font-weight: 600;
+                font-size: 13px;
+                font-weight: 500;
                 line-height: 20px;
-                &:first-child{
-                    color: $ema-grey-0;
-                }
-                &:last-child{
-                    justify-self: end;
-                    
-                }
+                color: $ema-white-0;
+            }
+        }
+    }
+    .cards{
+        display: grid;
+        grid-template-columns: repeat(2, 5fr);
+        grid-auto-rows: 203px;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        grid-gap: 30px;
+        padding: 30px 30px;
+        .card{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            border: none;
+            width: 141px;
+            height: 203px;
+            img{
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+            }
+            span{
+                position: absolute;
+                text-align: center;
+                padding: 6px 0;
+
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin-left: auto;
+                margin-right: auto;
+
+                background-color: $ema-white-0;
+
+                font-weight: 700;
+                font-size: 12px;
+                line-height: 12px;
             }
         }
     }
