@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Form from '../../components/form/Form'
-import TopBar from '../../components/form/TopBar'
 import Question from '../../components/form/Question'
 import { connect, useDispatch } from 'react-redux'
 import { addResponse } from '../../data/redux/actions'
@@ -10,11 +9,9 @@ import SeizureComponent from '.'
 let SeizureAssessment = () => {
   let dispatch = useDispatch();
   const [aura, setAura] = useState();
-  const [engage, setEngage] = useState();
-  const [seizure, setSeizure] = useState();
 
   useEffect(() => {
-    console.log('Seizure form values', aura, engage, seizure)
+    console.log('Seizure assessment values:', aura)
   })
 
   return (
@@ -22,9 +19,9 @@ let SeizureAssessment = () => {
       <Form>
         <form onSubmit={(e) => {
           e.preventDefault()
-          dispatch(addResponse(aura, engage, seizure))
+          dispatch(addResponse(aura))
         }}>
-          <PopQuestion question={'Before the seizure, did you have an '} popTitle={'Aura'}>
+          <PopQuestion question={'Before the seizure, did you have an '} popTitle={'Aura'} popDescription={' An aura is unusual feeling, experience, or sensation that signals an upcoming seizure'}>
             <fieldset className='mt-3 mb-4'>
               <button type="button" className='button form-button-pill text-uppercase' value={'Yes'} onClick={(e) => { setAura(e.target.value) }}>yes</button>
               <button type="button" className='button form-button-pill text-uppercase' value={'No'} onClick={(e) => { setAura(e.target.value) }}>no</button>
