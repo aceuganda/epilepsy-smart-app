@@ -86,78 +86,8 @@ p{
   text-decoration: line-through;
 }
 
-/* HOME PAGE */
-
-/* .smart.home-page .home-header .top-section span p,
-.smart.home-page .home-header .top-section span i{
-  position: absolute;
-  bottom:0;
-  left:10px;
-  font-size: 20px;
-  font-weight: 600;
-  color:rgb(83, 83, 83);
-  line-height: 1.5px;
-  letter-spacing: -1px;
-} */
-
-.smart.home-page .home-header .banner{
-  background-color:#8a2be2;
-  border-bottom-left-radius: 40px;
-  box-shadow: 0px 1px 3px 1.6px #aaa;
-  color:#f7f7f7;
-  z-index: 99;
-}
-
-.smart.home-page .home-header .banner .left{
-  width:50%;
-  margin-top: 5%;
-  margin-left:0px;
-}
-
-.smart.home-page .home-header .banner .left p{
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.6px;
-  padding:4px;
-}
-
-.smart.home-page .home-header .banner .right{
-  width:50%;
-  margin-top: 5%;
-  text-align: right;
-  margin-right: 5px;
-}
-
-.smart.home-page .home-header .banner .right h3{
-  font-size: 20px;
-}
-.smart.home-page .home-header .banner .right hr{
-  background-color:#eee;
-  width:40%;
-  margin-right:0px
-}
-.smart.home-page .home-header .banner .right p{
-  font-size: 12px;
-  margin-top:-4%;
-}
-
-.smart.home-page .home-cards{
-  margin-top: 10%;
-  margin-left: 6%;
-  margin-right: 4%;
-}
-
-.smart.home-page .home-cards .card{
-  position: relative;
-  height:200px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  box-shadow: 0.5px 1.2px 3px 1.2px #ccc;
-}
-/* HOME PAGE */
-
 /* BUTTON PILL */
-.button.form-button-pill{
+form-button-pill{
   border:1px solid #ccc;
   background-color: #fff;
   border-radius: 18px;
