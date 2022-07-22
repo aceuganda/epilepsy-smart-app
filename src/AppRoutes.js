@@ -5,7 +5,9 @@ import Onboarding from './pages/Onboarding';
 import Notify from './pages/Onboarding/notify';
 import Track from './pages/Onboarding/track';
 import StartPage from './pages/SeizureMonitoring/Page';
-import SeizureAssessment from './pages/SeizureMonitoring/SeizureAssessment';
+import PageOne from './pages/SeizureMonitoring/SeizureAssessment/PageOne';
+import PageThree from './pages/SeizureMonitoring/SeizureAssessment/PageThree';
+import PageTwo from './pages/SeizureMonitoring/SeizureAssessment/PageTwo';
 
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
@@ -28,7 +30,9 @@ const AppRoutes = () => {
                     <Route path="/onboarding/notify" element={<Notify />} />
                     <Route path="/onboarding/track" element={<Track />} />
                     <Route path="/seizure-form" element={<StartPage />} />
-                    <Route path="/seizure-form/assessment" element={<SeizureAssessment />} />
+                    <Route path="/seizure-form/assessment/1" element={<PageOne />} />
+                    <Route path="/seizure-form/assessment/2" element={<PageTwo />} />
+                    <Route path="/seizure-form/assessment/3" element={<PageThree />} />
                 </Routes>
             </Suspense>
         </Router>

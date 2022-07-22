@@ -84,8 +84,8 @@
     }
 }
 .form-button-pill{
-    width: 73px;
-    height: 24px;
+    width: 80px;
+    height: 26px;
     max-width: 130px;
 
     display: flex;
@@ -98,15 +98,68 @@
 
     background-color: $ema-white-0;
     font-family: 'Poppins';
-    font-size: 9px;
+    font-size: 11px;
     color: $ema-black-3;
     font-weight: 500;
     line-height: 14px;
-    &:focus{
+    margin-bottom: 16px;
+    box-shadow: 0px 8px 20px 0px rgba(104, 103, 103, 0.141);
+
+    &:focus, &:focus-within{
         background-color: $ema-lilac-2;
         color: $ema-white-0;
         outline: none;
     }
+}
+.form-button-lg{
+        width: 140px;
+        height: 30px;
+    
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+        border: 1px solid $ema-lilac-1;
+        outline: 0px;
+        border-radius: 1000px;
+    
+        background-color: $ema-white-0;
+        font-family: 'Poppins';
+        font-size: 10px;
+        color: $ema-black-3;
+        font-weight: 500;
+        line-height: 14px;
+        margin-bottom: 16px;
+        box-shadow: 0px 8px 20px 0px rgba(153, 151, 151, 0.141);
+        &:focus, :focus-within {
+            background-color: $ema-lilac-2;
+            color: $ema-white-0;
+            outline: none;
+        }
+}
+.finish-btn{
+    position: absolute;
+    bottom: 25px;
+    right: 20px;
+    margin: 0 auto;
+    width: 90px;
+    height: 38px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    color: $ema-white-0;
+    background-color: $ema-lilac-2;
+    border: 0px;
+    outline: 0px;
+    border-radius: 12px;
+
+    font-family: 'Lato';
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 14px;
 }
 // START PAGE
 .form.start-page {
@@ -121,6 +174,12 @@
     font-weight: 800;
     line-height: 24px;
     color: $ema-black-2;
+    fieldset {
+        width: 300px;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+    }
 }
 .popup-question{
     font-family: 'Poppins';
@@ -136,5 +195,48 @@
         display: flex;
         flex-flow: row wrap;
         justify-content: space-around;
+    }
+}
+// PAGINATION
+.paginate{
+    position: absolute;
+    bottom: 25px;
+    right: 0px;
+    margin: 0 auto;
+    font-family: 'Lato';
+    .container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    #page{
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 14px;
+        color: $ema-lilac-2;
+    }
+    #total{
+        font-size: 16px;
+        font-weight: 800;
+        line-height: 14px;
+        color: $ema-grey-3;
+    }
+    button{
+        outline: 0px;
+        border: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 12px;
+
+        font-weight: 600;
+        font-size: 18px;
+        color: $ema-white-0;
+        background-color: $ema-lilac-2;
+
+        width: 52px;
+        height: 30px;
+        border-radius: 8px;
     }
 }
