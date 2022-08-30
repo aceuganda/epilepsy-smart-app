@@ -1,0 +1,140 @@
+@import './library/colors.scss';
+@import './library/variables.scss';
+
+.smart.form-layout{
+    z-index: 99;
+
+    height: 540px;
+    max-height: 630px;
+    max-width: $max-width;
+    background-color: $ema-white-0;
+
+    position: absolute;
+    top: 110px;
+    left: 0;
+    right: 0;
+    bottom: 20%;
+    margin: 0 auto;
+    padding: 0 10px;
+    padding-top: 20px;
+
+    border-radius: 20px;
+    box-shadow: 0.4px 2px 2px 1px #ddd;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+// TOP BAR
+.form-top-bar {
+    background-color: $ema-lilac-1;
+    height: 140px;
+    width: auto;
+    color: $ema-white-0;
+
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+
+    .container-fluid{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 63px;
+    }
+    .icon{
+        position: absolute;
+        left: 2%;
+    }
+    .form-title{
+        p{
+            font-family: 'Poppins';
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 24px;
+            color: $ema-white-0;
+            padding-top: 8px;
+        }
+    }
+}
+// BUTTONS
+.large-btn{
+    margin-bottom: 25px;
+    button{
+        background-color: $ema-lilac-2;
+        width: 192px;
+        height: 40px;
+        color: $ema-white-0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 21px;
+        
+        border: 0px;
+        outline: 0px;
+        border-radius: 18px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: capitalize;
+        &:hover, &:focus{
+            cursor: pointer;
+            background-color: $ema-lilac-1;
+        }
+    }
+}
+.form-button-pill{
+    width: 73px;
+    height: 24px;
+    max-width: 130px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid $ema-lilac-1;
+    outline: 0px;
+    border-radius: 1000px;
+
+    background-color: $ema-white-0;
+    font-family: 'Poppins';
+    font-size: 9px;
+    color: $ema-black-3;
+    font-weight: 500;
+    line-height: 14px;
+    &:focus{
+        background-color: $ema-lilac-2;
+        color: $ema-white-0;
+        outline: none;
+    }
+}
+// START PAGE
+.form.start-page {
+    .image {
+        padding-top: 38px;
+    }
+}
+// QUESTIONS
+.question-plain{
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 24px;
+    color: $ema-black-2;
+}
+.popup-question{
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 24px;
+    color: $ema-black-2;
+    .pop-title{
+        color: $ema-lilac-2;
+        text-transform: capitalize;
+    }   
+    fieldset{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+    }
+}
