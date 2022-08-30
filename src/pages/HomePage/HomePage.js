@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import Footer from '../../components/layouts/Footer';
 
 const HomePage = () => {
@@ -16,9 +17,9 @@ const HomePage = () => {
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div className='home-header'>
                         <div className='top-section container-fluid'>
-                            <div className='row justify-content-between'>
-                                <span><p>Welcome!</p></span>
-                                <span><i className='fa fa-bell font-size-20 mt-5 mr-3'></i></span>
+                            <div>
+                                <span>Holla!</span>
+                                <span><NotificationsNoneIcon/></span>
                             </div>
                         </div>
                         <div className='banner container-fluid'>

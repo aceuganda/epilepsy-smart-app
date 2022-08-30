@@ -1,0 +1,33 @@
+@import './library/colors.scss';
+
+.smart.home-page{
+    margin: 0;
+    .home-header{
+        top: 0;
+        background-color: $ema-white-0;
+    }
+    .top-section{
+        height: 150px;
+        display: grid;
+        left: 0;
+        right: 0;
+        div{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-self: end;
+            padding-bottom: 8px;
+            span{
+                font-size: 20px;
+                font-weight: 600;
+                line-height: 20px;
+                &:first-child{
+                    color: $ema-grey-0;
+                }
+                &:last-child{
+                    justify-self: end;
+                    
+                }
+            }
+        }
+    }
+}

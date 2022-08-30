@@ -15,7 +15,7 @@ const TopBar = (props) => {
             </span>
             <span className='row form-title'>
                 <img style={{border:'0.8px solid yellow', width:'30px', height:'30px'}} className="mr-2"/>
-                <p >{props.title}</p>
+                <p>{props.title}</p>
             </span>
         </div>
     </div>
