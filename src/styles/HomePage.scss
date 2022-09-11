@@ -10,8 +10,8 @@ $cardHeight: 230px;
     header{
         background-color: $ema-white-0;
         padding-top: 105px;
-        padding-left: 24px;
-        padding-right: 20px;
+        padding-left: 28px;
+        padding-right: 30px;
         h4{
             font-weight: 800;
             font-size: 24px;
@@ -30,7 +30,7 @@ $cardHeight: 230px;
         flex-direction: row;
         justify-content: space-between;
         background-color: $ema-lilac-1;
-        padding:18px 15px;
+        padding:18px 18px 18px 10px;
         padding-bottom: 8px;
         border-bottom-left-radius: 60px;
         span{

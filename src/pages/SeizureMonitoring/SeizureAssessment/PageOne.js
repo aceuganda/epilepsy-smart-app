@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import SeizureComponent from '..';
 import Form from '../../../components/form/Form';
 import Question from '../../../components/form/Question';
 import Pagination from '../../../components/pagination';
-import { updateSeizureAssessment } from '../../../data/reduxStore/Seizure/operations';
+import {
+  setLostAwareness,
+  setSeizureDuration,
+  setSeizureSeverity,
+  setSeizureTimeOfDay
+} from '../../../redux/Slices/SeizureTrackingSlice';
 
 const PageOne = () => {
   const [seizure_severity, setSeverity] = useState(null);
@@ -14,8 +19,10 @@ const PageOne = () => {
   const dispatch = useDispatch();
 
   const handleChange = () => {
-    const data = { seizure_severity, seizure_duration, seizure_time_of_day, lost_awareness };
-    dispatch(updateSeizureAssessment(data));
+    dispatch(setSeizureSeverity(seizure_severity));
+    dispatch(setSeizureDuration(seizure_duration));
+    dispatch(setSeizureTimeOfDay(seizure_time_of_day));
+    dispatch(setLostAwareness(lost_awareness));
   };
 
   useEffect(() => {}, []);
@@ -168,4 +175,4 @@ const PageOne = () => {
   );
 };
 
-export default connect()(PageOne);
+export default PageOne;

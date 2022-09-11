@@ -5,18 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import 'font-awesome/css/font-awesome.min.css';
 import { Provider } from 'react-redux';
 import './styles/index.scss';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import rootReducer from './data/reduxStore/reducers';
-
-const initialState = {};
-const middleware = [thunk];
-const store = createStore(
-  rootReducer,
-  initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
-);
+import store from './store'
 
 ReactDOM.render(
   <Provider store={store}>

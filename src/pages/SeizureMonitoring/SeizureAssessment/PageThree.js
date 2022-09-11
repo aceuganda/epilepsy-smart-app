@@ -1,30 +1,28 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import SeizureComponent from '..';
 import Form from '../../../components/form/Form';
 import Question from '../../../components/form/Question';
-import { setSeizureAssessment } from '../../../data/reduxStore/Seizure/operations';
-import {
-  getSeizureAssessmentData,
-  getUpdatedSeizureAssessmentData
-} from '../../../data/reduxStore/Seizure/selector';
+import { postSeizureFormData, setSeizureImpact } from '../../../redux/Slices/SeizureTrackingSlice';
 
 const PageThree = () => {
   const [seizure_impact, setFeel] = useState('');
-  const assessmentData = getUpdatedSeizureAssessmentData();
   const dispatch = useDispatch();
-  const collectedData = getSeizureAssessmentData();
+  const seizureTrackingData = useSelector((state) => state.seizureTracking);
+
+  const handleClick = () => {
+    dispatch(setSeizureImpact(seizure_impact));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = {
-      collectedData,
-      seizure_impact
-    };
-    console.log('Final data: ', data);
-    await dispatch(setSeizureAssessment(data));
-    console.log(assessmentData.res.data.message);
+    console.log(seizureTrackingData);
+    try {
+      await dispatch(postSeizureFormData(seizureTrackingData));
+    } catch (err) {
+      console.log('Failed to post:', err);
+    }
   };
 
   return (
@@ -82,7 +80,7 @@ const PageThree = () => {
           </Question>
           {seizure_impact !== '' ? (
             <Link to="/home">
-              <button className="finish-btn" type="submit">
+              <button className="finish-btn" type="submit" onClick={handleClick}>
                 Finish
               </button>
             </Link>

@@ -5,23 +5,25 @@ import Form from '../../../components/form/Form';
 import PopQuestion from '../../../components/form/PopQuestion';
 import Question from '../../../components/form/Question';
 import Pagination from '../../../components/pagination';
-import { updateSeizureAssessment } from '../../../data/reduxStore/Seizure/operations';
-import { getUpdatedSeizureAssessmentData } from '../../../data/reduxStore/Seizure/selector';
+import {
+  setSeizureAura,
+  setSeizureExperiencedAura,
+  setSeizureTrigger
+} from '../../../redux/Slices/SeizureTrackingSlice';
 
 const PageTwo = () => {
   const [experienced_aura, setAura] = useState('');
   const [aura_kind_experienced, setAuraType] = useState('');
   const [seizure_trigger, setTrigger] = useState('');
   const dispatch = useDispatch();
-  const pageOneData = getUpdatedSeizureAssessmentData();
 
   const handleChange = () => {
-    console.log('From page one:', pageOneData);
-    const data = { experienced_aura, aura_kind_experienced, seizure_trigger };
-    dispatch(updateSeizureAssessment(pageOneData, data));
+    dispatch(setSeizureAura(experienced_aura));
+    dispatch(setSeizureExperiencedAura(aura_kind_experienced));
+    dispatch(setSeizureTrigger(seizure_trigger));
   };
 
-  useEffect(() => {}, [experienced_aura]);
+  useEffect(() => {}, []);
   return (
     <SeizureComponent backroute={'/seizure-form/assessment/1'}>
       <Form>
