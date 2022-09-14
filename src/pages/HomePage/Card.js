@@ -9,10 +9,13 @@ const Card = ({img, title, link}) => {
         link: PropTypes.string
     }
   return (
+    <Link id='nav-link' to={`${link}`}>
     <div className='card'>
         <img src={img}/>
-        <Link to={`${link}`}><span className='text-uppercase'>{title}</span></Link>
+        <span className='text-uppercase'>{title}</span>
     </div>
+    </Link>
+    
   )
 }
 
