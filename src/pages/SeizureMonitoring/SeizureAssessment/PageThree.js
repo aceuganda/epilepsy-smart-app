@@ -30,10 +30,10 @@ const PageThree = () => {
     slider: {
       color: '#E4E4E4',
       height: 8,
-      '& .MuiSlider-track': {
+      '& .MuiSliderTrack': {
         border: 'none'
       },
-      '& .MuiSlider-thumb': {
+      '& .MuiSliderThumb': {
         height: 20,
         width: 20,
         backgroundColor: '#8C3E79',
@@ -45,7 +45,7 @@ const PageThree = () => {
           display: 'none'
         }
       },
-      '& .MuiSlider-valueLabel': {
+      '& .MuiSliderValueLabel': {
         lineHeight: 1.2,
         fontSize: 12,
         background: 'unset',
@@ -59,7 +59,7 @@ const PageThree = () => {
         transform: 'translate(50%, -100%) rotate(-45deg) scale(0)'
       },
       '&:before': { display: 'none' },
-      '&.MuiSlider-valueLabelOpen': {
+      '&.MuiSliderValueLabelOpen': {
         transform: 'translate(50%, -100%) rotate(-45deg) scale(1)'
       },
       '& > *': {
