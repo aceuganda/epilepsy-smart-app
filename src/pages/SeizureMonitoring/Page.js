@@ -11,8 +11,8 @@ const StartPage = () => {
       <SeizureComponent backroute={'/home'}>
         <Form>
           <SeizureImg className="image" />
-          <Largebtn title="Take Assessment" link="/seizure-form/assessment/1" />
-          <Largebtn title="Track Seizure" link="" />
+          <Largebtn title="Record Seizure Details" link="/seizure-form/assessment/1" />
+          <Largebtn title="Monitor Seizure History" link="" />
         </Form>
       </SeizureComponent>
       <Footer />

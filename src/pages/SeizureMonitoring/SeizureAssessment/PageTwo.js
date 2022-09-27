@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import SeizureComponent from '..';
+import PopButton from '../../../components/form/Buttons/PopButton';
 import Form from '../../../components/form/Form';
 import PopQuestion from '../../../components/form/PopQuestion';
 import Question from '../../../components/form/Question';
@@ -78,12 +79,57 @@ const PageTwo = () => {
                 </button>
                 <button
                   type="button"
+                  value={'deja-vu'}
+                  onClick={(e) => setAuraType(e.target.value)}
+                  style={{
+                    border: 'none',
+                    background: 'transparent',
+                    outline: 'none',
+                    padding: '0',
+                    margin: '0'
+                  }}>
+                  <PopButton
+                    popTitle={'Deja-vu'}
+                    popDescription={
+                      'The sensation of being in a place or experiencing a very familiar situation.'
+                    }
+                  />
+                </button>
+                <button
+                  type="button"
+                  value={'jamais-vu'}
+                  onClick={(e) => setAuraType(e.target.value)}
+                  style={{
+                    border: 'none',
+                    background: 'transparent',
+                    outline: 'none',
+                    padding: '0',
+                    margin: '0'
+                  }}>
+                  <PopButton
+                    popTitle={'Jamais-vu'}
+                    popDescription={
+                      'An experience of being unfamiliar with a person or situation that is actually very familiar place that is unfamiliar)'
+                    }
+                  />
+                </button>
+                <button
+                  type="button"
                   className="button form-button-lg"
                   value={'tingling'}
                   onClick={(e) => {
                     setAuraType(e.target.value);
                   }}>
                   Tingling Sensation
+                </button>
+                <button
+                  type="button"
+                  className="button form-button-lg"
+                  value={'tingling'}
+                  onClick={(e) => {
+                    setAuraType(e.target.value);
+                  }}>
+                  Flashing Lights
                 </button>
                 <button
                   type="button"
@@ -97,38 +143,11 @@ const PageTwo = () => {
                 <button
                   type="button"
                   className="button form-button-lg"
-                  value={'flashing lights'}
-                  onClick={(e) => {
-                    setAuraType(e.target.value);
-                  }}>
-                  Flashing Lights
-                </button>
-                <button
-                  type="button"
-                  className="button form-button-lg"
                   value={'seeing things'}
                   onClick={(e) => {
                     setAuraType(e.target.value);
                   }}>
                   Seeing animals or people
-                </button>
-                <button
-                  type="button"
-                  className="button form-button-lg"
-                  value={'deja-vu'}
-                  onClick={(e) => {
-                    setAuraType(e.target.value);
-                  }}>
-                  Deja-Vu
-                </button>
-                <button
-                  type="button"
-                  className="button form-button-lg"
-                  value={'jamais-vu'}
-                  onClick={(e) => {
-                    setAuraType(e.target.value);
-                  }}>
-                  Jamais-Vu
                 </button>
               </fieldset>
             </Question>
