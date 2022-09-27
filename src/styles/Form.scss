@@ -4,7 +4,7 @@
 .smart.form-layout{
     z-index: 99;
 
-    height: 540px;
+    height: 565px;
     max-height: 630px;
     max-width: $max-width;
     background-color: $ema-white-0;
@@ -33,8 +33,8 @@
     width: auto;
     color: $ema-white-0;
 
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
 
     .container-fluid{
         display: flex;
@@ -85,7 +85,7 @@
 }
 .form-button-pill{
     width: 80px;
-    height: 26px;
+    height: 28px;
     max-width: 130px;
 
     display: flex;
@@ -112,7 +112,35 @@
     }
 }
 .form-button-lg{
-        width: 140px;
+        width: auto;
+        height: 28px;
+        max-width: 200px;
+        padding: 2px 10px;
+    
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+        border: 1px solid $ema-lilac-1;
+        outline: 0px;
+        border-radius: 1000px;
+    
+        background-color: $ema-white-0;
+        font-family: 'Poppins';
+        font-size: 11px;
+        color: $ema-black-3;
+        font-weight: 500;
+        line-height: 14px;
+        margin-bottom: 16px;
+        box-shadow: 0px 8px 20px 0px rgba(153, 151, 151, 0.141);
+        &:focus, :focus-within {
+            background-color: $ema-lilac-2;
+            color: $ema-white-0;
+            outline: none;
+        }
+}
+.form-button-full{
+        width: 98%;
         height: 30px;
     
         display: flex;
@@ -137,12 +165,44 @@
             outline: none;
         }
 }
+.pop-button{
+    width: 110px;
+    height: 26px;
+    max-width: 130px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid $ema-lilac-1;
+    outline: 0px;
+    border-radius: 1000px;
+
+    background-color: $ema-white-0;
+    font-family: 'Poppins';
+    font-size: 11px;
+    color: $ema-black-3;
+    font-weight: 500;
+    line-height: 14px;
+    margin-bottom: 16px;
+    box-shadow: 0px 8px 20px 0px rgba(104, 103, 103, 0.141);
+
+    .info-icon{
+        margin-left:8px;
+        background-color: $ema-white-0;
+    }
+    &:focus, :focus-within {
+            background-color: $ema-lilac-2;
+            color: $ema-white-0;
+            outline: none;
+        }
+}
 .finish-btn{
     position: absolute;
-    bottom: 25px;
+    bottom: 35px;
     right: 20px;
     margin: 0 auto;
-    width: 90px;
+    width: 90%;
     height: 38px;
 
     display: flex;
@@ -154,7 +214,7 @@
     background-color: $ema-lilac-2;
     border: 0px;
     outline: 0px;
-    border-radius: 12px;
+    border-radius: 18px;
 
     font-family: 'Lato';
     font-size: 16px;
@@ -167,12 +227,14 @@
         opacity: 1;
     }
 }
+
 // START PAGE
 .form.start-page {
     .image {
         padding-top: 38px;
     }
 }
+
 // QUESTIONS
 .question-plain{
     font-family: 'Poppins';
@@ -203,6 +265,7 @@
         justify-content: space-around;
     }
 }
+
 // PAGINATION
 .paginate{
     position: absolute;
@@ -245,4 +308,26 @@
         height: 30px;
         border-radius: 8px;
     }
+}
+
+// SLIDER
+.slider{
+    color: '#E4E4E4';
+    height: 8px;
+    &.MuiSlider-track{
+    border: none
+    }
+    &.MuiSlider-thumb{
+        height: 20px;
+        width: 20px;
+        background-color: '#8C3E79';
+        border: 4px solid #fff;
+        &:focus, &:hover, &.Mui-active, &.Mui-focusVisible{
+            box-shadow: inherit
+        }
+        &:before{
+        display: none
+        }
+    }
+
 }
