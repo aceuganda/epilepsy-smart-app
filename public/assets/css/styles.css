@@ -86,3 +86,6 @@ p{
 .text-strike-through{
   text-decoration: line-through;
 }
+.display-none {
+  display: none
+}
