@@ -113,7 +113,15 @@ const MedicationAssessmentPageTwo = () => {
                 sx={{ width: '90%', marginLeft: '18px' }}
               />
               <button
-                style={{ position: 'absolute', right: '20px', marginTop: '20px' }}
+                style={{
+                  position: 'absolute',
+                  right: '20px',
+                  marginTop: '20px',
+                  borderRadius: '8px',
+                  background: '#8C3E79',
+                  color: '#fff',
+                  boxShadow: '0.8px 2px 2px 0.8px #e4e4e4'
+                }}
                 type="submit"
                 className="button form-button-pill"
                 onClick={(e) => handleSubmit(e)}>

@@ -11,7 +11,7 @@ const IntroPage = () => {
       <MedicationComponent backroute={'/home'}>
         <Form>
           <MedicationImg className="image" />
-          <Largebtn title="Add Medicine" link="" />
+          <Largebtn title="Add Medicine" link="/medication/tracking" />
           <Largebtn title="Monitor Medicines" link="/medication/assessment/1" />
           <Largebtn title="Record Your Medicines" link="" />
         </Form>
