@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        eppsign {
+            storeFile file('eppsign')
+            storePassword 'P@ss1234'
+            keyAlias 'eppsign'
+            keyPassword 'P@ss1234'
+        }
+    }
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "com.epilepsy.smartapp"
