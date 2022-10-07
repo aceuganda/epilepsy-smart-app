@@ -32,7 +32,7 @@ const HomePage = () => {
       <div className="cards">
         <Card title="seizure tracking" img={SeizureImg} link="/seizure-form" />
         <Card title="medication" img={MedicineImg} />
-        <Card title="resilience tracking" img={TrackImg} />
+        <Card title="resilience tracking" img={TrackImg} link="/resilience-form/1"/>
         <Card title="resilience activities" img={ActivitiesImg} />
       </div>
       <Footer />
