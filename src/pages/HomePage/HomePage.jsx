@@ -6,7 +6,7 @@ import SeizureImg from '../../assets/img/HomePage/seizure.png';
 import MedicineImg from '../../assets/img/HomePage/medication.png';
 import ActivitiesImg from '../../assets/img/HomePage/activities.png';
 import TrackImg from '../../assets/img/HomePage/tracking.png';
-import ProfilePlaceholder from '../../assets/img/HomePage/UserProfile.png'
+import ProfilePlaceholder from '../../assets/img/HomePage/UserProfile.png';
 
 const HomePage = () => {
   return (
@@ -19,7 +19,7 @@ const HomePage = () => {
       </header>
       <div className="banner">
         <span>
-          <img src={ProfilePlaceholder} alt={''}/>
+          <img src={ProfilePlaceholder} alt={''} />
           <span className="name">Sophie Mukasa</span>
         </span>
         <div>
@@ -31,7 +31,7 @@ const HomePage = () => {
       </div>
       <div className="cards">
         <Card title="seizure tracking" img={SeizureImg} link="/seizure-form" />
-        <Card title="medication" img={MedicineImg} />
+        <Card title="medication" img={MedicineImg} link="/medication" />
         <Card title="resilience tracking" img={TrackImg} />
         <Card title="resilience activities" img={ActivitiesImg} />
       </div>

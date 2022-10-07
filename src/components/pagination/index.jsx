@@ -9,7 +9,7 @@ const Pagination = ({ page_number, total_number, page_link, button, onClick }) =
     total_number: PropTypes.number,
     page_link: PropTypes.string,
     button: PropTypes.bool,
-    onClick: PropTypes.func,
+    onClick: PropTypes.func
   };
 
   return (

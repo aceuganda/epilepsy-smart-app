@@ -31,3 +31,22 @@ a, a:hover{
     text-decoration-color: none;
     color: inherit;
 }
+.flex-row {
+  display: flex;
+  flex-flow: row wrap;
+
+  &-center {
+    align-items: center;
+    justify-content: center;
+  }
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+
+  &-center {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
