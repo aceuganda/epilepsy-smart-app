@@ -12,6 +12,10 @@ import StartPage from './pages/SeizureMonitoring/Page';
 import PageOne from './pages/SeizureMonitoring/SeizureAssessment/PageOne';
 import PageThree from './pages/SeizureMonitoring/SeizureAssessment/PageThree';
 import PageTwo from './pages/SeizureMonitoring/SeizureAssessment/PageTwo';
+import ResiliencePageOne from './pages/ResilienceTracking/ResiliencePageOne';
+import ResiliencePageTwo from './pages/ResilienceTracking/ResiliencePageTwo';
+import ResiliencePageThree from './pages/ResilienceTracking/ResiliencePageThree';
+
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
@@ -40,6 +44,9 @@ const AppRoutes = () => {
           <Route path="/medication/assessment/1" element={<MedicationAssessmentPageOne />} />
           <Route path="/medication/assessment/2" element={<MedicationAssessmentPageTwo />} />
           <Route path="/medication/tracking" element={<MedicationTrackingPageOne />} />
+          <Route path="/resilience-form/1" element={<ResiliencePageOne />} />
+          <Route path="/resilience-form/2" element={<ResiliencePageTwo />} />
+          <Route path="/resilience-form/3" element={<ResiliencePageThree />} />
         </Routes>
       </Suspense>
     </Router>
