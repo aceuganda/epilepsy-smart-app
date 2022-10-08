@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import ResilienceComponent from './index';
 import Form from '../../components/form/Form';
 import Question from '../../components/form/Question';
 import Pagination from '../../components/pagination';
 import { setTreatmentScaleByOthers } from '../../redux/Slices/ResilienceTracking';
-import { Slider, TextField} from '@mui/material';
+import { Slider, TextField } from '@mui/material';
 
 const ResiliencePageTwo = () => {
-  const [treatment_scale_by_others, setTreatmentScale] = useState(null);
+  const [treatment_scale_one, setTreatmentScaleOne] = useState(null);
+  const [treatment_scale_two, setTreatmentScaleTwo] = useState(null);
 
   const dispatch = useDispatch();
 
   const handleChange = () => {
-    dispatch(setTreatmentScaleByOthers(treatment_scale_by_others));
+    dispatch(setTreatmentScaleByOthers((treatment_scale_one + treatment_scale_two) / 2));
   };
 
   const styles = {
@@ -59,8 +60,27 @@ const ResiliencePageTwo = () => {
     }
   };
 
-  useEffect(() => {}, []);
+  const marksOne = [
+    {
+      value: 0,
+      label: 'Respectfully'
+    },
+    {
+      value: 100,
+      label: 'Rudely'
+    }
+  ];
 
+  const marksTwo = [
+    {
+      value: 0,
+      label: 'With Care'
+    },
+    {
+      value: 100,
+      label: 'Harshly'
+    }
+  ];
 
   return (
     <ResilienceComponent backroute={'/resilience-form/1'}>
@@ -71,19 +91,34 @@ const ResiliencePageTwo = () => {
               <Slider
                 aria-label="Default"
                 defaultValue={0}
+                marks={marksOne}
                 step={1}
                 min={0}
-                max={7}
+                max={100}
                 valueLabelDisplay="auto"
                 sx={styles.slider}
                 style={styles.slider}
                 onChange={(e, value) => {
-                  setTreatmentScale(value);
+                  setTreatmentScaleOne(value);
+                }}
+              />
+              <Slider
+                aria-label="Default"
+                defaultValue={0}
+                marks={marksTwo}
+                step={1}
+                min={0}
+                max={100}
+                valueLabelDisplay="auto"
+                sx={styles.slider}
+                style={styles.slider}
+                onChange={(e, value) => {
+                  setTreatmentScaleTwo(value);
                 }}
               />
             </fieldset>
           </Question>
-          {treatment_scale_by_others !== null ? (
+          {treatment_scale_one && treatment_scale_two !== null ? (
             <Pagination
               page_number={2}
               total_number={3}
