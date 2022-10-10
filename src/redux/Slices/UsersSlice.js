@@ -48,7 +48,7 @@ export const usersSlice = createSlice({
     [loginUser.fulfilled]: (state, action) => {
       state.loading = false;
       state.userInfo = action.payload;
-      state.userToken = action.payload.token;
+      state.userToken = action.payload.data.access_token;
       state.success = true;
     },
     [loginUser.rejected]: (state, action) => {

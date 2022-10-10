@@ -7,8 +7,16 @@ import MedicineImg from '../../assets/img/HomePage/medication.png';
 import ActivitiesImg from '../../assets/img/HomePage/activities.png';
 import TrackImg from '../../assets/img/HomePage/tracking.png';
 import ProfilePlaceholder from '../../assets/img/HomePage/UserProfile.png';
+import { useSelector } from 'react-redux';
 
 const HomePage = () => {
+  const { userInfo } = useSelector((state) => state.user);
+  console.log(userInfo);
+
+  //capitalise first letter of name
+  const capitalise = (name) => {
+    return name.charAt(0).toUpperCase() + name.slice(1);
+  };
   return (
     <div className="home-page">
       <header className="row justify-content-between">
@@ -20,7 +28,7 @@ const HomePage = () => {
       <div className="banner">
         <span>
           <img src={ProfilePlaceholder} alt={''} />
-          <span className="name">Sophie Mukasa</span>
+          <span className="name">{capitalise(userInfo.data.username)}</span>
         </span>
         <div>
           <h3>
