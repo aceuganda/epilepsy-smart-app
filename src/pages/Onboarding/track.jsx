@@ -16,7 +16,7 @@ const Track = () => {
         </span>
         <img src={Dotted} />
       </div>
-      <Link to="/home">
+      <Link to="/login">
         <button className="o-btn">Get Started</button>
       </Link>
     </div>
