@@ -1,27 +1,41 @@
 //Login
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../../redux/Actions/userActions';
+
+import { useEffect } from 'react';
+import Error from '../../components/Error/Error';
 
 const Login = () => {
+  const { loading, userInfo, error } = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/home');
+    }
+  }, [navigate, userInfo]);
+
+  const submitForm = (data) => {
+    dispatch(loginUser(data));
+  };
+
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm();
 
-  const [error, setError] = useState('');
-
-  const onSubmit = (data) => {
-    console.log(data);
-    setError('');
-  };
-
   return (
     <div className="login">
       <div className="login-section">
         <h4>Login</h4>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(submitForm)}>
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
