@@ -28,7 +28,7 @@ const HomePage = () => {
       <div className="banner">
         <span>
           <img src={ProfilePlaceholder} alt={''} />
-          <span className="name">{capitalise(userInfo.data.username)}</span>
+          <span className="name">{userInfo ? capitalise(userInfo.data.username) : ""}</span>
         </span>
         <div>
           <h3>

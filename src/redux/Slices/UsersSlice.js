@@ -5,14 +5,18 @@ const userToken = localStorage.getItem('userToken')
   ? JSON.parse(localStorage.getItem('userToken'))
   : null;
 
+  const userInfo = localStorage.getItem('userInfo')
+  ? JSON.parse(localStorage.getItem('userInfo'))
+  : null;
+  
 const initialState = {
   loading: false,
-  userInfo: null,
+  userInfo,
   error: null,
   userToken,
   success: false
 };
-
+console.log(initialState);
 export const usersSlice = createSlice({
   name: 'user',
   initialState,
