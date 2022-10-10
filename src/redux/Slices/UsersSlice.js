@@ -16,7 +16,6 @@ const initialState = {
   userToken,
   success: false
 };
-console.log(initialState);
 export const usersSlice = createSlice({
   name: 'user',
   initialState,

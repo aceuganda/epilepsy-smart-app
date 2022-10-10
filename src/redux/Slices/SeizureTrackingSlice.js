@@ -9,6 +9,7 @@ export const postSeizureFormData = createAsyncThunk(
   }
 );
 
+
 export const seizureTrackingSlice = createSlice({
   name: 'seizureTracking',
   initialState: {
@@ -47,12 +48,14 @@ export const seizureTrackingSlice = createSlice({
       state.seizure_impact = action.payload;
     }
   },
-  extraReducers(builder) {
-    builder.addCase(postSeizureFormData.fulfilled, (state, action) => {
+  extraReducers: {
+    //Post Seizure Data
+    [postSeizureFormData.fulfilled]: (state, action) => {
       state = action.payload;
-    });
+    }
   }
 });
+
 
 export const {
   setSeizureDuration,

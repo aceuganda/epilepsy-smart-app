@@ -24,6 +24,8 @@ const ResiliencePageThree = () => {
     dispatch(setReasonForFeeling(reason_for_feeling));
   };
 
+  //TODO Define handleSubmit function and get data from redux store
+  
   useEffect(() => {}, []);
 
   return (
