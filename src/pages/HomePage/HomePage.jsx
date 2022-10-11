@@ -7,11 +7,12 @@ import MedicineImg from '../../assets/img/HomePage/medication.png';
 import ActivitiesImg from '../../assets/img/HomePage/activities.png';
 import TrackImg from '../../assets/img/HomePage/tracking.png';
 import ProfilePlaceholder from '../../assets/img/HomePage/UserProfile.png';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../redux/Slices/UsersSlice';
 
 const HomePage = () => {
   const { userInfo } = useSelector((state) => state.user);
-  console.log(userInfo);
+  const dispatch = useDispatch();
 
   //capitalise first letter of name
   const capitalise = (name) => {
@@ -23,12 +24,18 @@ const HomePage = () => {
         <h4>Holla!</h4>
         <div>
           <NotificationsNoneIcon />
+          <br />
+          {userInfo ? (
+            <button className="button" onClick={() => dispatch(logout())}>Log Out</button>
+          ) : (
+            <div>Log In</div>
+          )}
         </div>
       </header>
       <div className="banner">
         <span>
           <img src={ProfilePlaceholder} alt={''} />
-          <span className="name">{userInfo ? capitalise(userInfo.data.username) : ""}</span>
+          <span className="name">{userInfo ? capitalise(userInfo.data.username) : ''}</span>
         </span>
         <div>
           <h3>

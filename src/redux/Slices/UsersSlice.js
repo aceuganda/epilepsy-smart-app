@@ -22,6 +22,7 @@ export const usersSlice = createSlice({
   reducers: {
     logout: (state) => {
       localStorage.removeItem('userToken');
+      localStorage.removeItem('userInfo');
       state.userToken = null;
       state.userInfo = null;
       state.loading = false;
