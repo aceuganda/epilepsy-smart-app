@@ -1,15 +1,14 @@
-//Register
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { registerUser } from '../../redux/Actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
-import Error from '../../components/Error/Error';
+//import Error from '../../components/Error/Error';
 
 import { useEffect } from 'react';
 
 const Register = () => {
-  const [customError, setCustomError] = useState(null);
+  //const [customError, setCustomError] = useState(null);
 
   const { loading, userInfo, error, success } = useSelector((state) => state.user);
 
