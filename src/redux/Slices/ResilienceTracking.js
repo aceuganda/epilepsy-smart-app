@@ -39,12 +39,15 @@ export const resilienceTrackingSlice = createSlice({
       state.treatment_scale_by_others = action.payload;
     }
   },
-  extraReducers(builder) {
-    builder.addCase(postResilienceFormData.fulfilled, (state, action) => {
+  extraReducers: {
+
+    //Post Resilience Data
+    [postResilienceFormData.fulfilled]: (state, action) => {
       state = action.payload;
-    });
+    }
   }
 });
+
 
 export const {
   setEngagedSocially,

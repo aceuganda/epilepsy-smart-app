@@ -15,11 +15,12 @@ const PageThree = () => {
 
   const handleClick = () => {
     dispatch(setSeizureImpact(seizure_impact));
+    handleSubmit();
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(seizureTrackingData);
+    //e.preventDefault();
+    console.log(seizureTrackingData);  //Server currently returns bad request(missing some fields)
     try {
       await dispatch(postSeizureFormData(seizureTrackingData));
     } catch (err) {
