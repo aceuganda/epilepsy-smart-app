@@ -13,7 +13,9 @@ const ResiliencePageOne = () => {
   const dispatch = useDispatch();
 
   const handleChange = () => {
-    dispatch(setEngagedSocially(engaged_socially));
+    engaged_socially === 'yes'
+      ? dispatch(setEngagedSocially(true))
+      : dispatch(setEngagedSocially(false));
     dispatch(setEngagement(engagement));
   };
 
@@ -23,8 +25,8 @@ const ResiliencePageOne = () => {
     <ResilienceComponent backroute={'/home'}>
       <Form>
         <form>
-          <Question question={'Did you engage socially today?'}>
-            <fieldset className="mt-3 mb-4">
+          <Question question={'Did you engage socially today'}>
+            <fieldset className="mt-3 mb-4" style={{ justifyContent: 'space-evenly' }}>
               <button
                 type="button"
                 className="button form-button-pill text-uppercase"
@@ -45,16 +47,16 @@ const ResiliencePageOne = () => {
               </button>
             </fieldset>
           </Question>
-          {engaged_socially !== null ? (
-            <Question question={'How did you engage today?'}>
+          {engaged_socially === 'yes' ? (
+            <Question question={'How did you engage today'}>
               <fieldset className="mt-3 mb-4">
                 <div className="flex mb-4">
                   <input
                     id="default-checkbox"
                     type="checkbox"
-                    value="School"
+                    value={'school'}
                     onChange={(e) => {
-                      setEngagedType(e.target.value);
+                      setEngagedType([e.target.value]);
                     }}
                   />
                   <label htmlFor="default-checkbox">School</label>
@@ -63,9 +65,9 @@ const ResiliencePageOne = () => {
                   <input
                     id="checked-checkbox"
                     type="checkbox"
-                    value="Family"
+                    value={'family'}
                     onChange={(e) => {
-                      setEngagedType(e.target.value);
+                      setEngagedType([e.target.value]);
                     }}
                   />
                   <label htmlFor="checked-checkbox">Family</label>
@@ -73,7 +75,37 @@ const ResiliencePageOne = () => {
               </fieldset>
             </Question>
           ) : (
-            <span></span>
+            <span />
+          )}
+          {engaged_socially === 'no' ? (
+            <Question question={'Why not'}>
+              <fieldset className="mt-3 mb-4">
+                <div className="flex">
+                  <input
+                    id="checked-checkbox"
+                    type="checkbox"
+                    value={'bad company'}
+                    onChange={(e) => {
+                      setEngagedType([e.target.value]);
+                    }}
+                  />
+                  <label htmlFor="checked-checkbox">Bad Company</label>
+                </div>
+                <div className="flex">
+                  <input
+                    id="checked-checkbox"
+                    type="checkbox"
+                    value={'isolated'}
+                    onChange={(e) => {
+                      setEngagedType([e.target.value]);
+                    }}
+                  />
+                  <label htmlFor="checked-checkbox">Isolated</label>
+                </div>
+              </fieldset>
+            </Question>
+          ) : (
+            <span />
           )}
         </form>
         {engagement !== null ? (

@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../redux/Actions/userActions';
 
 import { useEffect } from 'react';
+import AuthPageComponent from '.';
+import { ReactComponent as LoginImg } from '../../assets/svg/Auth/Login.svg';
 //import Error from '../../components/Error/Error';
 
 const Login = () => {
@@ -32,38 +34,37 @@ const Login = () => {
   } = useForm();
 
   return (
-    <div className="login">
-      <div className="login-section">
-        <h4>Login</h4>
-        <form onSubmit={handleSubmit(submitForm)}>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              {...register('email', { required: true })}
-              placeholder="Enter email"
-            />
-            {errors.email && <span className="error">Email is required</span>}
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              {...register('password', { required: true })}
-              placeholder="Enter password"
-            />
-            {errors.password && <span className="error">Password is required</span>}
-          </div>
-          <button className="o-btn">Login</button>
-        </form>
-        <p className="error">{error}</p>
-        <p className="text-center">
-          Dont have an account? <Link to="/register">Register</Link>
-        </p>
-      </div>
-    </div>
+    <AuthPageComponent
+      title={'Login'}
+      image={<LoginImg />}
+      callToAction={'Dont have an account?'}
+      link={'/register'}
+      linkTitle={'Register Now'}>
+      <form onSubmit={handleSubmit(submitForm)}>
+        <div className="form-group">
+          <label htmlFor="email">Email Address</label>
+          <input
+            type="email"
+            name="email"
+            {...register('email', { required: true })}
+            placeholder="Enter email address"
+          />
+          {errors.email && <span className="error">Email is required</span>}
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            {...register('password', { required: true })}
+            placeholder="Enter password"
+          />
+          {errors.password && <span className="error">Password is required</span>}
+        </div>
+        <button className="o-btn">Login</button>
+      </form>
+      {error && <p className="error">{error}</p>}
+    </AuthPageComponent>
   );
 };
 

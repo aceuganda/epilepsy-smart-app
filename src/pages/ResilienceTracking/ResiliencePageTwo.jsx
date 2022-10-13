@@ -118,17 +118,13 @@ const ResiliencePageTwo = () => {
               />
             </fieldset>
           </Question>
-          {treatment_scale_one && treatment_scale_two !== null ? (
-            <Pagination
-              page_number={2}
-              total_number={3}
-              page_link={'/resilience-form/3'}
-              button={true}
-              onClick={handleChange}
-            />
-          ) : (
-            <Pagination page_number={2} total_number={3} page_link={''} button={false} />
-          )}
+          <Pagination
+            page_number={2}
+            total_number={3}
+            page_link={'/resilience-form/3'}
+            button={true}
+            onClick={handleChange}
+          />
         </form>
       </Form>
     </ResilienceComponent>

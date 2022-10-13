@@ -16,9 +16,9 @@ import { ReactComponent as AfternoonIcon } from '../../../assets/svg/Seizure/aft
 import { ReactComponent as NightIcon } from '../../../assets/svg/Seizure/night.svg';
 
 const PageOne = () => {
-  const [seizure_severity, setSeverity] = useState(null);
-  const [seizure_duration, setDuration] = useState(null);
-  const [seizure_time_of_day, setTime] = useState(null);
+  const [seizure_severity, setSeverity] = useState('');
+  const [seizure_duration, setDuration] = useState('');
+  const [seizure_time_of_day, setTime] = useState('');
   const [lost_awareness, setAwareness] = useState(null);
   const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ const PageOne = () => {
     dispatch(setSeizureSeverity(seizure_severity));
     dispatch(setSeizureDuration(seizure_duration));
     dispatch(setSeizureTimeOfDay(seizure_time_of_day));
-    dispatch(setLostAwareness(lost_awareness));
+    lost_awareness === 'yes' ? dispatch(setLostAwareness(true)) : dispatch(setLostAwareness(false));
   };
 
   useEffect(() => {}, []);
@@ -66,13 +66,13 @@ const PageOne = () => {
               </button>
             </fieldset>
           </Question>
-          {seizure_severity !== null ? (
+          {seizure_severity !== '' ? (
             <Question question={'How long did it last'}>
               <fieldset className="mt-3 mb-4">
                 <button
                   type="button"
                   className="button form-button-pill text-uppercase"
-                  value={''}
+                  value={'minutes'}
                   onClick={(e) => {
                     setDuration(e.target.value);
                   }}>
@@ -81,7 +81,7 @@ const PageOne = () => {
                 <button
                   type="button"
                   className="button form-button-pill text-uppercase"
-                  value={''}
+                  value={'seconds'}
                   onClick={(e) => {
                     setDuration(e.target.value);
                   }}>
@@ -90,7 +90,7 @@ const PageOne = () => {
                 <button
                   type="button"
                   className="button form-button-pill text-uppercase"
-                  value={null}
+                  value={'unknown'}
                   onClick={(e) => {
                     setDuration(e.target.value);
                   }}>
@@ -101,7 +101,7 @@ const PageOne = () => {
           ) : (
             <span></span>
           )}
-          {seizure_duration !== null ? (
+          {seizure_duration !== '' ? (
             <Question question={'What time of day did it occur'}>
               <fieldset className="mt-3 mb-4">
                 <div className="flex-column-center">
@@ -148,7 +148,7 @@ const PageOne = () => {
           ) : (
             <span></span>
           )}
-          {seizure_time_of_day !== null ? (
+          {seizure_time_of_day !== '' ? (
             <Question question={'Did you lose awareness'}>
               <fieldset className="mt-3 mb-4" style={{ justifyContent: 'space-evenly' }}>
                 <button
