@@ -66,7 +66,7 @@ const ResiliencePageThree = () => {
                 <button
                   type="button"
                   className="button form-button-pill text-uppercase"
-                  value={'Happy'}
+                  value={'happy'}
                   onClick={(e) => {
                     setFeeling(e.target.value);
                     dispatch(setFeelingToday([e.target.value]));
@@ -76,7 +76,7 @@ const ResiliencePageThree = () => {
                 <button
                   type="button"
                   className="button form-button-lg text-uppercase"
-                  value={'Sad'}
+                  value={'encouraged'}
                   onClick={(e) => {
                     setFeeling(e.target.value);
                     dispatch(setFeelingToday([e.target.value]));
@@ -86,7 +86,7 @@ const ResiliencePageThree = () => {
                 <button
                   type="button"
                   className="button form-button-pill text-uppercase"
-                  value={'Encouraged'}
+                  value={'inspired'}
                   onClick={(e) => {
                     setFeeling(e.target.value);
                     dispatch(setFeelingToday([e.target.value]));
@@ -104,7 +104,7 @@ const ResiliencePageThree = () => {
                 <button
                   type="button"
                   className="button form-button-pill text-uppercase"
-                  value={'Happy'}
+                  value={'sad'}
                   onClick={(e) => {
                     setFeeling(e.target.value);
                     dispatch(setFeelingToday([e.target.value]));
@@ -114,7 +114,7 @@ const ResiliencePageThree = () => {
                 <button
                   type="button"
                   className="button form-button-lg text-uppercase"
-                  value={'Sad'}
+                  value={'angry'}
                   onClick={(e) => {
                     setFeeling(e.target.value);
                     dispatch(setFeelingToday([e.target.value]));
@@ -124,7 +124,7 @@ const ResiliencePageThree = () => {
                 <button
                   type="button"
                   className="button form-button-pill text-uppercase"
-                  value={'Encouraged'}
+                  value={'irritable'}
                   onClick={(e) => {
                     setFeeling(e.target.value);
                     dispatch(setFeelingToday([e.target.value]));
@@ -142,7 +142,7 @@ const ResiliencePageThree = () => {
                 <button
                   type="button"
                   className="button form-button-lg text-uppercase"
-                  value={'Accomplished Goals'}
+                  value={'accomplished goals'}
                   onClick={(e) => {
                     setReason(e.target.value);
                     dispatch(setReasonForFeeling(e.target.value));
@@ -152,7 +152,7 @@ const ResiliencePageThree = () => {
                 <button
                   type="button"
                   className="button form-button-lg text-uppercase"
-                  value={'Family Acknowledged me'}
+                  value={'family acknowledged me'}
                   onClick={(e) => {
                     setReason(e.target.value);
                     dispatch(setReasonForFeeling(e.target.value));
@@ -162,7 +162,7 @@ const ResiliencePageThree = () => {
                 <button
                   type="button"
                   className="button form-button-lg text-uppercase"
-                  value={'Did Fun things'}
+                  value={'did fun things'}
                   onClick={(e) => {
                     setReason(e.target.value);
                     dispatch(setReasonForFeeling(e.target.value));
@@ -172,7 +172,7 @@ const ResiliencePageThree = () => {
                 <button
                   type="button"
                   className="button form-button-lg text-uppercase"
-                  value={'Engaged with others'}
+                  value={'engaged with others'}
                   onClick={(e) => {
                     setReason(e.target.value);
                     dispatch(setReasonForFeeling(e.target.value));
@@ -190,7 +190,7 @@ const ResiliencePageThree = () => {
                 <button
                   type="button"
                   className="button form-button-lg text-uppercase"
-                  value={'Accomplished Goals'}
+                  value={'isolation'}
                   onClick={(e) => {
                     setReason(e.target.value);
                     dispatch(setReasonForFeeling(e.target.value));
@@ -200,7 +200,7 @@ const ResiliencePageThree = () => {
                 <button
                   type="button"
                   className="button form-button-lg text-uppercase"
-                  value={'Family Acknowledged me'}
+                  value={'conflict'}
                   onClick={(e) => {
                     setReason(e.target.value);
                     dispatch(setReasonForFeeling(e.target.value));
@@ -210,7 +210,7 @@ const ResiliencePageThree = () => {
                 <button
                   type="button"
                   className="button form-button-lg text-uppercase"
-                  value={'Did Fun things'}
+                  value={'i have no friends'}
                   onClick={(e) => {
                     setReason(e.target.value);
                     dispatch(setReasonForFeeling(e.target.value));
@@ -220,7 +220,7 @@ const ResiliencePageThree = () => {
                 <button
                   type="button"
                   className="button form-button-lg text-uppercase"
-                  value={'Engaged with others'}
+                  value={'engaged with others '}
                   onClick={(e) => {
                     setReason(e.target.value);
                     dispatch(setReasonForFeeling(e.target.value));

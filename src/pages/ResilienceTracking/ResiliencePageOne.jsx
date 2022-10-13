@@ -54,7 +54,7 @@ const ResiliencePageOne = () => {
                   <input
                     id="default-checkbox"
                     type="checkbox"
-                    value="School"
+                    value={'school'}
                     onChange={(e) => {
                       setEngagedType([e.target.value]);
                     }}
@@ -65,7 +65,7 @@ const ResiliencePageOne = () => {
                   <input
                     id="checked-checkbox"
                     type="checkbox"
-                    value="Family"
+                    value={'family'}
                     onChange={(e) => {
                       setEngagedType([e.target.value]);
                     }}
@@ -84,7 +84,7 @@ const ResiliencePageOne = () => {
                   <input
                     id="checked-checkbox"
                     type="checkbox"
-                    value="Family"
+                    value={'bad company'}
                     onChange={(e) => {
                       setEngagedType([e.target.value]);
                     }}
@@ -95,7 +95,7 @@ const ResiliencePageOne = () => {
                   <input
                     id="checked-checkbox"
                     type="checkbox"
-                    value="Family"
+                    value={'isolated'}
                     onChange={(e) => {
                       setEngagedType([e.target.value]);
                     }}
