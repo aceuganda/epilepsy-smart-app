@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ResilienceComponent from './index';
 import Form from '../../components/form/Form';
@@ -8,54 +8,60 @@ import Question from '../../components/form/Question';
 import {
   setTypeOfFeelings,
   setFeelingToday,
-  setReasonForFeeling
+  setReasonForFeeling,
+  postResilienceFormData
 } from '../../redux/Slices/ResilienceTracking';
 
 const ResiliencePageThree = () => {
   const [type_of_feelings, setFeelingType] = useState(null);
-  const [feeling_today, setFeeling] = useState(null);
+  const [feeling_today, setFeeling] = useState({});
   const [reason_for_feeling, setReason] = useState(null);
-
+  const resilienceTrackingData = useSelector((state) => state.resilienceTracking);
   const dispatch = useDispatch();
 
-  const handleClick = () => {
-    dispatch(setTypeOfFeelings(type_of_feelings));
-    dispatch(setFeelingToday(feeling_today));
-    dispatch(setReasonForFeeling(reason_for_feeling));
+  const handleSubmit = async (e) => {
+    console.log(resilienceTrackingData);
+    try {
+      await dispatch(postResilienceFormData(resilienceTrackingData));
+    } catch (err) {
+      console.log('Failed to post:', err);
+    }
   };
 
   //TODO Define handleSubmit function and get data from redux store
-  
+
   useEffect(() => {}, []);
 
   return (
     <ResilienceComponent backroute={'/resilience-form/2'}>
       <Form>
         <form>
-          <Question question={'How did you feel today?'}>
-            <fieldset className="mt-3 mb-4">
+          <Question question={'How did you feel today'}>
+            <fieldset className="mt-3 mb-4" style={{ justifyContent: 'space-evenly' }}>
               <button
                 type="button"
-                className="button form-button-pill text-uppercase"
-                value={'Positive'}
+                className="button form-button-pill text-capitalize"
+                value={'positive'}
                 onClick={(e) => {
                   setFeelingType(e.target.value);
-                }}>
-                Negative
-              </button>
-              <button
-                type="button"
-                className="button form-button-pill text-uppercase"
-                value={'Negative'}
-                onClick={(e) => {
-                  setFeelingType(e.target.value);
+                  dispatch(setTypeOfFeelings(e.target.value));
                 }}>
                 Positive
               </button>
+              <button
+                type="button"
+                className="button form-button-pill text-capitalize"
+                value={'negative'}
+                onClick={(e) => {
+                  setFeelingType(e.target.value);
+                  dispatch(setTypeOfFeelings(e.target.value));
+                }}>
+                Negative
+              </button>
             </fieldset>
           </Question>
-          {type_of_feelings !== null ? (
-            <Question question={'What was the feeling?'}>
+          {type_of_feelings === 'positive' ? (
+            <Question question={'Which emotions were felt'}>
               <fieldset className="mt-3 mb-4">
                 <button
                   type="button"
@@ -63,17 +69,19 @@ const ResiliencePageThree = () => {
                   value={'Happy'}
                   onClick={(e) => {
                     setFeeling(e.target.value);
+                    dispatch(setFeelingToday([e.target.value]));
                   }}>
                   Happy
                 </button>
                 <button
                   type="button"
-                  className="button form-button-pill text-uppercase"
+                  className="button form-button-lg text-uppercase"
                   value={'Sad'}
                   onClick={(e) => {
                     setFeeling(e.target.value);
+                    dispatch(setFeelingToday([e.target.value]));
                   }}>
-                  Sad
+                  Encouraged
                 </button>
                 <button
                   type="button"
@@ -81,14 +89,55 @@ const ResiliencePageThree = () => {
                   value={'Encouraged'}
                   onClick={(e) => {
                     setFeeling(e.target.value);
+                    dispatch(setFeelingToday([e.target.value]));
                   }}>
-                  Encouraged
+                  Inspired
                 </button>
               </fieldset>
             </Question>
-          ) : null}
-          {feeling_today !== null ? (
-            <Question question={'Why did you feel this way?'}>
+          ) : (
+            <span />
+          )}
+          {type_of_feelings === 'negative' ? (
+            <Question question={'Which emotions were felt'}>
+              <fieldset className="mt-3 mb-4">
+                <button
+                  type="button"
+                  className="button form-button-pill text-uppercase"
+                  value={'Happy'}
+                  onClick={(e) => {
+                    setFeeling(e.target.value);
+                    dispatch(setFeelingToday([e.target.value]));
+                  }}>
+                  Sad
+                </button>
+                <button
+                  type="button"
+                  className="button form-button-lg text-uppercase"
+                  value={'Sad'}
+                  onClick={(e) => {
+                    setFeeling(e.target.value);
+                    dispatch(setFeelingToday([e.target.value]));
+                  }}>
+                  Angry
+                </button>
+                <button
+                  type="button"
+                  className="button form-button-pill text-uppercase"
+                  value={'Encouraged'}
+                  onClick={(e) => {
+                    setFeeling(e.target.value);
+                    dispatch(setFeelingToday([e.target.value]));
+                  }}>
+                  Irritable
+                </button>
+              </fieldset>
+            </Question>
+          ) : (
+            <span />
+          )}
+          {type_of_feelings === 'positive' && feeling_today !== null ? (
+            <Question question={'Why did you feel this way'}>
               <fieldset className="mt-3 mb-4">
                 <button
                   type="button"
@@ -96,6 +145,7 @@ const ResiliencePageThree = () => {
                   value={'Accomplished Goals'}
                   onClick={(e) => {
                     setReason(e.target.value);
+                    dispatch(setReasonForFeeling(e.target.value));
                   }}>
                   Accomplished Goals
                 </button>
@@ -105,6 +155,7 @@ const ResiliencePageThree = () => {
                   value={'Family Acknowledged me'}
                   onClick={(e) => {
                     setReason(e.target.value);
+                    dispatch(setReasonForFeeling(e.target.value));
                   }}>
                   Family Acknowledged me
                 </button>
@@ -114,6 +165,7 @@ const ResiliencePageThree = () => {
                   value={'Did Fun things'}
                   onClick={(e) => {
                     setReason(e.target.value);
+                    dispatch(setReasonForFeeling(e.target.value));
                   }}>
                   Did Fun things
                 </button>
@@ -123,15 +175,66 @@ const ResiliencePageThree = () => {
                   value={'Engaged with others'}
                   onClick={(e) => {
                     setReason(e.target.value);
+                    dispatch(setReasonForFeeling(e.target.value));
                   }}>
                   Engaged with others
                 </button>
               </fieldset>
             </Question>
-          ) : null}
+          ) : (
+            <span />
+          )}
+          {type_of_feelings === 'negative' && feeling_today !== null ? (
+            <Question question={'Why did you feel this way'}>
+              <fieldset className="mt-3 mb-4">
+                <button
+                  type="button"
+                  className="button form-button-lg text-uppercase"
+                  value={'Accomplished Goals'}
+                  onClick={(e) => {
+                    setReason(e.target.value);
+                    dispatch(setReasonForFeeling(e.target.value));
+                  }}>
+                  Isolation
+                </button>
+                <button
+                  type="button"
+                  className="button form-button-lg text-uppercase"
+                  value={'Family Acknowledged me'}
+                  onClick={(e) => {
+                    setReason(e.target.value);
+                    dispatch(setReasonForFeeling(e.target.value));
+                  }}>
+                  Conflict
+                </button>
+                <button
+                  type="button"
+                  className="button form-button-lg text-uppercase"
+                  value={'Did Fun things'}
+                  onClick={(e) => {
+                    setReason(e.target.value);
+                    dispatch(setReasonForFeeling(e.target.value));
+                  }}>
+                  I have no friends
+                </button>
+                <button
+                  type="button"
+                  className="button form-button-lg text-uppercase"
+                  value={'Engaged with others'}
+                  onClick={(e) => {
+                    setReason(e.target.value);
+                    dispatch(setReasonForFeeling(e.target.value));
+                  }}>
+                  Others
+                </button>
+              </fieldset>
+            </Question>
+          ) : (
+            <span />
+          )}
           {reason_for_feeling !== null ? (
-            <Link to="/home">
-              <button type="submit" className="finish-btn" onClick={handleClick}>
+            <Link to="">
+              <button type="submit" className="finish-btn" onClick={handleSubmit}>
                 Finish
               </button>
             </Link>

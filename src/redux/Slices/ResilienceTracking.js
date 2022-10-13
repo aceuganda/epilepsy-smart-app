@@ -9,38 +9,42 @@ export const postResilienceFormData = createAsyncThunk(
   }
 );
 
+const userId = localStorage.getItem('userInfo')
+  ? JSON.parse(localStorage.getItem('userInfo')).data.id
+  : null;
+
 export const resilienceTrackingSlice = createSlice({
   name: 'resilienceTracking',
   initialState: {
-    engaged_socially: null,
-    engagement: null,
-    type_of_feelings: null,
-    feeling_today: null,
-    reason_for_feeling: null,
-    treatment_scale_by_others: null
+    user_id: parseInt(userId),
+    engaged_socially_today: false,
+    engagement_activities: [],
+    feelings_experienced: [],
+    reason_for_feelings: '',
+    treatment_scale_by_others: 0,
+    type_of_feelings: ''
   },
   reducers: {
     setEngagedSocially: (state, action) => {
-      state.engaged_socially = action.payload;
+      state.engaged_socially_today = action.payload;
     },
     setEngagement: (state, action) => {
-      state.engagement = action.payload;
+      state.engagement_activities = action.payload;
     },
     setTypeOfFeelings: (state, action) => {
       state.type_of_feelings = action.payload;
     },
     setFeelingToday: (state, action) => {
-      state.feeling_today = action.payload;
+      state.feelings_experienced = action.payload;
     },
     setReasonForFeeling: (state, action) => {
-      state.reason_for_feeling = action.payload;
+      state.reason_for_feelings = action.payload;
     },
     setTreatmentScaleByOthers: (state, action) => {
       state.treatment_scale_by_others = action.payload;
     }
   },
   extraReducers: {
-
     //Post Resilience Data
     [postResilienceFormData.fulfilled]: (state, action) => {
       state = action.payload;
