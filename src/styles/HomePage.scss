@@ -1,4 +1,5 @@
 @import './library/colors.scss';
+@import './library/variables.scss';
 
 $cardHeight: 230px;
 .home-page{
@@ -9,7 +10,7 @@ $cardHeight: 230px;
     padding-bottom: 110px;
     header{
         background-color: $ema-white-0;
-        padding-top: 70px;
+        padding-top: $top-padding;
         padding-left: 28px;
         padding-right: 30px;
         h4{
