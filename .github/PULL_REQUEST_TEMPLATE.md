@@ -7,12 +7,11 @@ PR Checklist
 - 
 
 #### Is this change ready to hit production in its current state?
-- [] Yes
-- [] No
+- [ ] Yes
+- [ ] No
 
-#### Jira Ticket Number
-
-[ticket-id]
+#### Jira Ticket(s) Number
+- [ticket-id]()
 
 ## Screenshots/Videos
 
