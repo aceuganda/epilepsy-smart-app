@@ -3,13 +3,16 @@ PR Checklist
 - [ ] - Latest `master` branch merged
 - [ ] - PR title descriptive (can be used in release notes)
 
-## Description
+#### Summary of Changes (What does this PR do?)
+- 
 
-_What this PR does_
+#### Is this change ready to hit production in its current state?
+- [] Yes
+- [] No
 
-## Git Issues
+#### Jira Ticket Number
 
-_Closes #_
+[ticket-id]
 
 ## Screenshots/Videos
 
