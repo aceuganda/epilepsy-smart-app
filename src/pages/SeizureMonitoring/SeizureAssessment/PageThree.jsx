@@ -13,23 +13,14 @@ import {
 } from '../../../redux/Slices/SeizureTrackingSlice';
 
 const PageThree = () => {
-  const [seizure_impact, setFeel] = useState(null);
-  const [seizure_trigger, setTrigger] = useState(null);
+  const [seizure_impact, setFeel] = useState('');
+  const [seizure_trigger, setTrigger] = useState('');
   const [other_reason, setOtherReason] = useState('');
-  const [upsetRange, setUpsetRange] = useState(null);
-  const [triggers, setTriggers] = useState([]);
+  const [upsetRange, setUpsetRange] = useState(0);
   const dispatch = useDispatch();
   const seizureTrackingData = useSelector((state) => state.seizureTracking);
 
-  const handleClick = () => {
-    dispatch(setSeizureImpact(seizure_impact));
-    dispatch(setSeizureTrigger(seizure_trigger));
-    dispatch(setSeizureUpsetRange(upsetRange));
-    handleSubmit();
-  };
-
   const handleSubmit = async (e) => {
-    // e.preventDefault();
     console.log(seizureTrackingData);
     try {
       await dispatch(postSeizureFormData(seizureTrackingData));
@@ -37,11 +28,6 @@ const PageThree = () => {
       console.log('Failed to post:', err);
     }
   };
-
-  // const handleOtherReasonSubmit = (event) => {
-  //   event.preventDefault();
-  //   setOtherReason('');
-  // };
 
   const styles = {
     slider: {
@@ -125,14 +111,12 @@ const PageThree = () => {
     }
   ];
 
-  const handleChange = (event) => {
-    const {
-      target: { value }
-    } = event;
-    setTriggers(typeof value === 'string' ? value.split(',') : value);
-  };
-
-  console.log('Triggers', seizure_trigger, 'Slider', upsetRange, 'Impact', seizure_impact);
+  // const handleChange = (event) => {
+  //   const {
+  //     target: { value }
+  //   } = event;
+  //   setTriggers(typeof value === 'string' ? value.split(',') : value);
+  // };
 
   return (
     <SeizureComponent backroute={'/seizure-form/assessment/2'}>
@@ -148,7 +132,10 @@ const PageThree = () => {
                       type="checkbox"
                       className="form-button-lg"
                       value={trigger.name}
-                      onChange={(e) => setTrigger(e.target.value)}
+                      onChange={(e) => {
+                        setTrigger(e.target.value);
+                        dispatch(setSeizureTrigger(e.target.value));
+                      }}
                     />
                   </span>
                 ))}
@@ -165,6 +152,7 @@ const PageThree = () => {
                 value={'sleepy'}
                 onClick={(e) => {
                   setFeel(e.target.value);
+                  dispatch(setSeizureImpact(e.target.value));
                 }}>
                 Sleepy
               </button>
@@ -174,6 +162,7 @@ const PageThree = () => {
                 value={'confused'}
                 onClick={(e) => {
                   setFeel(e.target.value);
+                  dispatch(setSeizureImpact(e.target.value));
                 }}>
                 Confused
               </button>
@@ -183,6 +172,7 @@ const PageThree = () => {
                 value={'body weakness'}
                 onClick={(e) => {
                   setFeel(e.target.value);
+                  dispatch(setSeizureImpact(e.target.value));
                 }}>
                 Body Weakness
               </button>
@@ -192,6 +182,7 @@ const PageThree = () => {
                 value={'restless'}
                 onClick={(e) => {
                   setFeel(e.target.value);
+                  dispatch(setSeizureImpact(e.target.value));
                 }}>
                 Restless
               </button>
@@ -201,6 +192,7 @@ const PageThree = () => {
                 value={'headache'}
                 onClick={(e) => {
                   setFeel(e.target.value);
+                  dispatch(setSeizureImpact(e.target.value));
                 }}>
                 Headache
               </button>
@@ -210,6 +202,7 @@ const PageThree = () => {
                 value={'other'}
                 onClick={(e) => {
                   setFeel(e.target.value);
+                  dispatch(setSeizureImpact(e.target.value));
                 }}>
                 Other
               </button>
@@ -219,7 +212,10 @@ const PageThree = () => {
                     label="Type reason here"
                     variant="outlined"
                     value={other_reason}
-                    onChange={(e) => setOtherReason(e.target.value)}
+                    onChange={(e) => {
+                      setOtherReason(e.target.value);
+                      dispatch(setSeizureImpact(e.target.value));
+                    }}
                     multiline={true}
                     sx={{ width: '90%' }}
                   />
@@ -235,7 +231,10 @@ const PageThree = () => {
                     }}
                     type="submit"
                     className="button form-button-pill"
-                    onClick={() => setFeel(other_reason)}>
+                    onClick={() => {
+                      setFeel(other_reason);
+                      setOtherReason('');
+                    }}>
                     Done
                   </button>
                 </fieldset>
@@ -255,13 +254,16 @@ const PageThree = () => {
                 valueLabelDisplay="auto"
                 sx={styles.slider}
                 style={styles.slider}
-                onChange={(e) => setUpsetRange(parseInt(e.target.value))}
+                onChange={(e) => {
+                  setUpsetRange(parseInt(e.target.value));
+                  dispatch(setSeizureUpsetRange(upsetRange));
+                }}
               />
             </fieldset>
           </Question>
           {seizure_impact !== null ? (
             <Link to="/home">
-              <button className="finish-btn" type="submit" onClick={handleClick}>
+              <button className="finish-btn" type="submit" onClick={handleSubmit}>
                 Finish
               </button>
             </Link>

@@ -14,16 +14,16 @@ export const seizureTrackingSlice = createSlice({
   name: 'seizureTracking',
   initialState: {
     user_id: parseInt(userId),
-    seizure_severity: null,
-    seizure_duration: null,
-    seizure_time_of_day: null,
-    lost_awareness: null,
-    experienced_aura: null,
-    aura_kind_experienced: null,
-    seizure_trigger: null,
-    seizure_impact: null,
-    was_seizure_triggered: null,
-    seizure_impact_upset_you: null
+    seizure_severity: '',
+    seizure_duration: '',
+    seizure_time_of_day: '',
+    lost_awareness: false,
+    experienced_aura: false,
+    aura_kind_experienced: '',
+    seizure_trigger: '',
+    seizure_impact: '',
+    was_seizure_triggered: false,
+    seizure_impact_upset_you: 0
   },
   reducers: {
     setSeizureSeverity: (state, action) => {
