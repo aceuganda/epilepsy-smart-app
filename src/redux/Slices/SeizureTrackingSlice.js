@@ -9,10 +9,11 @@ export const postSeizureFormData = createAsyncThunk(
   }
 );
 
-
+const userId = JSON.parse(localStorage.getItem('userInfo')).data.id;
 export const seizureTrackingSlice = createSlice({
   name: 'seizureTracking',
   initialState: {
+    user_id: parseInt(userId),
     seizure_severity: null,
     seizure_duration: null,
     seizure_time_of_day: null,
@@ -20,7 +21,9 @@ export const seizureTrackingSlice = createSlice({
     experienced_aura: null,
     aura_kind_experienced: null,
     seizure_trigger: null,
-    seizure_impact: null
+    seizure_impact: null,
+    was_seizure_triggered: null,
+    seizure_impact_upset_you: null
   },
   reducers: {
     setSeizureSeverity: (state, action) => {
@@ -41,11 +44,17 @@ export const seizureTrackingSlice = createSlice({
     setSeizureAura: (state, action) => {
       state.experienced_aura = action.payload;
     },
+    setTrigger: (state, action) => {
+      state.was_seizure_triggered = action.payload;
+    },
     setSeizureTrigger: (state, action) => {
       state.seizure_trigger = action.payload;
     },
     setSeizureImpact: (state, action) => {
       state.seizure_impact = action.payload;
+    },
+    setSeizureUpsetRange: (state, action) => {
+      state.seizure_impact_upset_you = action.payload;
     }
   },
   extraReducers: {
@@ -56,7 +65,6 @@ export const seizureTrackingSlice = createSlice({
   }
 });
 
-
 export const {
   setSeizureDuration,
   setSeizureSeverity,
@@ -65,7 +73,9 @@ export const {
   setSeizureAura,
   setSeizureExperiencedAura,
   setSeizureImpact,
-  setSeizureTrigger
+  setTrigger,
+  setSeizureTrigger,
+  setSeizureUpsetRange
 } = seizureTrackingSlice.actions;
 
 export default seizureTrackingSlice.reducer;

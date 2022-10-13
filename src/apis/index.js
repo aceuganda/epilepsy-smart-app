@@ -7,8 +7,8 @@ import { LOGIN_USER_URL } from '../config/urls';
 const config = {
   headers: {
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${localStorage.getItem('userToken')}`,
-  },
+    Authorization: `Bearer ${localStorage.getItem('userToken')}`
+  }
 };
 
 export const postSeizureAssessment = async (data) =>
@@ -16,4 +16,3 @@ export const postSeizureAssessment = async (data) =>
 
 export const postResilience = async (data) =>
   await axios.post(RESILIENCE_URL, data, config).then((response) => response.data);
-

@@ -5,22 +5,32 @@ import { Link } from 'react-router-dom';
 import SeizureComponent from '..';
 import Form from '../../../components/form/Form';
 import Question from '../../../components/form/Question';
-import { postSeizureFormData, setSeizureImpact } from '../../../redux/Slices/SeizureTrackingSlice';
+import {
+  postSeizureFormData,
+  setSeizureImpact,
+  setSeizureTrigger,
+  setSeizureUpsetRange
+} from '../../../redux/Slices/SeizureTrackingSlice';
 
 const PageThree = () => {
   const [seizure_impact, setFeel] = useState(null);
-  const [other_reason, setOtherReason] = useState(null);
+  const [seizure_trigger, setTrigger] = useState(null);
+  const [other_reason, setOtherReason] = useState('');
+  const [upsetRange, setUpsetRange] = useState(null);
+  const [triggers, setTriggers] = useState([]);
   const dispatch = useDispatch();
   const seizureTrackingData = useSelector((state) => state.seizureTracking);
 
   const handleClick = () => {
     dispatch(setSeizureImpact(seizure_impact));
+    dispatch(setSeizureTrigger(seizure_trigger));
+    dispatch(setSeizureUpsetRange(upsetRange));
     handleSubmit();
   };
 
   const handleSubmit = async (e) => {
-    //e.preventDefault();
-    console.log(seizureTrackingData);  //Server currently returns bad request(missing some fields)
+    // e.preventDefault();
+    console.log(seizureTrackingData);
     try {
       await dispatch(postSeizureFormData(seizureTrackingData));
     } catch (err) {
@@ -28,10 +38,10 @@ const PageThree = () => {
     }
   };
 
-  const handleOtherReasonSubmit = (event) => {
-    event.preventDefault();
-    setOtherReason('');
-  };
+  // const handleOtherReasonSubmit = (event) => {
+  //   event.preventDefault();
+  //   setOtherReason('');
+  // };
 
   const styles = {
     slider: {
@@ -76,10 +86,77 @@ const PageThree = () => {
     }
   };
 
+  const seizureTriggers = [
+    {
+      id: 1,
+      name: 'stress'
+    },
+    {
+      id: 2,
+      name: 'laughter'
+    },
+    {
+      id: 3,
+      name: 'music'
+    },
+    {
+      id: 4,
+      name: 'noise'
+    },
+    {
+      id: 5,
+      name: 'hunger'
+    },
+    {
+      id: 6,
+      name: 'anger'
+    },
+    {
+      id: 7,
+      name: 'high fever'
+    },
+    {
+      id: 8,
+      name: 'missed medication'
+    },
+    {
+      id: 9,
+      name: 'flashing lights'
+    }
+  ];
+
+  const handleChange = (event) => {
+    const {
+      target: { value }
+    } = event;
+    setTriggers(typeof value === 'string' ? value.split(',') : value);
+  };
+
+  console.log('Triggers', seizure_trigger, 'Slider', upsetRange, 'Impact', seizure_impact);
+
   return (
     <SeizureComponent backroute={'/seizure-form/assessment/2'}>
       <Form>
         <form onSubmit={handleSubmit}>
+          {seizureTrackingData.was_seizure_triggered === true ? (
+            <Question question={'What trigger was it'}>
+              <fieldset className="mt-3 mb-4">
+                {seizureTriggers.map((trigger) => (
+                  <span key={trigger.id} className="checkbox-span">
+                    <label className="text-capitalize">{trigger.name}</label>
+                    <input
+                      type="checkbox"
+                      className="form-button-lg"
+                      value={trigger.name}
+                      onChange={(e) => setTrigger(e.target.value)}
+                    />
+                  </span>
+                ))}
+              </fieldset>
+            </Question>
+          ) : (
+            <span />
+          )}
           <Question question={'How did you feel after the seizure'}>
             <fieldset className="mt-3 mb-4">
               <button
@@ -141,6 +218,7 @@ const PageThree = () => {
                   <TextField
                     label="Type reason here"
                     variant="outlined"
+                    value={other_reason}
                     onChange={(e) => setOtherReason(e.target.value)}
                     multiline={true}
                     sx={{ width: '90%' }}
@@ -157,7 +235,7 @@ const PageThree = () => {
                     }}
                     type="submit"
                     className="button form-button-pill"
-                    onClick={(e) => handleOtherReasonSubmit(e)}>
+                    onClick={() => setFeel(other_reason)}>
                     Done
                   </button>
                 </fieldset>
@@ -177,6 +255,7 @@ const PageThree = () => {
                 valueLabelDisplay="auto"
                 sx={styles.slider}
                 style={styles.slider}
+                onChange={(e) => setUpsetRange(parseInt(e.target.value))}
               />
             </fieldset>
           </Question>

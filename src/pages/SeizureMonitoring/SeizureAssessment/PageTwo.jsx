@@ -9,20 +9,24 @@ import Pagination from '../../../components/pagination';
 import {
   setSeizureAura,
   setSeizureExperiencedAura,
-  setSeizureTrigger
+  setTrigger
 } from '../../../redux/Slices/SeizureTrackingSlice';
 
 const PageTwo = () => {
-  const [experienced_aura, setAura] = useState('');
+  const [experienced_aura, setAura] = useState(Boolean);
   const [aura_kind_experienced, setAuraType] = useState('');
-  const [seizure_trigger, setTrigger] = useState('');
+  const [seizure_trigger, setSeizureTrigger] = useState(null);
   const dispatch = useDispatch();
 
   const handleChange = () => {
-    dispatch(setSeizureAura(experienced_aura));
-    dispatch(setSeizureExperiencedAura(aura_kind_experienced));
-    dispatch(setSeizureTrigger(seizure_trigger));
+    experienced_aura === 'yes' ? dispatch(setSeizureAura(true)) : dispatch(setSeizureAura(false));
+    experienced_aura === 'no'
+      ? dispatch(setSeizureExperiencedAura(''))
+      : dispatch(setSeizureExperiencedAura(aura_kind_experienced));
+      seizure_trigger === 'yes' ? dispatch(setTrigger(true)) : dispatch(setTrigger(false));
   };
+
+  console.log(experienced_aura);
 
   useEffect(() => {}, []);
   return (
@@ -162,7 +166,7 @@ const PageTwo = () => {
                   className="button form-button-pill text-uppercase"
                   value={'yes'}
                   onClick={(e) => {
-                    setTrigger(e.target.value);
+                    setSeizureTrigger(e.target.value);
                   }}>
                   yes
                 </button>
@@ -171,7 +175,7 @@ const PageTwo = () => {
                   className="button form-button-pill text-uppercase"
                   value={'no'}
                   onClick={(e) => {
-                    setTrigger(e.target.value);
+                    setSeizureTrigger(e.target.value);
                   }}>
                   no
                 </button>
@@ -180,7 +184,7 @@ const PageTwo = () => {
           ) : (
             <span></span>
           )}
-          {seizure_trigger !== '' ? (
+          {seizure_trigger !== null ? (
             <Pagination
               page_link={'/seizure-form/assessment/3'}
               total_number={3}

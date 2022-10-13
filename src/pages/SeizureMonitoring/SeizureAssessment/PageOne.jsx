@@ -26,7 +26,7 @@ const PageOne = () => {
     dispatch(setSeizureSeverity(seizure_severity));
     dispatch(setSeizureDuration(seizure_duration));
     dispatch(setSeizureTimeOfDay(seizure_time_of_day));
-    dispatch(setLostAwareness(lost_awareness));
+    lost_awareness === 'yes' ? dispatch(setLostAwareness(true)) : dispatch(setLostAwareness(false));
   };
 
   useEffect(() => {}, []);
