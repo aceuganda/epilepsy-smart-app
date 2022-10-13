@@ -5,18 +5,29 @@ import ResilienceComponent from './index';
 import Form from '../../components/form/Form';
 import Question from '../../components/form/Question';
 import Pagination from '../../components/pagination';
-import { setEngagement, setEngagedSocially } from '../../redux/Slices/ResilienceTracking';
+import {
+  setEngagement,
+  setEngagedSocially,
+  setResilienceUserID
+} from '../../redux/Slices/ResilienceTracking';
+
+
 
 const ResiliencePageOne = () => {
   const [engaged_socially, setSocialEngagement] = useState(null);
   const [engagement, setEngagedType] = useState(null);
   const dispatch = useDispatch();
 
+  const userId = localStorage.getItem('userInfo')
+  ? JSON.parse(localStorage.getItem('userInfo')).data.id
+  : null;
+
   const handleChange = () => {
     engaged_socially === 'yes'
       ? dispatch(setEngagedSocially(true))
       : dispatch(setEngagedSocially(false));
     dispatch(setEngagement(engagement));
+    dispatch(setResilienceUserID(userId));
   };
 
   useEffect(() => {}, []);

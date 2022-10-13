@@ -8,7 +8,8 @@ import {
   setLostAwareness,
   setSeizureDuration,
   setSeizureSeverity,
-  setSeizureTimeOfDay
+  setSeizureTimeOfDay,
+  setSeizureID
 } from '../../../redux/Slices/SeizureTrackingSlice';
 
 import { ReactComponent as MorningIcon } from '../../../assets/svg/Seizure/Morning.svg';
@@ -22,10 +23,16 @@ const PageOne = () => {
   const [lost_awareness, setAwareness] = useState(null);
   const dispatch = useDispatch();
 
+  const userId = localStorage.getItem('userInfo')
+    ? JSON.parse(localStorage.getItem('userInfo')).data.id
+    : null;
+
   const handleChange = () => {
     dispatch(setSeizureSeverity(seizure_severity));
     dispatch(setSeizureDuration(seizure_duration));
     dispatch(setSeizureTimeOfDay(seizure_time_of_day));
+    dispatch(setSeizureID(userId));
+
     lost_awareness === 'yes' ? dispatch(setLostAwareness(true)) : dispatch(setLostAwareness(false));
   };
 
