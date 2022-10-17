@@ -9,19 +9,15 @@ export const postResilienceFormData = createAsyncThunk(
   }
 );
 
-const userId = localStorage.getItem('userInfo')
-  ? JSON.parse(localStorage.getItem('userInfo')).data.id
-  : null;
-
 export const resilienceTrackingSlice = createSlice({
   name: 'resilienceTracking',
   initialState: {
-    user_id: parseInt(userId),
+    user_id: null,
     engaged_socially_today: false,
     engagement_activities: [],
     feelings_experienced: [],
     reason_for_feelings: '',
-    treatment_scale_by_others: 0,
+    treatment_scale_by_other: 0,
     type_of_feelings: ''
   },
   reducers: {
@@ -41,7 +37,10 @@ export const resilienceTrackingSlice = createSlice({
       state.reason_for_feelings = action.payload;
     },
     setTreatmentScaleByOthers: (state, action) => {
-      state.treatment_scale_by_others = action.payload;
+      state.treatment_scale_by_other = action.payload;
+    },
+    setResilienceUserID: (state, action) => {
+      state.user_id = parseInt(action.payload);
     }
   },
   extraReducers: {
@@ -59,6 +58,7 @@ export const {
   setTypeOfFeelings,
   setFeelingToday,
   setReasonForFeeling,
+  setResilienceUserID,
   setTreatmentScaleByOthers
 } = resilienceTrackingSlice.actions;
 

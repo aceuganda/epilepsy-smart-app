@@ -9,13 +9,11 @@ export const postSeizureFormData = createAsyncThunk(
   }
 );
 
-const userId = localStorage.getItem('userInfo')
-  ? JSON.parse(localStorage.getItem('userInfo')).data.id
-  : null;
+
 export const seizureTrackingSlice = createSlice({
   name: 'seizureTracking',
   initialState: {
-    user_id: parseInt(userId),
+    user_id: null,
     seizure_severity: '',
     seizure_duration: '',
     seizure_time_of_day: '',
@@ -57,6 +55,9 @@ export const seizureTrackingSlice = createSlice({
     },
     setSeizureUpsetRange: (state, action) => {
       state.seizure_impact_upset_you = action.payload;
+    },
+    setSeizureID: (state, action) => {
+      state.user_id = parseInt(action.payload);
     }
   },
   extraReducers: {
@@ -77,6 +78,7 @@ export const {
   setSeizureImpact,
   setTrigger,
   setSeizureTrigger,
+  setSeizureID,
   setSeizureUpsetRange
 } = seizureTrackingSlice.actions;
 
