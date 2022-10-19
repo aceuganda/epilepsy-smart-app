@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# Epilepsy Self Management and Resilience Techinical(SMART) App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repo contains source code for the Epilepsy SMART App
 
-## Available Scripts
+![screenshots](documentation/images/app_screenshot.png)
 
-In the project directory, you can run:
+## Running the development server
+### Prerequisites
+1. Download and install [Git](https://git-scm.com/downloads)
 
-### `npm start`
+    This will be used to download the repository
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. Download and install [Node.js](https://nodejs.org/en/download/) version 16 +
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    This is the programming language required to run the project
 
-### `npm test`
+## Getting Started
+- Clone the and switch to repo directory
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+    ```cd epilepsy-smart-app```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Installing dependencies:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```npm install```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Running the development server:
 
-### `npm run eject`
+    ```npm start```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Building the app for production
+- To build the app for production, run the following command:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    ```npm run build```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- To build the app for android & IOS, run the following commands:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+    ```npm run app:build```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    This will generate a production build which will later be converted to a native app using CapacitorJS
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Running the app on a device
+- To run the app on a device, run the following command:
 
-### Code Splitting
+    ```npx cap open <platform>```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    You can specify the platform as either android or ios. This will open the native project in Android Studio or Xcode respectively.
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Links and Resources
+- [ReactJS](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [CapacitorJS](https://capacitorjs.com/)
+  
