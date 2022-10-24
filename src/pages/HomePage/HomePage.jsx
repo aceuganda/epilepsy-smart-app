@@ -5,6 +5,7 @@ import Card from './Card';
 import SeizureImg from '../../assets/img/HomePage/seizure.png';
 import MedicineImg from '../../assets/img/HomePage/medication.png';
 import ActivitiesImg from '../../assets/img/HomePage/activities.png';
+import Testimg from '../../assets/img/HomePage/activities.png'
 import TrackImg from '../../assets/img/HomePage/tracking.png';
 import ProfilePlaceholder from '../../assets/img/HomePage/UserProfile.png';
 import { useSelector, useDispatch } from 'react-redux';
@@ -49,6 +50,8 @@ const HomePage = () => {
         <Card title="medication" img={MedicineImg} link="/medication" />
         <Card title="resilience tracking" img={TrackImg} link="/resilience-form/1" />
         <Card title="resilience activities" img={ActivitiesImg} />
+        <Card title="testing" img={Testimg} />
+        
       </div>
       <Footer />
     </div>
