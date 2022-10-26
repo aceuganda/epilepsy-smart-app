@@ -43,6 +43,16 @@ $cardHeight: 230px;
                 height: 40px;
                 object-fit: cover;
             }
+            h1{
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                font-size: 33px;
+                justify-content: center;
+                align-items: center;
+                object-fit: cover;
+            }
             .name{
                 font-weight: 700;
                 color: $ema-white-0;
@@ -79,6 +89,7 @@ $cardHeight: 230px;
                 color: $ema-white-0;
             }
         }
+        
     }
     .cards{
         display: grid;
@@ -121,4 +132,5 @@ $cardHeight: 230px;
             }
         }
     }
+    
 }
