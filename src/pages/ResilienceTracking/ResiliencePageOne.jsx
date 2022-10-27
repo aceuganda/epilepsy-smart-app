@@ -10,6 +10,7 @@ import {
   setEngagedSocially,
   setResilienceUserID
 } from '../../redux/Slices/ResilienceTracking';
+import CheckBox from '../../components/form/CheckBox';
 
 
 
@@ -62,7 +63,7 @@ const ResiliencePageOne = () => {
             <Question question={'How did you engage today'}>
               <fieldset className="mt-3 mb-4">
                 <div className="flex mb-4">
-                  <input
+                  {/* <input
                     id="default-checkbox"
                     type="checkbox"
                     value={'school'}
@@ -70,10 +71,14 @@ const ResiliencePageOne = () => {
                       setEngagedType([e.target.value]);
                     }}
                   />
-                  <label htmlFor="default-checkbox">School</label>
+                  <label htmlFor="default-checkbox">School</label> */}
+
+                  <CheckBox label="School"   id="default-checkbox" onChange={(e) => {
+                      setEngagedType([e.target.value]);
+                    }} /> 
                 </div>
                 <div className="flex">
-                  <input
+                  {/* <input
                     id="checked-checkbox"
                     type="checkbox"
                     value={'family'}
@@ -81,7 +86,10 @@ const ResiliencePageOne = () => {
                       setEngagedType([e.target.value]);
                     }}
                   />
-                  <label htmlFor="checked-checkbox">Family</label>
+                  <label htmlFor="checked-checkbox">Family</label> */}
+                  <CheckBox label ="Family"  id="checked-checkbox" onChange={(e) => {
+                      setEngagedType([e.target.value]);
+                    }}/>
                 </div>
               </fieldset>
             </Question>
