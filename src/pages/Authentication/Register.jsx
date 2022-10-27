@@ -14,7 +14,8 @@ const Register = () => {
   //const [customError, setCustomError] = useState(null);
 
   const { loading, userInfo, error, success } = useSelector((state) => state.user);
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState(null);
+  const [hasCaregiver, sethasCaregiver] = useState('no');
 
   const dispatch = useDispatch();
 
@@ -35,10 +36,10 @@ const Register = () => {
     handleSubmit,
     formState: { errors }
   } = useForm();
-  const updateProfileUrl = (event) => {
+  const addUserProfileImage = (event) => {
     //required when no image is selected
     if (event.target.files[0] === undefined) {
-      setImageUrl("");
+      setImageUrl(null);
     } else {
       setImageUrl(event.target.files[0]);
     }
@@ -122,17 +123,35 @@ const Register = () => {
           <input
             type="text"
             name="seizureType"
-            {...register('seizureType', { required: true })}
+            {...register('seizureType')}
             placeholder="Enter type"
           />
           {errors.seizureType && <span className="error">Seizure type is required</span>}
+        </div>
+        <div className="form-checkbox-group">
+          <label htmlFor="caregiverOption">Do you have a caregiver?</label>
+          <div>
+            <span
+              className={hasCaregiver === 'no' ? 'Selected' : ''}
+              onClick={() => { sethasCaregiver('no') }}
+            >
+              No
+            </span>
+            <span
+              //empty "" to prevent console error
+              className={hasCaregiver === 'yes' ? 'Selected' : ''}
+              onClick={() => { sethasCaregiver('yes') }}
+            >
+              Yes
+            </span>
+          </div>
         </div>
         <div className="form-group">
           <label htmlFor="caregiverName">Name of caregiver</label>
           <input
             type="text"
             name="caregiverName"
-            {...register('caregiverName', { required: true })}
+            {...register('caregiverName', { required: hasCaregiver === 'yes'})}
             placeholder="Enter caregiver's name "
           />
           {errors.caregiverName && <span className="error">name is required</span>}
@@ -142,7 +161,7 @@ const Register = () => {
           <input
             type="text"
             name="caregiverContact"
-            {...register('caregiverContact', { required: true })}
+            {...register('caregiverContact', { required: hasCaregiver === 'yes'})}
             placeholder="Enter caregiver's contact "
           />
           {errors.caregiverContact && <span className="error">contact is required</span>}
@@ -183,21 +202,25 @@ const Register = () => {
             <img
               alt=""
               src={
-                imageUrl === ""
+                imageUrl === null
                   ? ProfilePlaceholder
                   : URL.createObjectURL(imageUrl)
               }
             />
           </section>
-          <input
-            type="file"
-            accept=".jpg,.jpeg,.png"
-            {...register("profileImage")}
-            name="profileImage"
-            onChange={(event) => {
-              updateProfileUrl(event);
-            }}
-          />
+          {imageUrl !== null && <div className='Imagename'>{imageUrl.name}</div>}
+          <label className="customButton">
+            <input
+              type="file"
+              accept=".jpg,.jpeg,.png"
+              {...register("profileImage")}
+              name="profileImage"
+              onChange={(event) => {
+                addUserProfileImage(event);
+              }}
+            />
+            Upload image
+          </label>
         </div>
         <button className="o-btn">Register</button>
       </form>
