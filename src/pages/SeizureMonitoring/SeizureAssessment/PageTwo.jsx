@@ -79,46 +79,26 @@ const PageTwo = () => {
                   }}>
                   Horrible Smells
                 </button>
-                <button
-                  type="button"
-                  value={'deja-vu'}
-                  onClick={(e) => setAuraType(e.target.value)}
-                  style={{
-                    border: 'none',
-                    background: 'transparent',
-                    outline: 'none',
-                    padding: '0',
-                    margin: '0'
-                  }}>
+                <div onClick={() => setAuraType('deja-vu')}>
                   <PopButton
                     popTitle={'Deja-vu'}
                     popDescription={
-                      'The sensation of being in a place or experiencing a very familiar situation.'
+                      'The sensation of being in a familiar place or experiencing a very familiar situation.'
                     }
                   />
-                </button>
-                <button
-                  type="button"
-                  value={'jamais-vu'}
-                  onClick={(e) => setAuraType(e.target.value)}
-                  style={{
-                    border: 'none',
-                    background: 'transparent',
-                    outline: 'none',
-                    padding: '0',
-                    margin: '0'
-                  }}>
+                </div>
+                <div onClick={() => setAuraType('jamais-vu')}>
                   <PopButton
                     popTitle={'Jamais-vu'}
                     popDescription={
-                      'An experience of being unfamiliar with a person or situation that is actually very familiar place that is unfamiliar)'
+                      'An experience of being unfamiliar with a person or place or situation that is actually very familiar.'
                     }
                   />
-                </button>
+                </div>
                 <button
                   type="button"
                   className="button form-button-lg"
-                  value={'tingling'}
+                  value={'tingling sensation'}
                   onClick={(e) => {
                     setAuraType(e.target.value);
                   }}>
@@ -127,7 +107,7 @@ const PageTwo = () => {
                 <button
                   type="button"
                   className="button form-button-lg"
-                  value={'tingling'}
+                  value={'flashing lights'}
                   onClick={(e) => {
                     setAuraType(e.target.value);
                   }}>

@@ -190,12 +190,16 @@
     .info-icon{
         margin-left:8px;
         background-color: $ema-white-0;
+        border-radius: 50%;
     }
     &:focus, :focus-within {
-            background-color: $ema-lilac-2;
-            color: $ema-white-0;
-            outline: none;
-        }
+        background-color: $ema-lilac-2;
+        color: $ema-white-0;
+        outline: none;
+    }
+    .popup-title{
+        text-transform: capitalize;
+    }
 }
 .finish-btn{
     position: absolute;
