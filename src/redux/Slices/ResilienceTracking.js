@@ -9,10 +9,14 @@ export const postResilienceFormData = createAsyncThunk(
   }
 );
 
+const userId = localStorage.getItem('userInfo')
+  ? JSON.parse(localStorage.getItem('userInfo')).data.id
+  : null;
+
 export const resilienceTrackingSlice = createSlice({
   name: 'resilienceTracking',
   initialState: {
-    user_id: null,
+    user_id: userId,
     engaged_socially_today: false,
     engagement_activities: [],
     feelings_experienced: [],

@@ -26,18 +26,20 @@ const PopQuestion = ({ question, popTitle, popDescription, children }) => {
         </span>
         {children}
       </span>
-      <Modal show={show} closeModal={() => setShow(false)}>
-        <div className="modal-content">
-          <span className="modal-title">
-            <h4>
-              {popTitle} <hr />
-            </h4>
-          </span>
-          <span className="modal-desc">
-            <p>{popDescription}</p>
-          </span>
-        </div>
-      </Modal>
+      {show && (
+        <Modal show={show} closeModal={() => setShow(false)}>
+          <div className="modal-content">
+            <span className="modal-title">
+              <h4>
+                {popTitle} <hr />
+              </h4>
+            </span>
+            <span className="modal-desc">
+              <p>{popDescription}</p>
+            </span>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };
