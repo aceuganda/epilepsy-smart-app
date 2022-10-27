@@ -34,12 +34,53 @@
         .image{
             margin-bottom: 40px;
         }
+        .form-checkbox-group{
+            font-family: 'Inter';
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+            label{
+                font-size: 18px;
+            }
+            span{
+                background: #fff;
+                width: 50px;
+                height: 50px;
+                border-color: bisque;
+                border-radius: 4px;
+                box-shadow: 0px 3px 9px 0px rgb(226, 180, 194);
+                outline: none;
+                padding:10px;  
+            }
+            div{
+                display: flex;
+                flex-direction: row;
+                gap: 1rem;
+            }
+            .Selected{
+                background-color: rgb(226, 180, 194);
+            }
+        }
         .form-group{
             width: 100%;
             font-family: 'Inter';
             text-align: left;
             label{
                 font-size: 18px;
+            }
+            img{
+                border-radius: 50%;
+                object-fit: cover;
+                padding: .5rem;
+                width: 80px;
+                height: 80px;
+            }
+            section{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
             }
             input{
                 background: #fff;
@@ -57,7 +98,78 @@
             input:-webkit-autofill:active{
                 background-color: #fff;
             }
-            input[type="text"],input[type="email"],input[type="password"], textarea{
+            input[type="text"],input[type="email"],input[type="password"],  textarea{
+                background-color: #fff;
+            }
+            input[type="file"] {
+                display: none;
+            }
+            .Imagename{
+                font-size: 15px;
+            }
+            .customButton{
+                width: 100%;
+                display: flex;
+                background-color: $ema-lilac-1;
+                height: 50px;
+                text-transform: uppercase;
+                font-size: 16px;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+                color: #fff;
+                font-weight: 500;
+                font-family: 'Poppins';
+                cursor: pointer;
+            }
+        }
+        .form-select-group{
+            width: 100%;
+            font-family: 'Inter';
+            text-align: left;
+            display: flex;
+            flex-direction: row;
+            padding: 0 2px;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            label{
+                font-size: 18px;
+            }
+            div{
+                display: flex;
+                flex-direction: column;
+            }
+            select{
+                background: #fff;
+                width: 100px;
+                height: 50px;
+                border-color: bisque;
+                border-radius: 4px;
+                box-shadow: 0px 3px 9px 0px rgb(226, 180, 194);
+                outline: none;
+                padding:10px;
+            }
+            option{
+                border-color: bisque;
+                font-size: 15px;
+            }
+            input{
+                background: #fff;
+                width: 100px;
+                height: 50px;
+                border-color: bisque;
+                border-radius: 4px;
+                box-shadow: 0px 3px 9px 0px rgb(226, 180, 194);
+                outline: none;
+                padding:10px;
+            }
+            input:-webkit-autofill,
+            input:-webkit-autofill:hover, 
+            input:-webkit-autofill:focus, 
+            input:-webkit-autofill:active{
+                background-color: #fff;
+            }
+            input[type="number"], textarea{
                 background-color: #fff;
             }
         }

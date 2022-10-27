@@ -9,6 +9,7 @@ import TrackImg from '../../assets/img/HomePage/tracking.png';
 import ProfilePlaceholder from '../../assets/img/HomePage/UserProfile.png';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/Slices/UsersSlice';
+import  Avatar from './Avatar';
 
 const HomePage = () => {
   const { userInfo } = useSelector((state) => state.user);
@@ -34,7 +35,10 @@ const HomePage = () => {
       </header>
       <div className="banner">
         <span>
-          <img src={ProfilePlaceholder} alt={''} />
+          <Avatar 
+          //  img={ProfilePlaceholder}
+           name={userInfo.data.username} 
+           alt={''} />
           <span className="name">{userInfo ? capitalise(userInfo.data.username) : ''}</span>
         </span>
         <div>
@@ -48,7 +52,7 @@ const HomePage = () => {
         <Card title="seizure tracking" img={SeizureImg} link="/seizure-form" />
         <Card title="medication" img={MedicineImg} link="/medication" />
         <Card title="resilience tracking" img={TrackImg} link="/resilience-form/1" />
-        <Card title="resilience activities" img={ActivitiesImg} />
+        <Card title="resilience activities" img={ActivitiesImg} />        
       </div>
       <Footer />
     </div>
