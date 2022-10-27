@@ -225,6 +225,7 @@
     font-weight: 800;
     line-height: 14px;
     opacity: 0.9;
+    text-transform: capitalize;
     &:hover, &:focus{
         border: 0px;
         outline: 0px;
@@ -355,5 +356,41 @@
     }
     input[type=checkbox]{
         background-color: $ema-lilac-2;
+    }
+}
+
+// END OF ASSESSMENT
+.eoa-container{
+    .modal-wrapper{
+        .modal{
+            min-height: 500px;
+            top:180px;
+            .eoa-wrapper{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-top:50px;
+                font-family: 'Poppins';
+                .eoa-title{
+                    font-weight: 700;
+                    text-align: center;
+                    color: $ema-green-0;
+                    font-size: 36px;
+                    line-height: 53px;
+                    padding-top:50px;
+                }
+                .eoa-subtext{
+                    text-align: center;
+                    font-weight: 600;
+                    font-size: 15px;
+                    line-height: 18px;
+                    color: $ema-black-0;
+                }
+                .finish-btn{
+                    width:75%;
+                    left: 25px
+                }
+            }
+        }
     }
 }
