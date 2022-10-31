@@ -47,18 +47,23 @@ const Register = () => {
 
 
   const submitForm = (data) => {
-    var submittion;
-    if(imageObject !== null)
-         submittion={...data, profileImage: imageObject}
-    else 
-         submittion = data
-    if (data.password !== data.confirmPassword) {
+    var submittion=data;
+    if (submittion.password !== submittion.confirmPassword) {
       alert('Passwords do not match');
       return;
     }
-    console.log(submittion)
-    submittion.email = data.email.toLowerCase();
-    // dispatch(registerUser(data));
+    submittion.email = submittion.email.toLowerCase();
+    if(imageObject !== null){
+    let reader = new FileReader()
+    reader.readAsDataURL(imageObject)
+    reader.onload = () =>{
+      submittion={...data, profileImage: reader.result}
+      //required to only dispatch onload
+      dispatch(registerUser(submittion));
+     }
+   }else {
+         dispatch(registerUser(submittion));
+    }
   };
 
   return (
