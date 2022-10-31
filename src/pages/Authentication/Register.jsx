@@ -14,7 +14,7 @@ const Register = () => {
   //const [customError, setCustomError] = useState(null);
 
   const { loading, userInfo, error, success } = useSelector((state) => state.user);
-  const [imageUrl, setImageUrl] = useState(null);
+  const [imageObject, setImageObject] = useState(null);
   const [hasCaregiver, sethasCaregiver] = useState('no');
 
   const dispatch = useDispatch();
@@ -39,22 +39,26 @@ const Register = () => {
   const addUserProfileImage = (event) => {
     //required when no image is selected
     if (event.target.files[0] === undefined) {
-      setImageUrl(null);
+      setImageObject(null);
     } else {
-      setImageUrl(event.target.files[0]);
+      setImageObject(event.target.files[0]);
     }
   }
 
 
   const submitForm = (data) => {
-    console.log(data);
-
+    var submittion;
+    if(imageObject !== null)
+         submittion={...data, profileImage: imageObject}
+    else 
+         submittion = data
     if (data.password !== data.confirmPassword) {
       alert('Passwords do not match');
       return;
     }
-    data.email = data.email.toLowerCase();
-    dispatch(registerUser(data));
+    console.log(submittion)
+    submittion.email = data.email.toLowerCase();
+    // dispatch(registerUser(data));
   };
 
   return (
@@ -202,18 +206,17 @@ const Register = () => {
             <img
               alt=""
               src={
-                imageUrl === null
+                imageObject === null
                   ? ProfilePlaceholder
-                  : URL.createObjectURL(imageUrl)
+                  : URL.createObjectURL(imageObject)
               }
             />
           </section>
-          {imageUrl !== null && <div className='Imagename'>{imageUrl.name}</div>}
+          {imageObject !== null && <div className='Imagename'>{imageObject.name}</div>}
           <label className="customButton">
             <input
               type="file"
               accept=".jpg,.jpeg,.png"
-              {...register("profileImage")}
               name="profileImage"
               onChange={(event) => {
                 addUserProfileImage(event);
