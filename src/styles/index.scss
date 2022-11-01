@@ -53,30 +53,4 @@ a, a:hover{
     text-align: center;
   }
 }
-.checkbox-wrapper input[type="checkbox"] {
-  /* removing default appearance */
-  -webkit-appearance: none;
-  appearance: none;
-  /* creating a custom design */
-  width: 1.6em;
-  height: 1.6em;
-  border-radius: 0.15em;
-  margin-right: 0.5em;
-  border: 0.1em solid rgb(232, 230, 232);
-  outline: none;
-  cursor: pointer;
-  border-radius: 5px;
-  box-shadow: 1px 1px 1px 1px rgb(239, 237, 237);
-}
-input:checked {
-  background-color: rgb(133, 1, 133);
-  position: relative;
-}
-input:checked::after {
-  content: "\2714";
-  font-size: 1.5em;
-  color: #fff;
-  position: absolute;
-  right: 1px;
-  top: -5px;
-}
+

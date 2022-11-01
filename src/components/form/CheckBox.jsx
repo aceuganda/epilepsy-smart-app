@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import PropTypes from 'prop-types';
 
-const CheckBox = ({ label,id,checked,...props }) => {
+const CheckBox = ({ label,id,checked,onChange,...props }) => {
   CheckBox.propTypes = {
     id: PropTypes.string,
     label: PropTypes.string.isRequired,
@@ -13,8 +13,8 @@ const CheckBox = ({ label,id,checked,...props }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   return (
-    <div className="checkbox-wrapper">
-      <label>
+    <div >
+      <label  style={{display:"flex"   }} className="checkbox-wrapper">
         <input 
          id={id}
          type="checkbox" 

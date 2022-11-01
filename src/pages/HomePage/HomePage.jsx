@@ -50,7 +50,6 @@ const HomePage = () => {
         <Card title="medication" img={MedicineImg} link="/medication" />
         <Card title="resilience tracking" img={TrackImg} link="/resilience-form/1" />
         <Card title="resilience activities" img={ActivitiesImg} />
-        <Card title="testing" img={Testimg} />
         
       </div>
       <Footer />
