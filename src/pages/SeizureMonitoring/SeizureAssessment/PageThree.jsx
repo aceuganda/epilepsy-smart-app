@@ -1,8 +1,8 @@
 import { Slider, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import SeizureComponent from '..';
+import EndOfAssessmentModal from '../../../components/form/EndOfAssessment';
 import Form from '../../../components/form/Form';
 import Question from '../../../components/form/Question';
 import {
@@ -11,21 +11,25 @@ import {
   setSeizureTrigger,
   setSeizureUpsetRange
 } from '../../../redux/Slices/SeizureTrackingSlice';
+import { ReactComponent as CheckedIcon } from '../../../assets/svg/Form/EndOfAssessment/CheckedIcon.svg';
 
 const PageThree = () => {
   const [seizure_impact, setFeel] = useState('');
   const [seizure_trigger, setTrigger] = useState('');
   const [other_reason, setOtherReason] = useState('');
   const [upsetRange, setUpsetRange] = useState(0);
+  const [endOfAssessment, setEndOfAssessment] = useState(false);
   const dispatch = useDispatch();
   const seizureTrackingData = useSelector((state) => state.seizureTracking);
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     console.log(seizureTrackingData);
     try {
+      setEndOfAssessment(true);
       await dispatch(postSeizureFormData(seizureTrackingData));
     } catch (err) {
-      console.log('Failed to post:', err);
+      console.log('Failed to post:', err.message);
     }
   };
 
@@ -262,13 +266,21 @@ const PageThree = () => {
             </fieldset>
           </Question>
           {seizure_impact !== null ? (
-            <Link to="/home">
-              <button className="finish-btn" type="submit" onClick={handleSubmit}>
-                Finish
-              </button>
-            </Link>
+            <button className="finish-btn" type="submit" onClick={handleSubmit}>
+              Finish
+            </button>
           ) : (
             <span></span>
+          )}
+          {endOfAssessment && (
+            <EndOfAssessmentModal
+              icon={<CheckedIcon />}
+              title={'Well Done!'}
+              subText={'Thank you for completing this assessment.'}
+              link={'/home'}
+              linkText={'home'}
+              showModal={true}
+            />
           )}
         </form>
       </Form>
