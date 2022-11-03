@@ -4,6 +4,7 @@ import SeizureComponent from '..';
 import Form from '../../../components/form/Form';
 import Question from '../../../components/form/Question';
 import Pagination from '../../../components/pagination';
+import TimePicker from '../../../components/form/TimePicker';
 import {
   setLostAwareness,
   setSeizureDuration,
@@ -20,6 +21,8 @@ const PageOne = () => {
   const [seizure_severity, setSeverity] = useState('');
   const [seizure_duration, setDuration] = useState('');
   const [seizure_time_of_day, setTime] = useState('');
+  const [secondsValue, setSecondsValue] = useState('0');
+  const [minutesValue, setMinutesValue] = useState('0');
   const [lost_awareness, setAwareness] = useState(null);
   const dispatch = useDispatch();
 
@@ -28,15 +31,24 @@ const PageOne = () => {
     : null;
 
   const handleChange = () => {
+    if(seizure_duration !== "unknown" && (minutesValue !=='0' || secondsValue !== '0')){
+      dispatch(setSeizureDuration(String((Number(minutesValue)*60)+Number(secondsValue))));
+    }else{
+      dispatch(setSeizureDuration(seizure_duration));
+    }
     dispatch(setSeizureSeverity(seizure_severity));
-    dispatch(setSeizureDuration(seizure_duration));
     dispatch(setSeizureTimeOfDay(seizure_time_of_day));
     dispatch(setSeizureID(userId));
-
     lost_awareness === 'yes' ? dispatch(setLostAwareness(true)) : dispatch(setLostAwareness(false));
   };
+  useEffect(() => { }, []);
 
-  useEffect(() => {}, []);
+  const handleMinutesChange = (target) => {
+    setMinutesValue(target.value)
+  };
+  const handleSecondsChange = (target) => {
+     setSecondsValue(target.value)
+  };
 
   return (
     <SeizureComponent backroute={'/seizure-form/'}>
@@ -75,40 +87,31 @@ const PageOne = () => {
           </Question>
           {seizure_severity !== '' ? (
             <Question question={'How long did it last'}>
-              <fieldset className="mt-3 mb-4">
+              <div className="timefieldset mt-3 mb-4">
+                <TimePicker
+                  onChangeMinutesCallBack={handleMinutesChange}
+                  onChangeSecondsCallBack={handleSecondsChange}
+                  height={70}
+                  width={50}
+                  selectedMinutesID={minutesValue}
+                  selectedSecondsID={secondsValue}
+                  fontSize={14}
+                />
                 <button
                   type="button"
-                  className="button form-button-pill text-uppercase"
-                  value={'minutes'}
-                  onClick={(e) => {
-                    setDuration(e.target.value);
-                  }}>
-                  minutes
-                </button>
-                <button
-                  type="button"
-                  className="button form-button-pill text-uppercase"
-                  value={'seconds'}
-                  onClick={(e) => {
-                    setDuration(e.target.value);
-                  }}>
-                  seconds
-                </button>
-                <button
-                  type="button"
-                  className="button form-button-pill text-uppercase"
+                  className="button form-button-pill-no-margin text-uppercase"
                   value={'unknown'}
                   onClick={(e) => {
                     setDuration(e.target.value);
                   }}>
                   unknown
                 </button>
-              </fieldset>
+              </div>
             </Question>
           ) : (
             <span></span>
           )}
-          {seizure_duration !== '' ? (
+          {(seizure_duration !== '' || minutesValue !=='0' || secondsValue !== '0' ) ? (
             <Question question={'What time of day did it occur'}>
               <fieldset className="mt-3 mb-4">
                 <div className="flex-column-center">
