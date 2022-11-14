@@ -261,7 +261,7 @@ const PageThree = () => {
             </fieldset>
           </Question>
           <Question question={'Did it upset you'}>
-            <fieldset style={{ marginTop: '35px', width: '93%', marginLeft: '10px' }}>
+            <fieldset style={{ marginTop: '10px', width: '93%', marginLeft: '10px' }}>
               <Slider
                 aria-label="Default"
                 defaultValue={0}

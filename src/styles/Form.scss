@@ -340,7 +340,7 @@
 // CHECKBOX
 
 .checkbox-wrapper{
-    padding: 4px;
+    padding: 2px;
 }
 .checkbox-wrapper input[type="checkbox"] {
     /* removing default appearance */
@@ -349,8 +349,8 @@
     /* creating a custom design */
     vertical-align: middle;
     position: relative;
-    width: 1.6em;
-    height: 1.6em;
+    width: 1.3em;
+    height: 1.3em;
     border-radius: 0.15em;
     margin-right: 0.5em;
     border: 0.1em solid rgb(232, 230, 232);
@@ -365,15 +365,21 @@
     position: relative;
   }
   input:checked::before{
+    // content: "\2714";
+    // font-size: 17px;
+    // color: #fff;
+    // position: absolute;
+    // right: 2px;
+    // bottom: 2px;
     content: "\2714";
-    font-size: 1.5em;
+    font-size: 14px;
     color: #fff;
-    position: absolute;
-    right: 2px;
+    display: flex;
+    justify-content: center;
   }
    .checkbox-wrapper span{
     font-weight: 500;
-    font-size: 13px;
+    font-size: 11px;
     padding-left: 10px;
    }
    .ItemContainer{
