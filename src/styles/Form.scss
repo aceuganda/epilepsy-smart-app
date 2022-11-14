@@ -372,11 +372,13 @@
     right: 2px;
   }
    .checkbox-wrapper span{
-    font-weight: 400;
+    font-weight: 500;
     font-size: 13px;
     padding-left: 10px;
-    font-size: 15px;
-    font-weight:500;
+   }
+   .ItemContainer{
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
    }
   
 

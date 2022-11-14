@@ -31,7 +31,28 @@ const ResiliencePageOne = () => {
     dispatch(setResilienceUserID(userId));
   };
 
-  useEffect(() => {}, []);
+
+  const labels = [
+    {
+      id: 1,
+      name: 'School'
+    },
+    {
+      id: 2,
+      name: 'Family'
+    },
+    {
+      id: 3,
+      name: 'Friends visit at home'
+    },
+    {
+      id: 4,
+      name: 'Outing with my friends'
+    },
+    
+   ];
+
+
 
   return (
     <ResilienceComponent backroute={'/home'}>
@@ -63,26 +84,14 @@ const ResiliencePageOne = () => {
             <Question question={'How did you engage today'}>
               <fieldset className="mt-3 mb-4">
                 <div className='checkbox-input'>
-                <div className="flex ">
-                  <CheckBox label="School"   id="default-checkbox" onChange={(e) => {
+                  <div className="flex ">
+                   {labels.map((label) => (
+                     <CheckBox key={label.id} label=  {label.name} id="default-checkbox"
+                      onChange={(e) => {
                       setEngagedType([e.target.value]);
                     }} />
-                </div>
-                <div className="flex">
-                  <CheckBox label ="Family"  id="checked-checkbox" onChange={(e) => {
-                      setEngagedType([e.target.value]);
-                    }}/>
-                </div>
-                <div className="flex ">
-                  <CheckBox label="Friends visit at home"   id="default-checkbox" onChange={(e) => {
-                      setEngagedType([e.target.value]);
-                    }} />
-                </div>
-                <div className="flex">
-                  <CheckBox label ="Outing with my friends"  id="checked-checkbox" onChange={(e) => {
-                      setEngagedType([e.target.value]);
-                    }}/>
-                </div>
+                   ))}
+                  </div>
                 </div>
               </fieldset>
             </Question>
