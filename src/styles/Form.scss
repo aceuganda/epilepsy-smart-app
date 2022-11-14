@@ -417,3 +417,34 @@
     }
 }
 
+// RESILIENCE ACTIVITIES PILL
+.resilience-a-pill{
+    width: 96%;
+    height: 40px;
+    border-radius: 16px;
+    padding: 8px 10px;
+    box-shadow: 0px 2px 0.5px 1px rgb(240, 235, 235);
+    margin-bottom: 13px;
+    max-height: auto;
+    border:0.4px solid #ddd;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    .act-title{
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 14.5px;
+        color: $ema-black-3;
+        line-height: 18px;
+    }
+
+    .act-icon{
+        position: relative;
+        border-radius: 50%;
+        height: auto;
+        margin-right: 10px;
+    }
+}
