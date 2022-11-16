@@ -1,7 +1,7 @@
-PR Checklist
+PR Checklist (Make sure these options are checked before raising the PR)
 
 - [ ] - Latest `master` branch merged
-- [ ] - PR title descriptive (can be used in release notes)
+- [ ] - Descriptive PR title (can be used in release notes)
 
 #### Summary of Changes (What does this PR do?)
 - 
@@ -11,7 +11,7 @@ PR Checklist
 - [ ] No
 
 #### Jira Ticket(s) Number
-- [ticket-id]()
+- [ticket-id]
 
 ## Screenshots/Videos
 
