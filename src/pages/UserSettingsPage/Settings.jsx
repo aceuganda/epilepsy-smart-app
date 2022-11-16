@@ -44,7 +44,6 @@ const Settings = () => {
   ];
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.user);
-  console.log(userInfo);
   return (
     <UserSettingsPageComponent backroute={'/home'}>
       <Form>
