@@ -91,10 +91,6 @@ const PageOne = () => {
                 <TimePicker
                   onChangeMinutesCallBack={handleMinutesChange}
                   onChangeSecondsCallBack={handleSecondsChange}
-                  height={70}
-                  width={50}
-                  selectedMinutesID={minutesValue}
-                  selectedSecondsID={secondsValue}
                   fontSize={14}
                 />
                 <button

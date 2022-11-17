@@ -1,58 +1,126 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {timeData} from '../../config/utils'
-import WheelPicker from 'react-simple-wheel-picker';
+
 
 const TimePicker = ({ onChangeMinutesCallBack, onChangeSecondsCallBack ,
-    height,
-    width,
-    fontSize,
-    selectedMinutesID,
-    selectedSecondsID
+    fontSize
 }) => {
+    const [scrollTop, setScrollTop] = useState(0);
+    const [scrollTopSeconds, setscrollTopSeconds] = useState(0)
+    
     TimePicker.propTypes = {
         onChangeMinutesCallBack: PropTypes.func,
         onChangeSecondsCallBack: PropTypes.func,
-        selectedMinutesID:PropTypes.string,
-        selectedSecondsID:PropTypes.string,
-        data:PropTypes.array,
-        height:PropTypes.number,
-        width:PropTypes.number,
         fontSize:PropTypes.number,
     };
-    return <div className='box'>
+    const onScrollMins = (event) =>{
+        //keeps re-render items on minutes list scrolling
+        setScrollTop(scrollTop+event.target.scrollTop)
+    }
+    const onScrollSeconds = (event) =>{
+        //keeps re-render items on seconds list scrolling
+        setscrollTopSeconds(scrollTopSeconds+event.target.scrollTop)
+    }
+    const  minutesOverlap=(el1, el2,item)=>{
+         if(!el1 || !el2) return
+         const container = el1.getBoundingClientRect();
+         const element = el2.getBoundingClientRect();
+         if(!(
+            (container.top+13) > element.bottom ||
+            (container.bottom-13)< element.top 
+          )){
+            onChangeMinutesCallBack(item)
+         }
+        return !(
+          (container.top+13) > element.bottom ||
+          (container.bottom-13)< element.top 
+        );
+      }
+    const  secondsOverlap=(el1, el2,item)=>{
+        if(!el1 || !el2) return
+        const container = el1.getBoundingClientRect();
+        const element = el2.getBoundingClientRect();
+        if(!(
+           (container.top+13) > element.bottom ||
+           (container.bottom-13)< element.top 
+         )){
+           onChangeSecondsCallBack(item)
+        }
+       return !(
+         (container.top+13) > element.bottom ||
+         (container.bottom-13)< element.top 
+       );
+    }
+
+    return( 
+     <div className='box'>
         <div className="Container">
-            <WheelPicker
-                data={timeData}
-                onChange={onChangeMinutesCallBack}
-                height={height}
-                width={width}
-                itemHeight={20}
-                selectedID={selectedMinutesID}
-                color="#ccc"
-                activeColor="#333"
-                backgroundColor="#fff"
-                shadowColor='none'
-                fontSize={fontSize}
-            />
+            <ul 
+             onScroll={onScrollMins}
+             style={{
+               fontSize:{fontSize}
+             }} 
+            >
+            <div style={{
+              padding:'6px'
+             }} >
+            
+            </div>
+             {timeData.map((item,index)=> 
+            <div
+             key={index} 
+             id={`mins-${index}`}
+             style={{
+                fontFamily:'400',
+                color: minutesOverlap(document.getElementById('container'),
+                    document.getElementById(`mins-${index}`),item)
+                    ? "#000" : "#ccc"
+             }}
+             >
+             {item.value}
+            </div>)
+            } 
+            <div style={{
+              padding:'6px'
+             }} >
+            </div>
+            </ul>
             <div className="label">min</div>
-            <WheelPicker
-                data={timeData}
-                onChange={onChangeSecondsCallBack}
-                height={70}
-                width={50}
-                itemHeight={20}
-                selectedID={selectedSecondsID}
-                color="#ccc"
-                activeColor="#333"
-                backgroundColor="#fff"
-                shadowColor='none'
-                fontSize={14}
-            />
+            <ul 
+             onScroll={onScrollSeconds}
+             style={{
+               fontSize:{fontSize},
+             }} 
+            >
+            <div style={{
+              padding:'6px'
+             }} >
+            
+            </div>
+             {timeData.map((item,index)=> 
+            <div
+             key={index} 
+             id={`sec-${index}`}
+             style={{
+                fontFamily:'400',
+                color: secondsOverlap(document.getElementById('container'),
+                    document.getElementById(`sec-${index}`),item)
+                    ? "#000" : "#ccc"
+             }}
+             >
+             {item.value}
+            </div>)
+            } 
+            <div style={{
+              padding:'6px'
+             }} >
+            </div>
+            </ul>
             <div className="label">sec</div>
-            <div className="stayStill"></div>
+            <div id="container" className="stayStill"></div>
         </div>
-    </div>
+    </div>);
 };
 
 export default TimePicker;

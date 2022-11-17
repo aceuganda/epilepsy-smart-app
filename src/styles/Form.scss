@@ -308,7 +308,20 @@
                 color: $ema-white-0;
                 outline: none;
             }
-          }        
+          } 
+          ul{
+            display:flex;
+            flex-direction:column;
+            height:4rem;
+            padding-left:25px;
+            padding-right:10px;
+            padding-bottom:4px;
+            margin-bottom:0px;
+            padding-top:4px;
+            gap:2px;
+            align-items:center;
+            overflow: auto;
+          }      
     }
 }
 .popup-question{
