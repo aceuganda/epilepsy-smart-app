@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useRef} from 'react';
 import PropTypes from 'prop-types';
 import {timeData} from '../../config/utils'
 
@@ -8,6 +8,7 @@ const TimePicker = ({ onChangeMinutesCallBack, onChangeSecondsCallBack ,
 }) => {
     const [scrollTop, setScrollTop] = useState(0);
     const [scrollTopSeconds, setscrollTopSeconds] = useState(0)
+    
     
     TimePicker.propTypes = {
         onChangeMinutesCallBack: PropTypes.func,
@@ -30,7 +31,8 @@ const TimePicker = ({ onChangeMinutesCallBack, onChangeSecondsCallBack ,
             (container.top+13) > element.bottom ||
             (container.bottom-13)< element.top 
           )){
-            onChangeMinutesCallBack(item)
+             // prevent re-rendering two components simulteniously
+             setTimeout(()=>onChangeMinutesCallBack(item), 1000); 
          }
         return !(
           (container.top+13) > element.bottom ||
@@ -45,7 +47,8 @@ const TimePicker = ({ onChangeMinutesCallBack, onChangeSecondsCallBack ,
            (container.top+13) > element.bottom ||
            (container.bottom-13)< element.top 
          )){
-           onChangeSecondsCallBack(item)
+          // prevent re-rendering two components simulteniously
+          setTimeout(()=>onChangeSecondsCallBack(item),1000)
         }
        return !(
          (container.top+13) > element.bottom ||
@@ -68,9 +71,10 @@ const TimePicker = ({ onChangeMinutesCallBack, onChangeSecondsCallBack ,
             
             </div>
              {timeData.map((item,index)=> 
-            <div
+             <div
              key={index} 
              id={`mins-${index}`}
+             onClick={()=>{console.log(index)}}
              style={{
                 fontFamily:'400',
                 color: minutesOverlap(document.getElementById('container'),
