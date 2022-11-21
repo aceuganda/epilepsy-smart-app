@@ -12,6 +12,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import MedicationComponent from '..';
 import Form from '../../../components/form/Form';
+import MedicationTime from './MedicationTime';
+import { ReactComponent as AddTime } from '../../../assets/svg/Medication/addtime.svg';
 import Question from '../../../components/form/Question';
 
 const medicineNames = ['Sodium Vaporate', 'Diclofenac', 'Gofen', 'Ibuprofen'];
@@ -89,7 +91,16 @@ const MedicationTrackingPageOne = () => {
           </button>
           <div style={{ marginTop: '45px' }}>
             <Question question={'What time will the medicine be taken'}>
-              <fieldset></fieldset>
+              <fieldset>
+               <div style={{
+                 display: 'flex',
+                 marginTop: '10px' ,
+                 flexDirection: 'column',
+                 }}> 
+               <AddTime />
+               <MedicationTime time={"9:54"} active={true}/>
+               </div>
+              </fieldset>
             </Question>
           </div>
           {medicines !== null ? (

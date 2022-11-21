@@ -252,6 +252,58 @@
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
+        .TimeContainer{
+            display: flex;
+            flex-direction: row;
+            border-radius: 10px;
+            width: 295px;
+            height: 75px;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 16px;
+            padding-right: 22px;
+            padding-top: 11px;
+            padding-bottom: 11px;
+            background-color: #E4E4E4;
+            .TimeInformation{
+                display: flex;
+                flex-direction: column;
+                font-weight: 400;
+                font-size: 22px;
+            }
+            .SubTimeInformation{
+                font-size: 9px;
+            }
+            .TimeActiveToggle{
+               display: flex;
+               border-radius: 20px;
+               width: 50px;
+               align-items: center;
+               justify-content: flex-end;
+               height: 32px;
+               background-color: #0C1E44;
+            }
+            .TimeInactiveToggle{
+                display: flex;
+                border-radius: 20px;
+                width: 50px;
+                align-items: center;
+                justify-content: flex-start;
+                height: 32px;
+                background-color: #fff;
+            }
+            .ToggleMoverActive{
+               display: flex;
+               height: 28px;
+               width: 28px;
+               background-color: #fff;
+               margin-left: 2px;
+               margin-right: 2px;
+               border: 1px solid #0C1E44;
+               border-radius: 20px;
+               box-shadow: 0px 8px 20px 0px rgba(153, 151, 151, 0.141);
+            }
+        }
     }
 }
 .popup-question{
