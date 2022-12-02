@@ -31,7 +31,14 @@ const ResiliencePageThree = () => {
   //TODO Define handleSubmit function and get data from redux store
 
   useEffect(() => {}, []);
-
+  const selectedButtonStyle=(selected)=>{
+    return selected?"button form-button-pill text-uppercase selectedPill":
+    "button form-button-pill text-uppercase";
+  }
+  const selectedLongButtonStyle=(selected)=>{
+    return selected?"button selectedLongPill text-uppercase":
+    "button form-button-lg text-uppercase";
+  }
   return (
     <ResilienceComponent backroute={'/resilience-form/2'}>
       <Form>
@@ -40,7 +47,7 @@ const ResiliencePageThree = () => {
             <fieldset className="mt-3 mb-4" style={{ justifyContent: 'space-evenly' }}>
               <button
                 type="button"
-                className="button form-button-pill text-capitalize"
+                className={selectedButtonStyle(type_of_feelings==='positive')}
                 value={'positive'}
                 onClick={(e) => {
                   setFeelingType(e.target.value);
@@ -50,7 +57,7 @@ const ResiliencePageThree = () => {
               </button>
               <button
                 type="button"
-                className="button form-button-pill text-capitalize"
+                className={selectedButtonStyle(type_of_feelings==='negative')}
                 value={'negative'}
                 onClick={(e) => {
                   setFeelingType(e.target.value);
@@ -65,7 +72,7 @@ const ResiliencePageThree = () => {
               <fieldset className="mt-3 mb-4">
                 <button
                   type="button"
-                  className="button form-button-pill text-uppercase"
+                  className={selectedButtonStyle(feeling_today==='happy')}
                   value={'happy'}
                   onClick={(e) => {
                     setFeeling(e.target.value);
@@ -75,7 +82,7 @@ const ResiliencePageThree = () => {
                 </button>
                 <button
                   type="button"
-                  className="button form-button-lg text-uppercase"
+                  className={selectedLongButtonStyle(feeling_today==='encouraged')}
                   value={'encouraged'}
                   onClick={(e) => {
                     setFeeling(e.target.value);
@@ -85,7 +92,7 @@ const ResiliencePageThree = () => {
                 </button>
                 <button
                   type="button"
-                  className="button form-button-pill text-uppercase"
+                  className={selectedButtonStyle(feeling_today==='inspired')}
                   value={'inspired'}
                   onClick={(e) => {
                     setFeeling(e.target.value);
@@ -103,7 +110,7 @@ const ResiliencePageThree = () => {
               <fieldset className="mt-3 mb-4">
                 <button
                   type="button"
-                  className="button form-button-pill text-uppercase"
+                  className={selectedButtonStyle(feeling_today==='sad')}
                   value={'sad'}
                   onClick={(e) => {
                     setFeeling(e.target.value);
@@ -113,7 +120,7 @@ const ResiliencePageThree = () => {
                 </button>
                 <button
                   type="button"
-                  className="button form-button-lg text-uppercase"
+                  className={selectedLongButtonStyle(feeling_today==='angry')}
                   value={'angry'}
                   onClick={(e) => {
                     setFeeling(e.target.value);
@@ -123,7 +130,7 @@ const ResiliencePageThree = () => {
                 </button>
                 <button
                   type="button"
-                  className="button form-button-pill text-uppercase"
+                  className={selectedButtonStyle(feeling_today==='irritable')}
                   value={'irritable'}
                   onClick={(e) => {
                     setFeeling(e.target.value);
@@ -141,7 +148,7 @@ const ResiliencePageThree = () => {
               <fieldset className="mt-3 mb-4">
                 <button
                   type="button"
-                  className="button form-button-lg text-uppercase"
+                  className={selectedLongButtonStyle(reason_for_feeling==='accomplished goals')}
                   value={'accomplished goals'}
                   onClick={(e) => {
                     setReason(e.target.value);
@@ -151,7 +158,7 @@ const ResiliencePageThree = () => {
                 </button>
                 <button
                   type="button"
-                  className="button form-button-lg text-uppercase"
+                  className={selectedLongButtonStyle(reason_for_feeling==='family acknowledged me')}
                   value={'family acknowledged me'}
                   onClick={(e) => {
                     setReason(e.target.value);
@@ -161,7 +168,7 @@ const ResiliencePageThree = () => {
                 </button>
                 <button
                   type="button"
-                  className="button form-button-lg text-uppercase"
+                  className={selectedLongButtonStyle(reason_for_feeling==='did fun things')}
                   value={'did fun things'}
                   onClick={(e) => {
                     setReason(e.target.value);
@@ -171,7 +178,7 @@ const ResiliencePageThree = () => {
                 </button>
                 <button
                   type="button"
-                  className="button form-button-lg text-uppercase"
+                  className={selectedLongButtonStyle(reason_for_feeling==='engaged with others')}
                   value={'engaged with others'}
                   onClick={(e) => {
                     setReason(e.target.value);
@@ -189,7 +196,7 @@ const ResiliencePageThree = () => {
               <fieldset className="mt-3 mb-4">
                 <button
                   type="button"
-                  className="button form-button-lg text-uppercase"
+                  className={selectedLongButtonStyle(reason_for_feeling==='isolation')}
                   value={'isolation'}
                   onClick={(e) => {
                     setReason(e.target.value);
@@ -199,7 +206,7 @@ const ResiliencePageThree = () => {
                 </button>
                 <button
                   type="button"
-                  className="button form-button-lg text-uppercase"
+                  className={selectedLongButtonStyle(reason_for_feeling==='conflict')}
                   value={'conflict'}
                   onClick={(e) => {
                     setReason(e.target.value);
@@ -209,7 +216,7 @@ const ResiliencePageThree = () => {
                 </button>
                 <button
                   type="button"
-                  className="button form-button-lg text-uppercase"
+                  className={selectedLongButtonStyle(reason_for_feeling==='i have no friends')}
                   value={'i have no friends'}
                   onClick={(e) => {
                     setReason(e.target.value);
@@ -219,8 +226,8 @@ const ResiliencePageThree = () => {
                 </button>
                 <button
                   type="button"
-                  className="button form-button-lg text-uppercase"
-                  value={'engaged with others '}
+                  className={selectedLongButtonStyle(reason_for_feeling==='engaged with others')}
+                  value={'engaged with others'}
                   onClick={(e) => {
                     setReason(e.target.value);
                     dispatch(setReasonForFeeling(e.target.value));
