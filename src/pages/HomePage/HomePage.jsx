@@ -36,7 +36,7 @@ const HomePage = () => {
       </header>
       <div className="banner">
         <span>
-          <Avatar
+          <Avatar 
             //  img={ProfilePlaceholder}
             name={userInfo.data.username}
             alt={''}

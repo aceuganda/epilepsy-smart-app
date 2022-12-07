@@ -454,3 +454,52 @@
         margin-right: 10px;
     }
 }
+.settingsPage{
+    input{
+        background: #fff;
+        width: 280px;
+        margin-left: 10px;
+        height: 45px;
+        border-color: bisque;
+        border-radius: 4px;
+        box-shadow: 0px 3px 9px 0px rgb(226, 180, 194);
+        outline: none;
+        padding:8px;
+    }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus, 
+    input:-webkit-autofill:active{
+        background-color: #fff;
+    }
+    input[type="text"],input[type="email"],input[type="password"],  textarea{
+        background-color: #fff;
+    }
+    label{
+        font-size: 18px;
+        margin-left:10px;
+        padding:8px;
+    }
+    button{
+        width: 300px;
+        margin-top: 50px;
+        margin-left: 8px;
+        background-color: $ema-lilac-1;
+        border: none;
+        border-radius:50px;
+        outline: none;
+        height: 50px;
+        text-transform: uppercase;
+        font-size: 16px;
+        text-align: center;
+        color: #fff;
+        font-weight: 500;
+        font-family: 'Poppins';
+    }
+    p{
+        font-size: 12px;
+        padding:20px;
+        margin-left: 55px;
+    }
+    
+}
