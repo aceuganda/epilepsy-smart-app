@@ -8,6 +8,7 @@ import ActivitiesImg from '../../assets/img/HomePage/activities.png';
 import TrackImg from '../../assets/img/HomePage/tracking.png';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/Slices/UsersSlice';
+import { Link } from 'react-router-dom';
 import Avatar from './Avatar';
 
 const HomePage = () => {
@@ -36,11 +37,14 @@ const HomePage = () => {
       </header>
       <div className="banner">
         <span>
+          <Link to='/profile'>
           <Avatar 
             //  img={ProfilePlaceholder}
             name={userInfo.data.username}
             alt={''}
           />
+          </Link>
+       
           <span className="name">{userInfo ? capitalise(userInfo.data.username) : ''}</span>
         </span>
         <div>
