@@ -6,39 +6,32 @@ import SeizureImg from '../../assets/img/HomePage/seizure.png';
 import MedicineImg from '../../assets/img/HomePage/medication.png';
 import ActivitiesImg from '../../assets/img/HomePage/activities.png';
 import TrackImg from '../../assets/img/HomePage/tracking.png';
-import ProfilePlaceholder from '../../assets/img/HomePage/UserProfile.png';
-import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../../redux/Slices/UsersSlice';
-import  Avatar from './Avatar';
+import { useSelector } from 'react-redux';
+import Avatar from './Avatar';
+import { Link } from 'react-router-dom';
+import SettingsIcon from '@mui/icons-material/Settings';
+import { capitalise } from '../../utils';
 
 const HomePage = () => {
   const { userInfo } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
 
-  //capitalise first letter of name
-  const capitalise = (name) => {
-    return name.charAt(0).toUpperCase() + name.slice(1);
-  };
   return (
     <div className="home-page">
       <header className="row justify-content-between">
         <h4>Holla!</h4>
-        <div>
+        <div className="row justify-content-between">
           <NotificationsNoneIcon />
           <br />
-          {userInfo ? (
-            <button className="button" onClick={() => dispatch(logout())}>Log Out</button>
-          ) : (
-            <div>Log In</div>
+          {userInfo && (
+            <Link to="/settings">
+              <SettingsIcon />
+            </Link>
           )}
         </div>
       </header>
       <div className="banner">
         <span>
-          <Avatar 
-          //  img={ProfilePlaceholder}
-           name={userInfo.data.username} 
-           alt={''} />
+          <Avatar name={userInfo.data.username} alt={''} />
           <span className="name">{userInfo ? capitalise(userInfo.data.username) : ''}</span>
         </span>
         <div>
@@ -52,7 +45,7 @@ const HomePage = () => {
         <Card title="seizure tracking" img={SeizureImg} link="/seizure-form" />
         <Card title="medication" img={MedicineImg} link="/medication" />
         <Card title="resilience tracking" img={TrackImg} link="/resilience-form/1" />
-        <Card title="resilience activities" img={ActivitiesImg} />        
+        <Card title="resilience activities" img={ActivitiesImg} link="/resilience-activities" />
       </div>
       <Footer />
     </div>

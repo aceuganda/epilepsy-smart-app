@@ -13,7 +13,10 @@ const MedicationAssessmentPageTwo = () => {
     event.preventDefault();
     setOtherReason('');
   };
-
+  const selectedButtonStyle=(selected)=>{
+    return selected?"button form-button-pill  selectedPill":
+    "button form-button-pill";
+  }
   return (
     <MedicationComponent backroute={'/medication/assessment/1'}>
       <Form>
@@ -94,7 +97,7 @@ const MedicationAssessmentPageTwo = () => {
               </button>
               <button
                 type="button"
-                className="button form-button-pill"
+                className={selectedButtonStyle(side_effects==='Other')}
                 value={'Other'}
                 onClick={(e) => {
                   setSideEffects(e.target.value);

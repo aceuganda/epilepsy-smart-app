@@ -12,26 +12,30 @@ const PopButton = ({ popTitle, popDescription }) => {
   };
 
   return (
-    <button className="pop-button button" type="button">
-      <span className="popup-title">
-        {popTitle}
-        <span className="info-icon" onClick={() => setShow(true)}>
-          <InfoIcon />
+    <>
+      <button className="pop-button button" type="button" value={popTitle}>
+        <span className="popup-title">
+          {popTitle}
+          <span className="info-icon" onClick={() => setShow(true)}>
+            <InfoIcon />
+          </span>
         </span>
-      </span>
-      {/* <Modal show={show} closeModal={() => setShow(false)}>
-        <div className="modal-content">
-          <span className="modal-title">
-            <h4>
-              {popTitle} <hr />
-            </h4>
-          </span>
-          <span className="modal-desc">
-            <p>{popDescription}</p>
-          </span>
-        </div>
-      </Modal> */}
-    </button>
+        {show && (
+          <Modal show={show} closeModal={() => setShow(false)}>
+            <div className="modal-content">
+              <span className="modal-title">
+                <h4>
+                  {popTitle} <hr />
+                </h4>
+              </span>
+              <span className="modal-desc">
+                <p>{popDescription}</p>
+              </span>
+            </div>
+          </Modal>
+        )}
+      </button>
+    </>
   );
 };
 

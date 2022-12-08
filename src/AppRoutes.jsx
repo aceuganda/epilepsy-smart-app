@@ -18,6 +18,9 @@ import ResiliencePageThree from './pages/ResilienceTracking/ResiliencePageThree'
 import Login from './pages/Authentication/Login';
 import Register from './pages/Authentication/Register';
 import ProtectedRoute from './routing/ProtectedRoute';
+import AllResilienceActivitiesPage from './pages/ResilienceActivities/AllActivitiesPage';
+import PositiveAffirmations from './pages/ResilienceActivities/Activities/PositiveAffirmations';
+import Settings from './pages/UserSettingsPage/Settings';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
@@ -52,6 +55,12 @@ const AppRoutes = () => {
             <Route path="/resilience-form/1" element={<ResiliencePageOne />} />
             <Route path="/resilience-form/2" element={<ResiliencePageTwo />} />
             <Route path="/resilience-form/3" element={<ResiliencePageThree />} />
+            <Route path="/resilience-activities" element={<AllResilienceActivitiesPage />} />
+            <Route
+              path="/resilience-activities/positive-affirmations"
+              element={<PositiveAffirmations />}
+            />
+            <Route path="/settings" element={<Settings />} />
           </Route>
         </Routes>
       </Suspense>

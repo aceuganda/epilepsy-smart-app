@@ -9,11 +9,13 @@ export const postSeizureFormData = createAsyncThunk(
   }
 );
 
-
+const userId = localStorage.getItem('userInfo')
+  ? JSON.parse(localStorage.getItem('userInfo')).data.id
+  : null;
 export const seizureTrackingSlice = createSlice({
   name: 'seizureTracking',
   initialState: {
-    user_id: null,
+    user_id: userId,
     seizure_severity: '',
     seizure_duration: '',
     seizure_time_of_day: '',

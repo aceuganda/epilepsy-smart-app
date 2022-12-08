@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
 
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     margin: 0 auto;
@@ -13,11 +13,11 @@
     width: 100%;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    background-color: rgba(214, 214, 216, 0.75);
+    background-color: rgba(12, 30, 68, 0.39);
     transition: opacity 250ms 750ms ease;
     .modal {
         position: relative;
-        top: 120px;
+        top: 290px;
         width: 329px;
         height: 201px;
         margin: 0 auto;
