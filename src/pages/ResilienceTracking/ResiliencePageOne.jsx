@@ -62,7 +62,7 @@ const ResiliencePageOne = () => {
             <fieldset className="mt-3 mb-4" style={{ justifyContent: 'space-evenly' }}>
               <button
                 type="button"
-                className="button form-button-pill text-uppercase"
+                className={selectedButtonStyle(engaged_socially==='yes')}
                 value={'yes'}
                 onClick={(e) => {
                   setSocialEngagement(e.target.value);
@@ -71,7 +71,7 @@ const ResiliencePageOne = () => {
               </button>
               <button
                 type="button"
-                className="button form-button-pill text-uppercase"
+                className={selectedButtonStyle(engaged_socially==='no')}
                 value={'no'}
                 onClick={(e) => {
                   setSocialEngagement(e.target.value);

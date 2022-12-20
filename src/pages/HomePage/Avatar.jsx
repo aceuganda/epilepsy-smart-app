@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const Avatar = ({ img, name, alt }) => {
@@ -7,7 +6,7 @@ const Avatar = ({ img, name, alt }) => {
   Avatar.propTypes = {
     img: PropTypes.string,
     name: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired
   };
   const nameStringToHslColor = (name) => {
     let hash = 0;
@@ -20,13 +19,14 @@ const Avatar = ({ img, name, alt }) => {
   };
   return (
     <>
-   {img?
-     <img src={img} />:
-      <h1  style={{ backgroundColor: nameStringToHslColor(name), color: "#000" }}>
-       {name.charAt(0).toUpperCase()}
-      </h1>
-   }
-  </>
+      {img ? (
+        <img src={img} />
+      ) : (
+        <h1 style={{ backgroundColor: nameStringToHslColor(name), color: '#000' }}>
+          {name.charAt(0).toUpperCase()}
+        </h1>
+      )}
+    </>
   );
 };
 
