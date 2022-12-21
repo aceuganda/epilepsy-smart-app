@@ -59,6 +59,7 @@ const TimePicker = ({ onChangeMinutesCallBack, onChangeSecondsCallBack ,
     return( 
      <div className='box'>
         <div className="Container">
+           <div className='timeUnit'>
             <ul 
              onScroll={onScrollMins}
              style={{
@@ -74,7 +75,6 @@ const TimePicker = ({ onChangeMinutesCallBack, onChangeSecondsCallBack ,
              <div
              key={index} 
              id={`mins-${index}`}
-             onClick={()=>{console.log(index)}}
              style={{
                 fontFamily:'400',
                 color: minutesOverlap(document.getElementById('container'),
@@ -91,6 +91,8 @@ const TimePicker = ({ onChangeMinutesCallBack, onChangeSecondsCallBack ,
             </div>
             </ul>
             <div className="label">min</div>
+            </div>
+            <div className='timeUnit'>
             <ul 
              onScroll={onScrollSeconds}
              style={{
@@ -122,6 +124,7 @@ const TimePicker = ({ onChangeMinutesCallBack, onChangeSecondsCallBack ,
             </div>
             </ul>
             <div className="label">sec</div>
+            </div>
             <div id="container" className="stayStill"></div>
         </div>
     </div>);

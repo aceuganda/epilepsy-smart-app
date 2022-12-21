@@ -96,11 +96,12 @@ const PageOne = () => {
                 <TimePicker
                   onChangeMinutesCallBack={handleMinutesChange}
                   onChangeSecondsCallBack={handleSecondsChange}
-                  fontSize={14}
+                  fontSize={12}
                 />
                 <button
                   type="button"
-                  className={selectedButtonStyle(seizure_duration==='unknown')}
+                  className={seizure_duration==='unknown'?
+                   "button form-button-pill-no-margin text-uppercase selectedPill":"button form-button-pill-no-margin text-uppercase"}
                   value={'unknown'}
                   onClick={(e) => {
                     setDuration(e.target.value);

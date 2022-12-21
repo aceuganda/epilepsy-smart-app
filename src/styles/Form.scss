@@ -209,6 +209,7 @@
             outline: none;
         }
 }
+
 .pop-button{
     width: 110px;
     height: 26px;
@@ -300,36 +301,48 @@
     .timefieldset {
         width: 300px;
         display: flex;
+        font-weight: 500;
+        font-size: 11px;
         flex-flow: row wrap;
         justify-content: space-between;
         align-items: center;
         .box{
-            width: 210px;
+            width: 220px;
         }
         .Container{
             display:flex;
             flex-direction:row;
             align-items:center;
+            justify-content: center;
             height: 80px;
+            gap: 24px;
             width:210px;
             color:#ccc;
+            padding-left: 5px;
             position: relative;
             overflow: hidden;
             padding-right: 1rem;
           }
+          .timeUnit{
+            display: flex;
+            gap: 9px;
+            flex-direction: row;
+            align-items:center;
+          }
           .label{
             color:#000;
             font-weight: 500;
-            font-size: 14px;
+            font-size: 9px;
           }
           .stayStill{
             height: 30px;
             border: 1px solid $ema-lilac-2;
             border-radius: 20px;
             box-shadow: 0.4px 2px 2px 1px #ddd;
-            width:180px;
+            width:200px;
             position:absolute;
             padding: 5px;
+            margin-left: 15px;
             background-color: transparent;
             color:#000000;
           }
@@ -362,7 +375,7 @@
             display:flex;
             flex-direction:column;
             height:4rem;
-            padding-left:25px;
+            padding-left:10px;
             padding-right:10px;
             padding-bottom:4px;
             margin-bottom:0px;
