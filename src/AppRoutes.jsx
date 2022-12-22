@@ -21,6 +21,7 @@ import ProtectedRoute from './routing/ProtectedRoute';
 import AllResilienceActivitiesPage from './pages/ResilienceActivities/AllActivitiesPage';
 import PositiveAffirmations from './pages/ResilienceActivities/Activities/PositiveAffirmations';
 import Settings from './pages/UserSettingsPage/Settings';
+import ResilienceTallies from './pages/ResilienceTracking/Tallies';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
@@ -61,6 +62,7 @@ const AppRoutes = () => {
               element={<PositiveAffirmations />}
             />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/resilience/tallies" element={<ResilienceTallies />} />
           </Route>
         </Routes>
       </Suspense>
