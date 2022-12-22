@@ -10,6 +10,7 @@ import {
   setEngagedSocially,
   setResilienceUserID
 } from '../../redux/Slices/ResilienceTracking';
+import CheckBox from '../../components/form/CheckBox';
 
 
 
@@ -30,11 +31,29 @@ const ResiliencePageOne = () => {
     dispatch(setResilienceUserID(userId));
   };
 
-  useEffect(() => {}, []);
-  const selectedButtonStyle=(selected)=>{
-    return selected?"button form-button-pill text-uppercase selectedPill":
-    "button form-button-pill text-uppercase";
-  }
+
+  const labels = [
+    {
+      id: 1,
+      name: 'School'
+    },
+    {
+      id: 2,
+      name: 'Family'
+    },
+    {
+      id: 3,
+      name: 'Friends visit at home'
+    },
+    {
+      id: 4,
+      name: 'Outing with my friends'
+    },
+    
+   ];
+
+
+
   return (
     <ResilienceComponent backroute={'/home'}>
       <Form>
@@ -64,27 +83,15 @@ const ResiliencePageOne = () => {
           {engaged_socially === 'yes' ? (
             <Question question={'How did you engage today'}>
               <fieldset className="mt-3 mb-4">
-                <div className="flex mb-4">
-                  <input
-                    id="default-checkbox"
-                    type="checkbox"
-                    value={'school'}
-                    onChange={(e) => {
+                <div className='checkbox-input'>
+                  <div className="flex ">
+                   {labels.map((label) => (
+                     <CheckBox key={label.id} label=  {label.name} id="default-checkbox"
+                      onChange={(e) => {
                       setEngagedType([e.target.value]);
-                    }}
-                  />
-                  <label htmlFor="default-checkbox">School</label>
-                </div>
-                <div className="flex">
-                  <input
-                    id="checked-checkbox"
-                    type="checkbox"
-                    value={'family'}
-                    onChange={(e) => {
-                      setEngagedType([e.target.value]);
-                    }}
-                  />
-                  <label htmlFor="checked-checkbox">Family</label>
+                    }} />
+                   ))}
+                  </div>
                 </div>
               </fieldset>
             </Question>
