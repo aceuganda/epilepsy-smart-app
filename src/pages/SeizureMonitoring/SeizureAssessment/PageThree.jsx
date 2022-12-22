@@ -12,6 +12,7 @@ import {
   setSeizureUpsetRange
 } from '../../../redux/Slices/SeizureTrackingSlice';
 import { ReactComponent as CheckedIcon } from '../../../assets/svg/Form/EndOfAssessment/CheckedIcon.svg';
+import CheckBox from '../../../components/form/CheckBox';
 
 const PageThree = () => {
   const [seizure_impact, setFeel] = useState('');
@@ -126,27 +127,39 @@ const PageThree = () => {
     "button form-button-pill text-uppercase";
   }
   return (
-    <SeizureComponent backroute={'/seizure-form/assessment/2'}>
+    <>
+       <SeizureComponent backroute={'/seizure-form/assessment/2'}>
       <Form>
         <form onSubmit={handleSubmit}>
           {seizureTrackingData.was_seizure_triggered === true ? (
             <Question question={'What trigger was it'}>
-              <fieldset className="mt-3 mb-4">
-                {seizureTriggers.map((trigger) => (
-                  <span key={trigger.id} className="checkbox-span">
-                    <label className="text-capitalize">{trigger.name}</label>
-                    <input
-                      type="checkbox"
-                      className="form-button-lg"
-                      value={trigger.name}
-                      onChange={(e) => {
-                        setTrigger(e.target.value);
-                        dispatch(setSeizureTrigger(e.target.value));
-                      }}
-                    />
-                  </span>
+                  <div className='ItemContainer'>
+                  {seizureTriggers.map((trigger) => (
+                  <CheckBox
+                  key={trigger.id}
+                  label={trigger.name}
+                  value ={trigger.name}
+                  onChange={(e) => {
+                          setTrigger(e.target.value);
+                          dispatch(setSeizureTrigger(e.target.value));
+                        }}
+                  />
+                  
+                  // <span key={trigger.id} className="checkbox-span">
+                  //   <label className="text-capitalize">{trigger.name}</label>
+                    
+                  //   <input
+                  //     type="checkbox"
+                  //     className="form-button-lg"
+                  //     value={trigger.name}
+                  //     onChange={(e) => {
+                  //       setTrigger(e.target.value);
+                  //       dispatch(setSeizureTrigger(e.target.value));
+                  //     }}
+                  //   />
+                  // </span>
                 ))}
-              </fieldset>
+             </div>
             </Question>
           ) : (
             <span />
@@ -253,7 +266,7 @@ const PageThree = () => {
             </fieldset>
           </Question>
           <Question question={'Did it upset you'}>
-            <fieldset style={{ marginTop: '35px', width: '93%', marginLeft: '10px' }}>
+            <fieldset style={{ marginTop: '10px', width: '93%', marginLeft: '10px' }}>
               <Slider
                 aria-label="Default"
                 defaultValue={0}
@@ -290,6 +303,8 @@ const PageThree = () => {
         </form>
       </Form>
     </SeizureComponent>
+    </>
+    
   );
 };
 
