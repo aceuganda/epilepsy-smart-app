@@ -8,7 +8,7 @@ const AllResilienceActivitiesPage = () => {
     {
       name: 'One service goal',
       icon: null,
-      link: null
+      link: '/resilience-activities/one-service-goal'
     },
     {
       name: 'Manage your triggers',
@@ -23,7 +23,7 @@ const AllResilienceActivitiesPage = () => {
     {
       name: 'One social goal',
       icon: null,
-      link: null
+      link:  '/resilience-activities/one-social-goal'
     },
     {
       name: 'Secure diary',

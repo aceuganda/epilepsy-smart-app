@@ -21,6 +21,8 @@ import ProtectedRoute from './routing/ProtectedRoute';
 import AllResilienceActivitiesPage from './pages/ResilienceActivities/AllActivitiesPage';
 import PositiveAffirmations from './pages/ResilienceActivities/Activities/PositiveAffirmations';
 import Profile from './pages/Settings/Profile';
+import OneServiceGoal from './pages/ResilienceActivities/Activities/OneServiceGoal';
+import OneSocialGoal from './pages/ResilienceActivities/Activities/OneSocialGoal';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
@@ -60,6 +62,14 @@ const AppRoutes = () => {
             <Route
               path="/resilience-activities/positive-affirmations"
               element={<PositiveAffirmations />}
+            />
+            <Route
+              path="/resilience-activities/one-service-goal"
+              element={<OneServiceGoal />}
+            />
+            <Route
+              path="/resilience-activities/one-social-goal"
+              element={<OneSocialGoal />}
             />
           </Route>
         </Routes>
