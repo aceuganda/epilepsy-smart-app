@@ -12,16 +12,14 @@ import {
 } from '../../redux/Slices/ResilienceTracking';
 import CheckBox from '../../components/form/CheckBox';
 
-
-
 const ResiliencePageOne = () => {
   const [engaged_socially, setSocialEngagement] = useState(null);
   const [engagement, setEngagedType] = useState(null);
   const dispatch = useDispatch();
 
   const userId = localStorage.getItem('userInfo')
-  ? JSON.parse(localStorage.getItem('userInfo')).data.id
-  : null;
+    ? JSON.parse(localStorage.getItem('userInfo')).data.id
+    : null;
 
   const handleChange = () => {
     engaged_socially === 'yes'
@@ -30,7 +28,6 @@ const ResiliencePageOne = () => {
     dispatch(setEngagement(engagement));
     dispatch(setResilienceUserID(userId));
   };
-
 
   const labels = [
     {
@@ -48,11 +45,14 @@ const ResiliencePageOne = () => {
     {
       id: 4,
       name: 'Outing with my friends'
-    },
-    
-   ];
+    }
+  ];
 
-
+  const selectedButtonStyle = (selected) => {
+    return selected
+      ? 'button form-button-pill text-uppercase selectedPill'
+      : 'button form-button-pill text-uppercase';
+  };
 
   return (
     <ResilienceComponent backroute={'/home'}>
@@ -62,7 +62,7 @@ const ResiliencePageOne = () => {
             <fieldset className="mt-3 mb-4" style={{ justifyContent: 'space-evenly' }}>
               <button
                 type="button"
-                className={selectedButtonStyle(engaged_socially==='yes')}
+                className={selectedButtonStyle(engaged_socially === 'yes')}
                 value={'yes'}
                 onClick={(e) => {
                   setSocialEngagement(e.target.value);
@@ -71,7 +71,7 @@ const ResiliencePageOne = () => {
               </button>
               <button
                 type="button"
-                className={selectedButtonStyle(engaged_socially==='no')}
+                className={selectedButtonStyle(engaged_socially === 'no')}
                 value={'no'}
                 onClick={(e) => {
                   setSocialEngagement(e.target.value);
@@ -83,14 +83,18 @@ const ResiliencePageOne = () => {
           {engaged_socially === 'yes' ? (
             <Question question={'How did you engage today'}>
               <fieldset className="mt-3 mb-4">
-                <div className='checkbox-input'>
+                <div className="checkbox-input">
                   <div className="flex ">
-                   {labels.map((label) => (
-                     <CheckBox key={label.id} label=  {label.name} id="default-checkbox"
-                      onChange={(e) => {
-                      setEngagedType([e.target.value]);
-                    }} />
-                   ))}
+                    {labels.map((label) => (
+                      <CheckBox
+                        key={label.id}
+                        label={label.name}
+                        id="default-checkbox"
+                        onChange={(e) => {
+                          setEngagedType([e.target.value]);
+                        }}
+                      />
+                    ))}
                   </div>
                 </div>
               </fieldset>
