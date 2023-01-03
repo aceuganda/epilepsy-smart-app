@@ -16,7 +16,7 @@ export const registerUser = createAsyncThunk(
     } catch (err) {
       if (err.response && err.response.data) {
         console.log(err.response.data);
-        return rejectWithValue(err.response.data);
+        return rejectWithValue(err.response.data.message);
       } else {
         console.log(err);
         return rejectWithValue(err.message);
@@ -41,7 +41,7 @@ export const loginUser = createAsyncThunk(
     } catch (err) {
       if (err.response && err.response.data) {
         console.log(err.response.data);
-        return rejectWithValue(err.response.data);
+        return rejectWithValue(err.response.data.message);
       } else {
         console.log(err);
         return rejectWithValue(err.message);

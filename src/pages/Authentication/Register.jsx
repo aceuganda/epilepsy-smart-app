@@ -53,6 +53,9 @@ const Register = () => {
       return;
     }
     submittion.email = submittion.email.toLowerCase();
+    submittion.age = Number(submittion.age)
+    submittion.age_of_onset = Number(submittion.age_of_onset)
+    delete submittion.confirmPassword
     if(imageObject !== null){
     let reader = new FileReader()
     reader.readAsDataURL(imageObject)
@@ -62,7 +65,8 @@ const Register = () => {
       dispatch(registerUser(submittion));
      }
    }else {
-         dispatch(registerUser(submittion));
+       submittion={...data, profileImage: ""}
+       dispatch(registerUser(submittion));
     }
   };
 
@@ -106,12 +110,12 @@ const Register = () => {
             {errors.gender && <span className="error">required field</span>}
           </div>
           <div>
-            <label htmlFor="ageOfOnset">Age of onset</label>
+            <label htmlFor="age_of_onset">Age of onset</label>
             <input
               type="number"
               min="0"
               max="100"
-              {...register('ageOfOnset', { required: true })}
+              {...register('age_of_onset', { required: true })}
               placeholder="00"
             />
             {errors.ageOfOnset && <span className="error">required field</span>}
@@ -128,11 +132,11 @@ const Register = () => {
           {errors.email && <span className="error">Email is required</span>}
         </div>
         <div className="form-group">
-          <label htmlFor="seizureType">Seizure Type</label>
+          <label htmlFor="seizure_type">Seizure Type</label>
           <input
             type="text"
-            name="seizureType"
-            {...register('seizureType')}
+            name="seizure_type"
+            {...register('seizure_type')}
             placeholder="Enter type"
           />
           {errors.seizureType && <span className="error">Seizure type is required</span>}
@@ -156,21 +160,21 @@ const Register = () => {
           </div>
         </div>
         <div className="form-group">
-          <label htmlFor="caregiverName">Name of caregiver</label>
+          <label htmlFor="caregiver_name">Name of caregiver</label>
           <input
             type="text"
-            name="caregiverName"
-            {...register('caregiverName', { required: hasCaregiver === 'yes'})}
+            name="caregiver_name"
+            {...register('caregiver_name', { required: hasCaregiver === 'yes'})}
             placeholder="Enter caregiver's name "
           />
           {errors.caregiverName && <span className="error">name is required</span>}
         </div>
         <div className="form-group">
-          <label htmlFor="caregiverContact">Contact of caregiver</label>
+          <label htmlFor="caregiver_contact">Contact of caregiver</label>
           <input
             type="text"
-            name="caregiverContact"
-            {...register('caregiverContact', { required: hasCaregiver === 'yes'})}
+            name="caregiver_contact"
+            {...register('caregiver_contact', { required: hasCaregiver === 'yes'})}
             placeholder="Enter caregiver's contact "
           />
           {errors.caregiverContact && <span className="error">contact is required</span>}
