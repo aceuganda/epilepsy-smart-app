@@ -2,10 +2,13 @@
 @import './library/variables.scss';
 
 .Auth{
-    height:100%;
+    height: 100%;
     margin-top: 0 auto;
+    padding: 0 20px;
     text-align: center;
-    padding: 0 20px ;
+    display: flex;
+    flex-direction: column;
+    // overflow-y: scroll;
     .header{
         padding-top: $top-padding;
         display:flex;
@@ -28,8 +31,8 @@
     }
     .auth-body{
         padding-top: 15px;
-        overflow-y: scroll;
-        max-height: 600px;
+        // overflow-y: scroll;
+        // max-height: 600px;
         height: 100%;
         .image{
             margin-bottom: 40px;
@@ -189,11 +192,13 @@
         }
     }
     .bottom-text{
-        position: absolute;
-        margin: 0 auto;
-        bottom: 30px;
-        left: 0;
-        right: 0;
+        //position: absolute;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        // margin: 0 auto;
+        // bottom: 30px;
+        // left: 0;
+        // right: 0;
         font-family: 'Inter';
         font-size: 13px;
         font-weight: 400;
