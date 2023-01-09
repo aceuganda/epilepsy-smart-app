@@ -122,7 +122,10 @@ const PageThree = () => {
   //   } = event;
   //   setTriggers(typeof value === 'string' ? value.split(',') : value);
   // };
-
+  const selectedButtonStyle=(selected)=>{
+    return selected?"button form-button-pill text-uppercase selectedPill":
+    "button form-button-pill text-uppercase";
+  }
   return (
     <>
        <SeizureComponent backroute={'/seizure-form/assessment/2'}>
@@ -165,7 +168,7 @@ const PageThree = () => {
             <fieldset className="mt-3 mb-4">
               <button
                 type="button"
-                className="button form-button-pill text-capitalize"
+                className={selectedButtonStyle(seizure_impact==='sleepy')}
                 value={'sleepy'}
                 onClick={(e) => {
                   setFeel(e.target.value);
@@ -175,7 +178,7 @@ const PageThree = () => {
               </button>
               <button
                 type="button"
-                className="button form-button-pill text-capitalize"
+                className={selectedButtonStyle(seizure_impact==='confused')}
                 value={'confused'}
                 onClick={(e) => {
                   setFeel(e.target.value);
@@ -185,7 +188,9 @@ const PageThree = () => {
               </button>
               <button
                 type="button"
-                className="button form-button-lg text-capitalize"
+                className={seizure_impact==='confused'?
+                "button form-button-lg text-capitalize selectedPill":
+                "button form-button-lg text-capitalize"}
                 value={'body weakness'}
                 onClick={(e) => {
                   setFeel(e.target.value);
@@ -195,7 +200,7 @@ const PageThree = () => {
               </button>
               <button
                 type="button"
-                className="button form-button-pill text-capitalize"
+                className={selectedButtonStyle(seizure_impact==='restless')}
                 value={'restless'}
                 onClick={(e) => {
                   setFeel(e.target.value);
@@ -205,7 +210,7 @@ const PageThree = () => {
               </button>
               <button
                 type="button"
-                className="button form-button-pill text-capitalize"
+                className={selectedButtonStyle(seizure_impact==='headache')}
                 value={'headache'}
                 onClick={(e) => {
                   setFeel(e.target.value);
@@ -215,7 +220,7 @@ const PageThree = () => {
               </button>
               <button
                 type="button"
-                className="button form-button-pill text-capitalize"
+                className={selectedButtonStyle(seizure_impact==='other')}
                 value={'other'}
                 onClick={(e) => {
                   setFeel(e.target.value);

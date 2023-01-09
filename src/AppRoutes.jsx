@@ -23,6 +23,8 @@ import PositiveAffirmations from './pages/ResilienceActivities/Activities/Positi
 import Profile from './pages/Settings/Profile';
 import OneServiceGoal from './pages/ResilienceActivities/Activities/OneServiceGoal';
 import OneSocialGoal from './pages/ResilienceActivities/Activities/OneSocialGoal';
+import Settings from './pages/UserSettingsPage/Settings';
+import ResilienceTallies from './pages/ResilienceTracking/Tallies';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
@@ -63,6 +65,7 @@ const AppRoutes = () => {
               path="/resilience-activities/positive-affirmations"
               element={<PositiveAffirmations />}
             />
+
             <Route
               path="/resilience-activities/one-service-goal"
               element={<OneServiceGoal />}
@@ -71,6 +74,10 @@ const AppRoutes = () => {
               path="/resilience-activities/one-social-goal"
               element={<OneSocialGoal />}
             />
+
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/resilience/tallies" element={<ResilienceTallies />} />
+
           </Route>
         </Routes>
       </Suspense>

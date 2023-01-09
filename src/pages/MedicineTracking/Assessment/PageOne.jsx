@@ -13,7 +13,10 @@ const MedicationAssessmentPageOne = () => {
   const setDisplayToNone = () => {
     setDisplayNone(!displayNone);
   };
-
+  const selectedButtonStyle=(selected)=>{
+    return selected? "button selectedLongPill":
+    "button form-button-lg";
+  }
   return (
     <MedicationComponent backroute={'/medication/'}>
       <Form>
@@ -22,7 +25,7 @@ const MedicationAssessmentPageOne = () => {
             <fieldset className="mt-3 mb-4">
               <button
                 type="button"
-                className="button form-button-pill"
+                className={selectedButtonStyle(medicine_doses==='all')}
                 value={'all'}
                 onClick={(e) => {
                   setMedicineDoses(e.target.value);
@@ -31,7 +34,7 @@ const MedicationAssessmentPageOne = () => {
               </button>
               <button
                 type="button"
-                className="button form-button-lg"
+                className={selectedButtonStyle(medicine_doses==='some')}
                 value={'some'}
                 onClick={(e) => {
                   setMedicineDoses(e.target.value);
@@ -40,7 +43,7 @@ const MedicationAssessmentPageOne = () => {
               </button>
               <button
                 type="button"
-                className="button form-button-pill"
+                className={selectedButtonStyle(medicine_doses==='none')}
                 value={'none'}
                 onClick={(e) => {
                   setMedicineDoses(e.target.value);
@@ -54,7 +57,9 @@ const MedicationAssessmentPageOne = () => {
               <fieldset className="mt-3 mb-4">
                 <button
                   type="button"
-                  className="button form-button-full"
+                  className={some_doses==='I forgot to take the doses' ?
+                  "button selectedFillPill":
+                  "button form-button-full"}
                   value={'I forgot to take the doses'}
                   onClick={(e) => {
                     setSomeDoses(e.target.value);
@@ -63,7 +68,9 @@ const MedicationAssessmentPageOne = () => {
                 </button>
                 <button
                   type="button"
-                  className="button form-button-full"
+                  className={some_doses==='I forgot to refill the doses' ?
+                  "button selectedFillPill":
+                  "button form-button-full"}
                   value={'I forgot to refill the doses'}
                   onClick={(e) => {
                     setSomeDoses(e.target.value);
@@ -72,7 +79,9 @@ const MedicationAssessmentPageOne = () => {
                 </button>
                 <button
                   type="button"
-                  className="button form-button-full"
+                  className={some_doses==='I didn’t have the funds to refill the Doses' ?
+                  "button selectedFillPill":
+                  "button form-button-full"}
                   value={'I didn’t have the funds to refill the Doses'}
                   onClick={(e) => {
                     setSomeDoses(e.target.value);
@@ -81,7 +90,9 @@ const MedicationAssessmentPageOne = () => {
                 </button>
                 <button
                   type="button"
-                  className="button form-button-full"
+                  className={some_doses==='I didn’t have the medicine with me' ?
+                  "button selectedFillPill":
+                  "button form-button-full"}
                   value={'I didn’t have the medicine with me'}
                   onClick={(e) => {
                     setSomeDoses(e.target.value);
@@ -90,7 +101,9 @@ const MedicationAssessmentPageOne = () => {
                 </button>
                 <button
                   type="button"
-                  className="button form-button-full"
+                  className={some_doses==='I was told not to take any medicine' ?
+                  "button selectedFillPill":
+                  "button form-button-full"}
                   value={'I was told not to take any medicine'}
                   onClick={(e) => {
                     setSomeDoses(e.target.value);
@@ -99,7 +112,9 @@ const MedicationAssessmentPageOne = () => {
                 </button>
                 <button
                   type="button"
-                  className="button form-button-full"
+                  className={some_doses==='I was too sick' ?
+                  "button selectedFillPill":
+                  "button form-button-full"}
                   value={'I was too sick'}
                   onClick={(e) => {
                     setSomeDoses(e.target.value);
@@ -108,7 +123,9 @@ const MedicationAssessmentPageOne = () => {
                 </button>
                 <button
                   type="button"
-                  className="button form-button-full"
+                  className={some_doses==='Side Effects' ?
+                  "button selectedFillPill":
+                  "button form-button-full"}
                   value={'Side Effects'}
                   onClick={(e) => {
                     setSomeDoses(e.target.value);

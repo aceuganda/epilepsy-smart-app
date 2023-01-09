@@ -14,7 +14,7 @@ const Register = () => {
   //const [customError, setCustomError] = useState(null);
 
   const { loading, userInfo, error, success } = useSelector((state) => state.user);
-  const [imageUrl, setImageUrl] = useState(null);
+  const [imageObject, setImageObject] = useState(null);
   const [hasCaregiver, sethasCaregiver] = useState('no');
 
   const dispatch = useDispatch();
@@ -39,22 +39,35 @@ const Register = () => {
   const addUserProfileImage = (event) => {
     //required when no image is selected
     if (event.target.files[0] === undefined) {
-      setImageUrl(null);
+      setImageObject(null);
     } else {
-      setImageUrl(event.target.files[0]);
+      setImageObject(event.target.files[0]);
     }
   }
 
 
   const submitForm = (data) => {
-    console.log(data);
-
-    if (data.password !== data.confirmPassword) {
+    var submittion=data;
+    if (submittion.password !== submittion.confirmPassword) {
       alert('Passwords do not match');
       return;
     }
-    data.email = data.email.toLowerCase();
-    dispatch(registerUser(data));
+    submittion.email = submittion.email.toLowerCase();
+    submittion.age = Number(submittion.age)
+    submittion.age_of_onset = Number(submittion.age_of_onset)
+    delete submittion.confirmPassword
+    if(imageObject !== null){
+    let reader = new FileReader()
+    reader.readAsDataURL(imageObject)
+    reader.onload = () =>{
+      submittion={...data, profileImage: reader.result}
+      //required to only dispatch onload
+      dispatch(registerUser(submittion));
+     }
+   }else {
+       submittion={...data, profileImage: ""}
+       dispatch(registerUser(submittion));
+    }
   };
 
   return (
@@ -97,12 +110,12 @@ const Register = () => {
             {errors.gender && <span className="error">required field</span>}
           </div>
           <div>
-            <label htmlFor="ageOfOnset">Age of onset</label>
+            <label htmlFor="age_of_onset">Age of onset</label>
             <input
               type="number"
               min="0"
               max="100"
-              {...register('ageOfOnset', { required: true })}
+              {...register('age_of_onset', { required: true })}
               placeholder="00"
             />
             {errors.ageOfOnset && <span className="error">required field</span>}
@@ -119,11 +132,11 @@ const Register = () => {
           {errors.email && <span className="error">Email is required</span>}
         </div>
         <div className="form-group">
-          <label htmlFor="seizureType">Seizure Type</label>
+          <label htmlFor="seizure_type">Seizure Type</label>
           <input
             type="text"
-            name="seizureType"
-            {...register('seizureType')}
+            name="seizure_type"
+            {...register('seizure_type')}
             placeholder="Enter type"
           />
           {errors.seizureType && <span className="error">Seizure type is required</span>}
@@ -147,21 +160,21 @@ const Register = () => {
           </div>
         </div>
         <div className="form-group">
-          <label htmlFor="caregiverName">Name of caregiver</label>
+          <label htmlFor="caregiver_name">Name of caregiver</label>
           <input
             type="text"
-            name="caregiverName"
-            {...register('caregiverName', { required: hasCaregiver === 'yes'})}
+            name="caregiver_name"
+            {...register('caregiver_name', { required: hasCaregiver === 'yes'})}
             placeholder="Enter caregiver's name "
           />
           {errors.caregiverName && <span className="error">name is required</span>}
         </div>
         <div className="form-group">
-          <label htmlFor="caregiverContact">Contact of caregiver</label>
+          <label htmlFor="caregiver_contact">Contact of caregiver</label>
           <input
             type="text"
-            name="caregiverContact"
-            {...register('caregiverContact', { required: hasCaregiver === 'yes'})}
+            name="caregiver_contact"
+            {...register('caregiver_contact', { required: hasCaregiver === 'yes'})}
             placeholder="Enter caregiver's contact "
           />
           {errors.caregiverContact && <span className="error">contact is required</span>}
@@ -202,18 +215,17 @@ const Register = () => {
             <img
               alt=""
               src={
-                imageUrl === null
+                imageObject === null
                   ? ProfilePlaceholder
-                  : URL.createObjectURL(imageUrl)
+                  : URL.createObjectURL(imageObject)
               }
             />
           </section>
-          {imageUrl !== null && <div className='Imagename'>{imageUrl.name}</div>}
+          {imageObject !== null && <div className='Imagename'>{imageObject.name}</div>}
           <label className="customButton">
             <input
               type="file"
               accept=".jpg,.jpeg,.png"
-              {...register("profileImage")}
               name="profileImage"
               onChange={(event) => {
                 addUserProfileImage(event);
