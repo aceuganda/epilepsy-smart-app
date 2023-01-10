@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../../redux/Actions/userActions';
 import ProfilePlaceholder from '../../assets/img/HomePage/UserProfile.png';
 import { useDispatch, useSelector } from 'react-redux';
+import Spinner from '../../components/Spinner/Spinner';
 //import Error from '../../components/Error/Error';
 
 import { useEffect } from 'react';
@@ -234,7 +235,7 @@ const Register = () => {
             Upload image
           </label>
         </div>
-        <button className="o-btn">Register</button>
+        <button disabled={loading} className="o-btn">{loading? <Spinner/>:"Register" }</button>
       </form>
       {error && <p className="error">{error}</p>}
     </AuthPageComponent>

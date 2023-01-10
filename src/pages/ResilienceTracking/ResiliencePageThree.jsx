@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate} from 'react-router-dom';
 import ResilienceComponent from './index';
 import Form from '../../components/form/Form';
 import Question from '../../components/form/Question';
@@ -11,20 +11,29 @@ import {
   setReasonForFeeling,
   postResilienceFormData
 } from '../../redux/Slices/ResilienceTracking';
+import Spinner from '../../components/Spinner/Spinner';
 
 const ResiliencePageThree = () => {
   const [type_of_feelings, setFeelingType] = useState(null);
   const [feeling_today, setFeeling] = useState({});
   const [reason_for_feeling, setReason] = useState(null);
+  const [loading, setLoading] = useState(false);
+  
   const resilienceTrackingData = useSelector((state) => state.resilienceTracking);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
+  
   const handleSubmit = async (e) => {
     console.log(resilienceTrackingData);
+    setLoading(true)
     try {
       await dispatch(postResilienceFormData(resilienceTrackingData));
+      setLoading(false)
+      //navigate Home
+      navigate('/home');
     } catch (err) {
       console.log('Failed to post:', err);
+      setLoading(false)
     }
   };
 
@@ -241,8 +250,8 @@ const ResiliencePageThree = () => {
           )}
           {reason_for_feeling !== null ? (
             <Link to="">
-              <button type="submit" className="finish-btn" onClick={handleSubmit}>
-                Finish
+              <button type="submit" disabled={loading} className="finish-btn" onClick={handleSubmit}>
+              {loading?<Spinner/>:"Finish"}
               </button>
             </Link>
           ) : (

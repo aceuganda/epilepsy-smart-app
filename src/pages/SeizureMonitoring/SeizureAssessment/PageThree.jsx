@@ -13,6 +13,7 @@ import {
 } from '../../../redux/Slices/SeizureTrackingSlice';
 import { ReactComponent as CheckedIcon } from '../../../assets/svg/Form/EndOfAssessment/CheckedIcon.svg';
 import CheckBox from '../../../components/form/CheckBox';
+import Spinner from '../../../components/Spinner/Spinner';
 
 const PageThree = () => {
   const [seizure_impact, setFeel] = useState('');
@@ -20,16 +21,22 @@ const PageThree = () => {
   const [other_reason, setOtherReason] = useState('');
   const [upsetRange, setUpsetRange] = useState(0);
   const [endOfAssessment, setEndOfAssessment] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const dispatch = useDispatch();
   const seizureTrackingData = useSelector((state) => state.seizureTracking);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(seizureTrackingData);
+    setLoading(true)
     try {
-      setEndOfAssessment(true);
       await dispatch(postSeizureFormData(seizureTrackingData));
+      setLoading(false);
+      setEndOfAssessment(true);
     } catch (err) {
+      setLoading(false);
       console.log('Failed to post:', err.message);
     }
   };
@@ -284,8 +291,8 @@ const PageThree = () => {
             </fieldset>
           </Question>
           {seizure_impact !== null ? (
-            <button className="finish-btn" type="submit" onClick={handleSubmit}>
-              Finish
+            <button className="finish-btn" type="submit" disabled={loading} onClick={handleSubmit}>
+              {loading?<Spinner/>:"Finish"}
             </button>
           ) : (
             <span></span>

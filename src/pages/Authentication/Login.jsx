@@ -8,7 +8,7 @@ import { loginUser } from '../../redux/Actions/userActions';
 import { useEffect } from 'react';
 import AuthPageComponent from '.';
 import { ReactComponent as LoginImg } from '../../assets/svg/Auth/Login.svg';
-//import Error from '../../components/Error/Error';
+import Spinner from '../../components/Spinner/Spinner';
 
 const Login = () => {
   const { loading, userInfo, error } = useSelector((state) => state.user);
@@ -61,7 +61,7 @@ const Login = () => {
           />
           {errors.password && <span className="error">Password is required</span>}
         </div>
-        <button className="o-btn">Login</button>
+        <button disabled={loading} className="o-btn">{loading?<Spinner />: "Login"}  </button>
       </form>
       {error && <p className="error">{error}</p>}
     </AuthPageComponent>
