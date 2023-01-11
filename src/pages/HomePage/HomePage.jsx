@@ -5,14 +5,10 @@ import Card from './Card';
 import SeizureImg from '../../assets/img/HomePage/seizure.png';
 import MedicineImg from '../../assets/img/HomePage/medication.png';
 import ActivitiesImg from '../../assets/img/HomePage/activities.png';
-import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../../redux/Slices/UsersSlice';
-import { Link } from 'react-router-dom';
-
+import TrackImg from '../../assets/img/HomePage/activities.png';
 import { useSelector } from 'react-redux';
-
-import Avatar from './Avatar';
 import { Link } from 'react-router-dom';
+import Avatar from './Avatar';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { capitalise } from '../../utils';
 import { LocalNotifications } from '@capacitor/local-notifications';
@@ -48,7 +44,6 @@ const HomePage = () => {
   setInterval(() => {
     sendLocalNotification();
   }, 28800000);
-  
   //You can use the below code to test the local notification functionality
   /*
   //call the function every 5 seconds
@@ -72,18 +67,13 @@ const HomePage = () => {
       </header>
       <div className="banner">
         <span>
-
-          <Link to='/profile'>
-          <Avatar 
-            //  img={ProfilePlaceholder}
-            name={userInfo.data.username}
-            alt={''}
-          />
+          <Link to="/settings">
+            <Avatar
+              //  img={ProfilePlaceholder}
+              name={userInfo.data.username}
+              alt={''}
+            />
           </Link>
-       
-
-          <Avatar name={userInfo.data.username} alt={''} />
-
           <span className="name">{userInfo ? capitalise(userInfo.data.username) : ''}</span>
         </span>
         <div>

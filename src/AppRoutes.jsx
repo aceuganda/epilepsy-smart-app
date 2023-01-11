@@ -20,7 +20,6 @@ import Register from './pages/Authentication/Register';
 import ProtectedRoute from './routing/ProtectedRoute';
 import AllResilienceActivitiesPage from './pages/ResilienceActivities/AllActivitiesPage';
 import PositiveAffirmations from './pages/ResilienceActivities/Activities/PositiveAffirmations';
-import Profile from './pages/Settings/Profile';
 import OneServiceGoal from './pages/ResilienceActivities/Activities/OneServiceGoal';
 import OneSocialGoal from './pages/ResilienceActivities/Activities/OneSocialGoal';
 import Settings from './pages/UserSettingsPage/Settings';
@@ -60,7 +59,6 @@ const AppRoutes = () => {
             <Route path="/resilience-form/2" element={<ResiliencePageTwo />} />
             <Route path="/resilience-form/3" element={<ResiliencePageThree />} />
             <Route path="/resilience-activities" element={<AllResilienceActivitiesPage />} />
-            <Route path="/profile" element={<Profile />} />
             <Route
               path="/resilience-activities/positive-affirmations"
               element={<PositiveAffirmations />}
