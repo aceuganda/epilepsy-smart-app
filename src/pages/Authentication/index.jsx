@@ -22,7 +22,8 @@ const AuthPageComponent = (props) => {
       <div className="auth-body">
         <div className="image">{props.image}</div>
         <div>{props.children}</div>
-        <div className="bottom-text">
+      </div>
+      <div className="bottom-text">
           <div className="call-to-action">
             <span>{props.callToAction}</span>
             <Link to={`${props.link}`}>{props.linkTitle}</Link>
@@ -31,7 +32,6 @@ const AuthPageComponent = (props) => {
             <span>By signing, up you agree with our</span>
             <Link to="">Terms & Conditions</Link>
           </div>
-        </div>
       </div>
     </div>
   );
