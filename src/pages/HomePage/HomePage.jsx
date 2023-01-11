@@ -4,9 +4,11 @@ import Footer from '../../components/layouts/Footer';
 import Card from './Card';
 import SeizureImg from '../../assets/img/HomePage/seizure.png';
 import MedicineImg from '../../assets/img/HomePage/medication.png';
+import TrackImg from '../../assets/img/HomePage/medication.png';
 import ActivitiesImg from '../../assets/img/HomePage/activities.png';
-import TrackImg from '../../assets/img/HomePage/tracking.png';
-import { useSelector } from 'react-redux';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../redux/Slices/UsersSlice';
 import Avatar from './Avatar';
 import { Link } from 'react-router-dom';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -68,7 +70,16 @@ const HomePage = () => {
       </header>
       <div className="banner">
         <span>
-          <Avatar name={userInfo.data.username} alt={''} />
+          <Link to="/Settings">
+            <Avatar
+              //  img={ProfilePlaceholder}
+              name={userInfo.data.username}
+              alt={''}
+            />
+          </Link>
+
+          {/* <Avatar name={userInfo.data.username} alt={''} /> */}
+
           <span className="name">{userInfo ? capitalise(userInfo.data.username) : ''}</span>
         </span>
         <div>
