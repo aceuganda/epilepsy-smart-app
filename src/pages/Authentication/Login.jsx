@@ -61,7 +61,9 @@ const Login = () => {
           />
           {errors.password && <span className="error">Password is required</span>}
         </div>
-        <button disabled={loading} className="o-btn">{loading?<Spinner />: "Login"}  </button>
+        <button disabled={loading} className="o-btn">
+          {loading ? <Spinner /> : 'Login'}{' '}
+        </button>
       </form>
       {error && <p className="error">{error}</p>}
     </AuthPageComponent>

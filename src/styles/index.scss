@@ -1,42 +1,43 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
-@import "HomePage";
+@import 'HomePage';
 
-@import "Landing";
+@import 'Landing';
 
-@import "Onboarding";
+@import 'Onboarding';
 
-@import "Footer";
+@import 'Footer';
 
-@import "Form.scss";
+@import 'Form.scss';
 
-@import "Seizure.scss";
+@import 'Seizure.scss';
 
-@import "Auth.scss";
+@import 'Auth.scss';
 
-@import "UserSettings.scss";
+@import 'UserSettings.scss';
 
-@import "Spinner.scss";
+@import 'Spinner.scss';
 
 $maxWidth: 580px;
 
-html{
-    box-sizing: border-box;
+html {
+  box-sizing: border-box;
 }
-body{
-    display: grid;
-    max-width: $maxWidth;
-    margin: 0;
-    overflow-y: scroll;
-    overflow-x: hidden !important;
+body {
+  display: grid;
+  max-width: $maxWidth;
+  margin: 0;
+  overflow-y: scroll;
+  overflow-x: hidden !important;
 }
-a, a:hover{
-    text-decoration: none;
-    text-decoration-color: none;
-    color: inherit;
+a,
+a:hover {
+  text-decoration: none;
+  text-decoration-color: none;
+  color: inherit;
 }
 .flex-row {
   display: flex;
@@ -57,4 +58,3 @@ a, a:hover{
     text-align: center;
   }
 }
-

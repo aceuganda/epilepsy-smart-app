@@ -26,11 +26,10 @@ const PageThree = () => {
   const dispatch = useDispatch();
   const seizureTrackingData = useSelector((state) => state.seizureTracking);
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(seizureTrackingData);
-    setLoading(true)
+    setLoading(true);
     try {
       await dispatch(postSeizureFormData(seizureTrackingData));
       setLoading(false);
@@ -129,189 +128,195 @@ const PageThree = () => {
   //   } = event;
   //   setTriggers(typeof value === 'string' ? value.split(',') : value);
   // };
-  const selectedButtonStyle=(selected)=>{
-    return selected?"button form-button-pill text-uppercase selectedPill":
-    "button form-button-pill text-uppercase";
-  }
+  const selectedButtonStyle = (selected) => {
+    return selected
+      ? 'button form-button-pill text-uppercase selectedPill'
+      : 'button form-button-pill text-uppercase';
+  };
   return (
     <>
-       <SeizureComponent backroute={'/seizure-form/assessment/2'}>
-      <Form>
-        <form onSubmit={handleSubmit}>
-          {seizureTrackingData.was_seizure_triggered === true ? (
-            <Question question={'What trigger was it'}>
-                  <div className='ItemContainer'>
+      <SeizureComponent backroute={'/seizure-form/assessment/2'}>
+        <Form>
+          <form onSubmit={handleSubmit}>
+            {seizureTrackingData.was_seizure_triggered === true ? (
+              <Question question={'What trigger was it'}>
+                <div className="ItemContainer">
                   {seizureTriggers.map((trigger) => (
-                  <CheckBox
-                  key={trigger.id}
-                  label={trigger.name}
-                  value ={trigger.name}
-                  onChange={(e) => {
-                          setTrigger(e.target.value);
-                          dispatch(setSeizureTrigger(e.target.value));
-                        }}
-                  />
-                  
-                  // <span key={trigger.id} className="checkbox-span">
-                  //   <label className="text-capitalize">{trigger.name}</label>
-                    
-                  //   <input
-                  //     type="checkbox"
-                  //     className="form-button-lg"
-                  //     value={trigger.name}
-                  //     onChange={(e) => {
-                  //       setTrigger(e.target.value);
-                  //       dispatch(setSeizureTrigger(e.target.value));
-                  //     }}
-                  //   />
-                  // </span>
-                ))}
-             </div>
+                    <CheckBox
+                      key={trigger.id}
+                      label={trigger.name}
+                      value={trigger.name}
+                      onChange={(e) => {
+                        setTrigger(e.target.value);
+                        dispatch(setSeizureTrigger(e.target.value));
+                      }}
+                    />
+
+                    // <span key={trigger.id} className="checkbox-span">
+                    //   <label className="text-capitalize">{trigger.name}</label>
+
+                    //   <input
+                    //     type="checkbox"
+                    //     className="form-button-lg"
+                    //     value={trigger.name}
+                    //     onChange={(e) => {
+                    //       setTrigger(e.target.value);
+                    //       dispatch(setSeizureTrigger(e.target.value));
+                    //     }}
+                    //   />
+                    // </span>
+                  ))}
+                </div>
+              </Question>
+            ) : (
+              <span />
+            )}
+            <Question question={'How did you feel after the seizure'}>
+              <fieldset className="mt-3 mb-4">
+                <button
+                  type="button"
+                  className={selectedButtonStyle(seizure_impact === 'sleepy')}
+                  value={'sleepy'}
+                  onClick={(e) => {
+                    setFeel(e.target.value);
+                    dispatch(setSeizureImpact(e.target.value));
+                  }}>
+                  Sleepy
+                </button>
+                <button
+                  type="button"
+                  className={selectedButtonStyle(seizure_impact === 'confused')}
+                  value={'confused'}
+                  onClick={(e) => {
+                    setFeel(e.target.value);
+                    dispatch(setSeizureImpact(e.target.value));
+                  }}>
+                  Confused
+                </button>
+                <button
+                  type="button"
+                  className={
+                    seizure_impact === 'confused'
+                      ? 'button form-button-lg text-capitalize selectedPill'
+                      : 'button form-button-lg text-capitalize'
+                  }
+                  value={'body weakness'}
+                  onClick={(e) => {
+                    setFeel(e.target.value);
+                    dispatch(setSeizureImpact(e.target.value));
+                  }}>
+                  Body Weakness
+                </button>
+                <button
+                  type="button"
+                  className={selectedButtonStyle(seizure_impact === 'restless')}
+                  value={'restless'}
+                  onClick={(e) => {
+                    setFeel(e.target.value);
+                    dispatch(setSeizureImpact(e.target.value));
+                  }}>
+                  Restless
+                </button>
+                <button
+                  type="button"
+                  className={selectedButtonStyle(seizure_impact === 'headache')}
+                  value={'headache'}
+                  onClick={(e) => {
+                    setFeel(e.target.value);
+                    dispatch(setSeizureImpact(e.target.value));
+                  }}>
+                  Headache
+                </button>
+                <button
+                  type="button"
+                  className={selectedButtonStyle(seizure_impact === 'other')}
+                  value={'other'}
+                  onClick={(e) => {
+                    setFeel(e.target.value);
+                    dispatch(setSeizureImpact(e.target.value));
+                  }}>
+                  Other
+                </button>
+                {seizure_impact === 'other' ? (
+                  <fieldset className="mt-2 mb-4">
+                    <TextField
+                      label="Type reason here"
+                      variant="outlined"
+                      value={other_reason}
+                      onChange={(e) => {
+                        setOtherReason(e.target.value);
+                        dispatch(setSeizureImpact(e.target.value));
+                      }}
+                      multiline={true}
+                      sx={{ width: '90%' }}
+                    />
+                    <button
+                      style={{
+                        position: 'absolute',
+                        right: '16px',
+                        marginTop: '70px',
+                        borderRadius: '8px',
+                        background: '#8C3E79',
+                        color: '#fff',
+                        boxShadow: '0.8px 2px 2px 0.8px #e4e4e4'
+                      }}
+                      type="submit"
+                      className="button form-button-pill"
+                      onClick={() => {
+                        setFeel(other_reason);
+                        setOtherReason('');
+                      }}>
+                      Done
+                    </button>
+                  </fieldset>
+                ) : (
+                  <span></span>
+                )}
+              </fieldset>
             </Question>
-          ) : (
-            <span />
-          )}
-          <Question question={'How did you feel after the seizure'}>
-            <fieldset className="mt-3 mb-4">
+            <Question question={'Did it upset you'}>
+              <fieldset style={{ marginTop: '10px', width: '93%', marginLeft: '10px' }}>
+                <Slider
+                  aria-label="Default"
+                  defaultValue={0}
+                  step={1}
+                  min={0}
+                  max={7}
+                  valueLabelDisplay="auto"
+                  sx={styles.slider}
+                  style={styles.slider}
+                  onChange={(e) => {
+                    setUpsetRange(parseInt(e.target.value));
+                    dispatch(setSeizureUpsetRange(upsetRange));
+                  }}
+                />
+              </fieldset>
+            </Question>
+            {seizure_impact !== null ? (
               <button
-                type="button"
-                className={selectedButtonStyle(seizure_impact==='sleepy')}
-                value={'sleepy'}
-                onClick={(e) => {
-                  setFeel(e.target.value);
-                  dispatch(setSeizureImpact(e.target.value));
-                }}>
-                Sleepy
+                className="finish-btn"
+                type="submit"
+                disabled={loading}
+                onClick={handleSubmit}>
+                {loading ? <Spinner /> : 'Finish'}
               </button>
-              <button
-                type="button"
-                className={selectedButtonStyle(seizure_impact==='confused')}
-                value={'confused'}
-                onClick={(e) => {
-                  setFeel(e.target.value);
-                  dispatch(setSeizureImpact(e.target.value));
-                }}>
-                Confused
-              </button>
-              <button
-                type="button"
-                className={seizure_impact==='confused'?
-                "button form-button-lg text-capitalize selectedPill":
-                "button form-button-lg text-capitalize"}
-                value={'body weakness'}
-                onClick={(e) => {
-                  setFeel(e.target.value);
-                  dispatch(setSeizureImpact(e.target.value));
-                }}>
-                Body Weakness
-              </button>
-              <button
-                type="button"
-                className={selectedButtonStyle(seizure_impact==='restless')}
-                value={'restless'}
-                onClick={(e) => {
-                  setFeel(e.target.value);
-                  dispatch(setSeizureImpact(e.target.value));
-                }}>
-                Restless
-              </button>
-              <button
-                type="button"
-                className={selectedButtonStyle(seizure_impact==='headache')}
-                value={'headache'}
-                onClick={(e) => {
-                  setFeel(e.target.value);
-                  dispatch(setSeizureImpact(e.target.value));
-                }}>
-                Headache
-              </button>
-              <button
-                type="button"
-                className={selectedButtonStyle(seizure_impact==='other')}
-                value={'other'}
-                onClick={(e) => {
-                  setFeel(e.target.value);
-                  dispatch(setSeizureImpact(e.target.value));
-                }}>
-                Other
-              </button>
-              {seizure_impact === 'other' ? (
-                <fieldset className="mt-2 mb-4">
-                  <TextField
-                    label="Type reason here"
-                    variant="outlined"
-                    value={other_reason}
-                    onChange={(e) => {
-                      setOtherReason(e.target.value);
-                      dispatch(setSeizureImpact(e.target.value));
-                    }}
-                    multiline={true}
-                    sx={{ width: '90%' }}
-                  />
-                  <button
-                    style={{
-                      position: 'absolute',
-                      right: '16px',
-                      marginTop: '70px',
-                      borderRadius: '8px',
-                      background: '#8C3E79',
-                      color: '#fff',
-                      boxShadow: '0.8px 2px 2px 0.8px #e4e4e4'
-                    }}
-                    type="submit"
-                    className="button form-button-pill"
-                    onClick={() => {
-                      setFeel(other_reason);
-                      setOtherReason('');
-                    }}>
-                    Done
-                  </button>
-                </fieldset>
-              ) : (
-                <span></span>
-              )}
-            </fieldset>
-          </Question>
-          <Question question={'Did it upset you'}>
-            <fieldset style={{ marginTop: '10px', width: '93%', marginLeft: '10px' }}>
-              <Slider
-                aria-label="Default"
-                defaultValue={0}
-                step={1}
-                min={0}
-                max={7}
-                valueLabelDisplay="auto"
-                sx={styles.slider}
-                style={styles.slider}
-                onChange={(e) => {
-                  setUpsetRange(parseInt(e.target.value));
-                  dispatch(setSeizureUpsetRange(upsetRange));
-                }}
+            ) : (
+              <span></span>
+            )}
+            {endOfAssessment && (
+              <EndOfAssessmentModal
+                icon={<CheckedIcon />}
+                title={'Well Done!'}
+                subText={'Thank you for completing this assessment.'}
+                link={'/home'}
+                linkText={'home'}
+                showModal={true}
               />
-            </fieldset>
-          </Question>
-          {seizure_impact !== null ? (
-            <button className="finish-btn" type="submit" disabled={loading} onClick={handleSubmit}>
-              {loading?<Spinner/>:"Finish"}
-            </button>
-          ) : (
-            <span></span>
-          )}
-          {endOfAssessment && (
-            <EndOfAssessmentModal
-              icon={<CheckedIcon />}
-              title={'Well Done!'}
-              subText={'Thank you for completing this assessment.'}
-              link={'/home'}
-              linkText={'home'}
-              showModal={true}
-            />
-          )}
-        </form>
-      </Form>
-    </SeizureComponent>
+            )}
+          </form>
+        </Form>
+      </SeizureComponent>
     </>
-    
   );
 };
 

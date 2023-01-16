@@ -44,30 +44,29 @@ const Register = () => {
     } else {
       setImageObject(event.target.files[0]);
     }
-  }
-
+  };
 
   const submitForm = (data) => {
-    var submittion=data;
+    var submittion = data;
     if (submittion.password !== submittion.confirmPassword) {
       alert('Passwords do not match');
       return;
     }
     submittion.email = submittion.email.toLowerCase();
-    submittion.age = Number(submittion.age)
-    submittion.age_of_onset = Number(submittion.age_of_onset)
-    delete submittion.confirmPassword
-    if(imageObject !== null){
-    let reader = new FileReader()
-    reader.readAsDataURL(imageObject)
-    reader.onload = () =>{
-      submittion={...data, profileImage: reader.result}
-      //required to only dispatch onload
+    submittion.age = Number(submittion.age);
+    submittion.age_of_onset = Number(submittion.age_of_onset);
+    delete submittion.confirmPassword;
+    if (imageObject !== null) {
+      let reader = new FileReader();
+      reader.readAsDataURL(imageObject);
+      reader.onload = () => {
+        submittion = { ...data, profileImage: reader.result };
+        //required to only dispatch onload
+        dispatch(registerUser(submittion));
+      };
+    } else {
+      submittion = { ...data, profileImage: '' };
       dispatch(registerUser(submittion));
-     }
-   }else {
-       submittion={...data, profileImage: ""}
-       dispatch(registerUser(submittion));
     }
   };
 
@@ -147,15 +146,17 @@ const Register = () => {
           <div>
             <span
               className={hasCaregiver === 'no' ? 'Selected' : ''}
-              onClick={() => { sethasCaregiver('no') }}
-            >
+              onClick={() => {
+                sethasCaregiver('no');
+              }}>
               No
             </span>
             <span
               //empty "" to prevent console error
               className={hasCaregiver === 'yes' ? 'Selected' : ''}
-              onClick={() => { sethasCaregiver('yes') }}
-            >
+              onClick={() => {
+                sethasCaregiver('yes');
+              }}>
               Yes
             </span>
           </div>
@@ -165,7 +166,7 @@ const Register = () => {
           <input
             type="text"
             name="caregiver_name"
-            {...register('caregiver_name', { required: hasCaregiver === 'yes'})}
+            {...register('caregiver_name', { required: hasCaregiver === 'yes' })}
             placeholder="Enter caregiver's name "
           />
           {errors.caregiverName && <span className="error">name is required</span>}
@@ -175,7 +176,7 @@ const Register = () => {
           <input
             type="text"
             name="caregiver_contact"
-            {...register('caregiver_contact', { required: hasCaregiver === 'yes'})}
+            {...register('caregiver_contact', { required: hasCaregiver === 'yes' })}
             placeholder="Enter caregiver's contact "
           />
           {errors.caregiverContact && <span className="error">contact is required</span>}
@@ -215,14 +216,10 @@ const Register = () => {
             <label htmlFor="profilePicture">Profile picture (optional) </label>
             <img
               alt=""
-              src={
-                imageObject === null
-                  ? ProfilePlaceholder
-                  : URL.createObjectURL(imageObject)
-              }
+              src={imageObject === null ? ProfilePlaceholder : URL.createObjectURL(imageObject)}
             />
           </section>
-          {imageObject !== null && <div className='Imagename'>{imageObject.name}</div>}
+          {imageObject !== null && <div className="Imagename">{imageObject.name}</div>}
           <label className="customButton">
             <input
               type="file"
@@ -235,7 +232,9 @@ const Register = () => {
             Upload image
           </label>
         </div>
-        <button disabled={loading} className="o-btn">{loading? <Spinner/>:"Register" }</button>
+        <button disabled={loading} className="o-btn">
+          {loading ? <Spinner /> : 'Register'}
+        </button>
       </form>
       {error && <p className="error">{error}</p>}
     </AuthPageComponent>
