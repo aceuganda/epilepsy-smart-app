@@ -3,7 +3,7 @@ import UpdateImg from '../../assets/img/Onboarding/getStarted.png';
 import Dotted from '../../assets/img/Onboarding/btn1.png';
 import { Link } from 'react-router-dom';
 
-const Onboarding = () => {
+const Onboarding = (props) => {
   return (
     <div className="onboarding">
       <div className="update-section">

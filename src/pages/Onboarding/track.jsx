@@ -1,9 +1,16 @@
-import React from 'react';
+import React,{useState} from 'react';
 import TrackImg from '../../assets/img/Onboarding/track.png';
 import Dotted from '../../assets/img/Onboarding/btn3.png';
-import { Link } from 'react-router-dom';
+import {Link,useNavigate} from 'react-router-dom';
 
 const Track = () => {
+  const [globalSee, setGlobalSee] = useState(false);
+  const navigate = useNavigate();
+  const handleClick = () => {
+    setGlobalSee(true);
+    localStorage.setItem('globalSee', JSON.stringify(globalSee));
+    navigate('/login');
+  }
   return (
     <div className="onboarding">
       <div className="track-section">
@@ -16,9 +23,11 @@ const Track = () => {
         </span>
         <img src={Dotted} />
       </div>
-      <Link to="/login">
-        <button className="o-btn">Get Started</button>
-      </Link>
+      {/* <Link to="/login"> */}
+      <button onClick={handleClick} className="o-btn">
+        Get Started
+      </button>
+      {/* </Link> */}
     </div>
   );
 };
