@@ -13,6 +13,9 @@ import { Link } from 'react-router-dom';
 import MedicationComponent from '..';
 import Form from '../../../components/form/Form';
 import Question from '../../../components/form/Question';
+import { useDispatch, useSelector } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
+import { setMedicineName, postMedicineFormData } from '../../../redux/Slices/MedicineTracking';
 
 const medicineNames = ['Sodium Vaporate', 'Diclofenac', 'Gofen', 'Ibuprofen'];
 
@@ -30,16 +33,31 @@ const MenuProps = {
 
 const MedicationTrackingPageOne = () => {
   const [medicines, setMedicines] = useState([]);
+  const [addMedicineFeedback, setAddMedicineFeedback] = useState('');
+  const medicineTrackingData = useSelector((state) => state.medicineTracking);
+  const dispatch = useDispatch();
+  // const navigate = useNavigate();
 
   const handleChange = (event) => {
     const {
       target: { value }
     } = event;
     setMedicines(typeof value === 'string' ? value.split(',') : value);
+    dispatch(setMedicineName((typeof value === 'string' ? value.split(',') : value).join(',')));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    //call medicine post
+    console.log(medicineTrackingData);
+    if (medicines.length > 0) {
+      const response = await dispatch(postMedicineFormData(medicineTrackingData));
+      if (response.payload.status === 'success') {
+        setAddMedicineFeedback(`Medicine added.`);
+      } else {
+        setAddMedicineFeedback('Failed to add medicine.');
+      }
+    }
   };
 
   return (
@@ -73,6 +91,20 @@ const MedicationTrackingPageOne = () => {
               </FormControl>
             </fieldset>
           </Question>
+          {addMedicineFeedback && (
+            <div
+              style={{
+                marginTop: '2px',
+                marginBottom: '1px',
+                alignSelf: 'center',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '12px'
+              }}>
+              {addMedicineFeedback}
+            </div>
+          )}
           <button
             style={{
               position: 'absolute',

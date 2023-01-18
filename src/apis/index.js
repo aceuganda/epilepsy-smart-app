@@ -1,8 +1,5 @@
 import axios from 'axios';
-import { SEIZURE_URL } from '../config/urls';
-import { RESILIENCE_URL } from '../config/urls';
-import { REGISTER_USER_URL } from '../config/urls';
-import { LOGIN_USER_URL } from '../config/urls';
+import { SEIZURE_URL, RESILIENCE_URL, MEDICINES_URL } from '../config/urls';
 
 const config = {
   headers: {
@@ -16,3 +13,6 @@ export const postSeizureAssessment = async (data) =>
 
 export const postResilience = async (data) =>
   await axios.post(RESILIENCE_URL, data, config).then((response) => response.data);
+
+export const postMedicine = async (data) =>
+  await axios.post(MEDICINES_URL, data, config).then((response) => response.data);
