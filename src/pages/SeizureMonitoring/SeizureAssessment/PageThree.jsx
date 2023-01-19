@@ -23,6 +23,8 @@ const PageThree = () => {
   const [endOfAssessment, setEndOfAssessment] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const [selectedTriggers, setSelectedTriggers] = useState([].concat(seizure_trigger));
+
   const dispatch = useDispatch();
   const seizureTrackingData = useSelector((state) => state.seizureTracking);
 
@@ -122,17 +124,17 @@ const PageThree = () => {
     }
   ];
 
-  // const handleChange = (event) => {
-  //   const {
-  //     target: { value }
-  //   } = event;
-  //   setTriggers(typeof value === 'string' ? value.split(',') : value);
-  // };
+  const handleChange = (value) => {
+    selectedTriggers.push(value);
+    setTrigger(selectedTriggers.join());
+  };
+
   const selectedButtonStyle = (selected) => {
     return selected
       ? 'button form-button-pill text-uppercase selectedPill'
       : 'button form-button-pill text-uppercase';
   };
+
   return (
     <>
       <SeizureComponent backroute={'/seizure-form/assessment/2'}>
@@ -147,8 +149,8 @@ const PageThree = () => {
                       label={trigger.name}
                       value={trigger.name}
                       onChange={(e) => {
-                        setTrigger(e.target.value);
-                        dispatch(setSeizureTrigger(e.target.value));
+                        handleChange(e.target.value);
+                        dispatch(setSeizureTrigger(seizure_trigger));
                       }}
                     />
 
