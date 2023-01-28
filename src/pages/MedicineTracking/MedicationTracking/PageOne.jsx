@@ -1,3 +1,11 @@
+// invoke alarm api
+// store alarms
+// get ids for alarms
+// local storage of alerm Id and times
+// alarm api only wakes the app up at a spacified time
+// on start of the application, check if time matches any in local storage,
+// if so, invoke notification api
+
 import {
   Checkbox,
   FormControl,
@@ -42,6 +50,31 @@ const MedicationTrackingPageOne = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+  };
+
+  const setAlarmApiTime = async () => {
+    const input = '12:18';
+    const [hour, minutes] = input.split(':');
+
+    const selectedTime = new Date();
+    selectedTime.setHours(hour);
+    selectedTime.setMinutes(minutes);
+    console.log(selectedTime);
+
+    var data = {
+      med: 'panadol',
+      time: input,
+      owner: 'smartApp'
+    };
+    var request = window.navigator.mozAlarms.add(selectedTime, 'ignoreTimezone', data);
+
+    request.onsuccess = function () {
+      console.log('The alarm has been scheduled');
+    };
+
+    request.onerror = function () {
+      console.log('An error occurred: ' + this.error.name);
+    };
   };
 
   return (
@@ -92,20 +125,21 @@ const MedicationTrackingPageOne = () => {
           <div style={{ marginTop: '45px' }}>
             <Question question={'What time will the medicine be taken'}>
               <fieldset>
-               <div style={{
-                 display: 'flex',
-                 marginTop: '10px' ,
-                 flexDirection: 'column',
-                 }}> 
-               <AddTime />
-               <MedicationTime time={"9:54"} active={true}/>
-               </div>
+                <div
+                  style={{
+                    display: 'flex',
+                    marginTop: '10px',
+                    flexDirection: 'column'
+                  }}>
+                  <AddTime />
+                  <MedicationTime time={'9:54'} active={true} />
+                </div>
               </fieldset>
             </Question>
           </div>
           {medicines !== null ? (
             <Link to="/home">
-              <button className="finish-btn" type="submit">
+              <button onClick={()=>{setAlarmApiTime()}} className="finish-btn" type="submit">
                 Finish
               </button>
             </Link>
