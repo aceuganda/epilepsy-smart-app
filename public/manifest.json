@@ -18,6 +18,14 @@
       "sizes": "512x512"
     }
   ],
+  "permissions": {
+    "alarms": {
+      "description": "Required to schedule alarms"
+    }
+  },
+  "messages": [
+    { "alarm": "/index.html" }
+  ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",

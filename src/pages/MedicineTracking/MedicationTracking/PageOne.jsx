@@ -1,3 +1,11 @@
+// invoke alarm api
+// store alarms
+// get ids for alarms
+// local storage of alerm Id and times
+// alarm api only wakes the app up at a spacified time
+// on start of the application, check if time matches any in local storage,
+// if so, invoke notification api
+
 import {
   Checkbox,
   FormControl,
@@ -12,6 +20,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import MedicationComponent from '..';
 import Form from '../../../components/form/Form';
+import MedicationTime from './MedicationTime';
+import { ReactComponent as AddTime } from '../../../assets/svg/Medication/addtime.svg';
 import Question from '../../../components/form/Question';
 import { useDispatch, useSelector } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
@@ -58,6 +68,31 @@ const MedicationTrackingPageOne = () => {
         setAddMedicineFeedback('Failed to add medicine.');
       }
     }
+  };
+
+  const setAlarmApiTime = async () => {
+    const input = '12:18';
+    const [hour, minutes] = input.split(':');
+
+    const selectedTime = new Date();
+    selectedTime.setHours(hour);
+    selectedTime.setMinutes(minutes);
+    console.log(selectedTime);
+
+    var data = {
+      med: 'panadol',
+      time: input,
+      owner: 'smartApp'
+    };
+    var request = window.navigator.mozAlarms.add(selectedTime, 'ignoreTimezone', data);
+
+    request.onsuccess = function () {
+      console.log('The alarm has been scheduled');
+    };
+
+    request.onerror = function () {
+      console.log('An error occurred: ' + this.error.name);
+    };
   };
 
   return (
@@ -121,12 +156,22 @@ const MedicationTrackingPageOne = () => {
           </button>
           <div style={{ marginTop: '45px' }}>
             <Question question={'What time will the medicine be taken'}>
-              <fieldset></fieldset>
+              <fieldset>
+                <div
+                  style={{
+                    display: 'flex',
+                    marginTop: '10px',
+                    flexDirection: 'column'
+                  }}>
+                  <AddTime />
+                  <MedicationTime time={'9:54'} active={true} />
+                </div>
+              </fieldset>
             </Question>
           </div>
           {medicines !== null ? (
             <Link to="/home">
-              <button className="finish-btn" type="submit">
+              <button onClick={()=>{setAlarmApiTime()}} className="finish-btn" type="submit">
                 Finish
               </button>
             </Link>
