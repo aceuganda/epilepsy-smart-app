@@ -90,13 +90,13 @@ const Register = () => {
         </div>
         <div className="form-select-group">
           <div>
-            <label htmlFor="age">Age</label>
+            <label htmlFor="age">Date of birth</label>
             <input
-              type="number"
+              type="date"
               min="10"
               max="100"
               {...register('age', { required: true })}
-              placeholder="10"
+              placeholder="01/01/2000"
             />
             {errors.age && <span className="error">required field</span>}
           </div>
