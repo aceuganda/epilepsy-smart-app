@@ -92,12 +92,10 @@ const Register = () => {
           <div>
             <label htmlFor="age">Date of birth</label>
             <input
-              type="date"
-              min="10"
-              max="100"
+              type="date"          
               {...register('age', { required: true })}
               placeholder="01/01/2000"
-            />
+             />
             {errors.age && <span className="error">required field</span>}
           </div>
           <div>
