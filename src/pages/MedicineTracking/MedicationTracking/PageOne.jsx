@@ -1,10 +1,3 @@
-// invoke alarm api
-// store alarms
-// get ids for alarms
-// local storage of alerm Id and times
-// alarm api only wakes the app up at a spacified time
-// on start of the application, check if time matches any in local storage,
-// if so, invoke notification api
 
 import {
   Checkbox,
@@ -15,16 +8,18 @@ import {
   OutlinedInput,
   Select
 } from '@mui/material';
-import React from 'react';
-import { useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import { Link } from 'react-router-dom';
 import MedicationComponent from '..';
 import Form from '../../../components/form/Form';
+import { ReactComponent as Arrow } from '../../../assets/svg/Form/Selectors/togglearrow.svg';
 import MedicationTime from './MedicationTime';
+import TimeSelector from './TimeSelector';
 import { ReactComponent as AddTime } from '../../../assets/svg/Medication/addtime.svg';
 import Question from '../../../components/form/Question';
 import { useDispatch, useSelector } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
+import Modal from '../../../components/modal/index.jsx'
 import { setMedicineName, postMedicineFormData } from '../../../redux/Slices/MedicineTracking';
 
 const medicineNames = ['Sodium Vaporate', 'Diclofenac', 'Gofen', 'Ibuprofen'];
@@ -40,11 +35,25 @@ const MenuProps = {
     }
   }
 };
-
 const MedicationTrackingPageOne = () => {
   const [medicines, setMedicines] = useState([]);
   const [addMedicineFeedback, setAddMedicineFeedback] = useState('');
+  const [timePickerModalVisibility, setTimePickerModalVisibility] = useState(false);
+  const [activeTab, setActiveTab] = useState('medicine');// medicine or reminder
+  const [medicineAccodianVisibilty, setMedicineAccodianVisibilty] = useState(false)
+  const [selectedAccodianMedicine, setSelectedAccodianMedicine] = useState("")
+  const [selectedHours,setSelectedHours] = useState('00')
+  const [selectedMins,setSelectedMins] = useState('00')
+  const [selectedZone,setSelectedZone] = useState('AM')
   const medicineTrackingData = useSelector((state) => state.medicineTracking);
+  const [savedReminders, setSavedReminders] = useState(localStorage.getItem('reminders') ? 
+  JSON.parse(localStorage.getItem('reminders')):
+  [])
+  
+  // const savedReminders = localStorage.getItem('reminders') ? 
+  // JSON.parse(localStorage.getItem('reminders')):
+  // []
+
   const dispatch = useDispatch();
   // const navigate = useNavigate();
 
@@ -70,35 +79,69 @@ const MedicationTrackingPageOne = () => {
     }
   };
 
-  const setAlarmApiTime = async () => {
-    const input = '12:18';
-    const [hour, minutes] = input.split(':');
+  const handleTimeSelectorModalClosure = ()=>{
+    setTimePickerModalVisibility(false)
+  }
+  const handleHours= (target)=>{
+    setSelectedHours(target.value)
+  }
+  const handleMinutes= (target)=>{
+    setSelectedMins(target.value)
+  }
+  const handleZone= (target)=>{
+    setSelectedZone(target.value)
+  }
+  const HandleSave = () =>{
+     // collect time data medicine
+     let fullTime = selectedHours+":"+selectedMins+":"+selectedZone
+     let remindersArray =  savedReminders
+     if(selectedAccodianMedicine){
+       let currentReminderObject = {
+         time: fullTime,
+         medicine:selectedAccodianMedicine,
+         active: true
+       }
+       remindersArray.push(currentReminderObject)
+       localStorage.setItem("reminders", JSON.stringify(remindersArray))
+       setSelectedAccodianMedicine("")
+       setSavedReminders(remindersArray)
+       setTimePickerModalVisibility(false)
+       
+     }else{
+      alert('Please select medicine for the reminder')
+     }
 
-    const selectedTime = new Date();
-    selectedTime.setHours(hour);
-    selectedTime.setMinutes(minutes);
-    console.log(selectedTime);
+  }
+  const EditReminders = (index,value) =>{
+    let remindersArray =  [...savedReminders]
+    remindersArray[index].active = value
+    localStorage.setItem("reminders", JSON.stringify(remindersArray))
+    setSavedReminders(remindersArray) 
+  }
 
-    var data = {
-      med: 'panadol',
-      time: input,
-      owner: 'smartApp'
-    };
-    var request = window.navigator.mozAlarms.add(selectedTime, 'ignoreTimezone', data);
-
-    request.onsuccess = function () {
-      console.log('The alarm has been scheduled');
-    };
-
-    request.onerror = function () {
-      console.log('An error occurred: ' + this.error.name);
-    };
-  };
+  const DeleteReminders = (index) =>{
+    let remindersArray =  [...savedReminders]
+    remindersArray.splice(index, 1); 
+    localStorage.setItem("reminders", JSON.stringify(remindersArray))
+    setSavedReminders(remindersArray) 
+  }
 
   return (
     <MedicationComponent backroute={'/medication/'}>
       <Form>
-        <form>
+        <div className='medicinesTabs' >
+           <div className={activeTab==='medicine' ?  'medicineTabActive' : 'medicineTabInactive'} 
+           onClick={()=>{setActiveTab('medicine')}}
+           >Add Medicine</div>
+           <div className={activeTab==='reminder' ?  'medicineTabActive' : 'medicineTabInactive'} 
+           onClick={()=>{setActiveTab('reminder')}} style={{
+            paddingRight:'0.9rem'
+           }}>
+            Add Reminder
+           </div>
+        </div>
+         {activeTab==='medicine' ? 
+         <form  >
           <Question question={'What medication are you taking'}>
             <fieldset style={{ marginTop: '10px' }}>
               <FormControl sx={{ m: 1, width: 300 }}>
@@ -154,31 +197,103 @@ const MedicationTrackingPageOne = () => {
             onClick={(e) => handleSubmit(e)}>
             add
           </button>
-          <div style={{ marginTop: '45px' }}>
-            <Question question={'What time will the medicine be taken'}>
-              <fieldset>
-                <div
-                  style={{
-                    display: 'flex',
-                    marginTop: '10px',
-                    flexDirection: 'column'
-                  }}>
-                  <AddTime />
-                  <MedicationTime time={'9:54'} active={true} />
-                </div>
-              </fieldset>
-            </Question>
-          </div>
           {medicines !== null ? (
             <Link to="/home">
-              <button onClick={()=>{setAlarmApiTime()}} className="finish-btn" type="submit">
+              <button onClick={()=>{}} className="finish-btn" type="submit">
                 Finish
               </button>
             </Link>
           ) : (
             <span></span>
           )}
-        </form>
+        </form>:
+        <form className='tabTransition' >
+        <div style={{ marginTop: '45px' }}>
+          <div className='reminderSelection' >
+            <fieldset>
+              <div
+                style={{
+                  display: 'flex',
+                  marginTop: '10px',
+                  flexDirection: 'column'
+                }}>
+                <AddTime onClick={()=>{
+                  setTimePickerModalVisibility(true)
+                }} />
+                <div
+                style={{
+                  display: 'flex',
+                  marginTop: '10px',
+                  gap:'7px',
+                  flexDirection: 'column'
+                }}>
+                {(Array.isArray(savedReminders)) && savedReminders?.map((reminder,index)=>(
+                  <MedicationTime key={index} 
+                  time={reminder.time} 
+                  index={index}
+                  active={reminder.active} 
+                  medicine={reminder.medicine}
+                  handleToggleClickCallback={EditReminders}
+                  handleDeleteClickCallback={DeleteReminders}
+                  />
+                ))
+               }
+               </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <Modal show={timePickerModalVisibility}
+        //  closeModal={handleTimeSelectorModalClosure}
+          >
+          <div className='contentContainer' >
+           <div className='HeadSection'>
+            <div className='headerButton' onClick={()=>{handleTimeSelectorModalClosure()}} > 
+            cancel</div>
+            <div className='heading'>Add time</div>
+            <div onClick={HandleSave}  className='headerButton'>save</div>
+           </div>       
+           <div className='ModalTimeSelector'>
+           <TimeSelector 
+           onChangeMinutesCallBack={handleMinutes} 
+           onChangeHoursCallBack={handleHours}
+           onChangeZoneCallBack={handleZone}
+           />
+           </div>
+            <div className='MedicineSelection'>
+            <div className='SelectionHeadWrapper'>
+            <div className='MedicineSelectionheader'>Medicine</div>
+             <div 
+             onClick={()=>{setMedicineAccodianVisibilty(!medicineAccodianVisibilty)}}
+             className={medicineAccodianVisibilty?'OpenArrowclass': 'Arrowclass'}>
+              <Arrow/></div>
+             </div>
+             <div className='MedicineAccordianSections'>
+               <div className='timerMedicine'>{selectedAccodianMedicine!==''?
+               selectedAccodianMedicine:"select medicine"}
+               </div>
+              {medicineAccodianVisibilty === true &&
+               (<div className='MedicineList'>
+               {medicineNames.map((medicine,index)=>(
+                <div key={index} style={{
+                  color:'#000000',
+                  fontSize:'13px',
+                  padding:'2px',
+                 }}
+                 onClick={()=>{
+                  setSelectedAccodianMedicine(medicine)
+                  setMedicineAccodianVisibilty(false)
+                }}
+                 >{medicine}</div>
+               ))}
+              </div>)}
+             </div>
+            </div>
+          </div>
+        </Modal>
+      </form>
+     
+        }
       </Form>
     </MedicationComponent>
   );
