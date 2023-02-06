@@ -1,0 +1,27 @@
+@import './library/colors.scss';
+@import './library/variables.scss';
+
+.SpinnerWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .Spinner {
+    border: 2px solid $ema-white-1;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100%;
+    border-top: 2px solid $ema-lilac-0;
+    animation: spin 600ms linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

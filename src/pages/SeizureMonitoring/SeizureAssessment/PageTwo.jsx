@@ -25,14 +25,14 @@ const PageTwo = () => {
       : dispatch(setSeizureExperiencedAura(aura_kind_experienced));
     seizure_trigger === 'yes' ? dispatch(setTrigger(true)) : dispatch(setTrigger(false));
   };
-  const selectedButtonStyle=(selected)=>{
-    return selected?"button form-button-pill text-uppercase selectedPill":
-    "button form-button-pill text-uppercase";
-  }
-  const selectedLongButtonStyle=(selected)=>{
-    return selected?"button selectedLongPill":
-    "button form-button-lg";
-  }
+  const selectedButtonStyle = (selected) => {
+    return selected
+      ? 'button form-button-pill text-uppercase selectedPill'
+      : 'button form-button-pill text-uppercase';
+  };
+  const selectedLongButtonStyle = (selected) => {
+    return selected ? 'button selectedLongPill' : 'button form-button-lg';
+  };
 
   useEffect(() => {}, []);
   return (
@@ -48,7 +48,7 @@ const PageTwo = () => {
             <fieldset className="mt-3 mb-4">
               <button
                 type="button"
-                className={selectedButtonStyle(experienced_aura==='yes')}
+                className={selectedButtonStyle(experienced_aura === 'yes')}
                 value={'yes'}
                 onClick={(e) => {
                   setAura(e.target.value);
@@ -57,7 +57,7 @@ const PageTwo = () => {
               </button>
               <button
                 type="button"
-                className={selectedButtonStyle(experienced_aura==='no')}
+                className={selectedButtonStyle(experienced_aura === 'no')}
                 value={'no'}
                 onClick={(e) => {
                   setAura(e.target.value);
@@ -71,7 +71,7 @@ const PageTwo = () => {
               <fieldset className="mt-3 mb-4">
                 <button
                   type="button"
-                  className={selectedLongButtonStyle(aura_kind_experienced==='sweet smells')}
+                  className={selectedLongButtonStyle(aura_kind_experienced === 'sweet smells')}
                   value={'sweet smells'}
                   onClick={(e) => {
                     setAuraType(e.target.value);
@@ -80,7 +80,7 @@ const PageTwo = () => {
                 </button>
                 <button
                   type="button"
-                  className={selectedLongButtonStyle(aura_kind_experienced==='horrible smells')}
+                  className={selectedLongButtonStyle(aura_kind_experienced === 'horrible smells')}
                   value={'horrible smells'}
                   onClick={(e) => {
                     setAuraType(e.target.value);
@@ -105,7 +105,9 @@ const PageTwo = () => {
                 </div>
                 <button
                   type="button"
-                  className={selectedLongButtonStyle(aura_kind_experienced==='tingling sensation')}
+                  className={selectedLongButtonStyle(
+                    aura_kind_experienced === 'tingling sensation'
+                  )}
                   value={'tingling sensation'}
                   onClick={(e) => {
                     setAuraType(e.target.value);
@@ -114,7 +116,7 @@ const PageTwo = () => {
                 </button>
                 <button
                   type="button"
-                  className={selectedLongButtonStyle(aura_kind_experienced==='flashing lights')}
+                  className={selectedLongButtonStyle(aura_kind_experienced === 'flashing lights')}
                   value={'flashing lights'}
                   onClick={(e) => {
                     setAuraType(e.target.value);
@@ -123,7 +125,7 @@ const PageTwo = () => {
                 </button>
                 <button
                   type="button"
-                  className={selectedLongButtonStyle(aura_kind_experienced==='crawling insects')}
+                  className={selectedLongButtonStyle(aura_kind_experienced === 'crawling insects')}
                   value={'crawling insects'}
                   onClick={(e) => {
                     setAuraType(e.target.value);
@@ -132,7 +134,7 @@ const PageTwo = () => {
                 </button>
                 <button
                   type="button"
-                  className={selectedLongButtonStyle(aura_kind_experienced==='seeing things')}
+                  className={selectedLongButtonStyle(aura_kind_experienced === 'seeing things')}
                   value={'seeing things'}
                   onClick={(e) => {
                     setAuraType(e.target.value);
@@ -149,7 +151,7 @@ const PageTwo = () => {
               <fieldset className="mt-3 mb-4" style={{ justifyContent: 'space-evenly' }}>
                 <button
                   type="button"
-                  className={selectedButtonStyle(seizure_trigger==='yes')}
+                  className={selectedButtonStyle(seizure_trigger === 'yes')}
                   value={'yes'}
                   onClick={(e) => {
                     setSeizureTrigger(e.target.value);
@@ -158,7 +160,7 @@ const PageTwo = () => {
                 </button>
                 <button
                   type="button"
-                  className={selectedButtonStyle(seizure_trigger==='no')}
+                  className={selectedButtonStyle(seizure_trigger === 'no')}
                   value={'no'}
                   onClick={(e) => {
                     setSeizureTrigger(e.target.value);
