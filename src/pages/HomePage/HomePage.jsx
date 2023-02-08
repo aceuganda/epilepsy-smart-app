@@ -17,7 +17,8 @@ import quotes from '../../resources/insipiration_quotes.json';
 const HomePage = () => {
   const { userInfo } = useSelector((state) => state.user);
   const [savedReminders] = useState(
-    localStorage.getItem('reminders') ? JSON.parse(localStorage.getItem('reminders')) : []
+    localStorage.getItem(`${userInfo.data.id}Reminders`) ? 
+    JSON.parse(localStorage.getItem(`${userInfo.data.id}Reminders`)) : []
   );
 
   //request permission to send local notification

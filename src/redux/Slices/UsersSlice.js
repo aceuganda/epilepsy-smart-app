@@ -23,8 +23,6 @@ export const usersSlice = createSlice({
     logout: (state) => {
       localStorage.removeItem('userToken');
       localStorage.removeItem('userInfo');
-      //clear local user reminders
-      localStorage.removeItem('reminders');
       state.userToken = null;
       state.userInfo = null;
       state.loading = false;

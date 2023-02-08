@@ -35,8 +35,11 @@ const MedicationTrackingPageOne = () => {
   const [userMedicines, setUserMedicines] = useState([]);
   const [userMedicinesFeedbackMessage, setUserMedicinesFeedbackMessage] = useState('');
   const medicineTrackingData = useSelector((state) => state.medicineTracking);
+  const userId = localStorage.getItem('userInfo')
+  ? JSON.parse(localStorage.getItem('userInfo')).data.id
+  : null;
   const [savedReminders, setSavedReminders] = useState(
-    localStorage.getItem('reminders') ? JSON.parse(localStorage.getItem('reminders')) : []
+    localStorage.getItem(`${userId}Reminders`) ? JSON.parse(localStorage.getItem(`${userId}Reminders`)) : []
   );
 
   const dispatch = useDispatch();
@@ -103,7 +106,7 @@ const MedicationTrackingPageOne = () => {
         active: true
       };
       remindersArray.push(currentReminderObject);
-      localStorage.setItem('reminders', JSON.stringify(remindersArray));
+      localStorage.setItem(`${userId}Reminders`, JSON.stringify(remindersArray));
       setSelectedAccodianMedicine('');
       setSavedReminders(remindersArray);
       setTimePickerModalVisibility(false);
@@ -114,14 +117,14 @@ const MedicationTrackingPageOne = () => {
   const EditReminders = (index, value) => {
     let remindersArray = [...savedReminders];
     remindersArray[index].active = value;
-    localStorage.setItem('reminders', JSON.stringify(remindersArray));
+    localStorage.setItem(`${userId}Reminders`, JSON.stringify(remindersArray));
     setSavedReminders(remindersArray);
   };
 
   const DeleteReminders = (index) => {
     let remindersArray = [...savedReminders];
     remindersArray.splice(index, 1);
-    localStorage.setItem('reminders', JSON.stringify(remindersArray));
+    localStorage.setItem(`${userId}Reminders`, JSON.stringify(remindersArray));
     setSavedReminders(remindersArray);
   };
 
