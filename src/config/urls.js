@@ -5,4 +5,3 @@ export const RESILIENCE_URL = `${BASE_URL}/resilience`;
 export const REGISTER_USER_URL = `${BASE_URL}/users`;
 export const LOGIN_USER_URL = `${BASE_URL}/users/login`;
 // export const USER_ACTIVITIES = `${BASE_URL}/users`; // appended with an id
-
