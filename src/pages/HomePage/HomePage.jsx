@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import Footer from '../../components/layouts/Footer';
 import Card from './Card';
@@ -16,6 +16,9 @@ import quotes from '../../resources/insipiration_quotes.json';
 
 const HomePage = () => {
   const { userInfo } = useSelector((state) => state.user);
+  const [savedReminders] = useState(
+    localStorage.getItem('reminders') ? JSON.parse(localStorage.getItem('reminders')) : []
+  );
 
   //request permission to send local notification
   const sendLocalNotification = async () => {
@@ -39,12 +42,15 @@ const HomePage = () => {
     }
     console.log('hasPermission', hasPermission);
   };
-
   //call the function every after 8 hours
   setInterval(() => {
     sendLocalNotification();
   }, 28800000);
-  
+  useEffect(() => {
+    //shedule all available offline notification on start
+    sheduleReminderLocalNotification();
+  }, []);
+
   //You can use the below code to test the local notification functionality
   /*
   //call the function every 5 seconds
@@ -52,6 +58,39 @@ const HomePage = () => {
     sendLocalNotification();
   }, 5000);
 */
+  const sheduleReminderLocalNotification = async () => {
+    const hasPermission = await LocalNotifications.requestPermissions();
+    if (savedReminders.length > 0) {
+      for (let i = 0; i < savedReminders.length; i++) {
+        const timeString = savedReminders[i].time;
+        const [hours, minutes, period] = timeString.split(':');
+        const date = new Date();
+        date.setHours(period === 'AM' ? parseInt(hours, 10) : parseInt(hours, 10) + 12);
+        date.setMinutes(parseInt(minutes, 10));
+        if (hasPermission && savedReminders[i].active === true) {
+          const schedulingOptions = {
+            notifications: [
+              {
+                title: 'Daily Medicine Reminder',
+                body: `Don't forget to take your medicine dose for ${savedReminders[i].medicine}`,
+                id: 1,
+                schedule: {
+                  at: new Date(date.getTime() + 5 * 1000),
+                  every: 'day'
+                }
+              }
+            ]
+          };
+          await LocalNotifications.schedule(schedulingOptions);
+          console.log('Notifications Secheduled');
+        }
+      }
+    } else {
+      console.log('no running reminders');
+    }
+    console.log('hasPermission', hasPermission);
+  };
+
   return (
     <div className="home-page">
       <header className="row justify-content-between">

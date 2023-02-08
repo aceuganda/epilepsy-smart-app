@@ -5,10 +5,10 @@ const userToken = localStorage.getItem('userToken')
   ? JSON.parse(localStorage.getItem('userToken'))
   : null;
 
-  const userInfo = localStorage.getItem('userInfo')
+const userInfo = localStorage.getItem('userInfo')
   ? JSON.parse(localStorage.getItem('userInfo'))
   : null;
-  
+
 const initialState = {
   loading: false,
   userInfo,
@@ -23,6 +23,8 @@ export const usersSlice = createSlice({
     logout: (state) => {
       localStorage.removeItem('userToken');
       localStorage.removeItem('userInfo');
+      //clear local user reminders
+      localStorage.removeItem('reminders');
       state.userToken = null;
       state.userInfo = null;
       state.loading = false;
