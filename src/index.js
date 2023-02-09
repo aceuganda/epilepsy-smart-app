@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import 'font-awesome/css/font-awesome.min.css';
 import { Provider } from 'react-redux';
 import './styles/index.scss';
-import store from './store'
+import store from './store';
 
 ReactDOM.render(
   <Provider store={store}>

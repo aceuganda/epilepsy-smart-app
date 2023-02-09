@@ -34,7 +34,8 @@ const Settings = () => {
     {
       name: 'Privacy and Security',
       icon: <LockOutlined />,
-      link: null
+      link: '/privacy'
+    
     },
     {
       name: 'Help',
