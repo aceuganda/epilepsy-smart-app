@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 const Modal = ({ children, show, closeModal }) => {
@@ -7,6 +7,7 @@ const Modal = ({ children, show, closeModal }) => {
     show: PropTypes.bool,
     closeModal: PropTypes.func
   };
+  const modalRef = useRef(null);
 
   const toggleModal = () => {
     if (show) {
@@ -17,14 +18,26 @@ const Modal = ({ children, show, closeModal }) => {
       document.getElementById('modal').style.display = 'none';
     }
   };
+  useEffect(() => {
+    const handleClickOutsideModal = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        closeModal();
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutsideModal);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideModal);
+    };
+  }, [closeModal]);
 
   useEffect(() => {
     toggleModal();
   }, [show]);
 
   return (
-    <div className="modal-wrapper" id="modal-wrapper" onClick={closeModal}>
-      <div className="modal" id="modal">
+    <div className="modal-wrapper" id="modal-wrapper">
+      <div ref={modalRef} className="modal" id="modal">
         {children}
       </div>
     </div>
