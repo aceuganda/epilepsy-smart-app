@@ -22,6 +22,7 @@ import AllResilienceActivitiesPage from './pages/ResilienceActivities/AllActivit
 import PositiveAffirmations from './pages/ResilienceActivities/Activities/PositiveAffirmations';
 import Settings from './pages/UserSettingsPage/Settings';
 import ResilienceTallies from './pages/ResilienceTracking/Tallies';
+import ResilienceStartPage from './pages/ResilienceTracking/Intro';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
@@ -53,6 +54,7 @@ const AppRoutes = () => {
             <Route path="/medication/assessment/1" element={<MedicationAssessmentPageOne />} />
             <Route path="/medication/assessment/2" element={<MedicationAssessmentPageTwo />} />
             <Route path="/medication/tracking" element={<MedicationTrackingPageOne />} />
+            <Route path="/resilience-form" element={<ResilienceStartPage />} />
             <Route path="/resilience-form/1" element={<ResiliencePageOne />} />
             <Route path="/resilience-form/2" element={<ResiliencePageTwo />} />
             <Route path="/resilience-form/3" element={<ResiliencePageThree />} />
