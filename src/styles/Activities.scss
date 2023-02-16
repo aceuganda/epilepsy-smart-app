@@ -1,0 +1,41 @@
+.tab-component {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-header {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 0.2px solid #ccc;
+}
+
+.tab-header button {
+  padding: 8px 17px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  outline: none;
+}
+
+.tab-header button.active {
+  border-bottom: 0.2px solid blue;
+}
+
+.tab-content {
+  padding: 20px;
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+.Journal-card{
+  width: 100px;
+  height: 50px;
+  color: green;
+  border: 2px 5px;
+}

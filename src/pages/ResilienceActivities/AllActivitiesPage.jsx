@@ -16,7 +16,7 @@ const AllResilienceActivitiesPage = () => {
       link: null
     },
     {
-      name: 'positive affirmations',
+      name: ' Today positive affirmations',
       icon: null,
       link: '/resilience-activities/positive-affirmations'
     },
@@ -26,7 +26,17 @@ const AllResilienceActivitiesPage = () => {
       link: null
     },
     {
-      name: 'Secure diary',
+      name: 'Journaling',
+      icon: null,
+      link: '/resilience-activities/journaling'
+    },
+    {
+      name: 'Link to ESAU',
+      icon: null,
+      link: null
+    },
+    {
+      name: 'Meditation',
       icon: null,
       link: null
     },
@@ -41,7 +51,7 @@ const AllResilienceActivitiesPage = () => {
       link: null
     },
     {
-      name: 'General Well being',
+      name: 'Listening',
       icon: null,
       link: null
     }
