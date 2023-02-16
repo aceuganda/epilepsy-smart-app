@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LandingPage from './pages/LandingPage/LandingPage';
 import MedicationAssessmentPageOne from './pages/MedicineTracking/Assessment/PageOne';
+import MedicationAssessmentPageZero from './pages/MedicineTracking/Assessment/PageZero';
 import MedicationAssessmentPageTwo from './pages/MedicineTracking/Assessment/PageTwo';
 import IntroPage from './pages/MedicineTracking/IntroPage';
 import MedicationTrackingPageOne from './pages/MedicineTracking/MedicationTracking/PageOne';
@@ -52,6 +53,7 @@ const AppRoutes = () => {
             <Route path="/seizure-form/assessment/2" element={<PageTwo />} />
             <Route path="/seizure-form/assessment/3" element={<PageThree />} />
             <Route path="/medication" element={<IntroPage />} />
+            <Route path="/medication/assessment/0" element={<MedicationAssessmentPageZero />} />
             <Route path="/medication/assessment/1" element={<MedicationAssessmentPageOne />} />
             <Route path="/medication/assessment/2" element={<MedicationAssessmentPageTwo />} />
             <Route path="/medication/tracking" element={<MedicationTrackingPageOne />} />

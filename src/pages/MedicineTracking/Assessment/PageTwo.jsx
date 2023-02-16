@@ -1,22 +1,43 @@
 import { TextField } from '@mui/material';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import MedicationComponent from '..';
 import Form from '../../../components/form/Form';
 import Question from '../../../components/form/Question';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setSideEffects,
+  setExperiencedSideEffects,
+  postMedicationFormData
+} from '../../../redux/Slices/MedicationTracking';
+import Spinner from '../../../components/Spinner/Spinner';
 
 const MedicationAssessmentPageTwo = () => {
-  const [side_effects, setSideEffects] = useState(null);
+  const [side_effects, setSideEffect] = useState(null);
   const [other_reason, setOtherReason] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setOtherReason('');
+  const medicationTrackingData = useSelector((state) => state.medicationTracking);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(medicationTrackingData);
+    setLoading(true);
+    try {
+      await dispatch(postMedicationFormData(medicationTrackingData));
+      setLoading(false);
+      //home
+      navigate('/home');
+    } catch (err) {
+      setLoading(false);
+      alert('Failed to post data');
+    }
   };
-  const selectedButtonStyle=(selected)=>{
-    return selected?"button form-button-pill  selectedPill":
-    "button form-button-pill";
-  }
+  const selectedButtonStyle = (selected) => {
+    return selected ? 'button form-button-pill  selectedPill' : 'button form-button-pill';
+  };
   return (
     <MedicationComponent backroute={'/medication/assessment/1'}>
       <Form>
@@ -28,7 +49,9 @@ const MedicationAssessmentPageTwo = () => {
                 className="button form-button-pill"
                 value={'None'}
                 onClick={(e) => {
-                  setSideEffects(e.target.value);
+                  setSideEffect(e.target.value);
+                  dispatch(setExperiencedSideEffects(false));
+                  dispatch(setSideEffects(e.target.value));
                 }}>
                 None
               </button>
@@ -37,7 +60,9 @@ const MedicationAssessmentPageTwo = () => {
                 className="button form-button-pill"
                 value={'Vomiting'}
                 onClick={(e) => {
-                  setSideEffects(e.target.value);
+                  setSideEffect(e.target.value);
+                  dispatch(setExperiencedSideEffects(true));
+                  dispatch(setSideEffects(e.target.value));
                 }}>
                 Vomiting
               </button>
@@ -46,7 +71,9 @@ const MedicationAssessmentPageTwo = () => {
                 className="button form-button-lg"
                 value={'Drowsiness'}
                 onClick={(e) => {
-                  setSideEffects(e.target.value);
+                  setSideEffect(e.target.value);
+                  dispatch(setExperiencedSideEffects(true));
+                  dispatch(setSideEffects(e.target.value));
                 }}>
                 Drowsiness
               </button>
@@ -55,7 +82,9 @@ const MedicationAssessmentPageTwo = () => {
                 className="button form-button-pill"
                 value={'Skin Rash'}
                 onClick={(e) => {
-                  setSideEffects(e.target.value);
+                  setSideEffect(e.target.value);
+                  dispatch(setExperiencedSideEffects(true));
+                  dispatch(setSideEffects(e.target.value));
                 }}>
                 Skin Rash
               </button>
@@ -64,7 +93,9 @@ const MedicationAssessmentPageTwo = () => {
                 className="button form-button-pill"
                 value={'Headache'}
                 onClick={(e) => {
-                  setSideEffects(e.target.value);
+                  setSideEffect(e.target.value);
+                  dispatch(setExperiencedSideEffects(true));
+                  dispatch(setSideEffects(e.target.value));
                 }}>
                 Headache
               </button>
@@ -73,7 +104,9 @@ const MedicationAssessmentPageTwo = () => {
                 className="button form-button-pill"
                 value={'Nausea'}
                 onClick={(e) => {
-                  setSideEffects(e.target.value);
+                  setSideEffect(e.target.value);
+                  dispatch(setExperiencedSideEffects(true));
+                  dispatch(setSideEffects(e.target.value));
                 }}>
                 Nausea
               </button>
@@ -82,7 +115,9 @@ const MedicationAssessmentPageTwo = () => {
                 className="button form-button-lg"
                 value={'Diarrhoea'}
                 onClick={(e) => {
-                  setSideEffects(e.target.value);
+                  setSideEffect(e.target.value);
+                  dispatch(setExperiencedSideEffects(true));
+                  dispatch(setSideEffects(e.target.value));
                 }}>
                 Diarrhoea
               </button>
@@ -91,16 +126,20 @@ const MedicationAssessmentPageTwo = () => {
                 className="button form-button-lg"
                 value={'Constipation'}
                 onClick={(e) => {
-                  setSideEffects(e.target.value);
+                  setSideEffect(e.target.value);
+                  dispatch(setExperiencedSideEffects(true));
+                  dispatch(setSideEffects(e.target.value));
                 }}>
                 Constipation
               </button>
               <button
                 type="button"
-                className={selectedButtonStyle(side_effects==='Other')}
+                className={selectedButtonStyle(side_effects === 'Other')}
                 value={'Other'}
                 onClick={(e) => {
-                  setSideEffects(e.target.value);
+                  setSideEffect(e.target.value);
+                  dispatch(setExperiencedSideEffects(true));
+                  dispatch(setSideEffects(e.target.value));
                 }}>
                 Other
               </button>
@@ -111,7 +150,11 @@ const MedicationAssessmentPageTwo = () => {
               <TextField
                 label="Type the side effect here"
                 variant="outlined"
-                onChange={(e) => setOtherReason(e.target.value)}
+                onChange={(e) => {
+                  setOtherReason(e.target.value);
+                  dispatch(setExperiencedSideEffects(true));
+                  dispatch(setSideEffects(e.target.value));
+                }}
                 multiline={true}
                 sx={{ width: '90%', marginLeft: '18px' }}
               />
@@ -135,11 +178,9 @@ const MedicationAssessmentPageTwo = () => {
             <span></span>
           )}
           {side_effects !== null ? (
-            <Link to="/home">
-              <button className="finish-btn" type="submit">
-                Finish
-              </button>
-            </Link>
+            <button onClick={handleSubmit} className="finish-btn" type="submit">
+              {loading ? <Spinner /> : 'Finish'}
+            </button>
           ) : (
             <span></span>
           )}
