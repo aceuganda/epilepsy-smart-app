@@ -5,10 +5,10 @@ const userToken = localStorage.getItem('userToken')
   ? JSON.parse(localStorage.getItem('userToken'))
   : null;
 
-  const userInfo = localStorage.getItem('userInfo')
+const userInfo = localStorage.getItem('userInfo')
   ? JSON.parse(localStorage.getItem('userInfo'))
   : null;
-  
+
 const initialState = {
   loading: false,
   userInfo,
