@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { RESILIENCE_TALLIES_URL, SEIZURE_URL } from '../config/urls';
 import { RESILIENCE_URL } from '../config/urls';
-import { REGISTER_USER_URL } from '../config/urls';
-import { LOGIN_USER_URL } from '../config/urls';
 
 const userToken = JSON.parse(localStorage.getItem('userToken'));
 

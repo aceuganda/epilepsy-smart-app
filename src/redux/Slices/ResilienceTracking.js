@@ -49,9 +49,6 @@ export const resilienceTrackingSlice = createSlice({
     setTreatmentScaleByOthers: (state, action) => {
       state.treatment_scale_by_other = action.payload;
     },
-    setResilienceUserID: (state, action) => {
-      state.user_id = parseInt(action.payload);
-    },
     getUserTallies: (state, action) => {
       state.resilience_tallies = action.payload;
     }
@@ -70,7 +67,6 @@ export const {
   setTypeOfFeelings,
   setFeelingToday,
   setReasonForFeeling,
-  setResilienceUserID,
   setTreatmentScaleByOthers,
   getUserTallies
 } = resilienceTrackingSlice.actions;
