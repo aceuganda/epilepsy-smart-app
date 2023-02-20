@@ -17,11 +17,12 @@ import Spinner from '../../../components/Spinner/Spinner';
 
 const PageThree = () => {
   const [seizure_impact, setFeel] = useState('');
-  const [seizure_trigger, setTrigger] = useState('');
+  const [seizure_trigger, setTrigger] = useState([]);
   const [other_reason, setOtherReason] = useState('');
   const [upsetRange, setUpsetRange] = useState(0);
   const [endOfAssessment, setEndOfAssessment] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [buttonStatement, setButtonStatement] = useState('Finish');
 
   const [selectedTriggers, setSelectedTriggers] = useState([].concat(seizure_trigger));
 
@@ -38,7 +39,7 @@ const PageThree = () => {
       setEndOfAssessment(true);
     } catch (err) {
       setLoading(false);
-      console.log('Failed to post:', err.message);
+      setButtonStatement('Try Again');
     }
   };
 
@@ -124,9 +125,10 @@ const PageThree = () => {
     }
   ];
 
-  const handleChange = (value) => {
-    selectedTriggers.push(value);
-    setTrigger(selectedTriggers.join());
+  const handleCheckboxChange = (value) => {
+    seizure_trigger.includes(value)
+      ? setTrigger(seizure_trigger.filter((item) => item !== value))
+      : setTrigger((seizure_trigger) => [...seizure_trigger, value]);
   };
 
   const selectedButtonStyle = (selected) => {
@@ -142,33 +144,22 @@ const PageThree = () => {
           <form onSubmit={handleSubmit}>
             {seizureTrackingData.was_seizure_triggered === true ? (
               <Question question={'What trigger was it'}>
-                <div className="ItemContainer">
-                  {seizureTriggers.map((trigger) => (
-                    <CheckBox
-                      key={trigger.id}
-                      label={trigger.name}
-                      value={trigger.name}
-                      onChange={(e) => {
-                        handleChange(e.target.value);
-                        dispatch(setSeizureTrigger(seizure_trigger));
-                      }}
-                    />
-
-                    // <span key={trigger.id} className="checkbox-span">
-                    //   <label className="text-capitalize">{trigger.name}</label>
-
-                    //   <input
-                    //     type="checkbox"
-                    //     className="form-button-lg"
-                    //     value={trigger.name}
-                    //     onChange={(e) => {
-                    //       setTrigger(e.target.value);
-                    //       dispatch(setSeizureTrigger(e.target.value));
-                    //     }}
-                    //   />
-                    // </span>
-                  ))}
-                </div>
+                <fieldset className="mt-3 mb-4">
+                  <div className="ItemContainer">
+                    {seizureTriggers.map((trigger) => (
+                      <CheckBox
+                        key={trigger.id}
+                        label={trigger.name}
+                        value={trigger.name}
+                        checked={false}
+                        onClick={(e) => {
+                          handleCheckboxChange(e.target.value);
+                          dispatch(setSeizureTrigger(seizure_trigger));
+                        }}
+                      />
+                    ))}
+                  </div>
+                </fieldset>
               </Question>
             ) : (
               <span />
@@ -299,8 +290,9 @@ const PageThree = () => {
                 className="finish-btn"
                 type="submit"
                 disabled={loading}
+                style={{ bottom: '10px' }}
                 onClick={handleSubmit}>
-                {loading ? <Spinner /> : 'Finish'}
+                {loading ? <Spinner /> : buttonStatement}
               </button>
             ) : (
               <span></span>

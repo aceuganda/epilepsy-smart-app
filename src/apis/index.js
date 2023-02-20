@@ -1,16 +1,20 @@
 import axios from 'axios';
-import { SEIZURE_URL, RESILIENCE_URL, MEDICINES_URL, MEDICATION_URL } from '../config/urls';
+import {
+  RESILIENCE_TALLIES_URL,
+  SEIZURE_URL,
+  RESILIENCE_URL,
+  MEDICINES_URL,
+  MEDICATION_URL
+} from '../config/urls';
 
-const token = localStorage.getItem('userInfo')
-  ? JSON.parse(localStorage.getItem('userInfo')).data.access_token
-  : null;
-
+const userToken = JSON.parse(localStorage.getItem('userToken'));
 const config = {
   headers: {
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${token}`
+    Authorization: `Bearer ${userToken}`
   }
 };
+
 
 export const postSeizureAssessment = async (data) =>
   await axios.post(SEIZURE_URL, data, config).then((response) => response.data);
@@ -18,6 +22,9 @@ export const postSeizureAssessment = async (data) =>
 export const postResilience = async (data) =>
   await axios.post(RESILIENCE_URL, data, config).then((response) => response.data);
 
+export const getAllResilienceTallies = async (userId) =>
+  await axios.get(`${RESILIENCE_TALLIES_URL}/${userId}`, config).then((response) => response.data);
+  
 export const postMedicine = async (data) =>
   await axios.post(MEDICINES_URL, data, config).then((response) => response.data);
 
