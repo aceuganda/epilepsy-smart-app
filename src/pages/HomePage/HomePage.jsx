@@ -8,8 +8,6 @@ import ActivitiesImg from '../../assets/img/HomePage/activities.png';
 import TrackImg from '../../assets/img/HomePage/tracking.png';
 import { useSelector } from 'react-redux';
 import Avatar from './Avatar';
-import { Link } from 'react-router-dom';
-import SettingsIcon from '@mui/icons-material/Settings';
 import { capitalise } from '../../utils';
 import { LocalNotifications } from '@capacitor/local-notifications';
 import quotes from '../../resources/insipiration_quotes.json';
@@ -17,8 +15,9 @@ import quotes from '../../resources/insipiration_quotes.json';
 const HomePage = () => {
   const { userInfo } = useSelector((state) => state.user);
   const [savedReminders] = useState(
-    localStorage.getItem(`${userInfo.data.id}Reminders`) ? 
-    JSON.parse(localStorage.getItem(`${userInfo.data.id}Reminders`)) : []
+    localStorage.getItem(`${userInfo.data.id}   Reminders`)
+      ? JSON.parse(localStorage.getItem(`${userInfo.data.id} Reminders`))
+      : []
   );
 
   //request permission to send local notification
@@ -99,11 +98,6 @@ const HomePage = () => {
         <div className="row justify-content-between">
           <NotificationsNoneIcon />
           <br />
-          {userInfo && (
-            <Link to="/settings">
-              <SettingsIcon />
-            </Link>
-          )}
         </div>
       </header>
       <div className="banner">
