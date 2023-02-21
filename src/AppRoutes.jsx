@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LandingPage from './pages/LandingPage/LandingPage';
 import MedicationAssessmentPageOne from './pages/MedicineTracking/Assessment/PageOne';
+import MedicationAssessmentPageZero from './pages/MedicineTracking/Assessment/PageZero';
 import MedicationAssessmentPageTwo from './pages/MedicineTracking/Assessment/PageTwo';
 import IntroPage from './pages/MedicineTracking/IntroPage';
 import MedicationTrackingPageOne from './pages/MedicineTracking/MedicationTracking/PageOne';
@@ -24,6 +25,10 @@ import Settings from './pages/UserSettingsPage/Settings';
 import ResilienceTallies from './pages/ResilienceTracking/Tallies';
 import Privacy from './pages/UserSettingsPage/privacy';
 import Terms from './pages/UserSettingsPage/terms';
+import ResilienceStartPage from './pages/ResilienceTracking/Intro';
+import UserDetailsEdit from './pages/UserSettingsPage/Profile';
+import PasswordReset from './pages/UserSettingsPage/PasswordReset';
+import About from './pages/UserSettingsPage/About';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
@@ -54,9 +59,11 @@ const AppRoutes = () => {
             <Route path="/seizure-form/assessment/2" element={<PageTwo />} />
             <Route path="/seizure-form/assessment/3" element={<PageThree />} />
             <Route path="/medication" element={<IntroPage />} />
+            <Route path="/medication/assessment/0" element={<MedicationAssessmentPageZero />} />
             <Route path="/medication/assessment/1" element={<MedicationAssessmentPageOne />} />
             <Route path="/medication/assessment/2" element={<MedicationAssessmentPageTwo />} />
             <Route path="/medication/tracking" element={<MedicationTrackingPageOne />} />
+            <Route path="/resilience-form" element={<ResilienceStartPage />} />
             <Route path="/resilience-form/1" element={<ResiliencePageOne />} />
             <Route path="/resilience-form/2" element={<ResiliencePageTwo />} />
             <Route path="/resilience-form/3" element={<ResiliencePageThree />} />
@@ -65,8 +72,11 @@ const AppRoutes = () => {
               path="/resilience-activities/positive-affirmations"
               element={<PositiveAffirmations />}
             />
-            <Route path="/settings" element={<Settings />} />
+            <Route path="/account" element={<Settings />} />
             <Route path="/resilience/tallies" element={<ResilienceTallies />} />
+            <Route path="/account/settings" element={<UserDetailsEdit />} />
+            <Route path="/account/password-reset" element={<PasswordReset />} />
+            <Route path="/account/about" element={<About />} />
           </Route>
         </Routes>
       </Suspense>

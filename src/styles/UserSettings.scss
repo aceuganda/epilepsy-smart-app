@@ -1,38 +1,61 @@
 @import './library/colors.scss';
 @import './library/variables.scss';
 
-.user-profile{
+.user-profile{  
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    padding: 10px 0;
-    font-family: 'Lato';
+    justify-content: space-between;
+    padding: 15px 5px 10px 10px;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    width: 100%;
+    border-top: 0.8px solid $ema-white-2;
+    border-bottom: 0.8px solid $ema-white-2;
     h1{
         border:1px solid transparent;
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 50%;
-        height: 108px;
-        width:115px;
+        height: 60px;
+        width:60px;
         text-align: center;
-        font-size: 50px;
+        font-size: 20px;
         font-family: 'Monteserrat';
     }
-    .user-details{
+    .left{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        h1{
+            font-size: 35px;
+        }
+        .user-details{
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            padding-left: 15px;
+            .welcome{
+                font-weight: 400;
+                color:$ema-grey-5;
+                font-size: 15px;
+            }
+            .user-name{
+                font-weight: 600;
+                font-size: 18px;
+                color: $ema-black-5;
+            }
+        }
+    }
+    .right{
         display: flex;
         flex-direction: column;
-        text-align: center;
-        margin-bottom: 8px;
-        .user-name{
-            font-weight: 600;
-            font-size: 20px;
-        }
-        .user-email{
+        align-items: center;
+        div{
+            font-size: 12px;
+            color:$ema-grey-5;
             font-weight: 400;
-            color: $ema-grey-3;
-            font-size: 16px;
         }
     }
 }
@@ -41,7 +64,7 @@
     width: 90%;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     svg{
         color: $ema-lilac-2;
         font-size: 30px;
@@ -49,10 +72,35 @@
     h4{
         font-size: 18px;
         margin-left: 18px;
+        font-weight: 600;
     }
     span{
         font-family: 'Poppins';
         font-size: 28px;
         font-weight: 500;
+    }
+}
+.Profile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h1{
+        border:1px solid transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        height: 80px;
+        width:70px;
+        text-align: center;
+        font-size: 30px;
+        font-family: 'Monteserrat';
+    } 
+    form{
+        margin-top: 20px;
+    }
+    button{
+        border-radius: 30px;
+        right:0px
     }
 }

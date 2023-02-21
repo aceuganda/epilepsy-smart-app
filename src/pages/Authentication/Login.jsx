@@ -1,17 +1,18 @@
 //Login
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../redux/Actions/userActions';
 
 import { useEffect } from 'react';
 import AuthPageComponent from '.';
 import { ReactComponent as LoginImg } from '../../assets/svg/Auth/Login.svg';
-//import Error from '../../components/Error/Error';
+import Spinner from '../../components/Spinner/Spinner';
 
 const Login = () => {
   const { loading, userInfo, error } = useSelector((state) => state.user);
+  localStorage.setItem('registered_user', true);
 
   const dispatch = useDispatch();
 
@@ -58,10 +59,13 @@ const Login = () => {
             name="password"
             {...register('password', { required: true })}
             placeholder="Enter password"
+            autoComplete="current-password"
           />
           {errors.password && <span className="error">Password is required</span>}
         </div>
-        <button className="o-btn">Login</button>
+        <button disabled={loading} className="o-btn">
+          {loading ? <Spinner /> : 'Login'}{' '}
+        </button>
       </form>
       {error && <p className="error">{error}</p>}
     </AuthPageComponent>

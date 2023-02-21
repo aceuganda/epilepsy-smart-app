@@ -31,9 +31,9 @@ const PageOne = () => {
     : null;
 
   const handleChange = () => {
-    if(seizure_duration !== "unknown" && (minutesValue !=='0' || secondsValue !== '0')){
-      dispatch(setSeizureDuration(String((Number(minutesValue)*60)+Number(secondsValue))));
-    }else{
+    if (seizure_duration !== 'unknown' && (minutesValue !== '0' || secondsValue !== '0')) {
+      dispatch(setSeizureDuration(String(Number(minutesValue) * 60 + Number(secondsValue))));
+    } else {
       dispatch(setSeizureDuration(seizure_duration));
     }
     dispatch(setSeizureSeverity(seizure_severity));
@@ -41,19 +41,20 @@ const PageOne = () => {
     dispatch(setSeizureID(userId));
     lost_awareness === 'yes' ? dispatch(setLostAwareness(true)) : dispatch(setLostAwareness(false));
   };
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   const handleMinutesChange = (target) => {
-    setMinutesValue(target.value)
+    setMinutesValue(target.value);
   };
   const handleSecondsChange = (target) => {
-     setSecondsValue(target.value)
+    setSecondsValue(target.value);
   };
 
-  const selectedButtonStyle=(selected)=>{
-    return selected?"button form-button-pill text-uppercase selectedPill":
-    "button form-button-pill text-uppercase";
-  }
+  const selectedButtonStyle = (selected) => {
+    return selected
+      ? 'button form-button-pill text-uppercase selectedPill'
+      : 'button form-button-pill text-uppercase';
+  };
 
   return (
     <SeizureComponent backroute={'/seizure-form/'}>
@@ -63,7 +64,7 @@ const PageOne = () => {
             <fieldset className="mt-3 mb-4">
               <button
                 type="button"
-                className={selectedButtonStyle(seizure_severity==='mild')}
+                className={selectedButtonStyle(seizure_severity === 'mild')}
                 value={'mild'}
                 onClick={(e) => {
                   setSeverity(e.target.value);
@@ -72,7 +73,7 @@ const PageOne = () => {
               </button>
               <button
                 type="button"
-                className={selectedButtonStyle(seizure_severity==='moderate')}
+                className={selectedButtonStyle(seizure_severity === 'moderate')}
                 value={'moderate'}
                 onClick={(e) => {
                   setSeverity(e.target.value);
@@ -81,7 +82,7 @@ const PageOne = () => {
               </button>
               <button
                 type="button"
-                className={selectedButtonStyle(seizure_severity==='severe')}
+                className={selectedButtonStyle(seizure_severity === 'severe')}
                 value={'severe'}
                 onClick={(e) => {
                   setSeverity(e.target.value);
@@ -100,8 +101,11 @@ const PageOne = () => {
                 />
                 <button
                   type="button"
-                  className={seizure_duration==='unknown'?
-                   "button form-button-pill-no-margin text-uppercase selectedPill":"button form-button-pill-no-margin text-uppercase"}
+                  className={
+                    seizure_duration === 'unknown'
+                      ? 'button form-button-pill-no-margin text-uppercase selectedPill'
+                      : 'button form-button-pill-no-margin text-uppercase'
+                  }
                   value={'unknown'}
                   onClick={(e) => {
                     setDuration(e.target.value);
@@ -113,7 +117,7 @@ const PageOne = () => {
           ) : (
             <span></span>
           )}
-          {(seizure_duration !== '' || minutesValue !=='0' || secondsValue !== '0' ) ? (
+          {seizure_duration !== '' || minutesValue !== '0' || secondsValue !== '0' ? (
             <Question question={'What time of day did it occur'}>
               <fieldset className="mt-3 mb-4">
                 <div className="flex-column-center">
@@ -121,7 +125,7 @@ const PageOne = () => {
                   <button
                     style={{ marginTop: '12px' }}
                     type="button"
-                    className={selectedButtonStyle(seizure_time_of_day==='morning')}
+                    className={selectedButtonStyle(seizure_time_of_day === 'morning')}
                     value={'morning'}
                     onClick={(e) => {
                       setTime(e.target.value);
@@ -134,7 +138,7 @@ const PageOne = () => {
                   <button
                     style={{ marginTop: '12px' }}
                     type="button"
-                    className={selectedButtonStyle(seizure_time_of_day==='afternoon')}
+                    className={selectedButtonStyle(seizure_time_of_day === 'afternoon')}
                     value={'afternoon'}
                     onClick={(e) => {
                       setTime(e.target.value);
@@ -147,7 +151,7 @@ const PageOne = () => {
                   <button
                     style={{ marginTop: '12px' }}
                     type="button"
-                    className={selectedButtonStyle(seizure_time_of_day==='evening')}
+                    className={selectedButtonStyle(seizure_time_of_day === 'evening')}
                     value={'evening'}
                     onClick={(e) => {
                       setTime(e.target.value);
@@ -165,7 +169,7 @@ const PageOne = () => {
               <fieldset className="mt-3 mb-4" style={{ justifyContent: 'space-evenly' }}>
                 <button
                   type="button"
-                  className={selectedButtonStyle(lost_awareness==='yes')}
+                  className={selectedButtonStyle(lost_awareness === 'yes')}
                   value={'yes'}
                   onClick={(e) => {
                     setAwareness(e.target.value);
@@ -174,7 +178,7 @@ const PageOne = () => {
                 </button>
                 <button
                   type="button"
-                  className={selectedButtonStyle(lost_awareness==='no')}
+                  className={selectedButtonStyle(lost_awareness === 'no')}
                   value={'no'}
                   onClick={(e) => {
                     setAwareness(e.target.value);
