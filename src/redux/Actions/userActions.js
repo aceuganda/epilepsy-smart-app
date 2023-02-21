@@ -3,27 +3,24 @@ import { REGISTER_USER_URL } from '../../config/urls';
 import { LOGIN_USER_URL } from '../../config/urls';
 import axios from 'axios';
 
-export const registerUser = createAsyncThunk(
-  'user/register',
-  async (data, { rejectWithValue }) => {
-    try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      };
-      await axios.post(REGISTER_USER_URL, data, config);
-    } catch (err) {
-      if (err.response && err.response.data) {
-        console.log(err.response.data);
-        return rejectWithValue(err.response.data.message);
-      } else {
-        console.log(err);
-        return rejectWithValue(err.message);
+export const registerUser = createAsyncThunk('user/register', async (data, { rejectWithValue }) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
       }
+    };
+    await axios.post(REGISTER_USER_URL, data, config);
+  } catch (err) {
+    if (err.response && err.response.data) {
+      console.log(err.response.data);
+      return rejectWithValue(err.response.data.message);
+    } else {
+      console.log(err);
+      return rejectWithValue(err.message);
     }
   }
-);
+});
 
 export const loginUser = createAsyncThunk(
   'user/login',
