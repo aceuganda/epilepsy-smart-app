@@ -68,15 +68,20 @@ const MedicationTrackingPageOne = () => {
     console.log(medicineTrackingData);
     if (checkedMedicine !== '') {
       setAddingMedicine(true);
+      try{
       const response = await dispatch(postMedicineFormData(medicineTrackingData));
-      if (response.payload.status === 'success') {
+      console.log(response)
+      if (response.payload?.status === 'success') {
         setAddMedicineFeedback(`Medicine added.`);
         setAddingMedicine(false);
         window.location.reload();
       } else {
-        setAddMedicineFeedback('Failed to add medicine.');
+        setAddMedicineFeedback("Failed to add medicine. Be sure you haven't already added the medicine");
         setAddingMedicine(false);
       }
+    }catch(error){
+       console.log(error)
+    }
     }
   };
 
@@ -245,6 +250,7 @@ const MedicationTrackingPageOne = () => {
                       alignSelf: 'center',
                       display: 'flex',
                       alignItems: 'center',
+                      textAlign: 'center',
                       justifyContent: 'center',
                       fontSize: '12px'
                     }}>
@@ -306,11 +312,11 @@ const MedicationTrackingPageOne = () => {
                     onClick={() => {
                       handleTimeSelectorModalClosure();
                     }}>
-                    cancel
+                    Cancel
                   </div>
                   <div className="heading">Add time</div>
                   <div onClick={HandleSave} className="headerButton">
-                    save
+                    Save
                   </div>
                 </div>
                 <div className="ModalTimeSelector">

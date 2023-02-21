@@ -1,0 +1,145 @@
+@import './library/colors.scss';
+
+.meditaionContainer{
+    background-color: $ema-lilac-1;
+    margin-top: -5rem;
+    width: 100%;
+    height: 100vh;
+    .MedicationBigIcon{
+        padding-top: 7rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .MedicationSoundPillsBigIcon{
+        padding-top: 4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 26px;
+        .soundPill{
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            border-radius: 10px;
+            align-items: center;
+            background-color: #fff;
+            color: $ema-lilac-1;
+            width: 299px;
+            padding: 0 13px 0 17px;
+            height: 40px;
+            .pillDot{
+                background-color: $ema-lilac-1;
+                border-radius: 50%; 
+                width: 11px;
+                height: 11px;
+            }
+            .title{
+                font-style: normal;
+                font-weight: 700;
+                font-size: 13.8099px;
+                line-height: 21px;
+                padding-left: 10px;
+                display: flex;
+                align-items: center;
+            }
+            .subTitle{
+                font-style: normal;
+                font-weight: 400;
+                font-size: 9.81587px;
+                line-height: 15px;
+                position: absolute;
+                right: 35%;
+            }
+            .musicIcon{
+               position: absolute;
+               right: 13px;
+            }
+        }
+    }
+    .modal-wrapper {
+        z-index: 899;
+        overflow-x: hidden;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin: 0 auto;
+        height: 100%;
+        width: 100%;
+        transition: opacity 250ms 750ms ease;
+        .modal {
+            position: relative;
+            top: 110px;
+            width: 340px;
+            height: 650px;
+            margin: 0 auto;
+            background-color: $ema-lilac-1;
+            border-radius: 20px;
+            padding: 24px 17px 30px 17px;
+            .ModelContent{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .TitleSection{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    padding-top: 2rem;
+                    color: #FFFFFF;
+                    .ModalSoundTitle{
+                        font-weight: 700;
+                        font-size: 32.0422px;
+                        line-height: 48px;
+                        display: flex;
+                        align-items: center;
+                    }
+                    .ModalSoundSubTitle{
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 14.3248px;
+                        line-height: 21px;
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+                .musicPlayerSection{
+                    padding-top: 4rem;
+                    width: 15rem;
+                    .timeSection{ 
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        font-size: 9.98239px;
+                        width: 100%;
+                        font-weight: 400;
+                        line-height: 13px;
+                        color: #FFFFFF;
+                    }
+                    .timeline{
+                       margin-top:1rem;
+                       width: 100%;
+                     
+                    }
+                    .controlButtonSection{
+                        margin-top: 14px;
+                        background: #553791;
+                        box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
+                        border-radius: 41.5933px;
+                        padding: 1.3rem;
+                        .AudioButtons{
+                            display: flex;
+                            flex-direction: row;
+                            padding: 0px 10px 0px 10px;
+                            align-items: center;
+                            justify-content: space-evenly;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+    
+}

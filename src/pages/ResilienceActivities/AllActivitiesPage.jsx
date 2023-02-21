@@ -2,6 +2,7 @@ import React from 'react';
 import ResilienceActivitiesPageComponent from '.';
 import Form from '../../components/form/Form';
 import ResilienceActivityPill from '../../components/form/ResilienceActivityPill';
+import { ReactComponent as Meditaion } from '../../assets/svg/Resilience/meditationIcon.svg';
 
 const AllResilienceActivitiesPage = () => {
   const ResilienceActivities = [
@@ -39,6 +40,11 @@ const AllResilienceActivitiesPage = () => {
       name: 'Inspirational Cultural quotes',
       icon: null,
       link: null
+    },
+    {
+      name: 'Meditation',
+      icon: <Meditaion/>,
+      link: '/resilience-activities/meditation'
     },
     {
       name: 'General Well being',
