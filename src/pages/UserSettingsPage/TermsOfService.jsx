@@ -87,8 +87,8 @@ const Terms = () => {
           <strong>Changes to This Terms and Conditions</strong>
         </p>{' '}
         <p>
-          I may update our Terms and Conditions from time to time. Thus, you are advised to review
-          this page periodically for any changes. I will notify you of any changes by posting the
+          We may update our Terms and Conditions from time to time. Thus, you are advised to review
+          this page periodically for any changes. We will notify you of any changes by posting the
           new Terms and Conditions on this page.
         </p>{' '}
         <p>These terms and conditions are effective as of 2023-01-04</p>{' '}
@@ -96,8 +96,8 @@ const Terms = () => {
           <strong>Contact Us</strong>
         </p>{' '}
         <p>
-          If you have any questions or suggestions about my Terms and Conditions, do not hesitate to
-          contact me at nsubugamike021@gmail.com.
+          If you have any questions or suggestions about our Terms and Conditions, do not hesitate
+          to contact us at ace@idi.co.ug
         </p>
       </UserSettingsPageComponent>
     </div>
