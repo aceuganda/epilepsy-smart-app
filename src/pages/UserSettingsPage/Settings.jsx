@@ -26,7 +26,7 @@ const Settings = () => {
     {
       name: 'Settings',
       icon: <SettingsIcon />,
-      link: '/privacy'
+      link: null
     },
     {
       name: 'About',

@@ -23,8 +23,8 @@ import AllResilienceActivitiesPage from './pages/ResilienceActivities/AllActivit
 import PositiveAffirmations from './pages/ResilienceActivities/Activities/PositiveAffirmations';
 import Settings from './pages/UserSettingsPage/Settings';
 import ResilienceTallies from './pages/ResilienceTracking/Tallies';
-import Privacy from './pages/UserSettingsPage/privacy';
-import Terms from './pages/UserSettingsPage/terms';
+import Privacy from './pages/UserSettingsPage/PrivacyPolicy';
+import Terms from './pages/UserSettingsPage/TermsOfService';
 import ResilienceStartPage from './pages/ResilienceTracking/Intro';
 import UserDetailsEdit from './pages/UserSettingsPage/Profile';
 import PasswordReset from './pages/UserSettingsPage/PasswordReset';
