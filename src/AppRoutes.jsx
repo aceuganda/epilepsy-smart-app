@@ -24,6 +24,9 @@ import PositiveAffirmations from './pages/ResilienceActivities/Activities/Positi
 import Settings from './pages/UserSettingsPage/Settings';
 import ResilienceTallies from './pages/ResilienceTracking/Tallies';
 import ResilienceStartPage from './pages/ResilienceTracking/Intro';
+import UserDetailsEdit from './pages/UserSettingsPage/Profile';
+import PasswordReset from './pages/UserSettingsPage/PasswordReset';
+import About from './pages/UserSettingsPage/About';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
@@ -65,8 +68,11 @@ const AppRoutes = () => {
               path="/resilience-activities/positive-affirmations"
               element={<PositiveAffirmations />}
             />
-            <Route path="/settings" element={<Settings />} />
+            <Route path="/account" element={<Settings />} />
             <Route path="/resilience/tallies" element={<ResilienceTallies />} />
+            <Route path="/account/settings" element={<UserDetailsEdit />} />
+            <Route path="/account/password-reset" element={<PasswordReset />} />
+            <Route path="/account/about" element={<About />} />
           </Route>
         </Routes>
       </Suspense>
