@@ -1,7 +1,7 @@
 //Login
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../redux/Actions/userActions';
 
@@ -59,6 +59,7 @@ const Login = () => {
             name="password"
             {...register('password', { required: true })}
             placeholder="Enter password"
+            autoComplete="current-password"
           />
           {errors.password && <span className="error">Password is required</span>}
         </div>

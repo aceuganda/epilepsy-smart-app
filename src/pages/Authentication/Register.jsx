@@ -197,7 +197,10 @@ const Register = () => {
             type="password"
             name="password"
             {...register('password', { required: true })}
-            placeholder="Enter password"
+            placeholder="Create a password"
+            pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+            minLength="8"
+            maxLength="20"
           />
           {errors.password && <span className="error">Password is required</span>}
         </div>
