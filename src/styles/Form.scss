@@ -5,7 +5,7 @@
     z-index: 99;
 
     height: 565px;
-    max-height: 630px;
+    max-height: 640px;
     max-width: $max-width;
     background-color: $ema-white-0;
 
@@ -20,6 +20,27 @@
 
     border-radius: 20px;
     box-shadow: 0.4px 2px 2px 1px #ddd;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.full-page{
+    z-index: 999;
+    background-color: $ema-white-0;
+    max-width: $max-width;
+
+    position: absolute;
+    top: 110px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding: 0 10px;
+    padding-top: 20px;
+    border-radius: 20px;
+    height: 650px;
 
     display: flex;
     flex-direction: column;
@@ -43,20 +64,22 @@
         justify-content: center;
         padding-top: 63px;
     }
-
     .icon {
         position: absolute;
         left: 2%;
     }
 
     .form-title {
-        p {
+        display: flex;
+        justify-content: center;
+        align-items: center;  
+        span{
             font-family: 'Poppins';
             font-size: 16px;
             font-weight: 500;
             line-height: 24px;
             color: $ema-white-0;
-            padding-top: 8px;
+            padding-left: 5px;
         }
     }
 }
@@ -718,6 +741,7 @@ button{
     }
 }
 
+// MEDICATION
 .medicinesTabs {
     display: flex;
     flex-direction: row;
@@ -745,6 +769,34 @@ button{
     }
 
 
+}
+
+.MedicineIconWrapper {
+    width: 10px;
+    height: 20px;
+    background: #F7931E;
+    position: relative;
+    border-radius: 5.11728px;
+    margin-right: 12px;
+
+    .MedicineIconInnerYellow {
+        width: 10px;
+        height: 14px;
+        background: #D685C3;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 4px;
+        z-index: 10;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .Medicine {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0.162761px;
+        color: #0F172A;
+    }
 }
 
 // VERDICT
@@ -1021,6 +1073,7 @@ button{
 
 }
 
+// REMINDERS
 .reminderSelection {
     fieldset {
         width: 300px;
@@ -1105,30 +1158,3 @@ button{
     }
 }
 
-.MedicineIconWrapper {
-    width: 10px;
-    height: 20px;
-    background: #F7931E;
-    position: relative;
-    border-radius: 5.11728px;
-    margin-right: 12px;
-
-    .MedicineIconInnerYellow {
-        width: 10px;
-        height: 14px;
-        background: #D685C3;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 4px;
-        z-index: 10;
-        position: absolute;
-        bottom: 0;
-    }
-
-    .Medicine {
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 20px;
-        letter-spacing: 0.162761px;
-        color: #0F172A;
-    }
-}

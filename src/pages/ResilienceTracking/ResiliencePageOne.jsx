@@ -143,7 +143,7 @@ const ResiliencePageOne = () => {
             <span />
           )}
         </form>
-        {engagement !== null ? (
+        {engagement !== [] ? (
           <Pagination
             page_number={1}
             total_number={3}
