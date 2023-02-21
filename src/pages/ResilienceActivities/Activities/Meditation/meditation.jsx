@@ -54,15 +54,15 @@ const Meditations = () => {
     setSongModalOpen(false);
   };
   
-  // useEffect(() => {
-  //   //control the range player
-  //   if( soundInstance &&  soundInstance.playing()){
-  //     updateElapsedTime()
-  //   }
-  //   if(isPlaying){
-  //     updateElapsedTime()
-  //   }
-  // },[elapsedTime, soundInstance,isPlaying]);
+  useEffect(() => {
+    //control the range player
+    if( soundInstance &&  soundInstance.playing()){
+      updateElapsedTime()
+    }
+    if(isPlaying){
+      updateElapsedTime()
+    }
+  },[elapsedTime, soundInstance,isPlaying]);
 
   useEffect(() => {
     //clear all playing audios on start and on return
@@ -302,7 +302,7 @@ const Meditations = () => {
                 <div className="ModalSoundSubTitle">{soundList[selectedSong]?.subTitle}</div>
               </div>
               <div className="musicPlayerSection">
-                {/* <div className="timeSection">
+                <div className="timeSection">
                   <div>{selectedSong === currentTrackIndex ? 
                   new Date((elapsedTime || 0 ) * 1000).toISOString().substr(14, 5):
                   '0:00'
@@ -322,7 +322,7 @@ const Meditations = () => {
                    className='timeline'
                    onChange={() => {selectedSong === currentTrackIndex && handleTimeChange()}}
                  />
-                </div> */}
+                </div>
                 <div className="controlButtonSection">
                   <div className="AudioButtons">
                     <SkipBack
