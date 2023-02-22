@@ -5,7 +5,7 @@ import Form from '../../components/form/Form';
 import Question from '../../components/form/Question';
 import Pagination from '../../components/pagination';
 import { setTreatmentScaleByOthers } from '../../redux/Slices/ResilienceTracking';
-import { Slider, TextField } from '@mui/material';
+import { Slider } from '@mui/material';
 
 const ResiliencePageTwo = () => {
   const [treatment_scale_one, setTreatmentScaleOne] = useState(null);

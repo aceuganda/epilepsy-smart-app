@@ -1,35 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import ResilienceComponent from './index';
 
 import Form from '../../components/form/Form';
 import Question from '../../components/form/Question';
 import Pagination from '../../components/pagination';
-import {
-  setEngagement,
-  setEngagedSocially,
-  setResilienceUserID
-} from '../../redux/Slices/ResilienceTracking';
+import { setEngagement, setEngagedSocially } from '../../redux/Slices/ResilienceTracking';
 import CheckBox from '../../components/form/CheckBox';
 
 const ResiliencePageOne = () => {
   const [engaged_socially, setSocialEngagement] = useState(null);
-  const [engagement, setEngagedType] = useState(null);
+  const [engagement, setEngagedType] = useState([]);
   const dispatch = useDispatch();
-
-  const userId = localStorage.getItem('userInfo')
-    ? JSON.parse(localStorage.getItem('userInfo')).data.id
-    : null;
 
   const handleChange = () => {
     engaged_socially === 'yes'
       ? dispatch(setEngagedSocially(true))
       : dispatch(setEngagedSocially(false));
     dispatch(setEngagement(engagement));
-    dispatch(setResilienceUserID(userId));
   };
 
-  const labels = [
+  const positiveLabels = [
     {
       id: 1,
       name: 'School'
@@ -45,6 +36,21 @@ const ResiliencePageOne = () => {
     {
       id: 4,
       name: 'Outing with my friends'
+    },
+    {
+      id: 5,
+      name: 'Other'
+    }
+  ];
+
+  const negativeLabels = [
+    {
+      id: 1,
+      name: 'Bad Company'
+    },
+    {
+      id: 2,
+      name: 'Isolation'
     }
   ];
 
@@ -54,8 +60,14 @@ const ResiliencePageOne = () => {
       : 'button form-button-pill text-uppercase';
   };
 
+  const handleCheckboxChange = (value) => {
+    engagement.includes(value)
+      ? setEngagedType(engagement.filter((item) => item !== value))
+      : setEngagedType((engagement) => [...engagement, value]);
+  };
+
   return (
-    <ResilienceComponent backroute={'/home'}>
+    <ResilienceComponent backroute={'/resilience-form'}>
       <Form>
         <form>
           <Question question={'Did you engage socially today'}>
@@ -65,6 +77,7 @@ const ResiliencePageOne = () => {
                 className={selectedButtonStyle(engaged_socially === 'yes')}
                 value={'yes'}
                 onClick={(e) => {
+                  setEngagedType([]);
                   setSocialEngagement(e.target.value);
                 }}>
                 yes
@@ -74,6 +87,7 @@ const ResiliencePageOne = () => {
                 className={selectedButtonStyle(engaged_socially === 'no')}
                 value={'no'}
                 onClick={(e) => {
+                  setEngagedType([]);
                   setSocialEngagement(e.target.value);
                 }}>
                 no
@@ -84,14 +98,17 @@ const ResiliencePageOne = () => {
             <Question question={'How did you engage today'}>
               <fieldset className="mt-3 mb-4">
                 <div className="checkbox-input">
-                  <div className="flex ">
-                    {labels.map((label) => (
+                  <div className="ItemList">
+                    {positiveLabels.map((label) => (
                       <CheckBox
+                        id={label.id}
                         key={label.id}
                         label={label.name}
-                        id="default-checkbox"
-                        onChange={(e) => {
-                          setEngagedType([e.target.value]);
+                        value={label.name}
+                        checked={false}
+                        onClick={(e) => {
+                          handleCheckboxChange(e.target.value);
+                          dispatch(setEngagement(engagement));
                         }}
                       />
                     ))}
@@ -105,27 +122,20 @@ const ResiliencePageOne = () => {
           {engaged_socially === 'no' ? (
             <Question question={'Why not'}>
               <fieldset className="mt-3 mb-4">
-                <div className="flex">
-                  <input
-                    id="checked-checkbox"
-                    type="checkbox"
-                    value={'bad company'}
-                    onChange={(e) => {
-                      setEngagedType([e.target.value]);
-                    }}
-                  />
-                  <label htmlFor="checked-checkbox">Bad Company</label>
-                </div>
-                <div className="flex">
-                  <input
-                    id="checked-checkbox"
-                    type="checkbox"
-                    value={'isolated'}
-                    onChange={(e) => {
-                      setEngagedType([e.target.value]);
-                    }}
-                  />
-                  <label htmlFor="checked-checkbox">Isolated</label>
+                <div className="ItemList">
+                  {negativeLabels.map((label) => (
+                    <CheckBox
+                      id={label.id}
+                      key={label.id}
+                      label={label.name}
+                      value={label.name}
+                      checked={false}
+                      onClick={(e) => {
+                        handleCheckboxChange(e.target.value);
+                        dispatch(setEngagement(engagement));
+                      }}
+                    />
+                  ))}
                 </div>
               </fieldset>
             </Question>
@@ -133,7 +143,7 @@ const ResiliencePageOne = () => {
             <span />
           )}
         </form>
-        {engagement !== null ? (
+        {engagement !== [] ? (
           <Pagination
             page_number={1}
             total_number={3}

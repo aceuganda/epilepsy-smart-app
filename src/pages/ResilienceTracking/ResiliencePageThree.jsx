@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import ResilienceComponent from './index';
 import Form from '../../components/form/Form';
 import Question from '../../components/form/Question';
@@ -11,34 +10,78 @@ import {
   setReasonForFeeling,
   postResilienceFormData
 } from '../../redux/Slices/ResilienceTracking';
+import Spinner from '../../components/Spinner/Spinner';
+import EndOfAssessmentModal from '../../components/form/EndOfAssessment';
+import { ReactComponent as CheckedIcon } from '../../assets/svg/Form/EndOfAssessment/CheckedIcon.svg';
+import CheckBox from '../../components/form/CheckBox';
 
 const ResiliencePageThree = () => {
   const [type_of_feelings, setFeelingType] = useState(null);
-  const [feeling_today, setFeeling] = useState({});
+  const [feeling_today, setFeelings] = useState([]);
   const [reason_for_feeling, setReason] = useState(null);
+
+  const [loading, setLoading] = useState(false);
+  const [endOfAssessment, setEndOfAssessment] = useState(false);
+  const [buttonStatement, setButtonStatement] = useState('Finish');
+
   const resilienceTrackingData = useSelector((state) => state.resilienceTracking);
   const dispatch = useDispatch();
 
+  const positiveLabels = [
+    'happy',
+    'encouraged',
+    'joyful',
+    'cheerful',
+    'appreciated',
+    'confident',
+    'inspired',
+    'grateful'
+  ];
+
+  const negativeLabels = [
+    'sad',
+    'angry',
+    'irritable',
+    'worried',
+    'confused',
+    'impatient',
+    'envious',
+    'hopeless',
+    'lonely',
+    'discouraged'
+  ];
+
   const handleSubmit = async (e) => {
     console.log(resilienceTrackingData);
+    setLoading(true);
     try {
       await dispatch(postResilienceFormData(resilienceTrackingData));
+      setLoading(false);
+      setEndOfAssessment(true);
     } catch (err) {
-      console.log('Failed to post:', err);
+      setLoading(false);
+      setButtonStatement('Try Again');
     }
   };
 
-  //TODO Define handleSubmit function and get data from redux store
+  const selectedButtonStyle = (selected) => {
+    return selected
+      ? 'button form-button-pill text-uppercase selectedPill'
+      : 'button form-button-pill text-uppercase';
+  };
+  const selectedLongButtonStyle = (selected) => {
+    return selected
+      ? 'button selectedLongPill text-uppercase'
+      : 'button form-button-lg text-uppercase';
+  };
 
-  useEffect(() => {}, []);
-  const selectedButtonStyle=(selected)=>{
-    return selected?"button form-button-pill text-uppercase selectedPill":
-    "button form-button-pill text-uppercase";
-  }
-  const selectedLongButtonStyle=(selected)=>{
-    return selected?"button selectedLongPill text-uppercase":
-    "button form-button-lg text-uppercase";
-  }
+  const handleCheckboxChange = (value) => {
+    feeling_today.includes(value)
+      ? setFeelings(feeling_today.filter((item) => item !== value))
+      : setFeelings((feeling_today) => [...feeling_today, value]);
+  };
+  console.log('Labels:', feeling_today);
+
   return (
     <ResilienceComponent backroute={'/resilience-form/2'}>
       <Form>
@@ -47,21 +90,23 @@ const ResiliencePageThree = () => {
             <fieldset className="mt-3 mb-4" style={{ justifyContent: 'space-evenly' }}>
               <button
                 type="button"
-                className={selectedButtonStyle(type_of_feelings==='positive')}
+                className={selectedButtonStyle(type_of_feelings === 'positive')}
                 value={'positive'}
                 onClick={(e) => {
                   setFeelingType(e.target.value);
-                  dispatch(setTypeOfFeelings(e.target.value));
+                  setFeelings([]);
+                  dispatch(setTypeOfFeelings(type_of_feelings));
                 }}>
                 Positive
               </button>
               <button
                 type="button"
-                className={selectedButtonStyle(type_of_feelings==='negative')}
+                className={selectedButtonStyle(type_of_feelings === 'negative')}
                 value={'negative'}
                 onClick={(e) => {
                   setFeelingType(e.target.value);
-                  dispatch(setTypeOfFeelings(e.target.value));
+                  setFeelings([]);
+                  dispatch(setTypeOfFeelings(type_of_feelings));
                 }}>
                 Negative
               </button>
@@ -70,36 +115,20 @@ const ResiliencePageThree = () => {
           {type_of_feelings === 'positive' ? (
             <Question question={'Which emotions were felt'}>
               <fieldset className="mt-3 mb-4">
-                <button
-                  type="button"
-                  className={selectedButtonStyle(feeling_today==='happy')}
-                  value={'happy'}
-                  onClick={(e) => {
-                    setFeeling(e.target.value);
-                    dispatch(setFeelingToday([e.target.value]));
-                  }}>
-                  Happy
-                </button>
-                <button
-                  type="button"
-                  className={selectedLongButtonStyle(feeling_today==='encouraged')}
-                  value={'encouraged'}
-                  onClick={(e) => {
-                    setFeeling(e.target.value);
-                    dispatch(setFeelingToday([e.target.value]));
-                  }}>
-                  Encouraged
-                </button>
-                <button
-                  type="button"
-                  className={selectedButtonStyle(feeling_today==='inspired')}
-                  value={'inspired'}
-                  onClick={(e) => {
-                    setFeeling(e.target.value);
-                    dispatch(setFeelingToday([e.target.value]));
-                  }}>
-                  Inspired
-                </button>
+                <div className="ItemContainer">
+                  {positiveLabels.map((label, key) => (
+                    <CheckBox
+                      key={key}
+                      label={label}
+                      value={label}
+                      checked={false}
+                      onClick={(e) => {
+                        handleCheckboxChange(e.target.value);
+                        dispatch(setFeelingToday(feeling_today));
+                      }}
+                    />
+                  ))}
+                </div>
               </fieldset>
             </Question>
           ) : (
@@ -108,47 +137,31 @@ const ResiliencePageThree = () => {
           {type_of_feelings === 'negative' ? (
             <Question question={'Which emotions were felt'}>
               <fieldset className="mt-3 mb-4">
-                <button
-                  type="button"
-                  className={selectedButtonStyle(feeling_today==='sad')}
-                  value={'sad'}
-                  onClick={(e) => {
-                    setFeeling(e.target.value);
-                    dispatch(setFeelingToday([e.target.value]));
-                  }}>
-                  Sad
-                </button>
-                <button
-                  type="button"
-                  className={selectedLongButtonStyle(feeling_today==='angry')}
-                  value={'angry'}
-                  onClick={(e) => {
-                    setFeeling(e.target.value);
-                    dispatch(setFeelingToday([e.target.value]));
-                  }}>
-                  Angry
-                </button>
-                <button
-                  type="button"
-                  className={selectedButtonStyle(feeling_today==='irritable')}
-                  value={'irritable'}
-                  onClick={(e) => {
-                    setFeeling(e.target.value);
-                    dispatch(setFeelingToday([e.target.value]));
-                  }}>
-                  Irritable
-                </button>
+                <div className="ItemContainer">
+                  {negativeLabels.map((label, key) => (
+                    <CheckBox
+                      key={key}
+                      label={label}
+                      value={label}
+                      checked={false}
+                      onClick={(e) => {
+                        handleCheckboxChange(e.target.value);
+                        dispatch(setFeelingToday(feeling_today));
+                      }}
+                    />
+                  ))}
+                </div>
               </fieldset>
             </Question>
           ) : (
             <span />
           )}
-          {type_of_feelings === 'positive' && feeling_today !== null ? (
+          {type_of_feelings === 'positive' && feeling_today !== [] ? (
             <Question question={'Why did you feel this way'}>
               <fieldset className="mt-3 mb-4">
                 <button
                   type="button"
-                  className={selectedLongButtonStyle(reason_for_feeling==='accomplished goals')}
+                  className={selectedLongButtonStyle(reason_for_feeling === 'accomplished goals')}
                   value={'accomplished goals'}
                   onClick={(e) => {
                     setReason(e.target.value);
@@ -158,7 +171,9 @@ const ResiliencePageThree = () => {
                 </button>
                 <button
                   type="button"
-                  className={selectedLongButtonStyle(reason_for_feeling==='family acknowledged me')}
+                  className={selectedLongButtonStyle(
+                    reason_for_feeling === 'family acknowledged me'
+                  )}
                   value={'family acknowledged me'}
                   onClick={(e) => {
                     setReason(e.target.value);
@@ -168,7 +183,7 @@ const ResiliencePageThree = () => {
                 </button>
                 <button
                   type="button"
-                  className={selectedLongButtonStyle(reason_for_feeling==='did fun things')}
+                  className={selectedLongButtonStyle(reason_for_feeling === 'did fun things')}
                   value={'did fun things'}
                   onClick={(e) => {
                     setReason(e.target.value);
@@ -178,7 +193,7 @@ const ResiliencePageThree = () => {
                 </button>
                 <button
                   type="button"
-                  className={selectedLongButtonStyle(reason_for_feeling==='engaged with others')}
+                  className={selectedLongButtonStyle(reason_for_feeling === 'engaged with others')}
                   value={'engaged with others'}
                   onClick={(e) => {
                     setReason(e.target.value);
@@ -191,12 +206,12 @@ const ResiliencePageThree = () => {
           ) : (
             <span />
           )}
-          {type_of_feelings === 'negative' && feeling_today !== null ? (
+          {type_of_feelings === 'negative' && feeling_today !== [] ? (
             <Question question={'Why did you feel this way'}>
               <fieldset className="mt-3 mb-4">
                 <button
                   type="button"
-                  className={selectedLongButtonStyle(reason_for_feeling==='isolation')}
+                  className={selectedLongButtonStyle(reason_for_feeling === 'isolation')}
                   value={'isolation'}
                   onClick={(e) => {
                     setReason(e.target.value);
@@ -206,7 +221,7 @@ const ResiliencePageThree = () => {
                 </button>
                 <button
                   type="button"
-                  className={selectedLongButtonStyle(reason_for_feeling==='conflict')}
+                  className={selectedLongButtonStyle(reason_for_feeling === 'conflict')}
                   value={'conflict'}
                   onClick={(e) => {
                     setReason(e.target.value);
@@ -216,7 +231,7 @@ const ResiliencePageThree = () => {
                 </button>
                 <button
                   type="button"
-                  className={selectedLongButtonStyle(reason_for_feeling==='i have no friends')}
+                  className={selectedLongButtonStyle(reason_for_feeling === 'i have no friends')}
                   value={'i have no friends'}
                   onClick={(e) => {
                     setReason(e.target.value);
@@ -226,13 +241,13 @@ const ResiliencePageThree = () => {
                 </button>
                 <button
                   type="button"
-                  className={selectedLongButtonStyle(reason_for_feeling==='engaged with others')}
+                  className={selectedLongButtonStyle(reason_for_feeling === 'engaged with others')}
                   value={'engaged with others'}
                   onClick={(e) => {
                     setReason(e.target.value);
                     dispatch(setReasonForFeeling(e.target.value));
                   }}>
-                  Others
+                  Other
                 </button>
               </fieldset>
             </Question>
@@ -240,13 +255,26 @@ const ResiliencePageThree = () => {
             <span />
           )}
           {reason_for_feeling !== null ? (
-            <Link to="">
-              <button type="submit" className="finish-btn" onClick={handleSubmit}>
-                Finish
-              </button>
-            </Link>
+            <button
+              type="submit"
+              disabled={loading}
+              className="finish-btn"
+              onClick={handleSubmit}
+              style={{ bottom: '10px' }}>
+              {loading ? <Spinner /> : buttonStatement}
+            </button>
           ) : (
             <span></span>
+          )}
+          {endOfAssessment && (
+            <EndOfAssessmentModal
+              icon={<CheckedIcon />}
+              title={'Well Done!'}
+              subText={'Thank you for completing this assessment.'}
+              link={'/home'}
+              linkText={'home'}
+              showModal={true}
+            />
           )}
         </form>
       </Form>

@@ -7,7 +7,8 @@ import { ReactComponent as ArrowLeft } from '../../assets/svg/Form/Topbar/arrow.
 const TopBar = (props) => {
   TopBar.propTypes = {
     title: PropTypes.string,
-    route: PropTypes.string
+    route: PropTypes.string,
+    logo: PropTypes.element
   };
   return (
     <div className="form-top-bar">
@@ -18,8 +19,8 @@ const TopBar = (props) => {
           </Link>
         </span>
         <span className="row form-title">
-          <Logo />
-          <p>{props.title}</p>
+          {props.logo ? props.logo : <Logo />}
+          <span>{props.title}</span>
         </span>
       </div>
     </div>
