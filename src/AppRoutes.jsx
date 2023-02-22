@@ -21,7 +21,7 @@ import Register from './pages/Authentication/Register';
 import ProtectedRoute from './routing/ProtectedRoute';
 import AllResilienceActivitiesPage from './pages/ResilienceActivities/AllActivitiesPage';
 import PositiveAffirmations from './pages/ResilienceActivities/Activities/PositiveAffirmations';
-import Meditation from './pages/ResilienceActivities/Activities/Meditation/meditation';
+import Meditation from './pages/ResilienceActivities/Activities/Meditation/index';
 import Settings from './pages/UserSettingsPage/Settings';
 import ResilienceTallies from './pages/ResilienceTracking/Tallies';
 import Privacy from './pages/UserSettingsPage/PrivacyPolicy';
@@ -73,10 +73,7 @@ const AppRoutes = () => {
               path="/resilience-activities/positive-affirmations"
               element={<PositiveAffirmations />}
             />
-            <Route
-              path="/resilience-activities/meditation"
-              element={<Meditation />}
-            />
+            <Route path="/resilience-activities/meditation" element={<Meditation />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/resilience/tallies" element={<ResilienceTallies />} />
             <Route path="/account/settings" element={<UserDetailsEdit />} />

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import ResilienceActivitiesPageComponent from '../..';
 import { Howl, Howler } from 'howler';
 import Modal from '../../../../components/modal/index.jsx';
-import { ReactComponent as MeditaionBigIcon } from '../../../../assets/svg/Resilience/meditationBigIcon.svg';
+import { ReactComponent as MeditationBigIcon } from '../../../../assets/svg/Resilience/meditationBigIcon.svg';
 import { ReactComponent as Pause } from '../../../../assets/svg/Resilience/Pause.svg';
 import { ReactComponent as Play } from '../../../../assets/svg/Resilience/play.svg';
 import { ReactComponent as PlayWhite } from '../../../../assets/svg/Resilience/PlayWhite.svg';
@@ -282,7 +282,7 @@ const Meditations = () => {
       <ResilienceActivitiesPageComponent title={'Meditation'} backroute={'/resilience-activities'}>
         <div className="meditaionContainer">
           <div className="MedicationBigIcon">
-            <MeditaionBigIcon />
+            <MeditationBigIcon />
           </div>
           <div className="MedicationSoundPillsBigIcon">
             {soundList.map((item, index) => (
@@ -309,7 +309,7 @@ const Meditations = () => {
                 style={{
                   paddingTop: '2rem'
                 }}>
-                <MeditaionBigIcon />
+                <MeditationBigIcon />
               </div>
               <div className="TitleSection">
                 <div className="ModalSoundTitle">{soundList[selectedSong]?.title}</div>

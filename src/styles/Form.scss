@@ -696,6 +696,7 @@ button{
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    position: relative;
 
     .act-title {
         text-transform: uppercase;

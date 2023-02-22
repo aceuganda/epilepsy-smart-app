@@ -51,7 +51,7 @@ const MedicationTrackingPageOne = () => {
 
   const fetchMedicine = async () => {
     const response = await dispatch(getMedicineData());
-    console.log(response);
+
     if (response.payload?.status === 'success') {
       setUserMedicines(response.payload.data.medicines);
     } else if (response.payload.request?.status === 404) {
@@ -65,12 +65,10 @@ const MedicationTrackingPageOne = () => {
   const handleMedicineSubmit = async (event) => {
     event.preventDefault();
     //call medicine post
-    console.log(medicineTrackingData);
     if (checkedMedicine !== '') {
       setAddingMedicine(true);
       try{
       const response = await dispatch(postMedicineFormData(medicineTrackingData));
-      console.log(response)
       if (response.payload?.status === 'success') {
         setAddMedicineFeedback(`Medicine added.`);
         setAddingMedicine(false);
@@ -80,7 +78,7 @@ const MedicationTrackingPageOne = () => {
         setAddingMedicine(false);
       }
     }catch(error){
-       console.log(error)
+       setAddMedicineFeedback("Failed to add medicine.");
     }
     }
   };
