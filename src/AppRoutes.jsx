@@ -24,6 +24,12 @@ import PositiveAffirmations from './pages/ResilienceActivities/Activities/Positi
 import Meditation from './pages/ResilienceActivities/Activities/Meditation/meditation';
 import Settings from './pages/UserSettingsPage/Settings';
 import ResilienceTallies from './pages/ResilienceTracking/Tallies';
+import Privacy from './pages/UserSettingsPage/PrivacyPolicy';
+import Terms from './pages/UserSettingsPage/TermsOfService';
+import ResilienceStartPage from './pages/ResilienceTracking/Intro';
+import UserDetailsEdit from './pages/UserSettingsPage/Profile';
+import PasswordReset from './pages/UserSettingsPage/PasswordReset';
+import About from './pages/UserSettingsPage/About';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
@@ -45,6 +51,8 @@ const AppRoutes = () => {
           <Route path="/onboarding/track" element={<Track />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/home" element={<HomePage />} />
             <Route path="/seizure-form" element={<StartPage />} />
@@ -56,6 +64,7 @@ const AppRoutes = () => {
             <Route path="/medication/assessment/1" element={<MedicationAssessmentPageOne />} />
             <Route path="/medication/assessment/2" element={<MedicationAssessmentPageTwo />} />
             <Route path="/medication/tracking" element={<MedicationTrackingPageOne />} />
+            <Route path="/resilience-form" element={<ResilienceStartPage />} />
             <Route path="/resilience-form/1" element={<ResiliencePageOne />} />
             <Route path="/resilience-form/2" element={<ResiliencePageTwo />} />
             <Route path="/resilience-form/3" element={<ResiliencePageThree />} />
@@ -70,6 +79,9 @@ const AppRoutes = () => {
             />
             <Route path="/settings" element={<Settings />} />
             <Route path="/resilience/tallies" element={<ResilienceTallies />} />
+            <Route path="/account/settings" element={<UserDetailsEdit />} />
+            <Route path="/account/password-reset" element={<PasswordReset />} />
+            <Route path="/account/about" element={<About />} />
           </Route>
         </Routes>
       </Suspense>

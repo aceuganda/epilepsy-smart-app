@@ -44,11 +44,12 @@ $cardHeight: 230px;
                 object-fit: cover;
             }
             h1{
+                font-family: 'Monteserrat';
                 border-radius: 50%;
                 width: 40px;
                 height: 40px;
                 display: flex;
-                font-size: 33px;
+                font-size: 30px;
                 justify-content: center;
                 align-items: center;
                 object-fit: cover;
@@ -109,6 +110,7 @@ $cardHeight: 230px;
             border: none;
             width: 141px;
             height: 203px;
+            box-shadow: 0px 4px 4px 0px #00000040;
             img{
                 border-top-left-radius: 10px;
                 border-top-right-radius: 10px;

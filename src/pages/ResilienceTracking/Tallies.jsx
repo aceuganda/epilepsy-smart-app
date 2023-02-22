@@ -3,30 +3,47 @@ import Form from '../../components/form/Form';
 import TopBar from '../../components/form/TopBar';
 import { Chart } from 'react-google-charts';
 import VerdictComponent from './Verdict';
+import { useSelector } from 'react-redux';
+import { loadUserTallies } from '../../redux/Slices/ResilienceTracking';
+import { useEffect } from 'react';
 
 const ResilienceTallies = () => {
+  const resilienceTalliesData = useSelector(loadUserTallies);
+  const resilienceTallies = resilienceTalliesData.resiliences;
+
+  const [moodVerdict, setMoodVerdict] = useState();
+  const [socialVerdict, setSocialVerdict] = useState();
+  const [treatedVerdict, setTreatedVerdict] = useState();
+
   const [selectedTab, setSelectedTab] = useState('Mood');
   const onClickTabItem = (tab) => setSelectedTab(tab);
-  const [moodVerdict, setMoodVerdict] = useState(true);
-  const [socialVerdict, setSocialVerdict] = useState(false);
-  const [treatedVerdict, setTreatedVerdict] = useState(true);
+
+  const moodTally = resilienceTallies[5].three_day_av_positive_feeling_percentage;
+  const socialTally = resilienceTallies[1].three_day_social_activity_count;
+  const treatedTally = resilienceTallies[3].three_day_av_treatment;
+
+  useEffect(() => {
+    setMoodVerdict(resilienceTallies[6].three_day_av_feeling_comment);
+    setSocialVerdict(resilienceTallies[2].three_day_social_activity_comment);
+    setTreatedVerdict(resilienceTallies[4].three_day_av_treatment_comment);
+  }, [resilienceTallies]);
 
   const moodData = [
-    ['Task', 'Hours per Day'],
-    ['Work', 11],
-    ['Eat', 4]
+    ['Mood', 'Percentage'],
+    ['Positive Mood', moodTally],
+    ['Negative Mood', 100 - moodTally]
   ];
 
   const socialData = [
-    ['Task', 'Hours per Day'],
-    ['Work', 5],
-    ['Eat', 14]
+    ['Activities', 'Number'],
+    ['Done Activities', socialTally],
+    ['Undone Activities', 6 - socialTally]
   ];
 
   const treatedData = [
-    ['Task', 'Hours per Day'],
-    ['Work', 50],
-    ['Eat', 9]
+    ['Treatment', 'Percentage'],
+    ['Positive Treatment', 100 - treatedTally],
+    ['Negative Treatment', treatedTally]
   ];
 
   const options = {
@@ -47,17 +64,12 @@ const ResilienceTallies = () => {
       fontName: 'Poppins',
       fontSize: 21
     },
-    pieStartAngle: -45,
-    slices: {
-      0: {
-        offset: 0.07
-      }
-    }
+    pieStartAngle: -30
   };
 
   return (
     <div className="tallies">
-      <TopBar title="Tallies" route="/home" />
+      <TopBar title="Tallies" route="/resilience-form" />
       <Form>
         <div className="tallies-body">
           <h2 id="header">Recent Assessment</h2>
@@ -90,10 +102,7 @@ const ResilienceTallies = () => {
               <div className="chart-container">
                 <Chart chartType="PieChart" data={moodData} options={options} />
               </div>
-              <VerdictComponent
-                verdict={moodVerdict}
-                text={'Well done you have been feeling well lately!'}
-              />
+              <VerdictComponent verdict={moodTally >= 50 ? true : false} text={moodVerdict} />
             </div>
           )}
           {selectedTab === 'Social' && (
@@ -102,10 +111,7 @@ const ResilienceTallies = () => {
               <div className="chart-container">
                 <Chart chartType="PieChart" data={socialData} options={options} />
               </div>
-              <VerdictComponent
-                verdict={socialVerdict}
-                text={'Negative! Noted. You report you have been feeling distressed of late.'}
-              />
+              <VerdictComponent verdict={socialTally >= 3 ? true : false} text={socialVerdict} />
             </div>
           )}
           {selectedTab === 'Treated' && (
@@ -114,10 +120,7 @@ const ResilienceTallies = () => {
               <div className="chart-container">
                 <Chart chartType="PieChart" data={treatedData} options={options} />
               </div>
-              <VerdictComponent
-                verdict={treatedVerdict}
-                text={'Positive! You’re being treated well lately!'}
-              />
+              <VerdictComponent verdict={treatedTally <= 65 ? true : false} text={treatedVerdict} />
             </div>
           )}
         </div>

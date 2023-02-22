@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { postResilience } from '../../apis';
+import { getAllResilienceTallies, postResilience } from '../../apis';
 
 export const postResilienceFormData = createAsyncThunk(
   'resilienceTracking/postData',
@@ -13,6 +13,11 @@ const userId = localStorage.getItem('userInfo')
   ? JSON.parse(localStorage.getItem('userInfo')).data.id
   : null;
 
+export const getResilienceTallies = async (dispatch) => {
+  const response = await getAllResilienceTallies(userId);
+  dispatch(getUserTallies(response.data));
+};
+
 export const resilienceTrackingSlice = createSlice({
   name: 'resilienceTracking',
   initialState: {
@@ -22,7 +27,8 @@ export const resilienceTrackingSlice = createSlice({
     feelings_experienced: [],
     reason_for_feelings: '',
     treatment_scale_by_other: 0,
-    type_of_feelings: ''
+    type_of_feelings: '',
+    resilience_tallies: []
   },
   reducers: {
     setEngagedSocially: (state, action) => {
@@ -43,8 +49,8 @@ export const resilienceTrackingSlice = createSlice({
     setTreatmentScaleByOthers: (state, action) => {
       state.treatment_scale_by_other = action.payload;
     },
-    setResilienceUserID: (state, action) => {
-      state.user_id = parseInt(action.payload);
+    getUserTallies: (state, action) => {
+      state.resilience_tallies = action.payload;
     }
   },
   extraReducers: {
@@ -55,15 +61,16 @@ export const resilienceTrackingSlice = createSlice({
   }
 });
 
-
 export const {
   setEngagedSocially,
   setEngagement,
   setTypeOfFeelings,
   setFeelingToday,
   setReasonForFeeling,
-  setResilienceUserID,
-  setTreatmentScaleByOthers
+  setTreatmentScaleByOthers,
+  getUserTallies
 } = resilienceTrackingSlice.actions;
+
+export const loadUserTallies = (state) => state.resilienceTracking.resilience_tallies;
 
 export default resilienceTrackingSlice.reducer;

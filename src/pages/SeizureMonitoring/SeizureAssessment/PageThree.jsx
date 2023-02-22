@@ -22,6 +22,7 @@ const PageThree = () => {
   const [upsetRange, setUpsetRange] = useState(0);
   const [endOfAssessment, setEndOfAssessment] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [buttonStatement, setButtonStatement] = useState('Finish');
 
   const [selectedTriggers, setSelectedTriggers] = useState([].concat(seizure_trigger));
 
@@ -30,7 +31,6 @@ const PageThree = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(seizureTrackingData);
     setLoading(true);
     try {
       await dispatch(postSeizureFormData(seizureTrackingData));
@@ -38,7 +38,7 @@ const PageThree = () => {
       setEndOfAssessment(true);
     } catch (err) {
       setLoading(false);
-      console.log('Failed to post:', err.message);
+      setButtonStatement('Try Again');
     }
   };
 
@@ -124,7 +124,7 @@ const PageThree = () => {
     }
   ];
 
-  const handleChange = (value) => {
+  const handleCheckboxChange = (value) => {
     selectedTriggers.push(value);
     setTrigger(selectedTriggers.join());
   };
@@ -138,37 +138,26 @@ const PageThree = () => {
   return (
     <>
       <SeizureComponent backroute={'/seizure-form/assessment/2'}>
-        <Form>
+        <Form style={{ height: '680px', maxHeight: 'none' }}>
           <form onSubmit={handleSubmit}>
             {seizureTrackingData.was_seizure_triggered === true ? (
               <Question question={'What trigger was it'}>
-                <div className="ItemContainer">
-                  {seizureTriggers.map((trigger) => (
-                    <CheckBox
-                      key={trigger.id}
-                      label={trigger.name}
-                      value={trigger.name}
-                      onChange={(e) => {
-                        handleChange(e.target.value);
-                        dispatch(setSeizureTrigger(seizure_trigger));
-                      }}
-                    />
-
-                    // <span key={trigger.id} className="checkbox-span">
-                    //   <label className="text-capitalize">{trigger.name}</label>
-
-                    //   <input
-                    //     type="checkbox"
-                    //     className="form-button-lg"
-                    //     value={trigger.name}
-                    //     onChange={(e) => {
-                    //       setTrigger(e.target.value);
-                    //       dispatch(setSeizureTrigger(e.target.value));
-                    //     }}
-                    //   />
-                    // </span>
-                  ))}
-                </div>
+                <fieldset className="mt-3 mb-4">
+                  <div className="ItemContainer">
+                    {seizureTriggers.map((trigger) => (
+                      <CheckBox
+                        key={trigger.id}
+                        label={trigger.name}
+                        value={trigger.name}
+                        checked={false}
+                        onClick={(e) => {
+                          handleCheckboxChange(e.target.value);
+                          dispatch(setSeizureTrigger(seizure_trigger));
+                        }}
+                      />
+                    ))}
+                  </div>
+                </fieldset>
               </Question>
             ) : (
               <span />
@@ -199,8 +188,8 @@ const PageThree = () => {
                   type="button"
                   className={
                     seizure_impact === 'confused'
-                      ? 'button form-button-lg text-capitalize selectedPill'
-                      : 'button form-button-lg text-capitalize'
+                      ? 'button form-button-lg selectedPill'
+                      : 'button form-button-lg'
                   }
                   value={'body weakness'}
                   onClick={(e) => {
@@ -247,7 +236,6 @@ const PageThree = () => {
                       value={other_reason}
                       onChange={(e) => {
                         setOtherReason(e.target.value);
-                        dispatch(setSeizureImpact(e.target.value));
                       }}
                       multiline={true}
                       sx={{ width: '90%' }}
@@ -266,6 +254,7 @@ const PageThree = () => {
                       className="button form-button-pill"
                       onClick={() => {
                         setFeel(other_reason);
+                        dispatch(setSeizureImpact(other_reason));
                         setOtherReason('');
                       }}>
                       Done
@@ -299,8 +288,9 @@ const PageThree = () => {
                 className="finish-btn"
                 type="submit"
                 disabled={loading}
+                style={{ bottom: '10px' }}
                 onClick={handleSubmit}>
-                {loading ? <Spinner /> : 'Finish'}
+                {loading ? <Spinner /> : buttonStatement}
               </button>
             ) : (
               <span></span>
