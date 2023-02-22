@@ -17,7 +17,7 @@ import Spinner from '../../../components/Spinner/Spinner';
 
 const PageThree = () => {
   const [seizure_impact, setFeel] = useState('');
-  const [seizure_trigger, setTrigger] = useState([]);
+  const [seizure_trigger, setTrigger] = useState('');
   const [other_reason, setOtherReason] = useState('');
   const [upsetRange, setUpsetRange] = useState(0);
   const [endOfAssessment, setEndOfAssessment] = useState(false);
@@ -31,7 +31,6 @@ const PageThree = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(seizureTrackingData);
     setLoading(true);
     try {
       await dispatch(postSeizureFormData(seizureTrackingData));
@@ -126,9 +125,8 @@ const PageThree = () => {
   ];
 
   const handleCheckboxChange = (value) => {
-    seizure_trigger.includes(value)
-      ? setTrigger(seizure_trigger.filter((item) => item !== value))
-      : setTrigger((seizure_trigger) => [...seizure_trigger, value]);
+    selectedTriggers.push(value);
+    setTrigger(selectedTriggers.join());
   };
 
   const selectedButtonStyle = (selected) => {
