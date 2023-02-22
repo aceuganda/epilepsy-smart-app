@@ -3,8 +3,8 @@ import UserSettingsPageComponent from '.';
 
 const Terms = () => {
   return (
-    <div className="terms">
-      <UserSettingsPageComponent backroute={'/account/about'} title="Terms of Service">
+    <UserSettingsPageComponent backroute={'/account/about'} title="Terms of Service">
+      <div className="legal">
         <p>
           By downloading or using the app, these terms will automatically apply to you – you should
           make sure therefore that you read them carefully before using the app. You’re not allowed
@@ -20,25 +20,24 @@ const Terms = () => {
           services without making it very clear to you exactly what you’re paying for.
         </p>{' '}
         <p>
-          The EPILEPSY SMART app app stores and processes personal data that you have provided to
-          us, to provide my Service. It’s your responsibility to keep your phone and access to the
-          app secure. We therefore recommend that you do not jailbreak or root your phone, which is
-          the process of removing software restrictions and limitations imposed by the official
-          operating system of your device. It could make your phone vulnerable to
-          malware/viruses/malicious programs, compromise your phone’s security features and it could
-          mean that the EPILEPSY SMART app app won’t work properly or at all.
+          The EPILEPSY SMART app stores and processes personal data that you have provided to us, to
+          provide its Service. It’s your responsibility to keep your phone and access to the app
+          secure. We therefore recommend that you do not jailbreak or root your phone, which is the
+          process of removing software restrictions and limitations imposed by the official
+          operating system of your device. It could make your phone vulnerable to malware / viruses
+          / malicious programs, compromise your phone’s security features and it could mean that the
+          EPILEPSY SMART app won’t work properly or at all.
         </p>{' '}
         <div>
-          <p>The app does use third-party services that declare their Terms and Conditions.</p>{' '}
-          <p>Link to Terms and Conditions of third-party service providers used by the app</p>{' '}
-          <ul>
-            <li>
-              <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">
-                Google Play Services
-              </a>
-            </li>
-          </ul>
+          <p>
+            The app does use third-party services that declare their Terms and Conditions (
+            <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">
+              Google Play Services
+            </a>
+            ).
+          </p>
         </div>{' '}
+        <h1>MOBILE DATA USAGE</h1>
         <p>
           You should be aware that there are certain things that ACE Uganda will not take
           responsibility for. Certain functions of the app will require the app to have an active
@@ -47,7 +46,6 @@ const Terms = () => {
           functionality if you don’t have access to Wi-Fi, and you don’t have any of your data
           allowance left.
         </p>{' '}
-        <p></p>{' '}
         <p>
           If you’re using the app outside of an area with Wi-Fi, you should remember that the terms
           of the agreement with your mobile network provider will still apply. As a result, you may
@@ -59,18 +57,21 @@ const Terms = () => {
           aware that we assume that you have received permission from the bill payer for using the
           app.
         </p>{' '}
+        <h1>BATTERY USAGE</h1>
         <p>
           Along the same lines, ACE Uganda cannot always take responsibility for the way you use the
           app i.e. You need to make sure that your device stays charged – if it runs out of battery
           and you can’t turn it on to avail the Service, ACE Uganda cannot accept responsibility.
         </p>{' '}
+        <h1>LIABILITIES</h1>
         <p>
           With respect to ACE Uganda’s responsibility for your use of the app, when you’re using the
           app, it’s important to bear in mind that although we endeavor to ensure that it is updated
           and correct at all times, we do rely on third parties to provide information to us so that
           we can make it available to you. ACE Uganda accepts no liability for any loss, direct or
-          indirect, you experience as a result of relying wholly on this functionality of the app.
+          indirect, you experience as a result of relying wholly on the functionality of the app.
         </p>{' '}
+        <h1>APP UPDATES</h1>
         <p>
           At some point, we may wish to update the app. The app is currently available on Android –
           the requirements for the system(and for any additional systems we decide to extend the
@@ -78,29 +79,27 @@ const Terms = () => {
           want to keep using the app. ACE Uganda does not promise that it will always update the app
           so that it is relevant to you and/or works with the Android version that you have
           installed on your device. However, you promise to always accept updates to the application
-          when offered to you, We may also wish to stop providing the app, and may terminate use of
+          when offered to you. We may also wish to stop providing the app, and may terminate use of
           it at any time without giving notice of termination to you. Unless we tell you otherwise,
-          upon any termination, (a) the rights and licenses granted to you in these terms will end;
-          (b) you must stop using the app, and (if needed) delete it from your device.
+          upon any termination:{' '}
+          <ul>
+            <li>the rights and licenses granted to you in these terms will end;</li>
+            <li>you must stop using the app, and (if needed) delete it from your device.</li>
+          </ul>
         </p>{' '}
-        <p>
-          <strong>Changes to This Terms and Conditions</strong>
-        </p>{' '}
+        <h1>Changes to These Terms and Conditions</h1>
         <p>
           We may update our Terms and Conditions from time to time. Thus, you are advised to review
           this page periodically for any changes. We will notify you of any changes by posting the
           new Terms and Conditions on this page.
         </p>{' '}
-        <p>These terms and conditions are effective as of 2023-01-04</p>{' '}
-        <p>
-          <strong>Contact Us</strong>
-        </p>{' '}
+        <p>These terms and conditions are effective as of 2023-01-04</p> <h1>Contact Us</h1>
         <p>
           If you have any questions or suggestions about our Terms and Conditions, do not hesitate
-          to contact us at ace@idi.co.ug
+          to contact us at <b>ace@idi.co.ug</b>
         </p>
-      </UserSettingsPageComponent>
-    </div>
+      </div>
+    </UserSettingsPageComponent>
   );
 };
 

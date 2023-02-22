@@ -3,8 +3,8 @@ import UserSettingsPageComponent from '.';
 
 const Privacy = () => {
   return (
-    <div className="privacy">
-      <UserSettingsPageComponent backroute={'/account/about'} title="Privacy Policy">
+    <UserSettingsPageComponent backroute={'/account/about'} title="Privacy Policy">
+      <div className="legal">
         <p>
           ACE Uganda built the EPILEPSY SMART app as a Free app. This SERVICE is provided by ACE
           Uganda at no cost and is intended for use as is.
@@ -24,9 +24,7 @@ const Privacy = () => {
           Conditions, which are accessible at EPILEPSY SMART app unless otherwise defined in this
           Privacy Policy.
         </p>{' '}
-        <p>
-          <strong>Information Collection and Use</strong>
-        </p>{' '}
+        <h1>Information Collection and Use</h1>
         <p>
           For a better experience, while using our Service, we may require you to provide us with
           certain personally identifiable information, including but not limited to name, email
@@ -35,33 +33,25 @@ const Privacy = () => {
         </p>{' '}
         <div>
           <p>
-            The app does use third-party services that may collect information used to identify you.
-          </p>{' '}
-          <p>Link to the privacy policy of third-party service providers used by the app</p>{' '}
-          <ul>
-            <li>
-              <a
-                href="https://www.google.com/policies/privacy/"
-                target="_blank"
-                rel="noopener noreferrer">
-                Google Play Services
-              </a>
-            </li>
-          </ul>
+            The app does use third-party services that declare their Terms and Conditions (
+            <a
+              href="https://www.google.com/policies/privacy"
+              target="_blank"
+              rel="noopener noreferrer">
+              Google Play Services
+            </a>
+            ).
+          </p>
         </div>{' '}
-        <p>
-          <strong>Log Data</strong>
-        </p>{' '}
+        <h1>Log Data</h1>
         <p>
           We want to inform you that whenever you use our Service, in a case of an error in the app
-          We collect data and information (through third-party products) on your phone called Log
+          we collect data and information (through third-party products) on your phone called Log
           Data. This Log Data may include information such as your device Internet Protocol (“IP”)
           address, device name, operating system version, the configuration of the app when
           utilizing my Service, the time and date of your use of the Service, and other statistics.
         </p>{' '}
-        <p>
-          <strong>Cookies</strong>
-        </p>{' '}
+        <h1>Cookies</h1>
         <p>
           Cookies are files with a small amount of data that are commonly used as anonymous unique
           identifiers. These are sent to your browser from the websites that you visit and are
@@ -74,12 +64,13 @@ const Privacy = () => {
           being sent to your device. If you choose to refuse our cookies, you may not be able to use
           some portions of this Service.
         </p>{' '}
+        <h1>Service Providers</h1>
         <p>
-          <strong>Service Providers</strong>
+          We may employ third-party companies and individuals due to the following reasons:
         </p>{' '}
-        <p>We may employ third-party companies and individuals due to the following reasons:</p>{' '}
         <ul>
-          <li>To facilitate our Service;</li> <li>To provide the Service on our behalf;</li>{' '}
+          <li>To facilitate our Service;</li>
+          <li>To provide the Service on our behalf;</li>{' '}
           <li>To perform Service-related services; or</li>{' '}
           <li>To assist us in analyzing how our Service is used.</li>
         </ul>{' '}
@@ -88,18 +79,14 @@ const Privacy = () => {
           Personal Information. The reason is to perform the tasks assigned to them on our behalf.
           However, they are obligated not to disclose or use the information for any other purpose.
         </p>{' '}
-        <p>
-          <strong>Security</strong>
-        </p>{' '}
+        <h1>Security</h1>
         <p>
           We value your trust in providing us your Personal Information, thus we are striving to use
           commercially acceptable means of protecting it. But remember that no method of
           transmission over the internet, or method of electronic storage is 100% secure and
           reliable, and we cannot guarantee its absolute security.
         </p>{' '}
-        <p>
-          <strong>Links to Other Sites</strong>
-        </p>{' '}
+        <h1>Links to Other Sites</h1>
         <p>
           This Service may contain links to other sites. If you click on a third-party link, you
           will be directed to that site. Note that these external sites are not operated by us.
@@ -107,9 +94,7 @@ const Privacy = () => {
           no control over and assume no responsibility for the content, privacy policies, or
           practices of any third-party sites or services.
         </p>{' '}
-        <p>
-          <strong>Children’s Privacy</strong>
-        </p>{' '}
+        <h1>Children’s Privacy</h1>
         <div>
           <p>
             These Services do not address anyone under the age of 13. We do not knowingly collect
@@ -120,24 +105,19 @@ const Privacy = () => {
             be able to do the necessary actions.
           </p>
         </div>{' '}
-        <p>
-          <strong>Changes to This Privacy Policy</strong>
-        </p>{' '}
+        <h1>Changes to this Privacy Policy</h1>
         <p>
           The owners of this application may update our Privacy Policy from time to time. Thus, you
           are advised to review this page periodically for any changes. We will notify you of any
           changes by posting the new Privacy Policy on this page.
         </p>{' '}
-        <p>This policy is effective as of 2023-01-04</p>{' '}
+        <p>This policy is effective as of 2023-01-04</p> <h1>Contact Us</h1>
         <p>
-          <strong>Contact Us</strong>
+          If you have any questions or suggestions about this Privacy Policy, do not hesitate to
+          contact us at <b>ace@idi.co.ug</b>
         </p>{' '}
-        <p>
-          If you have any questions or suggestions about my Privacy Policy, do not hesitate to
-          contact us at ace@idi.co.ug
-        </p>{' '}
-      </UserSettingsPageComponent>
-    </div>
+      </div>
+    </UserSettingsPageComponent>
   );
 };
 
