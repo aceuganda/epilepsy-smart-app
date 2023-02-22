@@ -5,7 +5,7 @@ import Card from './Card';
 import SeizureImg from '../../assets/img/HomePage/seizure.png';
 import MedicineImg from '../../assets/img/HomePage/medication.png';
 import ActivitiesImg from '../../assets/img/HomePage/activities.png';
-import TrackImg from '../../assets/img/HomePage/activities.png';
+import TrackImg from '../../assets/img/HomePage/tracking.png';
 import { useSelector } from 'react-redux';
 import Avatar from './Avatar';
 import { capitalise } from '../../utils';

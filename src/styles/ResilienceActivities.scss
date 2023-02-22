@@ -1,0 +1,12 @@
+@import './library/colors.scss';
+@import './library/variables.scss';
+
+.resilience-activities{
+    height: auto;
+
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import ResilienceComponent from '.';
-import { ReactComponent as ResilienceImg } from '../../assets/svg/Resilience/resilience.svg';
+import { ReactComponent as ResilienceImg } from '../../assets/svg/ResilienceTracking/resilience.svg';
 import Form from '../../components/form/Form';
 import Largebtn from '../../components/form/Buttons/Largebtn';
 import Footer from '../../components/layouts/Footer';
