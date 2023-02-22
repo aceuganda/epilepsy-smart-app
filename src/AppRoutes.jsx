@@ -23,6 +23,8 @@ import AllResilienceActivitiesPage from './pages/ResilienceActivities/AllActivit
 import PositiveAffirmations from './pages/ResilienceActivities/Activities/PositiveAffirmations';
 import Settings from './pages/UserSettingsPage/Settings';
 import ResilienceTallies from './pages/ResilienceTracking/Tallies';
+import Privacy from './pages/UserSettingsPage/PrivacyPolicy';
+import Terms from './pages/UserSettingsPage/TermsOfService';
 import ResilienceStartPage from './pages/ResilienceTracking/Intro';
 import UserDetailsEdit from './pages/UserSettingsPage/Profile';
 import PasswordReset from './pages/UserSettingsPage/PasswordReset';
@@ -48,6 +50,8 @@ const AppRoutes = () => {
           <Route path="/onboarding/track" element={<Track />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/home" element={<HomePage />} />
             <Route path="/seizure-form" element={<StartPage />} />
