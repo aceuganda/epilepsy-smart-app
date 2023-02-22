@@ -17,7 +17,7 @@ import Spinner from '../../../components/Spinner/Spinner';
 
 const PageThree = () => {
   const [seizure_impact, setFeel] = useState('');
-  const [seizure_trigger, setTrigger] = useState([]);
+  const [seizure_trigger, setTrigger] = useState('');
   const [other_reason, setOtherReason] = useState('');
   const [upsetRange, setUpsetRange] = useState(0);
   const [endOfAssessment, setEndOfAssessment] = useState(false);
@@ -31,7 +31,6 @@ const PageThree = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(seizureTrackingData);
     setLoading(true);
     try {
       await dispatch(postSeizureFormData(seizureTrackingData));
@@ -126,9 +125,8 @@ const PageThree = () => {
   ];
 
   const handleCheckboxChange = (value) => {
-    seizure_trigger.includes(value)
-      ? setTrigger(seizure_trigger.filter((item) => item !== value))
-      : setTrigger((seizure_trigger) => [...seizure_trigger, value]);
+    selectedTriggers.push(value);
+    setTrigger(selectedTriggers.join());
   };
 
   const selectedButtonStyle = (selected) => {
@@ -140,7 +138,7 @@ const PageThree = () => {
   return (
     <>
       <SeizureComponent backroute={'/seizure-form/assessment/2'}>
-        <Form>
+        <Form style={{ height: '680px', maxHeight: 'none' }}>
           <form onSubmit={handleSubmit}>
             {seizureTrackingData.was_seizure_triggered === true ? (
               <Question question={'What trigger was it'}>
@@ -190,8 +188,8 @@ const PageThree = () => {
                   type="button"
                   className={
                     seizure_impact === 'confused'
-                      ? 'button form-button-lg text-capitalize selectedPill'
-                      : 'button form-button-lg text-capitalize'
+                      ? 'button form-button-lg selectedPill'
+                      : 'button form-button-lg'
                   }
                   value={'body weakness'}
                   onClick={(e) => {
@@ -238,7 +236,6 @@ const PageThree = () => {
                       value={other_reason}
                       onChange={(e) => {
                         setOtherReason(e.target.value);
-                        dispatch(setSeizureImpact(e.target.value));
                       }}
                       multiline={true}
                       sx={{ width: '90%' }}
@@ -257,6 +254,7 @@ const PageThree = () => {
                       className="button form-button-pill"
                       onClick={() => {
                         setFeel(other_reason);
+                        dispatch(setSeizureImpact(other_reason));
                         setOtherReason('');
                       }}>
                       Done
