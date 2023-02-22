@@ -19,12 +19,23 @@
     padding-top: 20px;
 
     border-radius: 20px;
-    box-shadow: 0.4px 2px 2px 1px #ddd;
+    box-shadow: 0px 10px 45px 0px #00000024;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+
+    .disclaimer{
+        font-size: 11px;
+        color:$ema-lilac-2;
+        font-style: italic;
+        padding: 2px 2px;
+        font-weight: 500;
+
+        display: flex;
+        justify-content: flex-start;
+    }
 }
 
 .full-page{
@@ -95,7 +106,7 @@ button{
 
     button {
         background-color: $ema-lilac-2;
-        width: 192px;
+        width: 220px;
         height: 40px;
         color: $ema-white-0;
         font-size: 14px;
@@ -110,6 +121,10 @@ button{
         align-items: center;
         justify-content: center;
         text-transform: capitalize;
+
+        svg{
+            margin-right: 10px;
+        }
 
         &:hover,
         &:focus {
@@ -334,6 +349,17 @@ button{
 .form.start-page {
     .image {
         padding-top: 38px;
+    }
+    .disclaimer{
+        position: absolute;
+        bottom: 45px;
+        font-size: 11px;
+        color:$ema-lilac-2;
+        font-style: italic;
+        width: 66%;
+
+        display: flex;
+        justify-content: space-evenly;
     }
 }
 
@@ -657,12 +683,12 @@ button{
 
 // RESILIENCE ACTIVITIES PILL
 .resilience-a-pill {
-    width: 96%;
-    height: 40px;
-    border-radius: 16px;
+    width: 100%;
+    height: 42px;
+    border-radius: 20px;
     padding: 8px 10px;
-    box-shadow: 0px 2px 0.5px 1px rgb(240, 235, 235);
-    margin-bottom: 13px;
+    box-shadow: 0px 2px 4px 0px #0000003D;
+    margin-bottom: 15px;
     max-height: auto;
     border: 0.4px solid #ddd;
 
@@ -683,7 +709,7 @@ button{
         position: relative;
         border-radius: 50%;
         height: auto;
-        margin-right: 10px;
+        margin-right: 15px;
     }
 }
 
