@@ -70,27 +70,15 @@ const AppRoutes = () => {
               path="/resilience-activities/positive-affirmations"
               element={<PositiveAffirmations />}
             />
-<<<<<<< HEAD
 
-            <Route
-              path="/resilience-activities/one-service-goal"
-              element={<OneServiceGoal />}
-            />
-            <Route
-              path="/resilience-activities/one-social-goal"
-              element={<OneSocialGoal />}
-            />
+            <Route path="/resilience-activities/one-service-goal" element={<OneServiceGoal />} />
+            <Route path="/resilience-activities/one-social-goal" element={<OneSocialGoal />} />
 
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/resilience/tallies" element={<ResilienceTallies />} />
-
-=======
             <Route path="/account" element={<Settings />} />
             <Route path="/resilience/tallies" element={<ResilienceTallies />} />
             <Route path="/account/settings" element={<UserDetailsEdit />} />
             <Route path="/account/password-reset" element={<PasswordReset />} />
             <Route path="/account/about" element={<About />} />
->>>>>>> 7521ddf691644cbb25585d3c23c52526784c367a
           </Route>
         </Routes>
       </Suspense>

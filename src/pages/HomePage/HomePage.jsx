@@ -7,13 +7,7 @@ import MedicineImg from '../../assets/img/HomePage/medication.png';
 import ActivitiesImg from '../../assets/img/HomePage/activities.png';
 import TrackImg from '../../assets/img/HomePage/activities.png';
 import { useSelector } from 'react-redux';
-<<<<<<< HEAD
-import { Link } from 'react-router-dom';
 import Avatar from './Avatar';
-import SettingsIcon from '@mui/icons-material/Settings';
-=======
-import Avatar from './Avatar';
->>>>>>> 7521ddf691644cbb25585d3c23c52526784c367a
 import { capitalise } from '../../utils';
 import { LocalNotifications } from '@capacitor/local-notifications';
 import quotes from '../../resources/insipiration_quotes.json';
@@ -53,14 +47,11 @@ const HomePage = () => {
   setInterval(() => {
     sendLocalNotification();
   }, 28800000);
-<<<<<<< HEAD
-=======
   useEffect(() => {
     //shedule all available offline notification on start
     sheduleReminderLocalNotification();
   }, []);
 
->>>>>>> 7521ddf691644cbb25585d3c23c52526784c367a
   //You can use the below code to test the local notification functionality
   /*
   //call the function every 5 seconds
@@ -112,17 +103,8 @@ const HomePage = () => {
       </header>
       <div className="banner">
         <span>
-<<<<<<< HEAD
-          <Link to="/settings">
-            <Avatar
-              //  img={ProfilePlaceholder}
-              name={userInfo.data.username}
-              alt={''}
-            />
-=======
           <Link to="/account">
             <Avatar name={userInfo.data.username} alt={''} />
->>>>>>> 7521ddf691644cbb25585d3c23c52526784c367a
           </Link>
           <span className="name">{userInfo ? capitalise(userInfo.data.username) : ''}</span>
         </span>
