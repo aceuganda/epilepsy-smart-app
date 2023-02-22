@@ -25,6 +25,17 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+
+    .disclaimer{
+        font-size: 11px;
+        color:$ema-lilac-2;
+        font-style: italic;
+        padding: 2px 2px;
+        font-weight: 500;
+
+        display: flex;
+        justify-content: flex-start;
+    }
 }
 
 .full-page{
@@ -95,7 +106,7 @@ button{
 
     button {
         background-color: $ema-lilac-2;
-        width: 192px;
+        width: 220px;
         height: 40px;
         color: $ema-white-0;
         font-size: 14px;
@@ -110,6 +121,10 @@ button{
         align-items: center;
         justify-content: center;
         text-transform: capitalize;
+
+        svg{
+            margin-right: 10px;
+        }
 
         &:hover,
         &:focus {
@@ -334,6 +349,17 @@ button{
 .form.start-page {
     .image {
         padding-top: 38px;
+    }
+    .disclaimer{
+        position: absolute;
+        bottom: 45px;
+        font-size: 11px;
+        color:$ema-lilac-2;
+        font-style: italic;
+        width: 66%;
+
+        display: flex;
+        justify-content: space-evenly;
     }
 }
 

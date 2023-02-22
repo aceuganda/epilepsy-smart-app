@@ -4,6 +4,9 @@ import { ReactComponent as ResilienceImg } from '../../assets/svg/Resilience/res
 import Form from '../../components/form/Form';
 import Largebtn from '../../components/form/Buttons/Largebtn';
 import Footer from '../../components/layouts/Footer';
+import { ReactComponent as RecordIcon } from '../../assets/svg/Seizure/RecordSeizure.svg';
+import { ReactComponent as MonitorIcon } from '../../assets/svg/Seizure/MonitorSeizure.svg';
+import { ReactComponent as InfoIcon } from '../../assets/svg/Form/Question/info.svg';
 
 const ResilienceStartPage = () => {
   return (
@@ -11,8 +14,12 @@ const ResilienceStartPage = () => {
       <ResilienceComponent backroute={'/home'}>
         <Form>
           <ResilienceImg className="image" />
-          <Largebtn title="Track Resilience" link="/resilience-form/1" />
-          <Largebtn title="View tallies" link="/resilience/tallies" />
+          <Largebtn title="Track Resilience" link="/resilience-form/1" icon={<RecordIcon />} />
+          <Largebtn title="View tallies" link="/resilience/tallies" icon={<MonitorIcon />} />
+          <div className="disclaimer">
+            <InfoIcon />
+            <span>Tallies updated every after 3 days</span>
+          </div>
         </Form>
       </ResilienceComponent>
       <Footer />
