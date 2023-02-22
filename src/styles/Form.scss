@@ -1207,4 +1207,55 @@ button{
         }
     }
 }
-
+.tab-component {
+    display: flex;
+    flex-direction: column;
+    margin-left: -40px;
+  }
+  
+  .tab-header {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 0.2px solid #ccc;
+  }
+  
+  .tab-header button {
+    padding: 8px 17px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+   
+  }
+  
+  .tab-header button.active {
+    border-bottom: 1px solid #553791;
+  }
+  
+ 
+  
+  .tab-pane {
+    display: none;
+  }
+  
+  .tab-pane.active {
+    display: block;
+  }
+  .Journal-card{
+    width: 100%;
+    height: 40px;
+    margin-top: 40px;
+    background-color:transparent;
+    // border-left: 10px solid green;
+    box-shadow: 0 0px 0px 0 rgba(0,0,0,0.2);
+  }
+  textarea {
+    padding: 10px;
+    margin-top: 30px;
+    width: 270px;
+    height:260px;
+    border-radius: 3px;
+    background-color:white ;
+    border: 1px solid #f4f1f1;
+    box-shadow: 1px 1px 1px	#F5F5F5;
+  }

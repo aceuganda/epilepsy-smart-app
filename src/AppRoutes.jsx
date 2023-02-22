@@ -23,12 +23,15 @@ import AllResilienceActivitiesPage from './pages/ResilienceActivities/AllActivit
 import PositiveAffirmations from './pages/ResilienceActivities/Activities/PositiveAffirmations';
 import OneServiceGoal from './pages/ResilienceActivities/Activities/OneServiceGoal';
 import OneSocialGoal from './pages/ResilienceActivities/Activities/OneSocialGoal';
+import Journaling from './pages/ResilienceActivities/Activities/Journaling';
 import Settings from './pages/UserSettingsPage/Settings';
 import ResilienceTallies from './pages/ResilienceTracking/Tallies';
 import ResilienceStartPage from './pages/ResilienceTracking/Intro';
 import UserDetailsEdit from './pages/UserSettingsPage/Profile';
 import PasswordReset from './pages/UserSettingsPage/PasswordReset';
 import About from './pages/UserSettingsPage/About';
+import Journal from './components/Journal/Journal';
+import NewJournal from './components/Journal/NewJournal';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
@@ -73,12 +76,14 @@ const AppRoutes = () => {
 
             <Route path="/resilience-activities/one-service-goal" element={<OneServiceGoal />} />
             <Route path="/resilience-activities/one-social-goal" element={<OneSocialGoal />} />
-
+            <Route path="/resilience-activities/journaling" element={<Journaling />} />
             <Route path="/account" element={<Settings />} />
             <Route path="/resilience/tallies" element={<ResilienceTallies />} />
             <Route path="/account/settings" element={<UserDetailsEdit />} />
             <Route path="/account/password-reset" element={<PasswordReset />} />
             <Route path="/account/about" element={<About />} />
+            <Route path="/journal" element={<Journal />} />
+            <Route path="/new-journal" element={<NewJournal />} />
           </Route>
         </Routes>
       </Suspense>

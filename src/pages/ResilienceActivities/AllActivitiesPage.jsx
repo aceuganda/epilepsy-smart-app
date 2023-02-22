@@ -23,8 +23,14 @@ const AllResilienceActivitiesPage = () => {
     {
       name: 'One social goal',
       icon: null,
-      link:  '/resilience-activities/one-social-goal'
+      link: '/resilience-activities/one-social-goal'
     },
+    {
+      name: 'Journaling',
+      icon: null,
+      link: '/resilience-activities/Journaling'
+    },
+
     {
       name: 'Secure diary',
       icon: null,
