@@ -47,26 +47,28 @@ const Register = () => {
 
 
   const submitForm = (data) => {
-    var submittion=data;
+    var submittion = data;
     if (submittion.password !== submittion.confirmPassword) {
       alert('Passwords do not match');
       return;
     }
     submittion.email = submittion.email.toLowerCase();
-    submittion.age = Number(submittion.age)
+    submittion.dob = submittion.age;
     submittion.age_of_onset = Number(submittion.age_of_onset)
-    delete submittion.confirmPassword
-    if(imageObject !== null){
-    let reader = new FileReader()
-    reader.readAsDataURL(imageObject)
-    reader.onload = () =>{
-      submittion={...data, profileImage: reader.result}
-      //required to only dispatch onload
+    delete submittion.confirmPassword;
+    delete submittion.age;
+
+    if (imageObject !== null) {
+      let reader = new FileReader();
+      reader.readAsDataURL(imageObject);
+      reader.onload = () => {
+        submittion = { ...data, profileImage: reader.result };
+        //required to only dispatch onload
       dispatch(registerUser(submittion));
      }
-   }else {
-       submittion={...data, profileImage: ""}
-       dispatch(registerUser(submittion));
+    } else {
+      submittion = { ...data, profileImage: '' };
+      dispatch(registerUser(submittion));
     }
   };
 
@@ -91,11 +93,7 @@ const Register = () => {
         <div className="form-select-group">
           <div>
             <label htmlFor="age">Date of birth</label>
-            <input
-              type="date"          
-              {...register('age', { required: true })}
-              placeholder="01/01/2000"
-             />
+            <input type="date" {...register('age', { required: true })} placeholder="01/01/2000" />
             {errors.age && <span className="error">required field</span>}
           </div>
           <div>
@@ -212,11 +210,7 @@ const Register = () => {
             <label htmlFor="profilePicture">Profile picture (optional) </label>
             <img
               alt=""
-              src={
-                imageObject === null
-                  ? ProfilePlaceholder
-                  : URL.createObjectURL(imageObject)
-              }
+              src={imageObject === null ? ProfilePlaceholder : URL.createObjectURL(imageObject)}
             />
           </section>
           {imageObject !== null && <div className='Imagename'>{imageObject.name}</div>}
