@@ -12,7 +12,7 @@ const ResilienceActivityPill = ({ title, icon, link, outerLink }) => {
   };
   const handleOuterLink =()=>{
     if(outerLink){
-      window.open('https://www.epilepsy.org.ug/')
+      window.open(outerLink)
     }
   }
   return (
