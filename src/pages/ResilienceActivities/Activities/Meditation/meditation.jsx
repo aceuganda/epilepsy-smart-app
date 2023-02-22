@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import ResilienceActivitiesPageComponent from '../..';
 import { Howl, Howler } from 'howler';
 import Modal from '../../../../components/modal/index.jsx';
@@ -46,25 +46,27 @@ const Meditations = () => {
     }
   ];
   const [songModalOpen, setSongModalOpen] = useState(false);
-  const [soundInstance,setSoundInstance] = useState(null);
+
   // monitor entire player
-  const [isPlaying,setIsPlaying] = useState(false);
-  const [elapsedTime, setElapsedTime] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [displayValue, setdisplayValue] = useState(0);
+  // const [elapsedTime, setElapsedTime] = useState(0);
+  const elapsedTime = useRef(0);
+  const soundInstance = useRef(null);
+  const rangeInputRef = useRef(null);
   const handleUserSoundModalClosure = () => {
     setSongModalOpen(false);
   };
-  
-  // useEffect(() => {
-  //   //control the range player
-  //   // console.log(soundInstance)
-  //   // console.log(elapsedTime)
-  //   // if( soundInstance &&  soundInstance.playing()){
-  //   //   updateElapsedTime()
-  //   // }
-  //   // if(isPlaying){
-  //   //   updateElapsedTime()
-  //   // }
-  // },[elapsedTime, soundInstance,isPlaying]);
+
+  useEffect(() => {
+    // control the range player
+    if (soundInstance && soundInstance?.current?.playing()) {
+      updateElapsedTime();
+    }
+    if (isPlaying) {
+      updateElapsedTime();
+    }
+  }, [isPlaying]);
 
   useEffect(() => {
     //clear all playing audios on start and on return
@@ -72,26 +74,24 @@ const Meditations = () => {
     return () => {
       Howler.stop();
     };
-  },[]);
+  }, []);
 
   const handlePlayPauseClick = (index) => {
     if (currentTrackIndex === index) {
       // Pause the current track
-      let currentSoundInstance = soundInstance
-      if(currentSoundInstance.playing()){
+      let currentSoundInstance = soundInstance.current;
+      if (currentSoundInstance.playing()) {
         currentSoundInstance.pause();
-        setIsPlaying(false)
-      }else{
+        setIsPlaying(false);
+      } else {
         currentSoundInstance.play();
-        setIsPlaying(true)
+        setIsPlaying(true);
       }
-      setSoundInstance(currentSoundInstance)
-      
+      soundInstance.current = currentSoundInstance;
     } else {
       // Pause the current track, if any
       if (currentTrackIndex !== null) {
         Howler.stop();
-       
       }
       // Play the new track
       const audio = new Howl({
@@ -104,9 +104,10 @@ const Meditations = () => {
         }
       });
       audio.play();
-      setSoundInstance(audio)
+      soundInstance.current = audio;
+
       setCurrentTrackIndex(index);
-      setIsPlaying(true)
+      setIsPlaying(true);
     }
   };
   const handleSkipBack = () => {
@@ -125,24 +126,25 @@ const Meditations = () => {
           }
         });
         audio.play();
-        setSoundInstance(audio)
+
+        soundInstance.current = audio;
         setCurrentTrackIndex(soundList.length - 1);
-        setIsPlaying(true)
+        setIsPlaying(true);
       } else {
         setSelectedSong(selectedSong - 1);
         const audio = new Howl({
           src: soundList[selectedSong - 1].src,
           onend: () => {
             setCurrentTrackIndex(null);
-          }, 
+          },
           onplay: () => {
             requestAnimationFrame(updateElapsedTime);
           }
         });
         audio.play();
-        setSoundInstance(audio)
+        soundInstance.current = audio;
         setCurrentTrackIndex(selectedSong - 1);
-        setIsPlaying(true)
+        setIsPlaying(true);
       }
     } else {
       // Pause the current track, if any
@@ -160,9 +162,9 @@ const Meditations = () => {
         }
       });
       audio.play();
-      setSoundInstance(audio)
+      soundInstance.current = audio;
       setCurrentTrackIndex(selectedSong);
-      setIsPlaying(true)
+      setIsPlaying(true);
     }
   };
   const handleSkipForword = () => {
@@ -175,28 +177,32 @@ const Meditations = () => {
           src: soundList[0].src,
           onend: () => {
             setCurrentTrackIndex(null);
-          }, onplay: () => {
+          },
+          onplay: () => {
             requestAnimationFrame(updateElapsedTime);
           }
         });
         audio.play();
-        setSoundInstance(audio)
+        // setSoundInstance(audio)
+        soundInstance.current = audio;
         setCurrentTrackIndex(0);
-        setIsPlaying(true)
+        setIsPlaying(true);
       } else {
         setSelectedSong(selectedSong + 1);
         const audio = new Howl({
           src: soundList[selectedSong + 1].src,
           onend: () => {
             setCurrentTrackIndex(null);
-          }, onplay: () => {
+          },
+          onplay: () => {
             requestAnimationFrame(updateElapsedTime);
           }
         });
         audio.play();
-        setSoundInstance(audio)
+        soundInstance.current = audio;
+        // setSoundInstance(audio)
         setCurrentTrackIndex(selectedSong + 1);
-        setIsPlaying(true)
+        setIsPlaying(true);
       }
     } else {
       // Pause the current track, if any
@@ -214,23 +220,24 @@ const Meditations = () => {
         }
       });
       audio.play();
-      setSoundInstance(audio)
+      // setSoundInstance(audio)
+      soundInstance.current = audio;
       setCurrentTrackIndex(selectedSong);
-      setIsPlaying(true)
+      setIsPlaying(true);
     }
   };
   const handleModalPlayPause = () => {
     if (currentTrackIndex === selectedSong) {
       // Pause the current track
-      let currentSoundInstance = soundInstance
-      if(currentSoundInstance.playing()){
+      let currentSoundInstance = soundInstance.current;
+      if (currentSoundInstance.playing()) {
         currentSoundInstance.pause();
-        setIsPlaying(false)
-      }else{
+        setIsPlaying(false);
+      } else {
         currentSoundInstance.play();
-        setIsPlaying(true)
+        setIsPlaying(true);
       }
-      setSoundInstance(currentSoundInstance)
+      soundInstance.current = currentSoundInstance;
     } else {
       // Pause the current track, if any
       if (currentTrackIndex !== null) {
@@ -247,27 +254,32 @@ const Meditations = () => {
         }
       });
       audio.play();
-      setSoundInstance(audio)
+      soundInstance.current = audio;
       setCurrentTrackIndex(selectedSong);
-      setIsPlaying(true)
+      setIsPlaying(true);
     }
   };
 
   const updateElapsedTime = () => {
-    const newElapsedTime = soundInstance?.seek() || 0;
-    setElapsedTime(newElapsedTime);
+    const newElapsedTime = soundInstance !== null ? soundInstance.current.seek() : 0;
+    elapsedTime.current = newElapsedTime;
+    if (rangeInputRef.current) {
+      rangeInputRef.current.value = elapsedTime.current;
+      setdisplayValue(elapsedTime.current);
+    }
     requestAnimationFrame(updateElapsedTime);
   };
 
-  const handleTimeChange = event => {
+  const handleTimeChange = (event) => {
     const newElapsedTime = parseFloat(event.target.value);
-    setElapsedTime(newElapsedTime);
-    soundInstance.seek(newElapsedTime);
+    elapsedTime.current = newElapsedTime;
+    setdisplayValue(elapsedTime.current);
+    soundInstance.current.seek(newElapsedTime);
   };
 
   return (
     <div>
-      <ResilienceActivitiesPageComponent title={'Meditaion'} backroute={'/resilience-activities'}>
+      <ResilienceActivitiesPageComponent title={'Meditation'} backroute={'/resilience-activities'}>
         <div className="meditaionContainer">
           <div className="MedicationBigIcon">
             <MeditaionBigIcon />
@@ -281,11 +293,11 @@ const Meditations = () => {
                   setSongModalOpen(true);
                 }}
                 className="soundPill">
-                <div className="pillDot"></div>
+                <div className={currentTrackIndex === index ? 'livePillDot' : 'pillDot'}></div>
                 <div className="title">{item.title}</div>
                 <div className="subTitle">{item.subTitle}</div>
                 <div onClick={() => handlePlayPauseClick(index)} className="musicIcon">
-                  {(currentTrackIndex === index) && ((isPlaying=== true)) ? <Pause /> : <Play />}
+                  {currentTrackIndex === index && isPlaying === true ? <Pause /> : <Play />}
                 </div>
               </div>
             ))}
@@ -304,29 +316,35 @@ const Meditations = () => {
                 <div className="ModalSoundSubTitle">{soundList[selectedSong]?.subTitle}</div>
               </div>
               <div className="musicPlayerSection">
-                {/* <div className="timeSection">
-                  <div>{selectedSong === currentTrackIndex ? 
-                  new Date((elapsedTime || 0 ) * 1000).toISOString().substr(14, 5):
-                  '0:00'
-                }</div>
-                  <div>{selectedSong === currentTrackIndex ? 
-                   new Date((soundInstance?.duration() || 0 ) * 1000).toISOString().substr(14, 5):
-                   '--:--'
-                  }</div>
+                <div className="timeSection">
+                  <div>
+                    {selectedSong === currentTrackIndex
+                      ? new Date((displayValue || 0) * 1000).toISOString().substr(14, 5)
+                      : '0:00'}
+                  </div>
+                  <div>
+                    {selectedSong === currentTrackIndex
+                      ? new Date((soundInstance?.current?.duration() || 0) * 1000)
+                          .toISOString()
+                          .substr(14, 5)
+                      : '--:--'}
+                  </div>
                 </div>
                 <div>
-                  <input
-                   type="range"
-                   min={0}
-                   max={selectedSong === currentTrackIndex ? soundInstance?.duration(): 0}
-                   step={0.01}
-                   value={selectedSong === currentTrackIndex ? elapsedTime: 0}
-                   className='timeline'
-                   onChange={() => {selectedSong === currentTrackIndex ? handleTimeChange():
-                     alert('Click play')
-                  }}
-                 />
-                </div> */}
+                  {/* only appear when song is selected */}
+                  {selectedSong === currentTrackIndex && (
+                    <input
+                      type="range"
+                      min={0}
+                      max={soundInstance?.current?.duration()}
+                      step={0.01}
+                      //  value={elapsedTime?.current}
+                      ref={rangeInputRef}
+                      className="timeline"
+                      onChange={handleTimeChange}
+                    />
+                  )}
+                </div>
                 <div className="controlButtonSection">
                   <div className="AudioButtons">
                     <SkipBack
@@ -338,9 +356,11 @@ const Meditations = () => {
                       onClick={() => {
                         handleModalPlayPause();
                       }}>
-                      {(currentTrackIndex === selectedSong)&&(isPlaying=== true) ? 
-                      <PauseWhite /> : 
-                      <PlayWhite />}
+                      {currentTrackIndex === selectedSong && isPlaying === true ? (
+                        <PauseWhite />
+                      ) : (
+                        <PlayWhite />
+                      )}
                     </div>
                     <SkipForword
                       onClick={() => {

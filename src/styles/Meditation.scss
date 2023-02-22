@@ -34,6 +34,12 @@
                 width: 11px;
                 height: 11px;
             }
+            .livePillDot{
+                background-color: $ema-green-0;
+                border-radius: 50%; 
+                width: 11px;
+                height: 11px;
+            }
             .title{
                 font-style: normal;
                 font-weight: 700;
@@ -120,8 +126,14 @@
                     .timeline{
                        margin-top:1rem;
                        width: 100%;
-                     
                     }
+                    // input[type="range"] {
+                    //     --range-progress: 0;
+                    //   }
+                    //   input[type="range"]::before {
+                    //     background: #f50;
+                    //     width: 2px;
+                    //   }
                     .controlButtonSection{
                         margin-top: 14px;
                         background: #553791;
