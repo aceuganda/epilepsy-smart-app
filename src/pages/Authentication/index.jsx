@@ -30,7 +30,13 @@ const AuthPageComponent = (props) => {
         </div>
         <div className="toc">
           <span>By signing up you agree with our</span>
-          <Link to="">Terms & Conditions</Link>
+          <Link to="/terms">Terms & Conditions</Link>
+        </div>
+        <div className="toc">
+          <span>
+            To learn more about how we use your data, read our{' '}
+            <Link to="/privacy">Privacy Policy</Link>
+          </span>
         </div>
       </div>
     </div>
