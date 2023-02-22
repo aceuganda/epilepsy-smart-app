@@ -84,7 +84,7 @@ const ResiliencePageThree = () => {
 
   return (
     <ResilienceComponent backroute={'/resilience-form/2'}>
-      <Form>
+      <Form style={{ maxHeight: 'none', height: '620px' }}>
         <form>
           <Question question={'How did you feel today'}>
             <fieldset className="mt-3 mb-4" style={{ justifyContent: 'space-evenly' }}>
@@ -114,6 +114,9 @@ const ResiliencePageThree = () => {
           </Question>
           {type_of_feelings === 'positive' ? (
             <Question question={'Which emotions were felt'}>
+              <div className="disclaimer">
+                <span>You can only select upto six(6) feelings</span>
+              </div>
               <fieldset className="mt-3 mb-4">
                 <div className="ItemContainer">
                   {positiveLabels.map((label, key) => (
@@ -136,6 +139,9 @@ const ResiliencePageThree = () => {
           )}
           {type_of_feelings === 'negative' ? (
             <Question question={'Which emotions were felt'}>
+              <div className="disclaimer">
+                <span>You can only select upto six(6) feelings</span>
+              </div>
               <fieldset className="mt-3 mb-4">
                 <div className="ItemContainer">
                   {negativeLabels.map((label, key) => (
