@@ -14,9 +14,9 @@ const AuthPageComponent = (props) => {
   return (
     <div className="Auth">
       <div className="header">
-        <span>
-          <Link to="/">{'<'}</Link>
-        </span>
+        <Link to="/">
+          <span>{'<'} </span>
+        </Link>
         <span>{props.title}</span>
       </div>
       <div className="auth-body">
@@ -29,10 +29,9 @@ const AuthPageComponent = (props) => {
           <Link to={`${props.link}`}>{props.linkTitle}</Link>
         </div>
         <div className="toc">
-          <span>By signing, up you agree with our</span>
+          <span>By signing up you agree with our</span>
           <Link to="/terms">Terms & Conditions</Link>
         </div>
-
         <div className="toc">
           <span>
             To learn more about how we use your data, read our{' '}
