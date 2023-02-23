@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ResilienceActivitiesPageComponent from '..';
 import Form from '../../../components/form/Form';
-import { FaPlusCircle } from 'react-icons/fa';
 import Journal from '../../../components/Journal/Journal';
 import { Link } from 'react-router-dom';
 import { ReactComponent as AddTime } from '../../../assets/svg/Medication/addtime.svg';
@@ -10,22 +9,26 @@ const data = [
   {
     title: 'Journal 1',
     date: '15 November',
-    color: 'red'
+    color: 'red',
+    journalId: 1
   },
   {
     title: 'Journal 2',
     date: '15 November',
-    color: 'green'
+    color: 'green',
+    journalId: 2
   },
   {
     title: 'Journal 3',
     date: '15 November',
-    color: 'blue'
+    color: 'blue',
+    journalId: 3
   },
   {
     title: 'Journal 4',
     date: '15 November',
-    color: 'red'
+    color: 'red',
+    journalId: 4
   }
 ];
 
@@ -37,7 +40,7 @@ const Journaling = () => {
   };
 
   return (
-    <ResilienceActivitiesPageComponent>
+    <ResilienceActivitiesPageComponent title={'Journaling'} backroute={'/resilience-activities'}>
       <Form>
         <div className="tab-component">
           <div className="tab-header">
@@ -61,7 +64,7 @@ const Journaling = () => {
           <div className="tab-content">
             <div className={`tab-pane ${activeTab === 1 ? 'active' : ''}`}>
               {data?.map((dta) => (
-                <Journal key={dta.title} title={dta.title} date={dta.date} color={dta.color} />
+                <Journal id={dta.journalId} key={dta.title} title={dta.title} date={dta.date} color={dta.color} />
               ))}
             </div>
             <div className={`tab-pane ${activeTab === 2 ? 'active' : ''}`}>

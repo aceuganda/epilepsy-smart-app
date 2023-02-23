@@ -32,25 +32,9 @@ const AllResilienceActivitiesPage = () => {
       link: '/resilience-activities/positive-affirmations'
     },
     {
-      name: 'One social goal',
-      icon: null,
-      link: '/resilience-activities/one-social-goal'
-    },
-    {
-      name: 'Journaling',
-      icon: null,
-      link: '/resilience-activities/Journaling'
-    },
-
-    {
-      name: 'Secure diary',
-      icon: null,
-      link: '/resilience-activities/one-social-goal'
-    },
-    {
       name: ' journaling',
       icon: <JournalIcon />,
-      link: null
+      link: '/resilience-activities/journaling'
     },
     {
       name: 'LINK TO ESAU',

@@ -2,6 +2,7 @@
 import React from 'react';
 import ResilienceActivitiesPageComponent from '../../pages/ResilienceActivities';
 import Form from '../form/Form';
+import TextArea from './TextArea';
 
 const NewJournal = ({ placeholder }) => {
   return (
@@ -18,7 +19,7 @@ const NewJournal = ({ placeholder }) => {
                 flexDirection: 'column',
                 width: '120px'
               }}>
-              <div style={{ borderBottom: '3px solid #F42C56'}}>
+              <div style={{ borderBottom: '3px solid #F42C56', backgroundColor: '#E8E8E8' }}>
                 {' '}
                 <input placeholder="Type here" type="text" />
                 {/* {children} */}
@@ -42,7 +43,7 @@ const NewJournal = ({ placeholder }) => {
             </div>
           </div>
           <div>
-            <textarea placeholder={placeholder} />
+            <TextArea placeholder="Tap to type something" />
           </div>
         </div>
       </Form>

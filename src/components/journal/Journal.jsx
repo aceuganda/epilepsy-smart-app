@@ -3,14 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiChevronRight } from 'react-icons/fi';
 
-const Journal = ({ title, date ,color }) => {
-  // const navigate = useNavigation();
-
-  // const click = (e) => {
-  //     navigate()
-  // }
+const Journal = ({ title, date, color, id }) => {
   return (
-    <Link to="/Journal2">
+    <Link to={'/Journal/:' + id}>
       <div
         style={{ borderLeft: `10px solid ${color}`, marginTop: '10px' }}
         className="Journal-card">

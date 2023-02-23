@@ -32,6 +32,7 @@ import PasswordReset from './pages/UserSettingsPage/PasswordReset';
 import About from './pages/UserSettingsPage/About';
 import Journal from './components/Journal/Journal';
 import NewJournal from './components/Journal/NewJournal';
+import Journal2 from './components/Journal/Journal2';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
@@ -83,6 +84,7 @@ const AppRoutes = () => {
             <Route path="/account/password-reset" element={<PasswordReset />} />
             <Route path="/account/about" element={<About />} />
             <Route path="/journal" element={<Journal />} />
+            <Route path="/journal/:journalId" element={<Journal2 />} />
             <Route path="/new-journal" element={<NewJournal />} />
           </Route>
         </Routes>
