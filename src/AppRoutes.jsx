@@ -24,6 +24,7 @@ import PositiveAffirmations from './pages/ResilienceActivities/Activities/Positi
 import OneServiceGoal from './pages/ResilienceActivities/Activities/OneServiceGoal';
 import OneSocialGoal from './pages/ResilienceActivities/Activities/OneSocialGoal';
 import Journaling from './pages/ResilienceActivities/Activities/Journaling';
+import Listening from './pages/ResilienceActivities/Activities/Listening';
 import Settings from './pages/UserSettingsPage/Settings';
 import ResilienceTallies from './pages/ResilienceTracking/Tallies';
 import Privacy from './pages/UserSettingsPage/PrivacyPolicy';
@@ -35,6 +36,7 @@ import About from './pages/UserSettingsPage/About';
 import Journal from './components/Journal/Journal';
 import NewJournal from './components/Journal/NewJournal';
 import Journal2 from './components/Journal/Journal2';
+import Grateful from './components/Journal/Grateful';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
@@ -81,6 +83,7 @@ const AppRoutes = () => {
 
             <Route path="/resilience-activities/one-service-goal" element={<OneServiceGoal />} />
             <Route path="/resilience-activities/one-social-goal" element={<OneSocialGoal />} />
+            <Route path="/resilience-activities/listening" element={<Listening />} />
             <Route path="/resilience-activities/journaling" element={<Journaling />} />
             <Route path="/account" element={<Settings />} />
             <Route path="/resilience/tallies" element={<ResilienceTallies />} />
@@ -90,6 +93,9 @@ const AppRoutes = () => {
             <Route path="/journal" element={<Journal />} />
             <Route path="/journal/:journalId" element={<Journal2 />} />
             <Route path="/new-journal" element={<NewJournal />} />
+            <Route path="/grateful" element={<Grateful />} />
+
+            
           </Route>
         </Routes>
       </Suspense>
