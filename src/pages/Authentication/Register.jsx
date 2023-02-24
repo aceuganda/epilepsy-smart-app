@@ -48,6 +48,7 @@ const Register = () => {
 
   const submitForm = (data) => {
     var submittion = data;
+    console.log(data);
     if (submittion.password !== submittion.confirmPassword) {
       alert('Passwords do not match');
       return;

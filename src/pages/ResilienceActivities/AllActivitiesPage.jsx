@@ -32,6 +32,11 @@ const AllResilienceActivitiesPage = () => {
       link: '/resilience-activities/positive-affirmations'
     },
     {
+      name: 'One Social goal',
+      icon: <OSocialGoalIcon />,
+      link: '/resilience-activities/one-social-goal'
+    },
+    {
       name: ' journaling',
       icon: <JournalIcon />,
       link: '/resilience-activities/journaling'
@@ -57,9 +62,9 @@ const AllResilienceActivitiesPage = () => {
       link: null
     },
     {
-      name: 'LISTENING',
+      name: 'listening',
       icon: <ListeningIcon />,
-      link: null
+      link: 'resilience-activities/listening'
     }
   ];
   return (

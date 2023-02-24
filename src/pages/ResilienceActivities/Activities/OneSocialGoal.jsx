@@ -13,7 +13,7 @@ const OneSocialGoal = () => {
             <div>
               <span style={{ marginLeft: '10px' }}>One Social Goal </span>
             </div>
-            <div >
+            <div>
               <span
                 style={{
                   color: 'gray',
@@ -36,8 +36,6 @@ const OneSocialGoal = () => {
                 others or we fear to be ignored, mistreated or laughed at. Try to build your social
                 community in small steps one at a time. Pick one social goal and try to engage in a
                 social activity in the next few days.
-
-
               </p>
               <h6 style={{ fontSize: '13px', marginLeft: '25px', marginTop: '3px' }}>Tips:</h6>
               <li style={{ fontSize: '11px', marginLeft: '20px', marginRight: '10px' }}>

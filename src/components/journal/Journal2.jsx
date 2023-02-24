@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import ResilienceActivitiesPageComponent from '../../pages/ResilienceActivities';
 import Form from '../form/Form';
 
-import { AiOutlineEllipsis } from 'react-icons/ai';
+import { HiEllipsisHorizontalCircle } from 'react-icons/hi2';
 import TextArea from './TextArea';
 import CustomPopup from './CustomPopup';
 // import {withRouter} from 'react-router-dom'
@@ -31,9 +31,14 @@ const Journal2 = (props) => {
               padding: '8px'
             }}>
             <div>Journal {params.journalId.split(':')[1]}</div>
-            <div onClick={showCustomPopup}>
+            <div
+              onClick={showCustomPopup}
+              style={{
+                fontSize: '30px',
+                color: '#53368E'
+              }}>
               {' '}
-              <AiOutlineEllipsis />
+              <HiEllipsisHorizontalCircle />
             </div>
           </div>
 

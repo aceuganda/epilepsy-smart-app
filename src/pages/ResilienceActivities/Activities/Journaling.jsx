@@ -4,6 +4,7 @@ import Form from '../../../components/form/Form';
 import Journal from '../../../components/Journal/Journal';
 import { Link } from 'react-router-dom';
 import { ReactComponent as AddTime } from '../../../assets/svg/Medication/addtime.svg';
+import Grateful from '../../../components/Journal/Grateful';
 
 const data = [
   {
@@ -39,6 +40,40 @@ const Journaling = () => {
     setActiveTab(tabIndex);
   };
 
+  const textAreaStyles = {
+    width: '100%',
+    height: '100px',
+    padding: '10px',
+    fontSize: '16px',
+    border: 'none',
+    outline: 'none',
+    resize: 'none',
+    transition: 'height 0.3s ease-out'
+  };
+
+  const textStyles = {
+    fontSize: '16px',
+    color: 'gray'
+  };
+
+  const focusedStyles = {
+    height: '350px'
+  };
+
+  const gratefulStyles = {
+    display: 'flex',
+    flexDirection: 'row',
+    marginHorizontal: 2,
+    justifyContent: 'center',
+    alignItems: 'center'
+  };
+
+  const spanStyles = {
+    //define border radius
+    //give it rounded full
+    //dynamic color prop
+  };
+
   return (
     <ResilienceActivitiesPageComponent title={'Journaling'} backroute={'/resilience-activities'}>
       <Form>
@@ -64,11 +99,39 @@ const Journaling = () => {
           <div className="tab-content">
             <div className={`tab-pane ${activeTab === 1 ? 'active' : ''}`}>
               {data?.map((dta) => (
-                <Journal id={dta.journalId} key={dta.title} title={dta.title} date={dta.date} color={dta.color} />
+                <Journal
+                  id={dta.journalId}
+                  key={dta.title}
+                  title={dta.title}
+                  date={dta.date}
+                  color={dta.color}
+                />
               ))}
             </div>
             <div className={`tab-pane ${activeTab === 2 ? 'active' : ''}`}>
-              <p>Content for tab 2 goes here</p>
+              {/* if(data)
+              {
+                <div style = {gratefulStyles}>
+                  <span></span>
+                  <h4>some data </h4>
+                </div>
+              }{' '}
+              else
+              {
+                <> */}
+              <h3>Some text here </h3>
+              <textarea
+                style={textAreaStyles}
+                onFocus={(e) => {
+                  e.target.style.width = focusedStyles.width;
+                }}
+                onBlur={(e) => {
+                  e.target.style.width = textAreaStyles.width;
+                }}
+                placeholder="Tap to type something"
+              />
+              {/* </> */}
+              {/* } */}
             </div>
           </div>
         </div>
