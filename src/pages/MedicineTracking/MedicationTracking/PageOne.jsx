@@ -51,7 +51,7 @@ const MedicationTrackingPageOne = () => {
 
   const fetchMedicine = async () => {
     const response = await dispatch(getMedicineData());
-    console.log(response);
+
     if (response.payload?.status === 'success') {
       setUserMedicines(response.payload.data.medicines);
     } else if (response.payload.request?.status === 404) {
@@ -65,18 +65,21 @@ const MedicationTrackingPageOne = () => {
   const handleMedicineSubmit = async (event) => {
     event.preventDefault();
     //call medicine post
-    console.log(medicineTrackingData);
     if (checkedMedicine !== '') {
       setAddingMedicine(true);
+      try{
       const response = await dispatch(postMedicineFormData(medicineTrackingData));
-      if (response.payload.status === 'success') {
+      if (response.payload?.status === 'success') {
         setAddMedicineFeedback(`Medicine added.`);
         setAddingMedicine(false);
         window.location.reload();
       } else {
-        setAddMedicineFeedback('Failed to add medicine.');
+        setAddMedicineFeedback("Failed to add medicine. Be sure you haven't already added the medicine");
         setAddingMedicine(false);
       }
+    }catch(error){
+       setAddMedicineFeedback("Failed to add medicine.");
+    }
     }
   };
 
@@ -245,6 +248,7 @@ const MedicationTrackingPageOne = () => {
                       alignSelf: 'center',
                       display: 'flex',
                       alignItems: 'center',
+                      textAlign: 'center',
                       justifyContent: 'center',
                       fontSize: '12px'
                     }}>
@@ -306,11 +310,11 @@ const MedicationTrackingPageOne = () => {
                     onClick={() => {
                       handleTimeSelectorModalClosure();
                     }}>
-                    cancel
+                    Cancel
                   </div>
                   <div className="heading">Add time</div>
                   <div onClick={HandleSave} className="headerButton">
-                    save
+                    Save
                   </div>
                 </div>
                 <div className="ModalTimeSelector">
