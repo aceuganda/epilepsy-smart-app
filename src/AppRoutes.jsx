@@ -74,7 +74,7 @@ const AppRoutes = () => {
               element={<PositiveAffirmations />}
             />
             <Route path="/resilience-activities/meditation" element={<Meditation />} />
-            <Route path="/settings" element={<Settings />} />
+            <Route path="/account" element={<Settings />} />
             <Route path="/resilience/tallies" element={<ResilienceTallies />} />
             <Route path="/account/settings" element={<UserDetailsEdit />} />
             <Route path="/account/password-reset" element={<PasswordReset />} />
