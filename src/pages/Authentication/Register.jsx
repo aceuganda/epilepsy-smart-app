@@ -194,13 +194,16 @@ const Register = () => {
           {errors.institution && <span className="error">Institution is required</span>}
         </div>
         <div className="form-group">
-          <label htmlFor="password">Create Password</label>
+          <label htmlFor="password">
+            Create Password <i>(8 characters minimum)</i>
+          </label>
           <input
             type="password"
             name="password"
             {...register('password', { required: true })}
             placeholder="Create a password"
-            pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+            pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&]).{8,}$"
+            title="Password should include an uppercase letter, lowercase letter, a number and special character(#?!@$^&)"
             minLength="8"
             maxLength="20"
           />
