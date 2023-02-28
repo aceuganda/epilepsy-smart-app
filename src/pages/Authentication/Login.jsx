@@ -12,7 +12,6 @@ import Spinner from '../../components/Spinner/Spinner';
 
 const Login = () => {
   const { loading, userInfo, error } = useSelector((state) => state.user);
-  localStorage.setItem('registered_user', true);
 
   const dispatch = useDispatch();
 
@@ -26,6 +25,7 @@ const Login = () => {
 
   const submitForm = (data) => {
     dispatch(loginUser(data));
+    localStorage.setItem('registered_user', true);
   };
 
   const {
