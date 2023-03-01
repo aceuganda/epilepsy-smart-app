@@ -7,38 +7,40 @@ const CustomPopup = () => {
     <div
       style={{
         // display: 'flex',
-        width: '40vw',
+        width: '35vw',
         backgroundColor: '#FFFFFF',
         padding: 4,
         flexDirection: 'column',
-        boxShadow: '0px 10px 45px rgba(0, 0, 0, 0.141)',
+        border: '1px solid rgba(0, 0, 0, 0.19)',
+        boxShadow: '0px 10px 45px rgba(0, 0, 0, 0.141);',
         position: 'absolute',
         borderRadius: '17px',
-        height: '15vh',
+        height: '12vh',
         left: 0,
-        right: 70,
-        top: 50,
+        right: 120,
+        top: 60,
         bottom: 0,
-        marginLeft: 170
+        marginLeft: 165
       }}>
       <div
         style={{
           flexDirection: 'row',
-          justifyContent: 'space-between', 
+          justifyContent: 'space-between',
+          marginTop: '11px'
         }}>
         <div>
           <p>Rename</p>
         </div>
-        <div style={{ color: '#553791' }}>
+        <div style={{ color: '#553791', marginLeft: '110px', marginTop: '-48px' }}>
           <HiPencil />
         </div>
       </div>
-      {/* <hr /> */}
-      <div style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+      <hr />
+      <div style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: '8px' }}>
         <div>
           <p>Delete</p>
         </div>
-        <div style={{ color: '#553791' }}>
+        <div style={{ color: '#553791', marginLeft: '110px', marginTop: '-45px' }}>
           <MdDeleteSweep />
         </div>
       </div>

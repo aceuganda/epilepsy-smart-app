@@ -4,13 +4,14 @@ import Form from '../../components/form/Form';
 import ResilienceActivityPill from '../../components/form/ResilienceActivityPill';
 import { ReactComponent as Meditation } from '../../assets/svg/Resilience/meditationIcon.svg';
 import { ReactComponent as LinkIcon } from '../../assets/svg/Resilience/linkicon.svg';
+import { ReactComponent as OneServiceGoal } from '../../assets/svg/Resilience/one_service_goal.svg';
 
 const AllResilienceActivitiesPage = () => {
   const ResilienceActivities = [
     {
       name: 'One service goal',
-      icon: null,
-      link: null,
+      icon: <OneServiceGoal />,
+      link: '/resilience-activities/one-service-goal',
       outerLink: ''
     },
     {
@@ -27,20 +28,20 @@ const AllResilienceActivitiesPage = () => {
     {
       name: 'One social goal',
       icon: null,
-      link: null,
+      link: '/resilience-activities/one-social-goal',
       outerLink: ''
     },
     {
-      name: 'Secure diary',
+      name: 'Journaling',
       icon: null,
-      link: null,
+      link: '/resilience-activities/journaling',
       outerLink: ''
     },
     {
       name: 'Education Epilepsy',
       icon: null,
-      link: null,
-      outerLink: ''
+      link: '#',
+      outerLink: 'https://www.youtube.com/watch?v=SshVn6MUGxA'
     },
     {
       name: 'Inspirational Cultural quotes',
@@ -63,8 +64,8 @@ const AllResilienceActivitiesPage = () => {
     {
       name: 'General Well being',
       icon: null,
-      link: null,
-      outerLink: ''
+      link: '#',
+      outerLink: 'https://www.cdc.gov/hrqol/wellbeing.htm'
     }
   ];
   return (

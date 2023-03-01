@@ -3,7 +3,9 @@ import React from 'react';
 
 const TextArea = ({ placeholder }) => {
   return (
-    <div><textarea placeholder={placeholder} /></div>
+    <div style={{ fontSize: '10px' }}>
+      <textarea placeholder={placeholder} />
+    </div>
   );
 };
 

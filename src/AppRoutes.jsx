@@ -34,10 +34,10 @@ import ResilienceStartPage from './pages/ResilienceTracking/Intro';
 import UserDetailsEdit from './pages/UserSettingsPage/Profile';
 import PasswordReset from './pages/UserSettingsPage/PasswordReset';
 import About from './pages/UserSettingsPage/About';
-import Journal from './components/Journal/Journal';
-import NewJournal from './components/Journal/NewJournal';
-import Journal2 from './components/Journal/Journal2';
-import Grateful from './components/Journal/Grateful';
+import Journal from './components/journal/Journal';
+import NewJournal from './components/journal/NewJournal';
+import Journal2 from './components/journal/Journal2';
+import Grateful from './components/journal/Grateful';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 

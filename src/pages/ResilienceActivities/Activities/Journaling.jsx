@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import ResilienceActivitiesPageComponent from '..';
 import Form from '../../../components/form/Form';
-import Journal from '../../../components/Journal/Journal';
+import Journal from '../../../components/journal/Journal';
 import { Link } from 'react-router-dom';
 import { ReactComponent as AddTime } from '../../../assets/svg/Medication/addtime.svg';
-import Grateful from '../../../components/Journal/Grateful';
+import Grateful from '../../../components/journal/Grateful';
 
 const data = [
   {
@@ -41,38 +41,41 @@ const Journaling = () => {
   };
 
   const textAreaStyles = {
-    width: '100%',
-    height: '100px',
+    width: '300px',
+    height: '80px',
     padding: '10px',
     fontSize: '16px',
-    border: 'none',
+    border: '1px solid rgba(0, 0, 0, 0.19)',
+    borderRadius: '8px',
+    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
     outline: 'none',
     resize: 'none',
-    transition: 'height 0.3s ease-out'
+    transition: 'height 0.3s ease-out',
+    
   };
 
-  const textStyles = {
-    fontSize: '16px',
-    color: 'gray'
-  };
+  // const textStyles = {
+  //   fontSize: '16px',
+  //   color: 'gray'
+  // };
 
   const focusedStyles = {
-    height: '350px'
+    height: '450px'
   };
 
-  const gratefulStyles = {
-    display: 'flex',
-    flexDirection: 'row',
-    marginHorizontal: 2,
-    justifyContent: 'center',
-    alignItems: 'center'
-  };
+  // const gratefulStyles = {
+  //   display: 'flex',
+  //   flexDirection: 'row',
+  //   marginHorizontal: 2,
+  //   justifyContent: 'center',
+  //   alignItems: 'center'
+  // };
 
-  const spanStyles = {
-    //define border radius
-    //give it rounded full
-    //dynamic color prop
-  };
+  // const spanStyles = {
+  //   //define border radius
+  //   //give it rounded full
+  //   //dynamic color prop
+  // };
 
   return (
     <ResilienceActivitiesPageComponent title={'Journaling'} backroute={'/resilience-activities'}>
@@ -120,16 +123,24 @@ const Journaling = () => {
               {
                 <> */}
               <h6 style={{ fontweight: 'bold' }}>What are you grateful for?</h6>
-              <textarea
-                style={textAreaStyles}
-                onFocus={(e) => {
-                  e.target.style.width = focusedStyles.width;
-                }}
-                onBlur={(e) => {
-                  e.target.style.width = textAreaStyles.width;
-                }}
-                placeholder="Tap to type something"
-              />
+              <div>
+                <div >
+                  <textarea
+                    style={textAreaStyles}
+                    onFocus={(e) => {
+                      e.target.style.width = focusedStyles.width;
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.width = textAreaStyles.width;
+                    }}
+                    placeholder="Example;I am grateful to have a roof over my head"
+                  />
+                </div>
+              </div>
+
+              <div style={{ marginLeft: '120px' }}>
+                <p>Save</p>
+              </div>
               {/* </> */}
               {/* } */}
             </div>
