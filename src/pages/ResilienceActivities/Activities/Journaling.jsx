@@ -119,7 +119,7 @@ const Journaling = () => {
               else
               {
                 <> */}
-              <h3>Some text here </h3>
+              <h6 style={{ fontweight: 'bold' }}>What are you grateful for?</h6>
               <textarea
                 style={textAreaStyles}
                 onFocus={(e) => {

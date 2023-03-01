@@ -17,18 +17,15 @@ const Grateful = (props) => {
   };
   // console.log()
   return (
-
-      <div  style={{display:'flex' , flexDirection:'row'}}>
-        <div>
-            <h1>Some text here </h1>
-        </div>
-
-          <div>
-            <textarea placeholder="Tap to type something" />
-          </div>
+    <div style={{ display: 'flex', flexDirection: 'row' }}>
+      <div>
+        <h1 style={{ fontWeight: 'bold' }}>What are you grateful for? </h1>
       </div>
-     
-        
+
+      <div>
+        <textarea placeholder="Tap to type something" />
+      </div>
+    </div>
   );
 };
 

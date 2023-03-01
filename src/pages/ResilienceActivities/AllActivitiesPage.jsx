@@ -54,7 +54,7 @@ const AllResilienceActivitiesPage = () => {
     {
       name: 'Epilepsy Education',
       icon: <EducationIcon />,
-      link: null
+      link: ' https://www.youtube.com/watch?v=SshVn6MUGxA   '
     },
     {
       name: 'INSPIRATIONAL CULTURAL QUOTES',
@@ -64,7 +64,7 @@ const AllResilienceActivitiesPage = () => {
     {
       name: 'listening',
       icon: <ListeningIcon />,
-      link: 'resilience-activities/listening'
+      link: '/resilience-activities/listening'
     }
   ];
   return (

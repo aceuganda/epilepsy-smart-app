@@ -19,9 +19,9 @@ const NewJournal = ({ placeholder }) => {
                 flexDirection: 'column',
                 width: '120px'
               }}>
-              <div style={{ borderBottom: '3px solid #F42C56', backgroundColor: '#E8E8E8' }}>
+              <div style={{ borderBottom: '3px solid #F42C56' }}>
                 {' '}
-                <input placeholder="Type here" type="text" />
+                <input style={{ backgroundColor: '#E8E8E8' }} placeholder="Type here" type="text" />
                 {/* {children} */}
               </div>
 
@@ -34,7 +34,7 @@ const NewJournal = ({ placeholder }) => {
               <button
                 style={{
                   borderStyle: 'none',
-                  backgroundColor: 'white',
+                  backgroundColor: '#E8E8E8',
                   color: 'purple',
                   fontWeight: 'bold'
                 }}>
