@@ -2,85 +2,84 @@ import React from 'react';
 import ResilienceActivitiesPageComponent from '.';
 import Form from '../../components/form/Form';
 import ResilienceActivityPill from '../../components/form/ResilienceActivityPill';
-
-import { ReactComponent as OServiceGoalIcon } from '../../assets/svg/ResilienceActivities/one_service_goal.svg';
-import { ReactComponent as OSocialGoalIcon } from '../../assets/svg/ResilienceActivities/one_social_goal.svg';
-import { ReactComponent as TriggerIcon } from '../../assets/svg/ResilienceActivities/manage_trigger.svg';
-import { ReactComponent as AffirmationIcon } from '../../assets/svg/ResilienceActivities/todays_positive.svg';
-import { ReactComponent as JournalIcon } from '../../assets/svg/ResilienceActivities/journal.svg';
-import { ReactComponent as LinkIcon } from '../../assets/svg/ResilienceActivities/link.svg';
-import { ReactComponent as MeditationIcon } from '../../assets/svg/ResilienceActivities/meditation.svg';
-import { ReactComponent as EducationIcon } from '../../assets/svg/ResilienceActivities/education.svg';
-import { ReactComponent as QuoteIcon } from '../../assets/svg/ResilienceActivities/quote.svg';
-import { ReactComponent as ListeningIcon } from '../../assets/svg/ResilienceActivities/listening.svg';
+import { ReactComponent as Meditation } from '../../assets/svg/Resilience/meditationIcon.svg';
+import { ReactComponent as LinkIcon } from '../../assets/svg/Resilience/linkicon.svg';
 
 const AllResilienceActivitiesPage = () => {
   const ResilienceActivities = [
     {
       name: 'One service goal',
-      icon: <OServiceGoalIcon />,
-      link: '/resilience-activities/one-service-goal'
+      icon: null,
+      link: null,
+      outerLink: ''
     },
     {
       name: 'Manage your triggers',
-      icon: <TriggerIcon />,
-      link: null
+      icon: null,
+      link: null,
+      outerLink: ''
     },
     {
-      name: 'Todays positive affirmation',
-      icon: <AffirmationIcon />,
+      name: 'positive affirmations',
+      icon: null,
       link: '/resilience-activities/positive-affirmations'
     },
     {
-      name: 'One Social goal',
-      icon: <OSocialGoalIcon />,
-      link: '/resilience-activities/one-social-goal'
+      name: 'One social goal',
+      icon: null,
+      link: null,
+      outerLink: ''
     },
     {
-      name: ' journaling',
-      icon: <JournalIcon />,
-      link: '/resilience-activities/journaling'
+      name: 'Secure diary',
+      icon: null,
+      link: null,
+      outerLink: ''
     },
     {
-      name: 'LINK TO ESAU',
+      name: 'Education Epilepsy',
+      icon: null,
+      link: null,
+      outerLink: ''
+    },
+    {
+      name: 'Inspirational Cultural quotes',
+      icon: null,
+      link: null,
+      outerLink: ''
+    },
+    {
+      name: 'Link to ESAU',
       icon: <LinkIcon />,
-      link: null
+      link: '#',
+      outerLink: 'https://www.epilepsy.org.ug/'
     },
     {
-      name: 'meditation',
-      icon: <MeditationIcon />,
-      link: null
+      name: 'Meditation',
+      icon: <Meditation />,
+      link: '/resilience-activities/meditation',
+      outerLink: ''
     },
     {
-      name: 'Epilepsy Education',
-      icon: <EducationIcon />,
-      link: ' https://www.youtube.com/watch?v=SshVn6MUGxA   '
-    },
-    {
-      name: 'INSPIRATIONAL CULTURAL QUOTES',
-      icon: <QuoteIcon />,
-      link: null
-    },
-    {
-      name: 'listening',
-      icon: <ListeningIcon />,
-      link: '/resilience-activities/listening'
+      name: 'General Well being',
+      icon: null,
+      link: null,
+      outerLink: ''
     }
   ];
   return (
     <div>
       <ResilienceActivitiesPageComponent backroute={'/home'}>
-        <Form style={{ maxHeight: 'none', height: '640px' }}>
-          <div className="resilience-activities">
-            {ResilienceActivities.map((activity, key) => (
-              <ResilienceActivityPill
-                key={key}
-                title={activity.name}
-                icon={activity.icon}
-                link={activity.link}
-              />
-            ))}
-          </div>
+        <Form>
+          {ResilienceActivities.map((activity, key) => (
+            <ResilienceActivityPill
+              key={key}
+              title={activity.name}
+              icon={activity.icon}
+              link={activity.link}
+              outerLink={activity.outerLink}
+            />
+          ))}
         </Form>
       </ResilienceActivitiesPageComponent>
     </div>

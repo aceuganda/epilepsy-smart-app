@@ -12,8 +12,8 @@ const IntroPage = () => {
         <Form>
           <MedicationImg className="image" />
           <Largebtn title="Add Medicine" link="/medication/tracking" />
-          <Largebtn title="Monitor Medicines" link="/medication/assessment/0" />
-          <Largebtn title="Record Your Medicines" link="" />
+          <Largebtn title="Record Your Medication" link="/medication/assessment/0" />
+          {/* <Largebtn title="Record Your Medicines" link="" /> */}
         </Form>
       </MedicationComponent>
       <Footer />
