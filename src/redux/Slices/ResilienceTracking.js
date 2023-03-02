@@ -14,7 +14,11 @@ const userId = localStorage.getItem('userInfo')
   : null;
 
 export const getResilienceTallies = async (dispatch) => {
-  const response = await getAllResilienceTallies(userId);
+  // have the id fetched on function call
+  const userID = localStorage.getItem('userInfo')
+    ? JSON.parse(localStorage.getItem('userInfo')).data.id
+    : null;
+  const response = await getAllResilienceTallies(userID);
   dispatch(getUserTallies(response.data));
 };
 
@@ -31,6 +35,9 @@ export const resilienceTrackingSlice = createSlice({
     resilience_tallies: []
   },
   reducers: {
+    setUserID: (state, action) => {
+      state.user_id = action.payload;
+    },
     setEngagedSocially: (state, action) => {
       state.engaged_socially_today = action.payload;
     },
@@ -68,7 +75,8 @@ export const {
   setFeelingToday,
   setReasonForFeeling,
   setTreatmentScaleByOthers,
-  getUserTallies
+  getUserTallies,
+  setUserID
 } = resilienceTrackingSlice.actions;
 
 export const loadUserTallies = (state) => state.resilienceTracking.resilience_tallies;

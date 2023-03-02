@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import MedicationComponent from '..';
 import Form from '../../../components/form/Form';
 import Question from '../../../components/form/Question';
 import Pagination from '../../../components/pagination';
 import { getMedicineData } from '../../../redux/Slices/MedicineTracking';
 import { useDispatch } from 'react-redux';
-import { setMedicationName, setMedicineId } from '../../../redux/Slices/MedicationTracking';
+import {
+  setUserID,
+  setMedicationName,
+  setMedicineId
+} from '../../../redux/Slices/MedicationTracking';
 import Spinner from '../../../components/Spinner/Spinner';
 
 const MedicationAssessmentPageZero = () => {
   const [selected_medicine, setSelectedMedicine] = useState(null);
   const [medicineList, setMedicineList] = useState([]);
   const [userMedicinesFeedbackMessage, setUserMedicinesFeedbackMessage] = useState('');
+  const UserId = JSON.parse(localStorage.getItem('userInfo')).data.id
+    ? JSON.parse(localStorage.getItem('userInfo')).data.id
+    : null;
 
   const dispatch = useDispatch();
+  dispatch(setUserID(UserId));
 
   const selectedButtonStyle = (selected) => {
     return selected ? 'button selectedLongPill' : 'button form-button-lg';
@@ -24,7 +31,7 @@ const MedicationAssessmentPageZero = () => {
   }, []);
 
   const fetchMedicine = async () => {
-    const response = await dispatch(getMedicineData());
+    const response = await dispatch(getMedicineData(UserId));
     if (response.payload?.status === 'success') {
       setMedicineList(response.payload.data.medicines);
     } else if (response.payload.request?.status === 404) {

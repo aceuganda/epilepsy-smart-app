@@ -25,11 +25,9 @@ const PageOne = () => {
   const [minutesValue, setMinutesValue] = useState('0');
   const [lost_awareness, setAwareness] = useState(null);
   const dispatch = useDispatch();
-
   const userId = localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo')).data.id
     : null;
-
   const handleChange = () => {
     if (seizure_duration !== 'unknown' && (minutesValue !== '0' || secondsValue !== '0')) {
       dispatch(setSeizureDuration(String(Number(minutesValue) * 60 + Number(secondsValue))));
