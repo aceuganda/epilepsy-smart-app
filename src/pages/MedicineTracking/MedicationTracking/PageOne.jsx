@@ -26,6 +26,8 @@ const MedicationTrackingPageOne = () => {
   const [addMedicineFeedback, setAddMedicineFeedback] = useState('');
   const [timePickerModalVisibility, setTimePickerModalVisibility] = useState(false);
   const [activeTab, setActiveTab] = useState('medicine'); // medicine or reminder
+  const [timerFeedbackMessage, setTimerFeedbackMessage] = useState('');
+  const [timerOuterFeedbackMessage, setOuterTimerFeedbackMessage] = useState('');
   const [medicineAccodianVisibilty, setMedicineAccodianVisibilty] = useState(false);
   const [showMedicineSelector, setShowMedicineSelector] = useState(false);
   const [checkedMedicine, setCheckedMedicine] = useState('');
@@ -118,7 +120,10 @@ const MedicationTrackingPageOne = () => {
       setSavedReminders(remindersArray);
       setTimePickerModalVisibility(false);
     } else {
-      alert('Please select saved, medicine for the reminder. Add a medicine if you dont have any.');
+      // alert('Please select saved medicine for the reminder. Add a medicine if you dont have any.');
+      setTimerFeedbackMessage(
+        'Please select saved medicine for the reminder. Add a medicine if you dont have any.'
+      );
     }
   };
   const EditReminders = (index, value) => {
@@ -175,7 +180,17 @@ const MedicationTrackingPageOne = () => {
                 </div>
               </fieldset>
             </Question>
-
+            {timerOuterFeedbackMessage && (
+              <div
+                style={{
+                  color: 'red',
+                  fontSize: '13px',
+                  padding: '2px',
+                  textAlign: 'center'
+                }}>
+                {timerOuterFeedbackMessage}
+              </div>
+            )}
             {userMedicines.length > 0 ? (
               <div
                 style={{
@@ -270,10 +285,13 @@ const MedicationTrackingPageOne = () => {
                     }}>
                     <AddTime
                       onClick={() => {
+                        setOuterTimerFeedbackMessage('');
                         if (userMedicines.length > 0) {
                           setTimePickerModalVisibility(true);
                         } else {
-                          alert('Please add some medicine to add a timer to');
+                          setOuterTimerFeedbackMessage(
+                            'Please add some medicine to your profile to access the timer'
+                          );
                         }
                       }}
                     />
@@ -323,12 +341,24 @@ const MedicationTrackingPageOne = () => {
                     onChangeZoneCallBack={handleZone}
                   />
                 </div>
+                {timerFeedbackMessage && (
+                  <div
+                    style={{
+                      color: 'red',
+                      fontSize: '13px',
+                      padding: '2px',
+                      textAlign: 'center'
+                    }}>
+                    {timerFeedbackMessage}
+                  </div>
+                )}
                 <div className="MedicineSelection">
                   <div className="SelectionHeadWrapper">
                     <div className="MedicineSelectionheader">Medicine</div>
                     <div
                       onClick={() => {
                         setMedicineAccodianVisibilty(!medicineAccodianVisibilty);
+                        setTimerFeedbackMessage('');
                       }}
                       className={medicineAccodianVisibilty ? 'OpenArrowclass' : 'Arrowclass'}>
                       <Arrow />
