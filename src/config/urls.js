@@ -7,3 +7,4 @@ export const MEDICATION_URL = `${BASE_URL}/medications`;
 export const REGISTER_USER_URL = `${BASE_URL}/users`;
 export const LOGIN_USER_URL = `${BASE_URL}/users/login`;
 export const RESILIENCE_TALLIES_URL = `${BASE_URL}/resiliences`;
+export const JOURNALS_URL = `${BASE_URL}/journals`;

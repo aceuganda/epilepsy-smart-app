@@ -1,10 +1,54 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 import ResilienceActivitiesPageComponent from '../../pages/ResilienceActivities';
 import Form from '../form/Form';
 import TextArea from './TextArea';
+import { JOURNALS_URL } from '../../config/urls';
+import { axiosInstance } from '../../apis/axiosInstance';
 
 const NewJournal = ({ placeholder }) => {
+  // const [data, setData] = useState([]);
+  const [title, setTitle] = useState('');
+  const [notes, setNotes] = useState('');
+  // const [token, setToken] = useState(null);
+
+  // useEffect(() => {
+  //   const userToken = JSON.parse(localStorage.getItem('userToken'));
+  //   setToken(userToken);
+  // }, [setToken]);
+
+  // const userToken = JSON.parse(localStorage.getItem('userToken'));
+
+  // console.log(token);
+
+  const handleSave = async () => {
+    // console.log('am being clicked');
+
+    // const config = {
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Authorization: `Bearer ${token}`
+    //   }
+    // };
+
+    if (title && notes) {
+      await axiosInstance
+        .post('https://epilepsy-smartapp-api.onrender.com/journals', {
+          title,
+          notes,
+          user_id: 1
+        })
+        .then((res) => {
+          console.log(res.data.data.journal.notes);
+        })
+        .catch((err) => console.log(err, 'ERROR WHILE SAVING  JOURNAL '));
+
+    } else {
+      alert('All Fields must not be empty');
+    }
+  };
   return (
     <ResilienceActivitiesPageComponent
       title={'New Journal'}
@@ -21,7 +65,13 @@ const NewJournal = ({ placeholder }) => {
               }}>
               <div style={{ borderBottom: '3px solid #F42C56' }}>
                 {' '}
-                <input style={{ backgroundColor: '#E8E8E8' }} placeholder="Type here" type="text" />
+                <input
+                  style={{ backgroundColor: '#E8E8E8' }}
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  placeholder="Type here"
+                  type="text"
+                />
                 {/* {children} */}
               </div>
 
@@ -32,6 +82,7 @@ const NewJournal = ({ placeholder }) => {
 
             <div>
               <button
+                onClick={handleSave}
                 style={{
                   borderStyle: 'none',
                   backgroundColor: '#E8E8E8',
@@ -43,7 +94,11 @@ const NewJournal = ({ placeholder }) => {
             </div>
           </div>
           <div>
-            <TextArea placeholder="Tap to type something" />
+            <textarea
+              onChange={(e) => setNotes(e.target.value)}
+              value={notes}
+              placeholder="Tap to type something "
+            />
           </div>
         </div>
       </Form>

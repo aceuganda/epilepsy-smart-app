@@ -35,9 +35,16 @@ const data = [
 
 const Journaling = () => {
   const [activeTab, setActiveTab] = useState(1);
+  const [show, setShow] = useState(false);
 
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
+
+    if (tabIndex === 2) {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
   };
 
   const textAreaStyles = {
@@ -50,32 +57,12 @@ const Journaling = () => {
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
     outline: 'none',
     resize: 'none',
-    transition: 'height 0.3s ease-out',
-    
+    transition: 'height 0.3s ease-out'
   };
-
-  // const textStyles = {
-  //   fontSize: '16px',
-  //   color: 'gray'
-  // };
 
   const focusedStyles = {
-    height: '450px'
+    height: '300px'
   };
-
-  // const gratefulStyles = {
-  //   display: 'flex',
-  //   flexDirection: 'row',
-  //   marginHorizontal: 2,
-  //   justifyContent: 'center',
-  //   alignItems: 'center'
-  // };
-
-  // const spanStyles = {
-  //   //define border radius
-  //   //give it rounded full
-  //   //dynamic color prop
-  // };
 
   return (
     <ResilienceActivitiesPageComponent title={'Journaling'} backroute={'/resilience-activities'}>
@@ -96,7 +83,9 @@ const Journaling = () => {
                 marginTop: '10px',
                 flexDirection: 'column'
               }}>
-              <AddTime />
+              {show ? '' : <AddTime />}
+
+   
             </div>
           </Link>
           <div className="tab-content">
@@ -124,23 +113,24 @@ const Journaling = () => {
                 <> */}
               <h6 style={{ fontweight: 'bold' }}>What are you grateful for?</h6>
               <div>
-                <div >
+                <div>
                   <textarea
                     style={textAreaStyles}
                     onFocus={(e) => {
-                      e.target.style.width = focusedStyles.width;
+                      e.target.style.height = focusedStyles.height;
                     }}
                     onBlur={(e) => {
-                      e.target.style.width = textAreaStyles.width;
+                      e.target.style.height = textAreaStyles.height;
                     }}
                     placeholder="Example;I am grateful to have a roof over my head"
                   />
                 </div>
               </div>
 
-              <div style={{ marginLeft: '120px' }}>
-                <p>Save</p>
-              </div>
+              {/* <button style={{ marginLeft: '230px', position: 'absolute', top: '0px' }}>
+                Save
+              </button> */}
+
               {/* </> */}
               {/* } */}
             </div>

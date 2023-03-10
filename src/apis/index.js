@@ -19,6 +19,7 @@ const config = {
 export const postSeizureAssessment = async (data) =>
   await axios.post(SEIZURE_URL, data, config).then((response) => response.data);
 
+
 export const postResilience = async (data) =>
   await axios.post(RESILIENCE_URL, data, config).then((response) => response.data);
 
