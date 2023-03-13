@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ResilienceActivitiesPageComponent from '..';
 import Form from '../../../components/form/Form';
 import Journal from '../../../components/journal/Journal';
 import { Link } from 'react-router-dom';
 import { ReactComponent as AddTime } from '../../../assets/svg/Medication/addtime.svg';
 import Grateful from '../../../components/journal/Grateful';
+import { axiosInstance } from '../../../apis/axiosInstance';
 
 const data = [
   {
@@ -36,6 +37,8 @@ const data = [
 const Journaling = () => {
   const [activeTab, setActiveTab] = useState(1);
   const [show, setShow] = useState(false);
+  const [grateful, setGrateful] = useState('');
+  const [result, setResult] = useState([]);
 
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
@@ -60,8 +63,44 @@ const Journaling = () => {
     transition: 'height 0.3s ease-out'
   };
 
+  const buttonStyles = {
+    position: 'absolute',
+    top: '10px',
+    right: '10px',
+    padding: '5px 10px',
+    backgroundColor: '#007bff',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer'
+  };
+
   const focusedStyles = {
     height: '300px'
+  };
+
+  useEffect(() => {
+    fetchNoteBooks();
+  }, []);
+
+  const fetchNoteBooks = async () => {
+    const user_id = 1;
+    const fetchedRes = axiosInstance
+      .get(`/gratefuls/${user_id}`)
+      .then((res) => {
+        setResult(res.data.data.gratefuls);
+        console.log(res.data.data.gratefuls, 'gettiinnnnnnnnnng');
+      })
+      .catch((err) => console.log(err));
+
+    return fetchedRes;
+  };
+
+  const handleSubmit = async () => {
+    const response = await axiosInstance
+      .post('/gratefuls', { grateful, user_id: 1 })
+      .then((res) => console.log(res.data.data.grateful))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -84,8 +123,6 @@ const Journaling = () => {
                 flexDirection: 'column'
               }}>
               {show ? '' : <AddTime />}
-
-   
             </div>
           </Link>
           <div className="tab-content">
@@ -112,10 +149,17 @@ const Journaling = () => {
               {
                 <> */}
               <h6 style={{ fontweight: 'bold' }}>What are you grateful for?</h6>
+              {/* {result.map((result) => (
+                <ul key={result.id}>
+                  <li>{result.grateful}</li>
+                </ul>
+              ))} */}
               <div>
                 <div>
                   <textarea
                     style={textAreaStyles}
+                    value={grateful}
+                    onChange={(e) => setGrateful(e.target.value)}
                     onFocus={(e) => {
                       e.target.style.height = focusedStyles.height;
                     }}
@@ -127,9 +171,11 @@ const Journaling = () => {
                 </div>
               </div>
 
-              {/* <button style={{ marginLeft: '230px', position: 'absolute', top: '0px' }}>
-                Save
-              </button> */}
+              <div>
+                <button onClick={handleSubmit} style={buttonStyles}>
+                  Save
+                </button>
+              </div>
 
               {/* </> */}
               {/* } */}

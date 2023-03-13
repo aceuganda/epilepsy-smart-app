@@ -37,7 +37,7 @@ import About from './pages/UserSettingsPage/About';
 import Journal from './components/journal/Journal';
 import NewJournal from './components/journal/NewJournal';
 import Journal2 from './components/journal/Journal2';
-import Grateful from './components/journal/Grateful';
+// import Grateful from './components/journal/Grateful';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
@@ -93,7 +93,7 @@ const AppRoutes = () => (
           <Route path="/journal" element={<Journal />} />
           <Route path="/journal/:journalId" element={<Journal2 />} />
           <Route path="/new-journal" element={<NewJournal />} />
-          <Route path="/grateful" element={<Grateful />} />
+          {/* <Route path="/grateful" element={<Grateful />} /> */}
         </Route>
       </Routes>
     </Suspense>

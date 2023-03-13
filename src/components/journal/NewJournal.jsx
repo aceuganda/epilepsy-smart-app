@@ -41,7 +41,7 @@ const NewJournal = ({ placeholder }) => {
           user_id: 1
         })
         .then((res) => {
-          console.log(res.data.data.journal.notes);
+          console.log(res.data.data.journal);
         })
         .catch((err) => console.log(err, 'ERROR WHILE SAVING  JOURNAL '));
 
