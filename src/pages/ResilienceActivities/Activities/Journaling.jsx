@@ -1,3 +1,4 @@
+/* eslint-disable no-irregular-whitespace */
 import React, { useState, useEffect } from 'react';
 import ResilienceActivitiesPageComponent from '..';
 import Form from '../../../components/form/Form';
@@ -6,29 +7,26 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as AddTime } from '../../../assets/svg/Medication/addtime.svg';
 import Grateful from '../../../components/journal/Grateful';
 import { axiosInstance } from '../../../apis/axiosInstance';
+import randomColors from '../../../config/randomColor';
 
-const data = [
+const colors = [
   {
-    title: 'Journal 1',
-    date: '15 November',
+   
     color: 'red',
     journalId: 1
   },
   {
-    title: 'Journal 2',
-    date: '15 November',
+  
     color: 'green',
     journalId: 2
   },
   {
-    title: 'Journal 3',
-    date: '15 November',
+    
     color: 'blue',
     journalId: 3
   },
   {
-    title: 'Journal 4',
-    date: '15 November',
+   
     color: 'red',
     journalId: 4
   }
@@ -39,6 +37,7 @@ const Journaling = () => {
   const [show, setShow] = useState(false);
   const [grateful, setGrateful] = useState('');
   const [result, setResult] = useState([]);
+  const [data, setData] = useState([]);
 
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
@@ -65,14 +64,13 @@ const Journaling = () => {
 
   const buttonStyles = {
     position: 'absolute',
-    top: '10px',
-    right: '10px',
-    padding: '5px 10px',
-    backgroundColor: '#007bff',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '5px',
-    cursor: 'pointer'
+    borderStyle: 'none',
+    backgroundColor: 'transparent',
+    color: 'purple',
+    fontWeight: 'bold',
+    marginLeft: '240px',
+    // marginTop: '-20px'
+    top: '130px'
   };
 
   const focusedStyles = {
@@ -80,12 +78,14 @@ const Journaling = () => {
   };
 
   useEffect(() => {
-    fetchNoteBooks();
+    fetchGratefuls();
+    fetchNotebooks();
   }, []);
 
-  const fetchNoteBooks = async () => {
-    const user_id = 1;
-    const fetchedRes = axiosInstance
+  const fetchGratefuls = async () => {
+    const userData = JSON.parse(localStorage.getItem('userInfo'));
+    const user_id = userData.data.id;
+    const fetchedRes = await axiosInstance
       .get(`/gratefuls/${user_id}`)
       .then((res) => {
         setResult(res.data.data.gratefuls);
@@ -96,9 +96,26 @@ const Journaling = () => {
     return fetchedRes;
   };
 
-  const handleSubmit = async () => {
+  const fetchNotebooks = async () => {
+    const userData = JSON.parse(localStorage.getItem('userInfo'));
+    const user_id = userData.data.id;
+
     const response = await axiosInstance
-      .post('/gratefuls', { grateful, user_id: 1 })
+      .get(`/journals/${user_id}`)
+      .then((res) => {
+        setData(res.data.data.journals)
+        console.log(data, 'RESPONSE FROM FETCHING NOTEBOOKS');
+      })
+      .catch((err) => console.log(err, 'Notebooks'));
+
+    return response;
+  };
+
+  const handleSubmit = async () => {
+    const userData = JSON.parse(localStorage.getItem('userInfo'));
+    const user_id = userData.data.id;
+    const response = await axiosInstance
+      .post('/gratefuls', { grateful, user_id })
       .then((res) => console.log(res.data.data.grateful))
       .catch((err) => console.log(err));
   };
@@ -129,11 +146,11 @@ const Journaling = () => {
             <div className={`tab-pane ${activeTab === 1 ? 'active' : ''}`}>
               {data?.map((dta) => (
                 <Journal
-                  id={dta.journalId}
-                  key={dta.title}
+                  id={dta.id}
+                  key={dta.id}
                   title={dta.title}
-                  date={dta.date}
-                  color={dta.color}
+                  date={dta.timestamp}
+                  color='red'
                 />
               ))}
             </div>
@@ -171,7 +188,7 @@ const Journaling = () => {
                 </div>
               </div>
 
-              <div>
+              <div className="Button-grateful">
                 <button onClick={handleSubmit} style={buttonStyles}>
                   Save
                 </button>

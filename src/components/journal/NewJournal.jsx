@@ -24,27 +24,21 @@ const NewJournal = ({ placeholder }) => {
   // console.log(token);
 
   const handleSave = async () => {
-    // console.log('am being clicked');
-
-    // const config = {
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     Authorization: `Bearer ${token}`
-    //   }
-    // };
+    const userData = JSON.parse(localStorage.getItem('userInfo'));
+    const user_id = userData.data.id;
+   
 
     if (title && notes) {
       await axiosInstance
         .post('https://epilepsy-smartapp-api.onrender.com/journals', {
           title,
           notes,
-          user_id: 1
+          user_id
         })
         .then((res) => {
           console.log(res.data.data.journal);
         })
         .catch((err) => console.log(err, 'ERROR WHILE SAVING  JOURNAL '));
-
     } else {
       alert('All Fields must not be empty');
     }
