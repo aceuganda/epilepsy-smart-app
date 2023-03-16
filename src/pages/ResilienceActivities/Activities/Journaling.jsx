@@ -5,32 +5,9 @@ import Form from '../../../components/form/Form';
 import Journal from '../../../components/journal/Journal';
 import { Link } from 'react-router-dom';
 import { ReactComponent as AddTime } from '../../../assets/svg/Medication/addtime.svg';
-import Grateful from '../../../components/journal/Grateful';
 import { axiosInstance } from '../../../apis/axiosInstance';
-import randomColors from '../../../config/randomColor';
 
-const colors = [
-  {
-   
-    color: 'red',
-    journalId: 1
-  },
-  {
-  
-    color: 'green',
-    journalId: 2
-  },
-  {
-    
-    color: 'blue',
-    journalId: 3
-  },
-  {
-   
-    color: 'red',
-    journalId: 4
-  }
-];
+const QUOTES_PER_PAGE = 7; // adjust as needed
 
 const Journaling = () => {
   const [activeTab, setActiveTab] = useState(1);
@@ -77,11 +54,6 @@ const Journaling = () => {
     height: '300px'
   };
 
-  useEffect(() => {
-    fetchGratefuls();
-    fetchNotebooks();
-  }, []);
-
   const fetchGratefuls = async () => {
     const userData = JSON.parse(localStorage.getItem('userInfo'));
     const user_id = userData.data.id;
@@ -89,7 +61,7 @@ const Journaling = () => {
       .get(`/gratefuls/${user_id}`)
       .then((res) => {
         setResult(res.data.data.gratefuls);
-        console.log(res.data.data.gratefuls, 'gettiinnnnnnnnnng');
+        console.log(res.data.data.gratefuls, 'GETTING GRATEFULS');
       })
       .catch((err) => console.log(err));
 
@@ -103,7 +75,7 @@ const Journaling = () => {
     const response = await axiosInstance
       .get(`/journals/${user_id}`)
       .then((res) => {
-        setData(res.data.data.journals)
+        setData(res.data.data.journals);
         console.log(data, 'RESPONSE FROM FETCHING NOTEBOOKS');
       })
       .catch((err) => console.log(err, 'Notebooks'));
@@ -111,14 +83,43 @@ const Journaling = () => {
     return response;
   };
 
+
+  useEffect(() => {
+    fetchGratefuls();
+    fetchNotebooks();
+  }, []);
+
   const handleSubmit = async () => {
     const userData = JSON.parse(localStorage.getItem('userInfo'));
     const user_id = userData.data.id;
-    const response = await axiosInstance
-      .post('/gratefuls', { grateful, user_id })
-      .then((res) => console.log(res.data.data.grateful))
-      .catch((err) => console.log(err));
+    if (!grateful) {
+      alert('All fields are required');
+    } else {
+      const response = await axiosInstance
+        .post('/gratefuls', { grateful, user_id })
+        .then((res) => {
+          console.log(res.data.data.grateful);
+          setGrateful('');
+        })
+        .catch((err) => console.log(err));
+    }
   };
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const numPages = Math.ceil(data.length / QUOTES_PER_PAGE);
+  const startIndex = (currentPage - 1) * QUOTES_PER_PAGE;
+  const endIndex = startIndex + QUOTES_PER_PAGE;
+
+  const notesToDisplay = data.slice(startIndex, endIndex);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+
+  console.log(data, '>>>>>>>>>>>>>>>>>>>>>>');
+
 
   return (
     <ResilienceActivitiesPageComponent title={'Journaling'} backroute={'/resilience-activities'}>
@@ -144,33 +145,48 @@ const Journaling = () => {
           </Link>
           <div className="tab-content">
             <div className={`tab-pane ${activeTab === 1 ? 'active' : ''}`}>
-              {data?.map((dta) => (
+              {notesToDisplay?.map((dta) => (
                 <Journal
                   id={dta.id}
                   key={dta.id}
                   title={dta.title}
                   date={dta.timestamp}
-                  color='red'
+                  color={`#${Math.floor(Math.random() * 16777215).toString(16)}`}
                 />
               ))}
+
+              {numPages > 1 && (
+                <div style={{ marginTop: '1rem', display: 'flex' }}>
+                  {Array.from({ length: numPages }).map((_, index) => (
+                    <button
+                      key={index}
+                      style={{
+                        margin: '0.5rem',
+                        padding: '0.5rem',
+                        backgroundColor: index + 1 === currentPage ? '#553791' : 'white',
+                        color: index + 1 === currentPage ? 'white' : 'black',
+                        border: 'none',
+                        borderRadius: '0.25rem',
+                        cursor: 'pointer'
+                      }}
+                      onClick={() => handlePageChange(index + 1)}>
+                      {index + 1}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
             <div className={`tab-pane ${activeTab === 2 ? 'active' : ''}`}>
-              {/* if(data)
-              {
-                <div style = {gratefulStyles}>
-                  <span></span>
-                  <h4>some data </h4>
-                </div>
-              }{' '}
-              else
-              {
-                <> */}
-              <h6 style={{ fontweight: 'bold' }}>What are you grateful for?</h6>
-              {/* {result.map((result) => (
-                <ul key={result.id}>
-                  <li>{result.grateful}</li>
-                </ul>
-              ))} */}
+              <h6 style={{ font: 'bold' }}>What are you grateful for?</h6>
+
+              <div>
+                {result?.map((result) => (
+                  <ul key={result.id}>
+                    <li>{result?.grateful}</li>
+                  </ul>
+                ))}
+              </div>
+
               <div>
                 <div>
                   <textarea

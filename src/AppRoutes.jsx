@@ -37,6 +37,8 @@ import About from './pages/UserSettingsPage/About';
 import Journal from './components/journal/Journal';
 import NewJournal from './components/journal/NewJournal';
 import Journal2 from './components/journal/Journal2';
+import InspirationalQuotes from './pages/ResilienceActivities/Activities/InspirationalQuotes';
+// import InspirationalQuotes from './pages/ResilienceActivities/InspirationalQuotes';
 // import Grateful from './components/journal/Grateful';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
@@ -93,7 +95,7 @@ const AppRoutes = () => (
           <Route path="/journal" element={<Journal />} />
           <Route path="/journal/:journalId" element={<Journal2 />} />
           <Route path="/new-journal" element={<NewJournal />} />
-          {/* <Route path="/grateful" element={<Grateful />} /> */}
+          <Route path="/quotes" element={<InspirationalQuotes />} />
         </Route>
       </Routes>
     </Suspense>

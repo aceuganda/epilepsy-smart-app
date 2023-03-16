@@ -1,32 +1,21 @@
 /* eslint-disable react/prop-types */
-import axios from 'axios';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useState } from 'react';
 import ResilienceActivitiesPageComponent from '../../pages/ResilienceActivities';
 import Form from '../form/Form';
-import TextArea from './TextArea';
-import { JOURNALS_URL } from '../../config/urls';
 import { axiosInstance } from '../../apis/axiosInstance';
+import { useNavigate } from 'react-router-dom';
 
 const NewJournal = ({ placeholder }) => {
   // const [data, setData] = useState([]);
   const [title, setTitle] = useState('');
   const [notes, setNotes] = useState('');
-  // const [token, setToken] = useState(null);
 
-  // useEffect(() => {
-  //   const userToken = JSON.parse(localStorage.getItem('userToken'));
-  //   setToken(userToken);
-  // }, [setToken]);
-
-  // const userToken = JSON.parse(localStorage.getItem('userToken'));
-
-  // console.log(token);
+  const navigate = useNavigate();
 
   const handleSave = async () => {
     const userData = JSON.parse(localStorage.getItem('userInfo'));
     const user_id = userData.data.id;
-   
 
     if (title && notes) {
       await axiosInstance
@@ -36,7 +25,8 @@ const NewJournal = ({ placeholder }) => {
           user_id
         })
         .then((res) => {
-          console.log(res.data.data.journal);
+          console.log(res.data.data.journal, 'SUCCESS');
+          navigate('/resilience-activities/Journaling');
         })
         .catch((err) => console.log(err, 'ERROR WHILE SAVING  JOURNAL '));
     } else {

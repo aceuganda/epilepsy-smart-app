@@ -5,6 +5,11 @@ import ResilienceActivityPill from '../../components/form/ResilienceActivityPill
 import { ReactComponent as Meditation } from '../../assets/svg/Resilience/meditationIcon.svg';
 import { ReactComponent as LinkIcon } from '../../assets/svg/Resilience/linkicon.svg';
 import { ReactComponent as OneServiceGoal } from '../../assets/svg/Resilience/one_service_goal.svg';
+import { ReactComponent as OneSocialGoal } from '../../assets/svg/Resilience/one_social_goal.svg';
+import { ReactComponent as ManageTrigger } from '../../assets/svg/Resilience/manage_trigger.svg';
+import { ReactComponent as Journaling } from '../../assets/svg/Resilience/journal_icon.svg';
+import { ReactComponent as Education } from '../../assets/svg/Resilience/education epp_icon.svg';
+import { ReactComponent as Inspiration } from '../../assets/svg/Resilience/Inspirational_icon.svg';
 
 const AllResilienceActivitiesPage = () => {
   const ResilienceActivities = [
@@ -16,37 +21,37 @@ const AllResilienceActivitiesPage = () => {
     },
     {
       name: 'Manage your triggers',
-      icon: null,
+      icon: <ManageTrigger />,
       link: null,
       outerLink: ''
     },
     {
       name: 'positive affirmations',
-      icon: null,
+      icon: <OneServiceGoal />,
       link: '/resilience-activities/positive-affirmations'
     },
     {
       name: 'One social goal',
-      icon: null,
+      icon: <OneSocialGoal />,
       link: '/resilience-activities/one-social-goal',
       outerLink: ''
     },
     {
       name: 'Journaling',
-      icon: null,
+      icon: <Journaling />,
       link: '/resilience-activities/journaling',
       outerLink: ''
     },
     {
       name: 'Education Epilepsy',
-      icon: null,
+      icon: <Education />,
       link: '#',
       outerLink: 'https://www.youtube.com/watch?v=SshVn6MUGxA'
     },
     {
       name: 'Inspirational Cultural quotes',
-      icon: null,
-      link: null,
+      icon: <Inspiration />,
+      link: '/quotes',
       outerLink: ''
     },
     {
