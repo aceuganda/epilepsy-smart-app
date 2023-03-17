@@ -41,11 +41,11 @@ const PageOne = () => {
   };
   useEffect(() => {}, []);
 
-  const handleMinutesChange = (target) => {
-    setMinutesValue(target.value);
+  const handleMinutesChange = (value) => {
+    setMinutesValue(value);
   };
-  const handleSecondsChange = (target) => {
-    setSecondsValue(target.value);
+  const handleSecondsChange = (value) => {
+    setSecondsValue(value);
   };
 
   const selectedButtonStyle = (selected) => {
