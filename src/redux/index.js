@@ -12,5 +12,3 @@ export default combineReducers({
   [medicationTrackingSlice.name]: medicationTrackingSlice.reducer,
   [usersSlice.name]: usersSlice.reducer
 });
-
-

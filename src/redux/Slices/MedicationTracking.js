@@ -25,6 +25,9 @@ export const medicationTrackingSlice = createSlice({
     took_medicine: ''
   },
   reducers: {
+    setUserID: (state, action) => {
+      state.user_id = action.payload;
+    },
     setExperiencedSideEffects: (state, action) => {
       state.experienced_side_effects = action.payload;
     },
@@ -58,7 +61,8 @@ export const {
   setMedicationName,
   setReasonForMissingDose,
   setSideEffects,
-  setTookMedicine
+  setTookMedicine,
+  setUserID
 } = medicationTrackingSlice.actions;
 
 export default medicationTrackingSlice.reducer;

@@ -13,8 +13,8 @@ const userId = localStorage.getItem('userInfo')
   ? JSON.parse(localStorage.getItem('userInfo')).data.id
   : null;
 
-export const getMedicineData = createAsyncThunk('medicineTracking/getData', async () => {
-  const res = await getMedicine(userId);
+export const getMedicineData = createAsyncThunk('medicineTracking/getData', async (userID) => {
+  const res = await getMedicine(userID);
   return res;
 });
 
@@ -25,6 +25,9 @@ export const medicineTrackingSlice = createSlice({
     name: ''
   },
   reducers: {
+    setUserID: (state, action) => {
+      state.user_id = action.payload;
+    },
     setMedicineName: (state, action) => {
       state.name = action.payload;
     }
@@ -37,6 +40,6 @@ export const medicineTrackingSlice = createSlice({
   }
 });
 
-export const { setMedicineName } = medicineTrackingSlice.actions;
+export const { setMedicineName, setUserID } = medicineTrackingSlice.actions;
 
 export default medicineTrackingSlice.reducer;
