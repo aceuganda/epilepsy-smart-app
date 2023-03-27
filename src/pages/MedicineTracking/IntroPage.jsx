@@ -4,6 +4,8 @@ import Footer from '../../components/layouts/Footer';
 import { ReactComponent as MedicationImg } from '../../assets/svg/Medication/medication.svg';
 import Largebtn from '../../components/form/Buttons/Largebtn';
 import MedicationComponent from '.';
+import { ReactComponent as RecordIcon } from '../../assets/svg/Seizure/RecordSeizure.svg';
+import { ReactComponent as AddMedication } from '../../assets/svg/Medication/addMedication.svg';
 
 const IntroPage = () => {
   return (
@@ -11,8 +13,12 @@ const IntroPage = () => {
       <MedicationComponent backroute={'/home'}>
         <Form>
           <MedicationImg className="image" />
-          <Largebtn title="Add Medicine" link="/medication/tracking" />
-          <Largebtn title="Record Your Medication" link="/medication/assessment/0" />
+          <Largebtn title="Add Medicine" link="/medication/tracking" icon={<AddMedication />} />
+          <Largebtn
+            title="Record Your Medication"
+            link="/medication/assessment/0"
+            icon={<RecordIcon />}
+          />
           {/* <Largebtn title="Record Your Medicines" link="" /> */}
         </Form>
       </MedicationComponent>
