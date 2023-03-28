@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { registerUser, loginUser } from '../Actions/userActions';
+import { editUserDetails } from '../../apis';
 
 const userToken = localStorage.getItem('userToken')
   ? JSON.parse(localStorage.getItem('userToken'))
@@ -9,9 +10,9 @@ const userInfo = localStorage.getItem('userInfo')
   ? JSON.parse(localStorage.getItem('userInfo'))
   : null;
 
-const userId = localStorage.getItem('userInfo')
-  ? JSON.parse(localStorage.getItem('userInfo')).data.id
-  : null;
+// const userId = localStorage.getItem('userInfo')
+//   ? JSON.parse(localStorage.getItem('userInfo')).data.id
+//   : null;
 
 const initialState = {
   loading: false,
@@ -21,8 +22,11 @@ const initialState = {
   success: false
 };
 
-export const editUserDetails = createAsyncThunk('user/edit', async ({ email, username }) => {
-  const res = await editUserDetails(userId, { email, username });
+export const editUserData = createAsyncThunk('user/edit', async (data) => {
+  const userId = localStorage.getItem('userInfo')
+    ? JSON.parse(localStorage.getItem('userInfo')).data.id
+    : null;
+  const res = await editUserDetails(userId, data);
   return res;
 });
 
@@ -66,21 +70,6 @@ export const usersSlice = createSlice({
       state.success = true;
     },
     [loginUser.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    // edit user
-    [editUserDetails.pending]:(state) => {
-      state.loading = true;
-      state.error = null;
-    },
-    [editUserDetails.fulfilled]:(state, action) => {
-      state.loading = false;
-      state.userInfo = action.payload;
-      state.userToken = action.payload.data.access_token;
-      state.success = true;
-    },
-    [editUserDetails.pending]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     }

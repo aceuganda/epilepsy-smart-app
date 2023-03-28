@@ -12,6 +12,10 @@ import { capitalise } from '../../utils';
 import { LocalNotifications } from '@capacitor/local-notifications';
 import quotes from '../../resources/insipiration_quotes.json';
 import { Link } from 'react-router-dom';
+import store from '../../store';
+import { getResilienceTallies } from '../../redux/Slices/ResilienceTracking';
+
+store.dispatch(getResilienceTallies);
 
 const HomePage = () => {
   const { userInfo } = useSelector((state) => state.user);
