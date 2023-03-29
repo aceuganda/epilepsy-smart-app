@@ -7,6 +7,7 @@ const ListStyle = {
   flexDirection: 'row',
   gap: '10px',
   fontSize: '11px',
+  alignItems: 'center',
   marginLeft: '50px',
   marginRight: '10px'
 };
@@ -14,7 +15,8 @@ const ListStyle = {
 const ListItemStyle = {
   width: '7px',
   height: '7px',
-  padding:'2px',
+  padding: '2px',
+  display: 'flex',
   borderRadius: '50%',
   backgroundColor: '#000'
 };
