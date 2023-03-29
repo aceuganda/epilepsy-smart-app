@@ -19,6 +19,11 @@
   .tab-header {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    align-self: center;
+    justify-content: space-between;
+    width: 15rem;
+    margin-bottom: 7px;
     border-bottom: 0.2px solid #ccc;
   }
   
