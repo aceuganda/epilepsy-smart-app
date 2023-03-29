@@ -2,8 +2,22 @@ import React from 'react';
 import ResilienceActivitiesPageComponent from '..';
 import Form from '../../../components/form/Form';
 
-const ListStyle = { fontSize: '11px', marginLeft: '50px', marginRight: '10px' };
+const ListStyle = {
+  display: 'flex',
+  flexDirection: 'row',
+  gap: '10px',
+  fontSize: '11px',
+  marginLeft: '50px',
+  marginRight: '10px'
+};
 
+const ListItemStyle = {
+  width: '7px',
+  height: '7px',
+  padding:'2px',
+  borderRadius: '50%',
+  backgroundColor: '#000'
+};
 const PositiveAffirmations = () => {
   return (
     <div>
@@ -42,16 +56,46 @@ const PositiveAffirmations = () => {
                 you have trouble thinking of positive ideas about yourself, ask you statements.
               </li>
               <h2 style={{ fontSize: '13px', marginLeft: '30px', marginTop: '6px' }}>Examples</h2>
-              <li style={ListStyle}>I am kind.</li>
-              <li style={ListStyle}>I am clever.</li>
-              <li style={ListStyle}>I am giving.</li>
-              <li style={ListStyle}>I try hard.</li>
-              <li style={ListStyle}>My smile makes others smile.</li>
-              <li style={ListStyle}>I am worthy.</li>
-              <li style={ListStyle}>I love who I am and can not wait to see who I am becoming</li>
-              <li style={ListStyle}>I will get through this.</li>
-              <li style={ListStyle}>I am deserving.</li>
-              <li style={ListStyle}>I get better day by day.</li>
+              <li style={ListStyle}>
+                <div style={ListItemStyle}></div>
+                <div>I am kind.</div>
+              </li>
+              <li style={ListStyle}>
+                <div style={ListItemStyle}></div>
+                <div>I am clever.</div>
+              </li>
+              <li style={ListStyle}>
+                <div style={ListItemStyle}></div>
+                <div>I am giving.</div>
+              </li>
+              <li style={ListStyle}>
+                <div style={ListItemStyle}></div>
+                <div>I try hard.</div>
+              </li>
+              <li style={ListStyle}>
+                <div style={ListItemStyle}></div>
+                <div>My smile makes others smile.</div>
+              </li>
+              <li style={ListStyle}>
+                <div style={ListItemStyle}></div>
+                <div>I am worthy.</div>
+              </li>
+              <li style={ListStyle}>
+                <div style={ListItemStyle}></div>
+                <div>I love who I am and can not wait to see who I am becoming. </div>
+              </li>
+              <li style={ListStyle}>
+                <div style={ListItemStyle}></div>
+                <div>I will get through this.</div>
+              </li>
+              <li style={ListStyle}>
+                <div style={ListItemStyle}></div>
+                <div>I am deserving.</div>
+              </li>
+              <li style={ListStyle}>
+                <div style={ListItemStyle}></div>
+                <div>I get better day by day.</div>
+              </li>
             </div>
           </div>
         </Form>
