@@ -2,6 +2,8 @@ import React from 'react';
 import ResilienceActivitiesPageComponent from '..';
 import Form from '../../../components/form/Form';
 
+const ListStyle = { fontSize: '11px', marginLeft: '50px', marginRight: '10px' };
+
 const PositiveAffirmations = () => {
   return (
     <div>
@@ -13,7 +15,7 @@ const PositiveAffirmations = () => {
             <div>
               <span style={{ marginLeft: '10px' }}>Positive Affirmations</span>
             </div>
-            <div >
+            <div>
               <span
                 style={{
                   color: 'gray',
@@ -39,37 +41,17 @@ const PositiveAffirmations = () => {
                 Tips: This is a very easy and fun way to change your self-image! If you have trouble
                 you have trouble thinking of positive ideas about yourself, ask you statements.
               </li>
-              <h6 style={{ fontSize: '13px', marginLeft: '30px', marginTop: '6px' }}>Examples</h6>
-              <li style={{ fontSize: '11px', marginLeft: '50px', marginRight: '10px' }}>
-                I am kind.
-              </li>
-              <li style={{ fontSize: '11px', marginLeft: '50px', marginRight: '10px' }}>
-                I am clever.
-              </li>
-              <li style={{ fontSize: '11px', marginLeft: '50px', marginRight: '10px' }}>
-                I am giving.
-              </li>
-              <li style={{ fontSize: '11px', marginLeft: '50px', marginRight: '10px' }}>
-                I try hard.
-              </li>
-              <li style={{ fontSize: '11px', marginLeft: '50px', marginRight: '10px' }}>
-                My smile makes others smile.
-              </li>
-              <li style={{ fontSize: '11px', marginLeft: '50px', marginRight: '10px' }}>
-                I am worthy.
-              </li>
-              <li style={{ fontSize: '11px', marginLeft: '50px', marginRight: '10px' }}>
-                I love who I am and can not wait to see who I am becoming
-              </li>
-              <li style={{ fontSize: '11px', marginLeft: '50px', marginRight: '10px' }}>
-                I will get through this.
-              </li>
-              <li style={{ fontSize: '11px', marginLeft: '50px', marginRight: '10px' }}>
-                I am deserving.
-              </li>
-              <li style={{ fontSize: '11px', marginLeft: '50px', marginRight: '10px' }}>
-                I get better day by day.
-              </li>
+              <h2 style={{ fontSize: '13px', marginLeft: '30px', marginTop: '6px' }}>Examples</h2>
+              <li style={ListStyle}>I am kind.</li>
+              <li style={ListStyle}>I am clever.</li>
+              <li style={ListStyle}>I am giving.</li>
+              <li style={ListStyle}>I try hard.</li>
+              <li style={ListStyle}>My smile makes others smile.</li>
+              <li style={ListStyle}>I am worthy.</li>
+              <li style={ListStyle}>I love who I am and can not wait to see who I am becoming</li>
+              <li style={ListStyle}>I will get through this.</li>
+              <li style={ListStyle}>I am deserving.</li>
+              <li style={ListStyle}>I get better day by day.</li>
             </div>
           </div>
         </Form>

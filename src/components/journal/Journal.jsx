@@ -7,7 +7,7 @@ const Journal = ({ title, date, color, id, notes }) => {
   const newDate = new Date(date);
   const formattedDate = `${newDate.toLocaleDateString()} ${newDate.toLocaleTimeString()}`;
   return (
-    <Link to={`/Journal/:${id}`} state={{title, date, color, id, notes}}>
+    <Link to={`/Journal/${id}`} state={{ title, date, color, id, notes }}>
       <div
         style={{ borderLeft: `10px solid ${color}`, marginTop: '10px' }}
         className="Journal-card">

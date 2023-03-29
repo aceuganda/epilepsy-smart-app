@@ -1,8 +1,9 @@
-import { Padding } from '@mui/icons-material';
-import { height } from '@mui/system';
+// import { Padding } from '@mui/icons-material';
+// import { height } from '@mui/system';
 import React from 'react';
 import ResilienceActivitiesPageComponent from '..';
 import Form from '../../../components/form/Form';
+const headerStyle = { fontSize: '13px', marginLeft: '25px', marginTop: '3px' };
 
 const OneServiceGoal = () => {
   return (
@@ -38,7 +39,7 @@ const OneServiceGoal = () => {
                 well-being. Pick one service goal to complete in the next few days. Helping someone
                 or a group can benefit to your well-being!
               </p>
-              <h6 style={{ fontSize: '13px', marginLeft: '25px', marginTop: '3px' }}>Tips:</h6>
+              <h2 style={headerStyle}>Tips:</h2>
               <li style={{ fontSize: '11px', marginLeft: '20px', marginRight: '10px' }}>
                 {' '}
                 Choose something that you have not been asked to do.{' '}
@@ -48,7 +49,7 @@ const OneServiceGoal = () => {
                 Consider doing the service act without others getting to know sometimes.{' '}
               </li>
 
-              <h6 style={{ fontSize: '13px', marginLeft: '30px', marginTop: '6px' }}>Examples</h6>
+              <h6 style={headerStyle}>Examples</h6>
               <li style={{ fontSize: '11px', marginLeft: '50px', marginRight: '10px' }}>
                 Carry groceries for an elder or mother with young children, volunteer at your
                 church/mosque, help someone with their school or home tasks, collect water for use

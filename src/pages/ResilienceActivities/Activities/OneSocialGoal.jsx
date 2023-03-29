@@ -37,7 +37,7 @@ const OneSocialGoal = () => {
                 community in small steps one at a time. Pick one social goal and try to engage in a
                 social activity in the next few days.
               </p>
-              <h6 style={{ fontSize: '13px', marginLeft: '25px', marginTop: '3px' }}>Tips:</h6>
+              <h2 style={{ fontSize: '13px', marginLeft: '25px', marginTop: '3px' }}>Tips:</h2>
               <li style={{ fontSize: '11px', marginLeft: '20px', marginRight: '10px' }}>
                 {' '}
                 Spend time with a special family member, a friend, a schoolmate, or someone from the
