@@ -639,6 +639,15 @@ button{
     text-transform: capitalize;
     font-weight: 500;
     }
+    .other-input{
+        outline: $ema-lilac-0;
+        border-radius: 10px;
+        padding: .5rem;
+        margin-bottom: 10px;
+        width: 90%;
+        margin-left: 15px;
+    }
+
 }
   
 // END OF ASSESSMENT POPUP
