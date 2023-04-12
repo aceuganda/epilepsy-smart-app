@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { registerUser, loginUser } from '../Actions/userActions';
-import { editUserDetails } from '../../apis';
+import { editUserDetails,getUserDetails } from '../../apis';
 
 const userToken = localStorage.getItem('userToken')
   ? JSON.parse(localStorage.getItem('userToken'))
@@ -27,6 +27,14 @@ export const editUserData = createAsyncThunk('user/edit', async (data) => {
     ? JSON.parse(localStorage.getItem('userInfo')).data.id
     : null;
   const res = await editUserDetails(userId, data);
+  return res;
+});
+
+export const getSingleUserDetails = createAsyncThunk('user/details', async () => {
+  const userId = localStorage.getItem('userInfo')
+    ? JSON.parse(localStorage.getItem('userInfo')).data.id
+    : null;
+  const res = await getUserDetails(userId);
   return res;
 });
 

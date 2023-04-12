@@ -80,6 +80,7 @@
         font-weight: 500;
     }
 }
+
 .Profile{
     display: flex;
     align-items: center;
@@ -97,10 +98,11 @@
         font-family: 'Monteserrat';
     } 
     form{
-        margin-top: 20px;
+        margin-top: 10px;
     }
     button{
         border-radius: 30px;
-        right:0px
+        right:0px;
+        margin-bottom: 1rem;
     }
 }
