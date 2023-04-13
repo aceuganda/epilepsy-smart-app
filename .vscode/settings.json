@@ -1,5 +1,4 @@
 {
   "java.configuration.updateBuildConfiguration": "automatic",
   "scss.lint.unknownAtRules": "ignore",
-  "cSpell.words": ["Gratefuls"]
 }
