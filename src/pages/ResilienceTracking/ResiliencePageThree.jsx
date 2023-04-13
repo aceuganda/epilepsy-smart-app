@@ -52,7 +52,6 @@ const ResiliencePageThree = () => {
   ];
 
   const handleSubmit = async (e) => {
-    console.log(resilienceTrackingData);
     setLoading(true);
     try {
       await dispatch(postResilienceFormData(resilienceTrackingData));
@@ -81,7 +80,6 @@ const ResiliencePageThree = () => {
       ? setFeelings(feeling_today.filter((item) => item !== value))
       : setFeelings((feeling_today) => [...feeling_today, value]);
   };
-    console.log('Labels:', feeling_today);
 
   return (
     <ResilienceComponent backroute={'/resilience-form/2'}>
@@ -116,7 +114,7 @@ const ResiliencePageThree = () => {
           {type_of_feelings === 'positive' ? (
             <Question question={'Which emotions were felt'}>
               <div className="disclaimer">
-                <span>You can only select upto six(6) feelings</span>
+                <span>You can select upto six(6) feelings</span>
               </div>
               <fieldset className="mt-3 mb-4">
                 <div className="ItemContainer">
@@ -128,7 +126,7 @@ const ResiliencePageThree = () => {
                       checked={false}
                       onClick={(e) => {
                         handleCheckboxChange(e.target.value);
-                        setTimeout(() => dispatch(setFeelingToday(feeling_today)), 1000);
+                        dispatch(setFeelingToday(feeling_today));
                       }}
                     />
                   ))}
@@ -141,7 +139,7 @@ const ResiliencePageThree = () => {
           {type_of_feelings === 'negative' ? (
             <Question question={'Which emotions were felt'}>
               <div className="disclaimer">
-                <span>You can only select upto six(6) feelings</span>
+                <span>You can select upto six(6) feelings</span>
               </div>
               <fieldset className="mt-3 mb-4">
                 <div className="ItemContainer">
@@ -153,7 +151,7 @@ const ResiliencePageThree = () => {
                       checked={false}
                       onClick={(e) => {
                         handleCheckboxChange(e.target.value);
-                        setTimeout(() => dispatch(setFeelingToday(feeling_today)), 1000);
+                        dispatch(setFeelingToday(feeling_today));
                       }}
                     />
                   ))}
