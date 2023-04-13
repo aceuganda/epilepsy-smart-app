@@ -71,8 +71,8 @@ const ResilienceTallies = () => {
 
   const treatedData = [
     ['Treatment', 'Percentage'],
-    ['Positive Treatment', treatedTally],
-    ['Negative Treatment', 100 - treatedTally]
+    ['Positive Treatment', 100 - treatedTally],
+    ['Negative Treatment', treatedTally]
   ];
 
   const options = {
