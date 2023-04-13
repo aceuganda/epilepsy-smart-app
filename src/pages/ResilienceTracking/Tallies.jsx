@@ -3,10 +3,12 @@ import Form from '../../components/form/Form';
 import TopBar from '../../components/form/TopBar';
 import { Chart } from 'react-google-charts';
 import VerdictComponent from './Verdict';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getResilienceTallies, loadUserTallies } from '../../redux/Slices/ResilienceTracking';
 import { useEffect } from 'react';
 import store from '../../store';
+
+store.dispatch(getResilienceTallies);
 
 const ResilienceTallies = () => {
   const resilienceTalliesData = useSelector(loadUserTallies);
@@ -20,7 +22,6 @@ const ResilienceTallies = () => {
 
   const [selectedTab, setSelectedTab] = useState('Mood');
   const onClickTabItem = (tab) => setSelectedTab(tab);
-  console.log('Resilience:', resilienceTallies);
 
   useEffect(() => {
     if (resilienceTalliesData.length < 0) {
@@ -42,13 +43,17 @@ const ResilienceTallies = () => {
       resilienceTallies.length > 0 ? resilienceTallies[0].three_day_social_activity_count : null
     );
     setMoodVerdict(
-      resilienceTallies.length > 0 ? resilienceTallies[5].three_day_av_feeling_comment : null
+      resilienceTallies.length > 0 ? resilienceTallies[5].three_day_av_feeling_comment : 'Undefined'
     );
     setSocialVerdict(
-      resilienceTallies.length > 0 ? resilienceTallies[1].three_day_social_activity_comment : null
+      resilienceTallies.length > 0
+        ? resilienceTallies[1].three_day_social_activity_comment
+        : 'Undefined'
     );
     setTreatedVerdict(
-      resilienceTallies.length > 0 ? resilienceTallies[3].three_day_av_treatment_comment : null
+      resilienceTallies.length > 0
+        ? resilienceTallies[3].three_day_av_treatment_comment
+        : 'Undefined'
     );
   }, [resilienceTallies]);
 
