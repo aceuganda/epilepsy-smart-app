@@ -37,6 +37,7 @@ const MedicationTrackingPageOne = () => {
   const [selectedZone, setSelectedZone] = useState('AM');
   const [userMedicines, setUserMedicines] = useState([]);
   const [userMedicinesFeedbackMessage, setUserMedicinesFeedbackMessage] = useState('');
+  const [otherMedicine, setOtherMedicine] = useState('');
   const medicineTrackingData = useSelector((state) => state.medicineTracking);
   const userId = localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo')).data.id
@@ -250,6 +251,25 @@ const MedicationTrackingPageOne = () => {
                       }}
                     />
                   ))}
+                  <SingleOptionCheckbox
+                    label={'other'}
+                    id="default-checkbox"
+                    //since one can add one medicine at a time
+                    checked={checkedMedicine === 'other'}
+                    onChange={() => {
+                      setCheckedMedicine('other');
+                    }}
+                  />
+                  {checkedMedicine === 'other' && (
+                    <input
+                      className="other-input"
+                      value={otherMedicine}
+                      onChange={(e) => {
+                        setOtherMedicine(e.target.value);
+                        dispatch(setMedicineName(e.target.value));
+                      }}
+                    />
+                  )}
                 </div>
                 <button onClick={handleMedicineSubmit} className="SaveButton">
                   {addingMedicine ? <Spinner /> : 'Save'}
