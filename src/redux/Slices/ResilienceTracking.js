@@ -38,6 +38,9 @@ export const resilienceTrackingSlice = createSlice({
     resilience_tallies: []
   },
   reducers: {
+    setUserID: (state, action) => {
+      state.user_id = action.payload;
+    },
     setEngagedSocially: (state, action) => {
       state.engaged_socially_today = action.payload;
     },
@@ -75,7 +78,8 @@ export const {
   setFeelingToday,
   setReasonForFeeling,
   setTreatmentScaleByOthers,
-  getUserTallies
+  getUserTallies,
+  setUserID
 } = resilienceTrackingSlice.actions;
 
 export const loadUserTallies = (state) => state.resilienceTracking.resilience_tallies;
