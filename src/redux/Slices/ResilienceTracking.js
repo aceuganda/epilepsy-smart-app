@@ -15,7 +15,14 @@ const userId = localStorage.getItem('userInfo')
 
 export const getResilienceTallies = async (dispatch) => {
   const response = await getAllResilienceTallies(userId);
-  dispatch(getUserTallies(response.data));
+  try {
+    const res = dispatch(getUserTallies(response.data));
+    console.log(res)
+    return res;
+  } catch (error) {
+    const res = dispatch(getUserTallies(response.message));
+    return res;
+  }
 };
 
 export const resilienceTrackingSlice = createSlice({
