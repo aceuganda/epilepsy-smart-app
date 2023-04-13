@@ -16,7 +16,7 @@ import { ReactComponent as CheckedIcon } from '../../assets/svg/Form/EndOfAssess
 import CheckBox from '../../components/form/CheckBox';
 
 const ResiliencePageThree = () => {
-  const [type_of_feelings, setFeelingType] = useState(null);
+  const [type_of_feelings, setFeelingType] = useState();
   const [feeling_today, setFeelings] = useState([]);
   const [reason_for_feeling, setReason] = useState(null);
 
@@ -52,7 +52,6 @@ const ResiliencePageThree = () => {
   ];
 
   const handleSubmit = async (e) => {
-    console.log(resilienceTrackingData);
     setLoading(true);
     try {
       await dispatch(postResilienceFormData(resilienceTrackingData));
@@ -60,6 +59,7 @@ const ResiliencePageThree = () => {
       setEndOfAssessment(true);
     } catch (err) {
       setLoading(false);
+      setEndOfAssessment(false);
       setButtonStatement('Try Again');
     }
   };
@@ -80,7 +80,6 @@ const ResiliencePageThree = () => {
       ? setFeelings(feeling_today.filter((item) => item !== value))
       : setFeelings((feeling_today) => [...feeling_today, value]);
   };
-  console.log('Labels:', feeling_today);
 
   return (
     <ResilienceComponent backroute={'/resilience-form/2'}>
@@ -93,9 +92,9 @@ const ResiliencePageThree = () => {
                 className={selectedButtonStyle(type_of_feelings === 'positive')}
                 value={'positive'}
                 onClick={(e) => {
-                  setFeelingType(e.target.value);
                   setFeelings([]);
-                  dispatch(setTypeOfFeelings(type_of_feelings));
+                  setFeelingType(e.target.value);
+                  dispatch(setTypeOfFeelings('positive'));
                 }}>
                 Positive
               </button>
@@ -104,9 +103,9 @@ const ResiliencePageThree = () => {
                 className={selectedButtonStyle(type_of_feelings === 'negative')}
                 value={'negative'}
                 onClick={(e) => {
-                  setFeelingType(e.target.value);
                   setFeelings([]);
-                  dispatch(setTypeOfFeelings(type_of_feelings));
+                  setFeelingType(e.target.value);
+                  dispatch(setTypeOfFeelings('negative'));
                 }}>
                 Negative
               </button>
@@ -115,7 +114,7 @@ const ResiliencePageThree = () => {
           {type_of_feelings === 'positive' ? (
             <Question question={'Which emotions were felt'}>
               <div className="disclaimer">
-                <span>You can only select upto six(6) feelings</span>
+                <span>You can select upto six(6) feelings</span>
               </div>
               <fieldset className="mt-3 mb-4">
                 <div className="ItemContainer">
@@ -140,7 +139,7 @@ const ResiliencePageThree = () => {
           {type_of_feelings === 'negative' ? (
             <Question question={'Which emotions were felt'}>
               <div className="disclaimer">
-                <span>You can only select upto six(6) feelings</span>
+                <span>You can select upto six(6) feelings</span>
               </div>
               <fieldset className="mt-3 mb-4">
                 <div className="ItemContainer">
