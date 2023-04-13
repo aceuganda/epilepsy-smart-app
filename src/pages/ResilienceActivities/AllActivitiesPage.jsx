@@ -10,6 +10,8 @@ import { ReactComponent as ManageTrigger } from '../../assets/svg/Resilience/man
 import { ReactComponent as Journaling } from '../../assets/svg/Resilience/journal_icon.svg';
 import { ReactComponent as Education } from '../../assets/svg/Resilience/education epp_icon.svg';
 import { ReactComponent as Inspiration } from '../../assets/svg/Resilience/Inspirational_icon.svg';
+import { ReactComponent as Listening } from '../../assets/svg/Resilience/listening.svg';
+import { ReactComponent as Affirm } from '../../assets/svg/Resilience/todays_positive.svg';
 
 const AllResilienceActivitiesPage = () => {
   const ResilienceActivities = [
@@ -27,7 +29,7 @@ const AllResilienceActivitiesPage = () => {
     },
     {
       name: 'positive affirmations',
-      icon: <OneServiceGoal />,
+      icon: <Affirm />,
       link: '/resilience-activities/positive-affirmations'
     },
     {
@@ -43,7 +45,7 @@ const AllResilienceActivitiesPage = () => {
       outerLink: ''
     },
     {
-      name: 'Education Epilepsy',
+      name: 'Epilepsy Education',
       icon: <Education />,
       link: '#',
       outerLink: 'https://www.youtube.com/watch?v=SshVn6MUGxA'
@@ -67,8 +69,14 @@ const AllResilienceActivitiesPage = () => {
       outerLink: ''
     },
     {
+      name: 'Listening',
+      icon: <Listening />,
+      link: '/resilience-activities/listening',
+      outerLink: ''
+    },
+    {
       name: 'General Well being',
-      icon: null,
+      icon: <OneServiceGoal />,
       link: '#',
       outerLink: 'https://www.cdc.gov/hrqol/wellbeing.htm'
     }
@@ -76,7 +84,7 @@ const AllResilienceActivitiesPage = () => {
   return (
     <div>
       <ResilienceActivitiesPageComponent backroute={'/home'}>
-        <Form>
+        <Form style={{ maxHeight: 'none', height: '660px' }}>
           {ResilienceActivities.map((activity, key) => (
             <ResilienceActivityPill
               key={key}
