@@ -16,7 +16,7 @@ import { ReactComponent as CheckedIcon } from '../../assets/svg/Form/EndOfAssess
 import CheckBox from '../../components/form/CheckBox';
 
 const ResiliencePageThree = () => {
-  const [type_of_feelings, setFeelingType] = useState(null);
+  const [type_of_feelings, setFeelingType] = useState();
   const [feeling_today, setFeelings] = useState([]);
   const [reason_for_feeling, setReason] = useState(null);
 
@@ -60,6 +60,7 @@ const ResiliencePageThree = () => {
       setEndOfAssessment(true);
     } catch (err) {
       setLoading(false);
+      setEndOfAssessment(false);
       setButtonStatement('Try Again');
     }
   };
@@ -80,7 +81,7 @@ const ResiliencePageThree = () => {
       ? setFeelings(feeling_today.filter((item) => item !== value))
       : setFeelings((feeling_today) => [...feeling_today, value]);
   };
-  console.log('Labels:', feeling_today);
+    console.log('Labels:', feeling_today);
 
   return (
     <ResilienceComponent backroute={'/resilience-form/2'}>
@@ -93,9 +94,9 @@ const ResiliencePageThree = () => {
                 className={selectedButtonStyle(type_of_feelings === 'positive')}
                 value={'positive'}
                 onClick={(e) => {
-                  setFeelingType(e.target.value);
                   setFeelings([]);
-                  dispatch(setTypeOfFeelings(type_of_feelings));
+                  setFeelingType(e.target.value);
+                  dispatch(setTypeOfFeelings('positive'));
                 }}>
                 Positive
               </button>
@@ -104,9 +105,9 @@ const ResiliencePageThree = () => {
                 className={selectedButtonStyle(type_of_feelings === 'negative')}
                 value={'negative'}
                 onClick={(e) => {
-                  setFeelingType(e.target.value);
                   setFeelings([]);
-                  dispatch(setTypeOfFeelings(type_of_feelings));
+                  setFeelingType(e.target.value);
+                  dispatch(setTypeOfFeelings('negative'));
                 }}>
                 Negative
               </button>
@@ -127,7 +128,7 @@ const ResiliencePageThree = () => {
                       checked={false}
                       onClick={(e) => {
                         handleCheckboxChange(e.target.value);
-                        dispatch(setFeelingToday(feeling_today));
+                        setTimeout(() => dispatch(setFeelingToday(feeling_today)), 1000);
                       }}
                     />
                   ))}
@@ -152,7 +153,7 @@ const ResiliencePageThree = () => {
                       checked={false}
                       onClick={(e) => {
                         handleCheckboxChange(e.target.value);
-                        dispatch(setFeelingToday(feeling_today));
+                        setTimeout(() => dispatch(setFeelingToday(feeling_today)), 1000);
                       }}
                     />
                   ))}

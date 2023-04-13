@@ -62,7 +62,7 @@ const MedicationTrackingPageOne = () => {
     } else if (response.payload.request?.status === 404) {
       setUserMedicinesFeedbackMessage(response.payload.response.data.message);
     } else {
-      setUserMedicinesFeedbackMessage('failed to fetct medicine');
+      setUserMedicinesFeedbackMessage('Failed to fetch medicines');
     }
   };
 

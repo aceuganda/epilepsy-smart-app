@@ -14,12 +14,15 @@ const userId = localStorage.getItem('userInfo')
   : null;
 
 export const getResilienceTallies = async (dispatch) => {
-  // have the id fetched on function call
-  const userID = localStorage.getItem('userInfo')
-    ? JSON.parse(localStorage.getItem('userInfo')).data.id
-    : null;
-  const response = await getAllResilienceTallies(userID);
-  dispatch(getUserTallies(response.data));
+  const response = await getAllResilienceTallies(userId);
+  try {
+    const res = dispatch(getUserTallies(response.data));
+    console.log(res)
+    return res;
+  } catch (error) {
+    const res = dispatch(getUserTallies(response.message));
+    return res;
+  }
 };
 
 export const resilienceTrackingSlice = createSlice({

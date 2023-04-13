@@ -8,8 +8,8 @@ import { setTreatmentScaleByOthers } from '../../redux/Slices/ResilienceTracking
 import { Slider } from '@mui/material';
 
 const ResiliencePageTwo = () => {
-  const [treatment_scale_one, setTreatmentScaleOne] = useState(null);
-  const [treatment_scale_two, setTreatmentScaleTwo] = useState(null);
+  const [treatment_scale_one, setTreatmentScaleOne] = useState(0);
+  const [treatment_scale_two, setTreatmentScaleTwo] = useState(0);
 
   const dispatch = useDispatch();
 
