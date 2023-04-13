@@ -21,6 +21,10 @@ import Register from './pages/Authentication/Register';
 import ProtectedRoute from './routing/ProtectedRoute';
 import AllResilienceActivitiesPage from './pages/ResilienceActivities/AllActivitiesPage';
 import PositiveAffirmations from './pages/ResilienceActivities/Activities/PositiveAffirmations';
+import OneServiceGoal from './pages/ResilienceActivities/Activities/OneServiceGoal';
+import OneSocialGoal from './pages/ResilienceActivities/Activities/OneSocialGoal';
+import Journaling from './pages/ResilienceActivities/Activities/Journaling';
+import Listening from './pages/ResilienceActivities/Activities/Listening';
 import Meditation from './pages/ResilienceActivities/Activities/Meditation/index';
 import Settings from './pages/UserSettingsPage/Settings';
 import ResilienceTallies from './pages/ResilienceTracking/Tallies';
@@ -30,60 +34,72 @@ import ResilienceStartPage from './pages/ResilienceTracking/Intro';
 import UserDetailsEdit from './pages/UserSettingsPage/Profile';
 import PasswordReset from './pages/UserSettingsPage/PasswordReset';
 import About from './pages/UserSettingsPage/About';
+import Journal from './components/journal/Journal';
+import NewJournal from './components/journal/NewJournal';
+import Journal2 from './components/journal/Journal2';
+import InspirationalQuotes from './pages/ResilienceActivities/Activities/InspirationalQuotes';
+// import InspirationalQuotes from './pages/ResilienceActivities/InspirationalQuotes';
+// import Grateful from './components/journal/Grateful';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
-const AppRoutes = () => {
-  return (
-    <Router>
-      <Suspense
-        fallback={
-          <div className="d-flex justify-content-center text-center load-spinner">
-            <div className="loader" role="status">
-              <span className="sr-only">Loading...</span>
-            </div>
+const AppRoutes = () => (
+  <Router>
+    <Suspense
+      fallback={
+        <div className="d-flex justify-content-center text-center load-spinner">
+          <div className="loader" role="status">
+            <span className="sr-only">Loading...</span>
           </div>
-        }>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/onboarding" element={<Onboarding />} />
-          <Route path="/onboarding/notify" element={<Notify />} />
-          <Route path="/onboarding/track" element={<Track />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route element={<ProtectedRoute />}>
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/seizure-form" element={<StartPage />} />
-            <Route path="/seizure-form/assessment/1" element={<PageOne />} />
-            <Route path="/seizure-form/assessment/2" element={<PageTwo />} />
-            <Route path="/seizure-form/assessment/3" element={<PageThree />} />
-            <Route path="/medication" element={<IntroPage />} />
-            <Route path="/medication/assessment/0" element={<MedicationAssessmentPageZero />} />
-            <Route path="/medication/assessment/1" element={<MedicationAssessmentPageOne />} />
-            <Route path="/medication/assessment/2" element={<MedicationAssessmentPageTwo />} />
-            <Route path="/medication/tracking" element={<MedicationTrackingPageOne />} />
-            <Route path="/resilience-form" element={<ResilienceStartPage />} />
-            <Route path="/resilience-form/1" element={<ResiliencePageOne />} />
-            <Route path="/resilience-form/2" element={<ResiliencePageTwo />} />
-            <Route path="/resilience-form/3" element={<ResiliencePageThree />} />
-            <Route path="/resilience-activities" element={<AllResilienceActivitiesPage />} />
-            <Route
-              path="/resilience-activities/positive-affirmations"
-              element={<PositiveAffirmations />}
-            />
-            <Route path="/resilience-activities/meditation" element={<Meditation />} />
-            <Route path="/account" element={<Settings />} />
-            <Route path="/resilience/tallies" element={<ResilienceTallies />} />
-            <Route path="/account/settings" element={<UserDetailsEdit />} />
-            <Route path="/account/password-reset" element={<PasswordReset />} />
-            <Route path="/account/about" element={<About />} />
-          </Route>
-        </Routes>
-      </Suspense>
-    </Router>
-  );
-};
+        </div>
+      }>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/onboarding" element={<Onboarding />} />
+        <Route path="/onboarding/notify" element={<Notify />} />
+        <Route path="/onboarding/track" element={<Track />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/seizure-form" element={<StartPage />} />
+          <Route path="/seizure-form/assessment/1" element={<PageOne />} />
+          <Route path="/seizure-form/assessment/2" element={<PageTwo />} />
+          <Route path="/seizure-form/assessment/3" element={<PageThree />} />
+          <Route path="/medication" element={<IntroPage />} />
+          <Route path="/medication/assessment/0" element={<MedicationAssessmentPageZero />} />
+          <Route path="/medication/assessment/1" element={<MedicationAssessmentPageOne />} />
+          <Route path="/medication/assessment/2" element={<MedicationAssessmentPageTwo />} />
+          <Route path="/medication/tracking" element={<MedicationTrackingPageOne />} />
+          <Route path="/resilience-form" element={<ResilienceStartPage />} />
+          <Route path="/resilience-form/1" element={<ResiliencePageOne />} />
+          <Route path="/resilience-form/2" element={<ResiliencePageTwo />} />
+          <Route path="/resilience-form/3" element={<ResiliencePageThree />} />
+          <Route path="/resilience-activities" element={<AllResilienceActivitiesPage />} />
+          <Route
+            path="/resilience-activities/positive-affirmations"
+            element={<PositiveAffirmations />}
+          />
+          <Route path="/resilience-activities/one-social-goal" element={<OneSocialGoal />} />
+          <Route path="/resilience-activities/one-service-goal" element={<OneServiceGoal />} />
+          <Route path="/resilience-activities/journaling" element={<Journaling />} />
+          <Route path="/resilience-activities/listening" element={<Listening />} />
+          <Route path="/resilience-activities/meditation" element={<Meditation />} />
+          <Route path="/account" element={<Settings />} />
+          <Route path="/resilience/tallies" element={<ResilienceTallies />} />
+          <Route path="/account/settings" element={<UserDetailsEdit />} />
+          <Route path="/account/password-reset" element={<PasswordReset />} />
+          <Route path="/account/about" element={<About />} />
+          <Route path="/journal" element={<Journal />} />
+          <Route path="/journal/:journalId" element={<Journal2 />} />
+          <Route path="/new-journal" element={<NewJournal />} />
+          <Route path="/quotes" element={<InspirationalQuotes />} />
+        </Route>
+      </Routes>
+    </Suspense>
+  </Router>
+);
 
 export default AppRoutes;

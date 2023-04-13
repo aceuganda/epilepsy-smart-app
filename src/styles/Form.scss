@@ -19,7 +19,7 @@
     padding-top: 20px;
 
     border-radius: 20px;
-    box-shadow: 0.4px 2px 2px 1px #ddd;
+    box-shadow: 0px 10px 45px 0px #00000024;
 
     display: flex;
     flex-direction: column;
@@ -683,12 +683,12 @@ button{
 
 // RESILIENCE ACTIVITIES PILL
 .resilience-a-pill {
-    width: 96%;
-    height: 40px;
-    border-radius: 16px;
+    width: 100%;
+    height: 42px;
+    border-radius: 20px;
     padding: 8px 10px;
-    box-shadow: 0px 2px 0.5px 1px rgb(240, 235, 235);
-    margin-bottom: 13px;
+    box-shadow: 0px 2px 4px 0px #0000003D;
+    margin-bottom: 10px;
     max-height: auto;
     border: 0.4px solid #ddd;
 
@@ -710,10 +710,60 @@ button{
         position: relative;
         border-radius: 50%;
         height: auto;
-        margin-right: 10px;
+        margin-right: 15px;
     }
 }
 
+.settingsPage{
+    input{
+        background: #fff;
+        width: 280px;
+        margin-left: 10px;
+        height: 45px;
+        border-color: bisque;
+        border-radius: 4px;
+        box-shadow: 0px 3px 9px 0px rgb(226, 180, 194);
+        outline: none;
+        padding:8px;
+    }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus, 
+    input:-webkit-autofill:active{
+        background-color: #fff;
+    }
+    input[type="text"],input[type="email"],input[type="password"],  textarea{
+        background-color: #fff;
+    }
+    label{
+        font-size: 18px;
+        margin-left:10px;
+        padding:8px;
+    }
+    button{
+        width: 300px;
+        margin-top: 50px;
+        margin-left: 8px;
+        background-color: $ema-lilac-1;
+        border: none;
+        border-radius:50px;
+        outline: none;
+        height: 50px;
+        text-transform: uppercase;
+        font-size: 16px;
+        text-align: center;
+        color: #fff;
+        font-weight: 500;
+        font-family: 'Poppins';
+    }
+    p{
+        font-size: 12px;
+        padding:20px;
+        margin-left: 55px;
+    }
+    
+
+}
 // TALLIES
 .tallies {
     font-family: 'Poppins';
@@ -1184,4 +1234,3 @@ button{
         }
     }
 }
-

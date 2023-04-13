@@ -1,0 +1,15 @@
+{
+  "version": "0.2",
+  "language": "en-GB",
+  "ignorePaths": [
+    "node_modules/**",
+    "**/node_modules/**",
+    ".next/",
+    "public/",
+    "package.json",
+    "yarn-error.log",
+    "yarn.lock"
+  ],
+  "words": ["Gratefuls"],
+  "flagWords": ["sex", "hate"]
+}

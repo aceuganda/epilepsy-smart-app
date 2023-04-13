@@ -21,6 +21,7 @@ export const postSeizureAssessment = async (data) =>
     .post(SEIZURE_URL, data)
     .then((response) => response.data);
 
+
 export const postResilience = async (data) =>
   await createAxiosInstance()
     .post(RESILIENCE_URL, data)

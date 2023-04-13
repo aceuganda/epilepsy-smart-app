@@ -14,7 +14,7 @@ const ResilienceActivitiesPageComponent = (props) => {
         title={props.title ? props.title : 'Resilience Activities'}
         route={`${props.backroute}`}
       />
-      {props.children}
+      <div className="resilience-activities">{props.children}</div>
     </div>
   );
 };
