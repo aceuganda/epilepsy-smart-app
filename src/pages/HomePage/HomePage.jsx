@@ -41,7 +41,6 @@ const HomePage = () => {
         ]
       });
     }
-    console.log('hasPermission', hasPermission);
   };
   //call the function every after 8 hours
   setInterval(() => {
@@ -83,7 +82,6 @@ const HomePage = () => {
             ]
           };
           await LocalNotifications.schedule(schedulingOptions);
-          console.log('Notifications Secheduled');
         }
       }
     } else {
