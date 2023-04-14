@@ -4,14 +4,18 @@ import TopBar from '../../components/form/TopBar';
 import { Chart } from 'react-google-charts';
 import VerdictComponent from './Verdict';
 import { useSelector } from 'react-redux';
-import { loadUserTallies } from '../../redux/Slices/ResilienceTracking';
+import { getResilienceTallies, loadUserTallies } from '../../redux/Slices/ResilienceTracking';
 import { useEffect } from 'react';
+import store from '../../store';
+
+store.dispatch(getResilienceTallies);
 
 const ResilienceTallies = () => {
   const resilienceTalliesData = useSelector(loadUserTallies);
-  const resilienceTallies =
-    resilienceTalliesData.length > 0 ? resilienceTalliesData.resiliences : null;
-
+  const [resilienceTallies, setResilienceTallies] = useState([]);
+  const [moodTally, setMoodTally] = useState();
+  const [socialTally, setSocialTally] = useState();
+  const [treatedTally, setTreatedTally] = useState();
   const [moodVerdict, setMoodVerdict] = useState();
   const [socialVerdict, setSocialVerdict] = useState();
   const [treatedVerdict, setTreatedVerdict] = useState();
@@ -19,28 +23,44 @@ const ResilienceTallies = () => {
   const [selectedTab, setSelectedTab] = useState('Mood');
   const onClickTabItem = (tab) => setSelectedTab(tab);
 
-  const moodTally = resilienceTallies
-    ? resilienceTallies[5].three_day_av_positive_feeling_percentage
-    : null;
-  const socialTally = resilienceTallies
-    ? resilienceTallies[1].three_day_social_activity_count
-    : null;
-  const treatedTally = resilienceTallies ? resilienceTallies[3].three_day_av_treatment : null;
+  useEffect(() => {
+    if (resilienceTalliesData.length < 0) {
+      store.dispatch(getResilienceTallies);
+    }
+    setResilienceTallies(resilienceTalliesData.resiliences);
+  }, [resilienceTalliesData]);
 
   useEffect(() => {
-    setMoodVerdict(resilienceTallies ? resilienceTallies[6].three_day_av_feeling_comment : null);
+    setMoodTally(
+      resilienceTallies.length > 0
+        ? resilienceTallies[4].three_day_av_positive_feeling_percentage
+        : null
+    );
+    setTreatedTally(
+      resilienceTallies.length > 0 ? resilienceTallies[2].three_day_av_treatment : null
+    );
+    setSocialTally(
+      resilienceTallies.length > 0 ? resilienceTallies[0].three_day_social_activity_count : null
+    );
+    setMoodVerdict(
+      resilienceTallies.length > 0 ? resilienceTallies[5].three_day_av_feeling_comment : 'Undefined'
+    );
     setSocialVerdict(
-      resilienceTallies ? resilienceTallies[2].three_day_social_activity_comment : null
+      resilienceTallies.length > 0
+        ? resilienceTallies[1].three_day_social_activity_comment
+        : 'Undefined'
     );
     setTreatedVerdict(
-      resilienceTallies ? resilienceTallies[4].three_day_av_treatment_comment : null
+      resilienceTallies.length > 0
+        ? resilienceTallies[3].three_day_av_treatment_comment
+        : 'Undefined'
     );
   }, [resilienceTallies]);
 
   const moodData = [
     ['Mood', 'Percentage'],
-    ['Positive Mood', moodTally],
-    ['Negative Mood', 100 - moodTally]
+    ['Positive Mood Logged', moodTally],
+    ['Negative Mood Logged', 100 - moodTally]
   ];
 
   const socialData = [
@@ -78,7 +98,7 @@ const ResilienceTallies = () => {
 
   return (
     <div className="tallies">
-      {resilienceTalliesData.length > 0 ? (
+      {resilienceTallies.length > 0 ? (
         <>
           <TopBar title="Tallies" route="/resilience-form" />
           <Form>

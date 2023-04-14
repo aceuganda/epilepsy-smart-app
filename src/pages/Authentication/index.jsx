@@ -15,7 +15,7 @@ const AuthPageComponent = (props) => {
     <div className="Auth">
       <div className="header">
         <Link to="/">
-          <span>{'<'} </span>
+          <span>{'<'}</span>
         </Link>
         <span>{props.title}</span>
       </div>

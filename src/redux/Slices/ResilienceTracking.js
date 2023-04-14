@@ -15,7 +15,13 @@ const userId = localStorage.getItem('userInfo')
 
 export const getResilienceTallies = async (dispatch) => {
   const response = await getAllResilienceTallies(userId);
-  dispatch(getUserTallies(response.data));
+  try {
+    const res = dispatch(getUserTallies(response.data));
+    return res;
+  } catch (error) {
+    const res = dispatch(getUserTallies(response.message));
+    return res;
+  }
 };
 
 export const resilienceTrackingSlice = createSlice({
@@ -31,6 +37,9 @@ export const resilienceTrackingSlice = createSlice({
     resilience_tallies: []
   },
   reducers: {
+    setUserID: (state, action) => {
+      state.user_id = action.payload;
+    },
     setEngagedSocially: (state, action) => {
       state.engaged_socially_today = action.payload;
     },
@@ -68,7 +77,8 @@ export const {
   setFeelingToday,
   setReasonForFeeling,
   setTreatmentScaleByOthers,
-  getUserTallies
+  getUserTallies,
+  setUserID
 } = resilienceTrackingSlice.actions;
 
 export const loadUserTallies = (state) => state.resilienceTracking.resilience_tallies;

@@ -105,8 +105,8 @@ button{
     margin-bottom: 25px;
 
     button {
-        background-color: $ema-lilac-2;
-        width: 220px;
+        background-color: $ema-lilac-1;
+        width: 240px;
         height: 40px;
         color: $ema-white-0;
         font-size: 14px;
@@ -639,6 +639,15 @@ button{
     text-transform: capitalize;
     font-weight: 500;
     }
+    .other-input{
+        outline: $ema-lilac-0;
+        border-radius: 10px;
+        padding: .5rem;
+        margin-bottom: 10px;
+        width: 90%;
+        margin-left: 15px;
+    }
+
 }
   
 // END OF ASSESSMENT POPUP
@@ -688,7 +697,7 @@ button{
     border-radius: 20px;
     padding: 8px 10px;
     box-shadow: 0px 2px 4px 0px #0000003D;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     max-height: auto;
     border: 0.4px solid #ddd;
 

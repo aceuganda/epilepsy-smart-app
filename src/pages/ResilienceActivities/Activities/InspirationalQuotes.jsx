@@ -5,7 +5,7 @@ import Form from '../../../components/form/Form';
 
 const data = [
   {
-    color: 'red',
+    color: '#CAEB0E',
     text: 'You are capable of more than you think.'
   },
   {
@@ -21,24 +21,24 @@ const data = [
     text: 'So many people are afraid of failure, when what they should be afraid of is regret.'
   },
   {
-    color: 'blue',
-    text: 'The view is beautiful from the top, but there is beauty in the climb. Dont overlook it.'
+    color: 'pink',
+    text: 'The view is beautiful from the top, but there is beauty in the climb. Don’t overlook it.'
   },
   {
     color: '#CAEB0E',
     text: 'Discipline will take you places where motivation cant.'
   },
   {
-    color: 'gray',
-    text: 'You can, end of story.'
+    color: 'red',
+    text: 'You CAN, end of story.'
   },
   {
-    color: 'pink',
+    color: 'blue',
     text: 'Never stop dreaming.'
   },
   {
     color: '#553791',
-    text: 'You get tested the most when you are about to reach a new level, dont break.'
+    text: 'You get tested the most when you are about to reach a new level, don’t break.'
   }
 ];
 
@@ -58,50 +58,50 @@ const InspirationalQuotes = () => {
   };
 
   return (
-    <ResilienceActivitiesPageComponent
-      title={'Inspirational Quotes'}
-      backroute={'/resilience-activities'}>
+    <ResilienceActivitiesPageComponent backroute={'/resilience-activities'}>
       <Form>
-        <div>
-          <h4>Read to be inspired</h4>
-        </div>
-        {quotesToDisplay.map(({ text, color }, index) => (
-          <div key={startIndex + index}>
-            <div key={startIndex + index} style={{ display: 'flex', alignItems: 'flex-start' }}>
-              <div
-                style={{
-                  borderRadius: '100%',
-                  backgroundColor: `${color}`,
-                  padding: '4px',
-                  height: '14px',
-                  width: '14px',
-                  marginRight: 4,
-                  marginLeft: 0
-                }}></div>
-              <p>{text}</p>
+        <div className="text-page">
+          <div className="title">
+            <h3>Quotes to inspire you </h3>
+          </div>
+          {quotesToDisplay.map(({ text, color }, index) => (
+            <div key={startIndex + index} className="quotes-body">
+              <div key={startIndex + index} className="quotes">
+                <div
+                  style={{
+                    borderRadius: '100%',
+                    backgroundColor: `${color}`,
+                    // padding: '4px',
+                    height: '20px',
+                    width: '20px',
+                    marginRight: 4,
+                    marginLeft: 0
+                  }}></div>
+                <p className='text'>{text}</p>
+              </div>
             </div>
-          </div>
-        ))}
-        {numPages > 1 && (
-          <div style={{ marginTop: '1rem', display: 'flex' }}>
-            {Array.from({ length: numPages }).map((_, index) => (
-              <button
-                key={index}
-                style={{
-                  margin: '0.5rem',
-                  padding: '0.5rem',
-                  backgroundColor: index + 1 === currentPage ? '#553791' : 'white',
-                  color: index + 1 === currentPage ? 'white' : 'black',
-                  border: 'none',
-                  borderRadius: '0.25rem',
-                  cursor: 'pointer'
-                }}
-                onClick={() => handlePageChange(index + 1)}>
-                {index + 1}
-              </button>
-            ))}
-          </div>
-        )}
+          ))}
+          {numPages > 1 && (
+            <div style={{ marginTop: '1rem', display: 'flex' }}>
+              {Array.from({ length: numPages }).map((_, index) => (
+                <button
+                  key={index}
+                  style={{
+                    margin: '0.5rem',
+                    padding: '0.5rem',
+                    backgroundColor: index + 1 === currentPage ? '#553791' : 'white',
+                    color: index + 1 === currentPage ? 'white' : 'black',
+                    border: 'none',
+                    borderRadius: '0.25rem',
+                    cursor: 'pointer'
+                  }}
+                  onClick={() => handlePageChange(index + 1)}>
+                  {index + 1}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </Form>
     </ResilienceActivitiesPageComponent>
   );

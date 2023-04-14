@@ -10,12 +10,13 @@ import Question from '../../../components/form/Question';
 import { useDispatch, useSelector } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
 import Modal from '../../../components/modal/index.jsx';
-import CheckBox from '../../../components/form/CheckBox';
+import SingleOptionCheckbox from '../../../components/form/SingleOptionCheckbox';
 import Spinner from '../../../components/Spinner/Spinner';
 import {
   setMedicineName,
   postMedicineFormData,
-  getMedicineData
+  getMedicineData,
+  setUserID
 } from '../../../redux/Slices/MedicineTracking';
 
 const medicineNames = ['Sodium Vaporate', 'Diclofenac', 'Gofen', 'Ibuprofen'];
@@ -25,6 +26,8 @@ const MedicationTrackingPageOne = () => {
   const [addMedicineFeedback, setAddMedicineFeedback] = useState('');
   const [timePickerModalVisibility, setTimePickerModalVisibility] = useState(false);
   const [activeTab, setActiveTab] = useState('medicine'); // medicine or reminder
+  const [timerFeedbackMessage, setTimerFeedbackMessage] = useState('');
+  const [timerOuterFeedbackMessage, setOuterTimerFeedbackMessage] = useState('');
   const [medicineAccodianVisibilty, setMedicineAccodianVisibilty] = useState(false);
   const [showMedicineSelector, setShowMedicineSelector] = useState(false);
   const [checkedMedicine, setCheckedMedicine] = useState('');
@@ -34,52 +37,56 @@ const MedicationTrackingPageOne = () => {
   const [selectedZone, setSelectedZone] = useState('AM');
   const [userMedicines, setUserMedicines] = useState([]);
   const [userMedicinesFeedbackMessage, setUserMedicinesFeedbackMessage] = useState('');
+  const [otherMedicine, setOtherMedicine] = useState('');
   const medicineTrackingData = useSelector((state) => state.medicineTracking);
   const userId = localStorage.getItem('userInfo')
-  ? JSON.parse(localStorage.getItem('userInfo')).data.id
-  : null;
+    ? JSON.parse(localStorage.getItem('userInfo')).data.id
+    : null;
   const [savedReminders, setSavedReminders] = useState(
-    localStorage.getItem(`${userId}Reminders`) ? JSON.parse(localStorage.getItem(`${userId}Reminders`)) : []
+    localStorage.getItem(`${userId}Reminders`)
+      ? JSON.parse(localStorage.getItem(`${userId}Reminders`))
+      : []
   );
 
   const dispatch = useDispatch();
   // const navigate = useNavigate();
-
+  dispatch(setUserID(userId));
   useEffect(() => {
     fetchMedicine();
   }, []);
 
   const fetchMedicine = async () => {
-    const response = await dispatch(getMedicineData());
-
+    // console.log(userId);
+    const response = await dispatch(getMedicineData(userId));
     if (response.payload?.status === 'success') {
       setUserMedicines(response.payload.data.medicines);
     } else if (response.payload.request?.status === 404) {
       setUserMedicinesFeedbackMessage(response.payload.response.data.message);
     } else {
-      setUserMedicinesFeedbackMessage('failed to fetct medicine');
+      setUserMedicinesFeedbackMessage('Failed to fetch medicines');
     }
   };
 
- 
   const handleMedicineSubmit = async (event) => {
     event.preventDefault();
     //call medicine post
     if (checkedMedicine !== '') {
       setAddingMedicine(true);
-      try{
-      const response = await dispatch(postMedicineFormData(medicineTrackingData));
-      if (response.payload?.status === 'success') {
-        setAddMedicineFeedback(`Medicine added.`);
-        setAddingMedicine(false);
-        window.location.reload();
-      } else {
-        setAddMedicineFeedback("Failed to add medicine. Be sure you haven't already added the medicine");
-        setAddingMedicine(false);
+      try {
+        const response = await dispatch(postMedicineFormData(medicineTrackingData));
+        if (response.payload?.status === 'success') {
+          setAddMedicineFeedback(`Medicine added.`);
+          setAddingMedicine(false);
+          window.location.reload();
+        } else {
+          setAddMedicineFeedback(
+            "Failed to add medicine. Be sure you haven't already added the medicine"
+          );
+          setAddingMedicine(false);
+        }
+      } catch (error) {
+        setAddMedicineFeedback('Failed to add medicine.');
       }
-    }catch(error){
-       setAddMedicineFeedback("Failed to add medicine.");
-    }
     }
   };
 
@@ -114,7 +121,10 @@ const MedicationTrackingPageOne = () => {
       setSavedReminders(remindersArray);
       setTimePickerModalVisibility(false);
     } else {
-      alert('Please select saved, medicine for the reminder. Add a medicine if you dont have any.');
+      // alert('Please select saved medicine for the reminder. Add a medicine if you dont have any.');
+      setTimerFeedbackMessage(
+        'Please select saved medicine for the reminder. Add a medicine if you dont have any.'
+      );
     }
   };
   const EditReminders = (index, value) => {
@@ -171,7 +181,17 @@ const MedicationTrackingPageOne = () => {
                 </div>
               </fieldset>
             </Question>
-
+            {timerOuterFeedbackMessage && (
+              <div
+                style={{
+                  color: 'red',
+                  fontSize: '13px',
+                  padding: '2px',
+                  textAlign: 'center'
+                }}>
+                {timerOuterFeedbackMessage}
+              </div>
+            )}
             {userMedicines.length > 0 ? (
               <div
                 style={{
@@ -217,25 +237,39 @@ const MedicationTrackingPageOne = () => {
             )}
             <Modal show={showMedicineSelector} closeModal={handleUserMedsModalClosure}>
               <div>
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    marginBottom: '20px'
-                  }}>
+                <div className="ItemList">
                   {medicineNames.map((label, index) => (
-                    <CheckBox
+                    <SingleOptionCheckbox
                       key={index}
                       label={label}
                       id="default-checkbox"
                       //since one can add one medicine at a time
-                      checked={checkedMedicine === label}
+                      checked={label === checkedMedicine}
                       onChange={() => {
                         dispatch(setMedicineName(label));
                         setCheckedMedicine(label);
                       }}
                     />
                   ))}
+                  <SingleOptionCheckbox
+                    label={'other'}
+                    id="default-checkbox"
+                    //since one can add one medicine at a time
+                    checked={checkedMedicine === 'other'}
+                    onChange={() => {
+                      setCheckedMedicine('other');
+                    }}
+                  />
+                  {checkedMedicine === 'other' && (
+                    <input
+                      className="other-input"
+                      value={otherMedicine}
+                      onChange={(e) => {
+                        setOtherMedicine(e.target.value);
+                        dispatch(setMedicineName(e.target.value));
+                      }}
+                    />
+                  )}
                 </div>
                 <button onClick={handleMedicineSubmit} className="SaveButton">
                   {addingMedicine ? <Spinner /> : 'Save'}
@@ -271,10 +305,13 @@ const MedicationTrackingPageOne = () => {
                     }}>
                     <AddTime
                       onClick={() => {
+                        setOuterTimerFeedbackMessage('');
                         if (userMedicines.length > 0) {
                           setTimePickerModalVisibility(true);
                         } else {
-                          alert('Please add some medicine to add a timer to');
+                          setOuterTimerFeedbackMessage(
+                            'Please add some medicine to your profile to access the timer'
+                          );
                         }
                       }}
                     />
@@ -324,12 +361,24 @@ const MedicationTrackingPageOne = () => {
                     onChangeZoneCallBack={handleZone}
                   />
                 </div>
+                {timerFeedbackMessage && (
+                  <div
+                    style={{
+                      color: 'red',
+                      fontSize: '13px',
+                      padding: '2px',
+                      textAlign: 'center'
+                    }}>
+                    {timerFeedbackMessage}
+                  </div>
+                )}
                 <div className="MedicineSelection">
                   <div className="SelectionHeadWrapper">
                     <div className="MedicineSelectionheader">Medicine</div>
                     <div
                       onClick={() => {
                         setMedicineAccodianVisibilty(!medicineAccodianVisibilty);
+                        setTimerFeedbackMessage('');
                       }}
                       className={medicineAccodianVisibilty ? 'OpenArrowclass' : 'Arrowclass'}>
                       <Arrow />

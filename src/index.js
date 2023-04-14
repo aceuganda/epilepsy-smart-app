@@ -6,9 +6,6 @@ import 'font-awesome/css/font-awesome.min.css';
 import { Provider } from 'react-redux';
 import './styles/index.scss';
 import store from './store';
-import { getResilienceTallies } from './redux/Slices/ResilienceTracking';
-
-store.dispatch(getResilienceTallies);
 
 ReactDOM.render(
   <Provider store={store}>

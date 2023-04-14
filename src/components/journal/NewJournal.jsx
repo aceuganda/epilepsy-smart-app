@@ -3,34 +3,50 @@ import React from 'react';
 import { useState } from 'react';
 import ResilienceActivitiesPageComponent from '../../pages/ResilienceActivities';
 import Form from '../form/Form';
-import { axiosInstance } from '../../apis/axiosInstance';
+import { useDispatch } from 'react-redux';
+import { postUserJournal } from '../../redux/Actions/journalingActions';
 import { useNavigate } from 'react-router-dom';
+import Spinner from '../Spinner/Spinner';
 
-const NewJournal = ({ placeholder }) => {
-  // const [data, setData] = useState([]);
+const NewJournal = () => {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [notes, setNotes] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [journalActionError, setJournalActionError] = useState('');
 
   const navigate = useNavigate();
 
   const handleSave = async () => {
     const userData = JSON.parse(localStorage.getItem('userInfo'));
     const user_id = userData.data.id;
+    const journal = {
+      title,
+      notes,
+      user_id
+    };
 
     if (title && notes) {
-      await axiosInstance
-        .post('https://epilepsy-smartapp-api.onrender.com/journals', {
-          title,
-          notes,
-          user_id
-        })
-        .then((res) => {
-          console.log(res.data.data.journal, 'SUCCESS');
-          navigate('/resilience-activities/Journaling');
-        })
-        .catch((err) => console.log(err, 'ERROR WHILE SAVING  JOURNAL '));
+      setLoading(true);
+      const response = await dispatch(postUserJournal(journal));
+      // console.log(response);
+      if (response?.error) {
+        setJournalActionError('Failed to delete journal');
+        setLoading(false);
+        return;
+      }
+      if (response.payload?.status === 'success') {
+        //redirect
+        navigate('/resilience-activities/Journaling');
+        setLoading(false);
+        return;
+      } else {
+        setJournalActionError('Failed to delete journal');
+        setLoading(false);
+        return;
+      }
     } else {
-      alert('All Fields must not be empty');
+      setJournalActionError('All Fields must not be empty');
     }
   };
   return (
@@ -73,7 +89,7 @@ const NewJournal = ({ placeholder }) => {
                   color: 'purple',
                   fontWeight: 'bold'
                 }}>
-                Save
+                {loading ? <Spinner /> : 'Save'}
               </button>
             </div>
           </div>
@@ -83,6 +99,17 @@ const NewJournal = ({ placeholder }) => {
               value={notes}
               placeholder="Tap to type something "
             />
+            <div
+              style={{
+                display: 'flex',
+                width: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+                color: 'red',
+                fontSize: '10px'
+              }}>
+              {journalActionError}
+            </div>
           </div>
         </div>
       </Form>

@@ -3,9 +3,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiChevronRight } from 'react-icons/fi';
 
-const Journal = ({ title, date, color, id }) => {
+const Journal = ({ title, date, color, id, notes }) => {
+  const newDate = new Date(date);
+  const formattedDate = `${newDate.toLocaleDateString()} ${newDate.toLocaleTimeString()}`;
   return (
-    <Link to={'/Journal/:' + id}>
+    <Link to={`/Journal/${id}`} state={{ title, date, color, id, notes }}>
       <div
         style={{ borderLeft: `10px solid ${color}`, marginTop: '10px' }}
         className="Journal-card">
@@ -25,7 +27,7 @@ const Journal = ({ title, date, color, id }) => {
               marginLeft: 7
             }}>
             <h4 style={{ fontSize: 'small' }}>{title}</h4>
-            <p style={{ fontSize: 'x-small' }}>{date}</p>
+            <p style={{ fontSize: 'x-small' }}>{formattedDate}</p>
           </div>
           <div>
             <FiChevronRight style={{ width: '20px' }} />
