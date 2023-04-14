@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import Avatar from './Avatar';
 import { capitalise } from '../../utils';
 import { LocalNotifications } from '@capacitor/local-notifications';
-import quotes from '../../resources/insipiration_quotes.json';
+import quotes from '../../resources/inspiration_quotes.json';
 import { Link } from 'react-router-dom';
 
 const HomePage = () => {
