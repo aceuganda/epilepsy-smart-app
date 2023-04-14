@@ -89,7 +89,7 @@ const AppRoutes = () => (
           <Route path="/resilience-activities/listening" element={<Listening />} />
           <Route path="/resilience-activities/meditation" element={<Meditation />} />
           <Route path="/account" element={<Settings />} />
-          <Route path="/email-verification" element={<VerificationPage/>} />
+          <Route path="/account/verify" element={<VerificationPage />} />
           <Route path="/resilience/tallies" element={<ResilienceTallies />} />
           <Route path="/account/settings" element={<UserDetailsEdit />} />
           <Route path="/account/password-reset" element={<PasswordReset />} />
