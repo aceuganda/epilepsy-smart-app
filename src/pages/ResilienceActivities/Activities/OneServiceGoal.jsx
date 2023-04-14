@@ -40,13 +40,14 @@ const OneServiceGoal = () => {
               </ul>
               <h5>Examples:</h5>
               <ul>
-                <li>
-                  Carry groceries for an elder or mother with young children, volunteer at your
-                  church/mosque, help someone with their school or home tasks, collect water for use
-                  at home, wash up the plates and cups after a meal without being asked, clean/sweep
-                  the compound, wash or iron your parents or siblings’ clothes, or empty the dustbin
-                  in the designated waste area.
-                </li>
+                <li>Carry groceries for an elder or mother with young children</li>
+                <li>Volunteer at your church/mosque</li>
+                <li>Help someone with their school or home tasks</li>
+                <li>Collect water for use at home</li>
+                <li>Wash up the plates and cups after a meal without being asked</li>
+                <li>Clean/sweep the compound</li>
+                <li>Wash/iron your parents or siblings’ clothes</li>
+                <li>Empty the dustbin into the designated waste area</li>
               </ul>
             </div>
           </div>
