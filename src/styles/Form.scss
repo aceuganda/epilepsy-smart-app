@@ -824,6 +824,34 @@ button{
         .chart-container {
             margin-top: 40px;
         }
+
+        .recommendations{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 14px;
+            .title{
+                color: $ema-lilac-1;
+                font-weight: 800;
+                font-size: 11px;
+                margin-top: 10px 0;
+                font-style: italic;
+            }
+            .activity-pill{
+                background-color: $ema-lilac-1;
+                box-shadow: 0px 2px 4px 0px #0000003D;
+                margin: 6px 0;
+                border-radius: 20px;
+                padding: 5px 10px;
+                width:75%;
+                height: 30px;
+                color: white;
+                font-size: 12px;
+                text-transform: capitalize;
+                text-align: center;
+            }
+        }
     }
 }
 

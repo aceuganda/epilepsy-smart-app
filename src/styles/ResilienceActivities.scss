@@ -43,28 +43,61 @@
         p{
           font-size: 13.5px;
           font-weight: 400;
-          text-align: justify;
+          line-height: 18px;
         }
         h5{
           font-size: 15px;
         }
         ul{
-          text-align: justify;
           li{
             font-size: 13.5px;
+            line-height: 18px;
           }
         }
       }
       .quotes-body{
+        .circle{
+          height: 15px;
+          width: 15px;
+          border-radius: 100%;
+        }
         .quotes{
           display: flex;
           flex-direction: row;
           justify-content: space-between;
           align-items: center;
+          padding: 6px 0;
         }
         .text{
-          width: 87%;
+          width: 92%;
           text-align: justify;
+          line-height: 16px;
+          padding-bottom: 0;
+        }
+        p.text{
+          margin-bottom: 0;
+          padding-bottom: 0;
+        }
+      }
+      .pagination{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        position: absolute;
+        bottom: 20px;
+        button{
+          padding: 4px 10px;
+          width: 36px;
+          border: none;
+          outline: none;
+          border-radius: 6px;
+          cursor: pointer;
+          margin-right: 8px;
+          margin-top: 5px;
+        }
+        button.selected{
+          background-color: $ema-lilac-1;
+          color: white;
         }
       }
     }
