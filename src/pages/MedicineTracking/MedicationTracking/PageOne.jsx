@@ -264,6 +264,7 @@ const MedicationTrackingPageOne = () => {
                     <input
                       className="other-input"
                       value={otherMedicine}
+                      placeholder="Panadol.."
                       onChange={(e) => {
                         setOtherMedicine(e.target.value);
                         dispatch(setMedicineName(e.target.value));
