@@ -23,6 +23,7 @@ import AllResilienceActivitiesPage from './pages/ResilienceActivities/AllActivit
 import PositiveAffirmations from './pages/ResilienceActivities/Activities/PositiveAffirmations';
 import OneServiceGoal from './pages/ResilienceActivities/Activities/OneServiceGoal';
 import OneSocialGoal from './pages/ResilienceActivities/Activities/OneSocialGoal';
+import ManageYourTriggers from './pages/ResilienceActivities/Activities/ManageYourTriggers';
 import Journaling from './pages/ResilienceActivities/Activities/Journaling';
 import Listening from './pages/ResilienceActivities/Activities/Listening';
 import Meditation from './pages/ResilienceActivities/Activities/Meditation/index';
@@ -83,6 +84,10 @@ const AppRoutes = () => (
             element={<PositiveAffirmations />}
           />
           <Route path="/resilience-activities/one-social-goal" element={<OneSocialGoal />} />
+          <Route
+            path="/resilience-activities/manage-your-triggers"
+            element={<ManageYourTriggers />}
+          />
           <Route path="/resilience-activities/one-service-goal" element={<OneServiceGoal />} />
           <Route path="/resilience-activities/journaling" element={<Journaling />} />
           <Route path="/resilience-activities/listening" element={<Listening />} />

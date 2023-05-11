@@ -6,6 +6,11 @@ const OneServiceGoal = () => {
   const [selectedTab, setSelectedTab] = useState('overall');
   const onClickTabItem = (tab) => setSelectedTab(tab);
 
+  const oneSocialGoal = [
+    'Choose something that you have not been asked to do.',
+    'Consider doing the service act without others getting to know sometimes.' 
+  ];
+
   return (
     <div>
       <ResilienceActivitiesPageComponent backroute={'/resilience-activities'}>
@@ -35,8 +40,16 @@ const OneServiceGoal = () => {
               </p>
               <h5>Tips:</h5>
               <ul>
-                <li>Choose something that you have not been asked to do.</li>
-                <li> Consider doing the service act without others getting to know sometimes. </li>
+                {oneSocialGoal ? (
+                  oneSocialGoal.map((affirmation, index) => (
+                    <li key={index}>
+                      {affirmation}
+                      {'.'}
+                    </li>
+                  ))
+                ) : (
+                  <span />
+                )}
               </ul>
               <h5>Examples:</h5>
               <ul>
