@@ -78,7 +78,7 @@ const UserDetailsEdit = () => {
 
     //console.log(updateObject);
     const response = await dispatch(editUserData(updateObject));
-    console.log(response);
+    // console.log(response);
     if (response?.payload.status === 200) {
       dispatch(logout());
       setLoading(false);
