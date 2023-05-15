@@ -23,7 +23,6 @@ const MedicationAssessmentPageOne = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(medicationTrackingData);
     setLoading(true);
     try {
       await dispatch(postMedicationFormData(medicationTrackingData));

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import { Link } from 'react-router-dom';
 import MedicationComponent from '..';
 import Form from '../../../components/form/Form';
 import { ReactComponent as Arrow } from '../../../assets/svg/Form/Selectors/togglearrow.svg';
@@ -8,7 +7,6 @@ import TimeSelector from './TimeSelector';
 import { ReactComponent as AddTime } from '../../../assets/svg/Medication/addtime.svg';
 import Question from '../../../components/form/Question';
 import { useDispatch, useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
 import Modal from '../../../components/modal/index.jsx';
 import SingleOptionCheckbox from '../../../components/form/SingleOptionCheckbox';
 import Spinner from '../../../components/Spinner/Spinner';
@@ -49,14 +47,12 @@ const MedicationTrackingPageOne = () => {
   );
 
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
   dispatch(setUserID(userId));
   useEffect(() => {
     fetchMedicine();
   }, []);
 
   const fetchMedicine = async () => {
-    // console.log(userId);
     const response = await dispatch(getMedicineData(userId));
     if (response.payload?.status === 'success') {
       setUserMedicines(response.payload.data.medicines);
@@ -123,7 +119,7 @@ const MedicationTrackingPageOne = () => {
     } else {
       // alert('Please select saved medicine for the reminder. Add a medicine if you dont have any.');
       setTimerFeedbackMessage(
-        'Please select saved medicine for the reminder. Add a medicine if you dont have any.'
+        'Please select saved medicine for the reminder. Add a medicine if you do not have any.'
       );
     }
   };

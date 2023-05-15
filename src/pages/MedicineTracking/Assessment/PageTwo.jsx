@@ -11,6 +11,8 @@ import {
   postMedicationFormData
 } from '../../../redux/Slices/MedicationTracking';
 import Spinner from '../../../components/Spinner/Spinner';
+import EndOfAssessmentModal from '../../../components/form/EndOfAssessment';
+import { ReactComponent as CheckedIcon } from '../../../assets/svg/Form/EndOfAssessment/CheckedIcon.svg';
 
 const MedicationAssessmentPageTwo = () => {
   const [side_effects, setSideEffect] = useState(null);
@@ -20,19 +22,20 @@ const MedicationAssessmentPageTwo = () => {
   const navigate = useNavigate();
 
   const medicationTrackingData = useSelector((state) => state.medicationTracking);
+  const [endOfAssessment, setEndOfAssessment] = useState(false);
+  const [buttonStatement, setButtonStatement] = useState('Finish');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(medicationTrackingData);
     setLoading(true);
     try {
       await dispatch(postMedicationFormData(medicationTrackingData));
       setLoading(false);
-      //home
-      navigate('/home');
+      setEndOfAssessment(true);
     } catch (err) {
       setLoading(false);
-      alert('Failed to post data');
+      setEndOfAssessment(false);
+      setButtonStatement('Try Again');
     }
   };
   const selectedButtonStyle = (selected) => {
@@ -178,11 +181,21 @@ const MedicationAssessmentPageTwo = () => {
             <span></span>
           )}
           {side_effects !== null ? (
-            <button onClick={handleSubmit} className="finish-btn" type="submit">
-              {loading ? <Spinner /> : 'Finish'}
+            <button onClick={handleSubmit} className="finish-btn" type="submit" disabled={loading}>
+              {loading ? <Spinner /> : buttonStatement}
             </button>
           ) : (
             <span></span>
+          )}
+          {endOfAssessment && (
+            <EndOfAssessmentModal
+              icon={<CheckedIcon />}
+              title={'Well Done!'}
+              subText={'Thank you for completing this assessment.'}
+              link={'/home'}
+              linkText={'home'}
+              showModal={true}
+            />
           )}
         </form>
       </Form>
