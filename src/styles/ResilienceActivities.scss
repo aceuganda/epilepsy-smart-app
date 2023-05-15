@@ -105,7 +105,6 @@
 .tab-component {
     display: flex;
     flex-direction: column;
-    margin-left: 10px;
   }
   
   .tab-header {
@@ -114,7 +113,7 @@
     align-items: center;
     align-self: center;
     justify-content: space-between;
-    width: 15rem;
+    width: 66vw;
     margin-bottom: 7px;
     border-bottom: 0.2px solid #ccc;
   }
