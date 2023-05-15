@@ -38,6 +38,7 @@ const Journaling = () => {
     }
   };
 
+  // This is a very problematic way to style components as it is not reusable or scalable. Use StyleSheets cc: Brenda and Khalifan
   const textAreaStyles = {
     width: '300px',
     height: '80px',
@@ -69,7 +70,6 @@ const Journaling = () => {
     const userData = JSON.parse(localStorage.getItem('userInfo'));
     const user_id = userData.data.id;
     const response = await dispatch(getAllUserGratefulls(user_id));
-    // console.log(response);
     if (response.error) {
       setFetchGrateFulError(response.payload);
       setFetchingGratefuls(false);
@@ -91,7 +91,6 @@ const Journaling = () => {
     const userData = JSON.parse(localStorage.getItem('userInfo'));
     const user_id = userData.data.id;
     const response = await dispatch(getAllUserJournals(user_id));
-    // console.log(response);
     if (response?.error) {
       setFetchJournalError(response.payload);
       setFetchingJournals(false);
@@ -316,7 +315,7 @@ const Journaling = () => {
                     onBlur={(e) => {
                       e.target.style.height = textAreaStyles.height;
                     }}
-                    placeholder="Example;I am grateful to have a roof over my head"
+                    placeholder="Example: I am grateful to have a home to live in"
                   />
                   <div
                     style={{
