@@ -41,6 +41,7 @@ import InspirationalQuotes from './pages/ResilienceActivities/Activities/Inspira
 import VerificationPage from './pages/EmailVerification/VerificationPage';
 import ForgotPassword from './pages/Authentication/ForgotPassword';
 import ResetPassword from './pages/Authentication/ResetPassword';
+import ManageTriggers from './pages/ResilienceActivities/Activities/ManageTriggers';
 // import InspirationalQuotes from './pages/ResilienceActivities/InspirationalQuotes';
 // import Grateful from './components/journal/Grateful';
 
@@ -102,6 +103,7 @@ const AppRoutes = () => (
           <Route path="/journal/:journalId" element={<Journal2 />} />
           <Route path="/new-journal" element={<NewJournal />} />
           <Route path="/quotes" element={<InspirationalQuotes />} />
+          <Route path="/resilience-activities/manage-triggers" element={<ManageTriggers />} />
         </Route>
       </Routes>
     </Suspense>
