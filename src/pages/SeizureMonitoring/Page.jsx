@@ -18,7 +18,7 @@ const StartPage = () => {
             link="/seizure-form/assessment/1"
             icon={<MonitorIcon />}
           />
-          <Largebtn title="Monitor Seizure History" link="" icon={<RecordIcon />} />
+          {/* <Largebtn title="Monitor Seizure History" link="" icon={<RecordIcon />} /> */}
         </Form>
       </SeizureComponent>
       <Footer />
