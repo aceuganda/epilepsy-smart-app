@@ -8,6 +8,7 @@ import { getResilienceTallies, loadUserTallies } from '../../redux/Slices/Resili
 import { useEffect } from 'react';
 import store from '../../store';
 import { Link } from 'react-router-dom';
+import ErrorImage from '../../assets/img/Resilience/error.webp'
 
 const ResilienceTallies = () => {
   const resilienceTalliesData = useSelector(loadUserTallies);
@@ -96,6 +97,8 @@ const ResilienceTallies = () => {
     pieStartAngle: -30
   };
 
+  // TODO: Profile update
+
   const recommendedActivities = [
     {
       name: 'One service goal',
@@ -104,7 +107,7 @@ const ResilienceTallies = () => {
     },
     {
       name: 'Manage your triggers',
-      link: null,
+      link: '/resilience-activities/manage-triggers',
       outerLink: ''
     },
     {
@@ -236,9 +239,11 @@ const ResilienceTallies = () => {
         <div>
           <TopBar title="Tallies" route="/resilience-form" />
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h4>Internal Server error</h4>
+            <div>
+              <img src={ErrorImage} alt=''/>
+            </div>
             <div style={{ width: '80%', textAlign: 'center', fontWeight: '300' }}>
-              Please check your network connection and try again later.
+              Something went wrong. Please try again later
             </div>
           </div>
         </div>
