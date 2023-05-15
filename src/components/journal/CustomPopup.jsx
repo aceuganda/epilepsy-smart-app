@@ -15,21 +15,17 @@ const CustomPopup = ({ onDeleteClick, onUpdateClick, deleteLoading, updateLoadin
   return (
     <div
       style={{
-        // display: 'flex',
-        width: '35vw',
+        width: '28vw',
         backgroundColor: '#FFFFFF',
-        padding: 4,
+        padding: '0 6px',
         flexDirection: 'column',
         border: '1px solid rgba(0, 0, 0, 0.19)',
         boxShadow: '0px 10px 45px rgba(0, 0, 0, 0.141);',
         position: 'absolute',
-        borderRadius: '17px',
+        borderRadius: '8px',
         height: '12vh',
-        left: 0,
-        right: 120,
+        right: 28,
         top: 60,
-        bottom: 0,
-        marginLeft: 165
       }}>
       <div
         style={{
@@ -39,7 +35,7 @@ const CustomPopup = ({ onDeleteClick, onUpdateClick, deleteLoading, updateLoadin
         }}
         onClick={onUpdateClick}>
         <div>{updateLoading ? <Spinner /> : <p>Edit</p>}</div>
-        <div style={{ color: '#553791', marginLeft: '110px', marginTop: '-48px' }}>
+        <div style={{ color: '#553791', marginLeft: '80px', marginTop: '-48px' }}>
           <HiPencil />
         </div>
       </div>
@@ -48,7 +44,7 @@ const CustomPopup = ({ onDeleteClick, onUpdateClick, deleteLoading, updateLoadin
         style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: '8px' }}
         onClick={onDeleteClick}>
         <div>{deleteLoading ? <Spinner /> : <p>Delete</p>}</div>
-        <div style={{ color: '#553791', marginLeft: '110px', marginTop: '-45px' }}>
+        <div style={{ color: '#553791', marginLeft: '80px', marginTop: '-45px' }}>
           <MdDeleteSweep />
         </div>
       </div>

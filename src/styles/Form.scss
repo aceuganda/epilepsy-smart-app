@@ -948,6 +948,7 @@ button{
     }
 }
 
+// TRANSITIONS
 .tabTransition {
     transition: all;
     transition-delay: 400ms;
@@ -1269,5 +1270,51 @@ button{
                 box-shadow: 0px 8px 20px 0px rgba(153, 151, 151, 0.141);
             }
         }
+    }
+}
+
+// JOURNALLING
+.journal-page{
+    .content{
+        display: flex;
+        flex-direction: column;
+        .title{
+            input{
+                width: 100%;
+                border-radius: 5px;
+                height: 34px;
+                padding: 0 10px;
+            }
+        }
+    }
+    .error-field{
+        margin-top: 5px;
+        color: red;
+        font-size: 14px;
+    }
+    .text-area{
+        width: 100%;
+    }
+}
+.journal-entry{
+    .header{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        .title{
+            font-size: 18px;
+            text-transform: capitalize;
+        }
+    }
+    .entry{
+        textarea{
+            font-size: 15px;
+        }
+    }
+    .error-field{
+        margin-top: 5px;
+        color: red;
+        font-size: 14px;
     }
 }
