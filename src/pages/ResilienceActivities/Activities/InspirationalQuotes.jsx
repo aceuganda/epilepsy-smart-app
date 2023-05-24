@@ -77,7 +77,7 @@ const InspirationalQuotes = () => {
                     marginRight: 4,
                     marginLeft: 0
                   }}></div>
-                <p className='text'>{text}</p>
+                <p className="text">{text}</p>
               </div>
             </div>
           ))}
