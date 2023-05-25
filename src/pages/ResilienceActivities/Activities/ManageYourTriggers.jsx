@@ -67,48 +67,29 @@ const data = [
 const events = [
   {
     id: 1,
-    text: 'NightclubTheaterLights including Strobe lights (a type of specialized lamp that produces a continuous series of short, bright flashes of light).'
+    text: 'Watching TV and playing video games in a well-lit room and at a safe distance from the screen (at least two and a half (2.5) meters from the TV and half (0.5) a meter from a computer monitor).'
   },
   {
     id: 2,
-    text: 'Stimulating images that take up your complete field of vision, such as being very close to a TV screen or computer monitor.'
+    text: 'Limiting the time spent in front of the TV, computer, and on hand-held devices (smart phones/tablets) or restricting playing computer and video games.'
   },
   {
     id: 3,
-    text: 'Flashing lights on police cars, fire trucks, ambulances, and safety alarms.'
+    text: 'Using flicker-free monitors (LCD or flat screen).'
   },
   {
     id: 4,
-    text: 'Visual effects in movies, TV shows, and video games.'
+    text: 'Reducing the brightness on screen monitors.'
   },
   {
     id: 5,
-    text: 'Malfunctioning fluorescent lights and moving escalators.'
+    text: 'Using a remote control instead of walking up to the TV to change the channel.'
   },
   {
     id: 6,
-    text: 'Light viewed through a fast-moving ceiling fan.'
-  },
-  {
-    id: 7,
-    text: 'Sunlight viewed through slanted blinds or stair railings.'
-  },
-  {
-    id: 8,
-    text: 'Sun shining through tree leaves or reflecting off water.'
-  },
-  {
-    id: 9,
-    text: 'Bold, striped wallpaper and fabric or bright contrasting patterns such as white bars against a black background.'
-  },
-  {
-    id: 10,
-    text: 'Cameras with multiple flashes or many cameras flashing at the same time.'
-  },
-  {
-    id: 11,
-    text: 'Fireworks.'
+    text: 'Adjusting Internet settings to control moving images.'
   }
+  
 ];
 
 const DATA_PER_PAGE = 10;
@@ -123,6 +104,7 @@ const ManageYourTriggers = () => {
   const endIndex = startIndex + DATA_PER_PAGE;
 
   const dataToDisplay = data.slice(startIndex, endIndex);
+  const eventsToDisplay = data.slice(startIndex, endIndex);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -146,7 +128,8 @@ const ManageYourTriggers = () => {
                   </button>
                 </span>
               </div>
-             {currentPage ? ( <div className="text-page-body">
+
+              <div className="text-page-body">
                 <p>
                   Learning your triggers and avoiding them may take patient, thoughtful reflection
                   to identify and learn ways to avoid or manage them. Some common triggers include:
@@ -155,6 +138,20 @@ const ManageYourTriggers = () => {
                   {dataToDisplay.map((data) => (
                     <li key={data.id}>{data.text}</li>
                   ))}
+
+                  {currentPage === numPages && (
+                    <>
+                      <p>
+                        In order to reduce the likelihood of having a seizure due to any of these
+                        situations or events it is important to do all what you can to reduce your
+                        exposure to these seizure triggers by avoiding these stimuli. Some tips you
+                        could use include remembering the word ‘SLEEP’:{' '}
+                      </p>
+                      {eventsToDisplay.map((event) => (
+                        <li key={event.id}>{event.text}</li>
+                      ))}
+                    </>
+                  )}
 
                   {numPages > 1 && (
                     <div style={{ marginTop: '1rem', display: 'flex' }}>
@@ -172,46 +169,12 @@ const ManageYourTriggers = () => {
                           }}
                           onClick={() => handlePageChange(index + 1)}>
                           {index + 1}
-                         
                         </button>
                       ))}
                     </div>
                   )}
                 </ul>
-              </div>) : ( <div className="text-page-body">
-                <p>
-                  Learning your triggers and avoiding them may take patient, thoughtful reflection
-                  to identify and learn ways to avoid or manage them. Some common triggers include:
-                </p>
-                <ul>
-                  {dataToDisplay.map((data) => (
-                    <li key={data.id}>{data.text}</li>
-                  ))}
-
-                  {numPages > 1 && (
-                    <div style={{ marginTop: '1rem', display: 'flex' }}>
-                      {Array.from({ length: numPages }).map((_, index) => (
-                        <button
-                          key={index}
-                          style={{
-                            margin: '0.5rem',
-                            padding: '0.5rem',
-                            backgroundColor: index + 1 === currentPage ? '#553791' : 'white',
-                            color: index + 1 === currentPage ? 'white' : 'black',
-                            border: 'none',
-                            borderRadius: '0.25rem',
-                            cursor: 'pointer'
-                          }}
-                          onClick={() => handlePageChange(index + 1)}>
-                          {index + 1}
-                         
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </ul>
-              </div>) }
-             
+              </div>
             </div>
           </Form>
         </ResilienceActivitiesPageComponent>
