@@ -47,17 +47,19 @@ const MedicationAssessmentPageTwo = () => {
         <form>
           <Question question={'Did you experience any side effects'}>
             <fieldset className="mt-3 mb-4" style={{ justifyContent: 'space-evenly' }}>
-              <button
-                type="button"
-                className="button form-button-pill"
-                value={'None'}
-                onClick={(e) => {
-                  setSideEffect(e.target.value);
-                  dispatch(setExperiencedSideEffects(false));
-                  dispatch(setSideEffects(e.target.value));
-                }}>
-                None
-              </button>
+              {medicationTrackingData.reason_missed_dose !== 'Side Effects' && (
+                <button
+                  type="button"
+                  className="button form-button-pill"
+                  value={'None'}
+                  onClick={(e) => {
+                    setSideEffect(e.target.value);
+                    dispatch(setExperiencedSideEffects(false));
+                    dispatch(setSideEffects(e.target.value));
+                  }}>
+                  None
+                </button>
+              )}
               <button
                 type="button"
                 className="button form-button-pill"

@@ -8,10 +8,12 @@ import { ReactComponent as AddTime } from '../../../assets/svg/Medication/addtim
 import {
   getAllUserGratefulls,
   getAllUserJournals,
-  postUserGratefuls
+  postUserGratefuls,
+  deleteUserGrateful
 } from '../../../redux/Actions/journalingActions';
 import { useDispatch } from 'react-redux';
 import Spinner from '../../../components/Spinner/Spinner.js';
+import { MdDeleteSweep } from 'react-icons/md';
 
 const QUOTES_PER_PAGE = 7; // adjust as needed
 
@@ -27,6 +29,9 @@ const Journaling = () => {
   const [journalsList, setJournalsList] = useState([]);
   const [fetchJournalError, setFetchJournalError] = useState('');
   const [fetchingJournals, setFetchingJournals] = useState(false);
+  //monitor Id of grateful being deleted
+  const [gratefulID, setGratefulID] = useState(-1);
+
   const dispatch = useDispatch();
 
   const handleTabClick = (tabIndex) => {
@@ -141,6 +146,25 @@ const Journaling = () => {
         setSavingGrateful(false);
         return;
       }
+    }
+  };
+
+  const deleteGratefullItemId = async (e,id) => {
+    e.preventDefault();
+    setGratefulID(id);
+    const response = await dispatch(deleteUserGrateful(id));
+    if (response?.error) {
+      //setJournalActionError('Failed to delete journal');
+      setGratefulID(-1);
+      return;
+    }
+    if (response.payload?.status === 'success') {
+      fetchGratefuls();
+      setGratefulID(-1);
+      return;
+    } else {
+      setGratefulID(-1);
+      return;
     }
   };
 
@@ -265,7 +289,12 @@ const Journaling = () => {
                   {fetchGrateFulError}
                 </div>
               ) : (
-                <div>
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '2px'
+                  }}>
                   {gratefulsList?.map((result) => (
                     <div key={result.id}>
                       <div
@@ -273,20 +302,37 @@ const Journaling = () => {
                           display: 'flex',
                           flexDirection: 'row',
                           alignItems: 'center',
-                          gap: '15px',
+                          justifyContent: 'space-between',
                           color: '#000'
                         }}>
                         {' '}
                         <div
                           style={{
                             display: 'flex',
-                            width: '12px',
-                            height: '12px',
-                            borderRadius: '50%',
+                            flexDirection: 'row',
                             alignItems: 'center',
-                            backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`
-                          }}></div>
-                        {result?.grateful}
+                            gap: '7px'
+                          }}>
+                          <div
+                            style={{
+                              width: '12px',
+                              height: '12px',
+                              gap: '15px',
+                              borderRadius: '50%',
+                              alignItems: 'center',
+                              backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(
+                                16
+                              )}`
+                            }}></div>
+                          {result?.grateful}
+                        </div>
+                        <div
+                          onClick={(e) => {
+                            deleteGratefullItemId(e,result.id);
+                          }}>
+                          {' '}
+                          {gratefulID === result.id ? <Spinner /> : <MdDeleteSweep />}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -299,11 +345,6 @@ const Journaling = () => {
                   flexDirection: 'column',
                   gap: '7px'
                 }}>
-                {grateful && (
-                  <button onClick={handleSubmit} style={buttonStyles}>
-                    {savingGrateful ? <Spinner /> : 'Save'}
-                  </button>
-                )}
                 <div>
                   <textarea
                     style={textAreaStyles}
@@ -329,6 +370,11 @@ const Journaling = () => {
                     {gratefulError}
                   </div>
                 </div>
+                {grateful && (
+                  <button onClick={handleSubmit} style={buttonStyles}>
+                    {savingGrateful ? <Spinner /> : 'Save'}
+                  </button>
+                )}
               </div>
             </div>
           </div>
