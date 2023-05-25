@@ -884,6 +884,10 @@ button{
 
 
 }
+.MedicineListWrapper{
+    display: flex;
+    flex-direction: row;
+}
 
 .MedicineIconWrapper {
     width: 10px;

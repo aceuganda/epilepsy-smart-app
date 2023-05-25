@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { postMedicine, getMedicine } from '../../apis';
+import { postMedicine, getMedicine, deleteMedicine } from '../../apis';
 
 export const postMedicineFormData = createAsyncThunk(
   'medicineTracking/postData',
@@ -17,6 +17,14 @@ export const getMedicineData = createAsyncThunk('medicineTracking/getData', asyn
   const res = await getMedicine(userID);
   return res;
 });
+
+export const deleteMedicineData = createAsyncThunk(
+  'medicineTracking/deleteData',
+  async (medicineID) => {
+    const res = await deleteMedicine(medicineID);
+    return res;
+  }
+);
 
 export const medicineTrackingSlice = createSlice({
   name: 'medicineTracking',

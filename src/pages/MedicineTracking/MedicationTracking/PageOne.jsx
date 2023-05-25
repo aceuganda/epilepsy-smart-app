@@ -10,11 +10,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import Modal from '../../../components/modal/index.jsx';
 import SingleOptionCheckbox from '../../../components/form/SingleOptionCheckbox';
 import Spinner from '../../../components/Spinner/Spinner';
+import { MdDeleteSweep } from 'react-icons/md';
 import {
   setMedicineName,
   postMedicineFormData,
   getMedicineData,
-  setUserID
+  setUserID,
+  deleteMedicineData
 } from '../../../redux/Slices/MedicineTracking';
 
 const medicineNames = ['Sodium Vaporate', 'Diclofenac', 'Gofen', 'Ibuprofen'];
@@ -36,6 +38,7 @@ const MedicationTrackingPageOne = () => {
   const [userMedicines, setUserMedicines] = useState([]);
   const [userMedicinesFeedbackMessage, setUserMedicinesFeedbackMessage] = useState('');
   const [otherMedicine, setOtherMedicine] = useState('');
+  const [deleteMedinineID, setDeleteMedinineID] = useState('');
   const medicineTrackingData = useSelector((state) => state.medicineTracking);
   const userId = localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo')).data.id
@@ -50,7 +53,7 @@ const MedicationTrackingPageOne = () => {
   dispatch(setUserID(userId));
   useEffect(() => {
     fetchMedicine();
-  }, []);
+  }, [deleteMedinineID]);
 
   const fetchMedicine = async () => {
     const response = await dispatch(getMedicineData(userId));
@@ -136,6 +139,22 @@ const MedicationTrackingPageOne = () => {
     localStorage.setItem(`${userId}Reminders`, JSON.stringify(remindersArray));
     setSavedReminders(remindersArray);
   };
+  const DeleteMedicine = async (e, id) => {
+    e.preventDefault();
+    setDeleteMedinineID(id);
+    const response = await dispatch(deleteMedicineData(id));
+    if (response?.error) {
+      setDeleteMedinineID('');
+      return;
+    }
+    if (response.payload?.status === 'success') {
+      setDeleteMedinineID('');
+      return;
+    } else {
+      setDeleteMedinineID('');
+      return;
+    }
+  };
 
   return (
     <MedicationComponent backroute={'/medication/'}>
@@ -206,12 +225,23 @@ const MedicationTrackingPageOne = () => {
                       borderBottom: '1px solid #ccc',
                       display: 'flex',
                       alignItems: 'center',
+                      justifyContent: 'space-between',
                       fontSize: '15px'
                     }}>
-                    <div className="MedicineIconWrapper">
-                      <div className="MedicineIconInnerYellow"></div>
+                    <div className="MedicineListWrapper">
+                      <div className="MedicineIconWrapper">
+                        <div className="MedicineIconInnerYellow"></div>
+                      </div>
+                      <div className="Medicine">{medicine.name}</div>
                     </div>
-                    <div className="Medicine">{medicine.name}</div>
+                    <div
+                      onClick={(e) => {
+                        DeleteMedicine(e, medicine.id);
+                      }}>
+                      {deleteMedinineID === medicine.id ? <Spinner/>
+                      :
+                      <MdDeleteSweep />}
+                    </div>
                   </div>
                 ))}
               </div>
