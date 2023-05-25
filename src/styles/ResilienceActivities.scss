@@ -127,3 +127,50 @@
     box-shadow: 1px 1px 1px	#F5F5F5;
 
   }
+
+  .spinner {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .error {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    font-size: 10px;
+  }
+
+  .grateful {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    color: #000;
+  }
+.result{
+  display: flex;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  align-items: center;
+}
+  
+.save {
+ display: flex;
+ flex-direction: column;
+ gap: 7px;
+}
+
+.grateful-error {
+   display: flex;
+   width: 100%;
+   justify-content: center;
+   align-items: center;
+   color: red;
+   font-size: 10px;
+}
+

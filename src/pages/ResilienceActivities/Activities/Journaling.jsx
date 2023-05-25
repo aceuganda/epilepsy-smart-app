@@ -12,7 +12,9 @@ import {
 } from '../../../redux/Actions/journalingActions';
 import { useDispatch } from 'react-redux';
 import Spinner from '../../../components/Spinner/Spinner.js';
-
+import CustomPopup from '../../../components/journal/CustomPopup';
+import { FiChevronRight } from 'react-icons/fi';
+import { HiEllipsisHorizontalCircle } from 'react-icons/hi2';
 const QUOTES_PER_PAGE = 7; // adjust as needed
 
 const Journaling = () => {
@@ -27,6 +29,8 @@ const Journaling = () => {
   const [journalsList, setJournalsList] = useState([]);
   const [fetchJournalError, setFetchJournalError] = useState('');
   const [fetchingJournals, setFetchingJournals] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+
   const dispatch = useDispatch();
 
   const handleTabClick = (tabIndex) => {
@@ -145,6 +149,11 @@ const Journaling = () => {
     }
   };
 
+  const handleEdit = async () => {
+    
+  }
+  
+
   const [currentPage, setCurrentPage] = useState(1);
 
   const numPages = Math.ceil(journalsList?.length / QUOTES_PER_PAGE);
@@ -154,7 +163,9 @@ const Journaling = () => {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-
+  const showCustomPopup = () => {
+    setShowPopup(!showPopup);
+  };
   return (
     <ResilienceActivitiesPageComponent title={'Journaling'} backroute={'/resilience-activities'}>
       <Form>
@@ -243,63 +254,48 @@ const Journaling = () => {
             <div className={`tab-pane ${activeTab === 2 ? 'active' : ''}`}>
               <h6 style={{ font: 'bold' }}>What are you grateful for?</h6>
               {fetchingGratefuls && (
-                <div
-                  style={{
-                    display: 'flex',
-                    width: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}>
+                <div className="spinner">
                   <Spinner />
                 </div>
               )}
               {gratefulsList?.length === 0 && fetchGrateFulError ? (
-                <div
-                  style={{
-                    display: 'flex',
-                    width: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    color: 'red',
-                    fontSize: '10px'
-                  }}>
-                  {fetchGrateFulError}
-                </div>
+                <div className="error">{fetchGrateFulError}</div>
               ) : (
                 <div>
                   {gratefulsList?.map((result) => (
                     <div key={result.id}>
-                      <div
-                        style={{
-                          display: 'flex',
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          gap: '15px',
-                          color: '#000'
-                        }}>
+                      <div className="grateful">
                         {' '}
                         <div
                           style={{
-                            display: 'flex',
-                            width: '12px',
-                            height: '12px',
-                            borderRadius: '50%',
-                            alignItems: 'center',
                             backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`
-                          }}></div>
-                        {result?.grateful}
+                          }}
+                          className="result"></div>
+                        <div> {result?.grateful}</div>
+                        <div
+                          onClick={showCustomPopup}
+                          style={{
+                            fontSize: '30px',
+                            color: '#53368E'
+                          }}>
+                          {' '}
+                          <HiEllipsisHorizontalCircle />
+                        </div>
+                        {showPopup && (
+            <CustomPopup
+              // onDeleteClick={deleteJournal}
+              // deleteLoading={deleteLoading}
+              // onUpdateClick={editJournal}
+              // updateLoading={updateLoading}
+            />
+          )}
                       </div>
                     </div>
                   ))}
                 </div>
               )}
 
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '7px'
-                }}>
+              <div className="save">
                 {grateful && (
                   <button onClick={handleSubmit} style={buttonStyles}>
                     {savingGrateful ? <Spinner /> : 'Save'}
@@ -318,17 +314,7 @@ const Journaling = () => {
                     }}
                     placeholder="Example;I am grateful to have a roof over my head"
                   />
-                  <div
-                    style={{
-                      display: 'flex',
-                      width: '100%',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      color: 'red',
-                      fontSize: '10px'
-                    }}>
-                    {gratefulError}
-                  </div>
+                  <div className="grateful-error">{gratefulError}</div>
                 </div>
               </div>
             </div>
