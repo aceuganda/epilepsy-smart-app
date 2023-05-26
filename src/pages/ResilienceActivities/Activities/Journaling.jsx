@@ -149,11 +149,6 @@ const Journaling = () => {
     }
   };
 
-  const handleEdit = async () => {
-    
-  }
-  
-
   const [currentPage, setCurrentPage] = useState(1);
 
   const numPages = Math.ceil(journalsList?.length / QUOTES_PER_PAGE);
@@ -190,131 +185,135 @@ const Journaling = () => {
               </div>
             </Link>
           )}
-          <div className="tab-content">
-            <div className={`tab-pane ${activeTab === 1 ? 'active' : ''}`}>
-              {fetchingJournals && (
-                <div
-                  style={{
-                    display: 'flex',
-                    width: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}>
-                  <Spinner />
-                </div>
-              )}
-              {journalsList?.length === 0 && fetchJournalError ? (
-                <div
-                  style={{
-                    display: 'flex',
-                    width: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    color: 'red',
-                    fontSize: '10px'
-                  }}>
-                  {fetchJournalError}
-                </div>
-              ) : (
-                journalsList
-                  ?.slice(startIndex, endIndex)
-                  ?.map((dta) => (
-                    <Journal
-                      id={dta.id}
-                      key={dta.id}
-                      title={dta.title}
-                      date={dta.timestamp}
-                      notes={dta.notes}
-                      color={`#${Math.floor(Math.random() * 16777215).toString(16)}`}
-                    />
-                  ))
-              )}
-
-              {numPages > 1 && (
-                <div style={{ marginTop: '1rem', display: 'flex' }}>
-                  {Array.from({ length: numPages }).map((_, index) => (
-                    <button
-                      key={index}
-                      style={{
-                        margin: '0.5rem',
-                        padding: '0.5rem',
-                        backgroundColor: index + 1 === currentPage ? '#553791' : 'white',
-                        color: index + 1 === currentPage ? 'white' : 'black',
-                        border: 'none',
-                        borderRadius: '0.25rem',
-                        cursor: 'pointer'
-                      }}
-                      onClick={() => handlePageChange(index + 1)}>
-                      {index + 1}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-            <div className={`tab-pane ${activeTab === 2 ? 'active' : ''}`}>
-              <h6 style={{ font: 'bold' }}>What are you grateful for?</h6>
-              {fetchingGratefuls && (
-                <div className="spinner">
-                  <Spinner />
-                </div>
-              )}
-              {gratefulsList?.length === 0 && fetchGrateFulError ? (
-                <div className="error">{fetchGrateFulError}</div>
-              ) : (
-                <div>
-                  {gratefulsList?.map((result) => (
-                    <div key={result.id}>
-                      <div className="grateful">
-                        {' '}
-                        <div
-                          style={{
-                            backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`
-                          }}
-                          className="result"></div>
-                        <div> {result?.grateful}</div>
-                        <div
-                          onClick={showCustomPopup}
-                          style={{
-                            fontSize: '30px',
-                            color: '#53368E'
-                          }}>
-                          {' '}
-                          <HiEllipsisHorizontalCircle />
-                        </div>
-                        {showPopup && (
-            <CustomPopup
-              // onDeleteClick={deleteJournal}
-              // deleteLoading={deleteLoading}
-              // onUpdateClick={editJournal}
-              // updateLoading={updateLoading}
-            />
-          )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              <div className="save">
-                {grateful && (
-                  <button onClick={handleSubmit} style={buttonStyles}>
-                    {savingGrateful ? <Spinner /> : 'Save'}
-                  </button>
+          <div className="Grateful-tab">
+            <div className="tab-content">
+              <div className={`tab-pane ${activeTab === 1 ? 'active' : ''}`}>
+                {fetchingJournals && (
+                  <div
+                    style={{
+                      display: 'flex',
+                      width: '100%',
+                      justifyContent: 'center',
+                      alignItems: 'center'
+                    }}>
+                    <Spinner />
+                  </div>
                 )}
-                <div>
-                  <textarea
-                    style={textAreaStyles}
-                    value={grateful}
-                    onChange={(e) => setGrateful(e.target.value)}
-                    onFocus={(e) => {
-                      e.target.style.height = focusedStyles.height;
-                    }}
-                    onBlur={(e) => {
-                      e.target.style.height = textAreaStyles.height;
-                    }}
-                    placeholder="Example;I am grateful to have a roof over my head"
-                  />
-                  <div className="grateful-error">{gratefulError}</div>
+                {journalsList?.length === 0 && fetchJournalError ? (
+                  <div
+                    style={{
+                      display: 'flex',
+                      width: '100%',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      color: 'red',
+                      fontSize: '10px'
+                    }}>
+                    {fetchJournalError}
+                  </div>
+                ) : (
+                  journalsList
+                    ?.slice(startIndex, endIndex)
+                    ?.map((dta) => (
+                      <Journal
+                        id={dta.id}
+                        key={dta.id}
+                        title={dta.title}
+                        date={dta.timestamp}
+                        notes={dta.notes}
+                        color={`#${Math.floor(Math.random() * 16777215).toString(16)}`}
+                      />
+                    ))
+                )}
+
+                {numPages > 1 && (
+                  <div style={{ marginTop: '1rem', display: 'flex' }}>
+                    {Array.from({ length: numPages }).map((_, index) => (
+                      <button
+                        key={index}
+                        style={{
+                          margin: '0.5rem',
+                          padding: '0.5rem',
+                          backgroundColor: index + 1 === currentPage ? '#553791' : 'white',
+                          color: index + 1 === currentPage ? 'white' : 'black',
+                          border: 'none',
+                          borderRadius: '0.25rem',
+                          cursor: 'pointer'
+                        }}
+                        onClick={() => handlePageChange(index + 1)}>
+                        {index + 1}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className={`tab-pane ${activeTab === 2 ? 'active' : ''}`}>
+                <h6 style={{ font: 'bold' }}>What are you grateful for?</h6>
+                {fetchingGratefuls && (
+                  <div className="load-spinner">
+                    <Spinner />
+                  </div>
+                )}
+                {gratefulsList?.length === 0 && fetchGrateFulError ? (
+                  <div className="grateful-error">{fetchGrateFulError}</div>
+                ) : (
+                  <div>
+                    {gratefulsList?.map((result) => (
+                      <div key={result.id}>
+                        <div className="grateful">
+                          {' '}
+                          <div
+                            style={{
+                              backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(
+                                16
+                              )}`
+                            }}
+                            className="grateful-result"></div>
+                          <div> {result?.grateful}</div>
+                          <div
+                            onClick={showCustomPopup}
+                            style={{
+                              fontSize: '30px',
+                              color: '#53368E'
+                            }}>
+                            {' '}
+                            <HiEllipsisHorizontalCircle />
+                          </div>
+                          {showPopup && (
+                            <CustomPopup
+                            // onDeleteClick={deleteJournal}
+                            // deleteLoading={deleteLoading}
+                            // onUpdateClick={editJournal}
+                            // updateLoading={updateLoading}
+                            />
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                <div className="save">
+                  {grateful && (
+                    <button onClick={handleSubmit} style={buttonStyles}>
+                      {savingGrateful ? <Spinner /> : 'Save'}
+                    </button>
+                  )}
+                  <div>
+                    <textarea
+                      style={textAreaStyles}
+                      value={grateful}
+                      onChange={(e) => setGrateful(e.target.value)}
+                      onFocus={(e) => {
+                        e.target.style.height = focusedStyles.height;
+                      }}
+                      onBlur={(e) => {
+                        e.target.style.height = textAreaStyles.height;
+                      }}
+                      placeholder="Example;I am grateful to have a roof over my head"
+                    />
+                    <div className="grateful-error">{gratefulError}</div>
+                  </div>
                 </div>
               </div>
             </div>

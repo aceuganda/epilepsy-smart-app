@@ -125,17 +125,16 @@
     background-color:white ;
     border: 1px solid #f4f1f1;
     box-shadow: 1px 1px 1px	#F5F5F5;
-
   }
-
-  .spinner {
+ .Grateful-tab{
+  .load-spinner {
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
   }
 
-  .error {
+  .grateful-error {
     display: flex;
     width: 100%;
     justify-content: center;
@@ -151,26 +150,28 @@
     gap: 15px;
     color: #000;
   }
-.result{
+ .grateful-result{
   display: flex;
   width: 12px;
   height: 12px;
   border-radius: 50%;
   align-items: center;
-}
+  }
   
-.save {
+  .save {
  display: flex;
  flex-direction: column;
  gap: 7px;
-}
+  }
 
-.grateful-error {
+  .grateful-error {
    display: flex;
    width: 100%;
    justify-content: center;
    align-items: center;
    color: red;
    font-size: 10px;
-}
+  }
+ }
+
 
