@@ -44,6 +44,7 @@ const Journaling = () => {
   };
 
   // This is a very problematic way to style components as it is not reusable or scalable. Use StyleSheets cc: Brenda and Khalifan
+  // @Brenda
   const textAreaStyles = {
     width: '300px',
     height: '80px',
@@ -149,7 +150,7 @@ const Journaling = () => {
     }
   };
 
-  const deleteGratefullItemId = async (e,id) => {
+  const deleteGratefullItemId = async (e, id) => {
     e.preventDefault();
     setGratefulID(id);
     const response = await dispatch(deleteUserGrateful(id));
@@ -328,10 +329,20 @@ const Journaling = () => {
                         </div>
                         <div
                           onClick={(e) => {
-                            deleteGratefullItemId(e,result.id);
+                            deleteGratefullItemId(e, result.id);
                           }}>
                           {' '}
-                          {gratefulID === result.id ? <Spinner /> : <MdDeleteSweep />}
+                          {gratefulID === result.id ? (
+                            <Spinner />
+                          ) : (
+                            <div
+                              style={{
+                                color: '#553791'
+                              }}>
+                              {' '}
+                              <MdDeleteSweep />{' '}
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
