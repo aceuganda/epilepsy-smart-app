@@ -41,7 +41,7 @@ const MedicationTrackingPageOne = () => {
   const [userMedicines, setUserMedicines] = useState([]);
   const [userMedicinesFeedbackMessage, setUserMedicinesFeedbackMessage] = useState('');
   const [otherMedicine, setOtherMedicine] = useState('');
-  const [deleteMedicineID, setDeleteMedicineID] = useState('');
+  const [deleteMedicineIndex, setDeleteMedicineIndex] = useState('');
   const medicineTrackingData = useSelector((state) => state.medicineTracking);
   const userId = localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo')).data.id
@@ -60,10 +60,10 @@ const MedicationTrackingPageOne = () => {
   }, []);
 
   useEffect(() => {
-    if (deleteMedicineID !== '') {
+    if (deleteMedicineIndex !== '') {
       setShowDeleteMedicineWarning(true);
     }
-  }, [deleteMedicineID]);
+  }, [deleteMedicineIndex]);
 
   const fetchMedicine = async () => {
     const response = await dispatch(getMedicineData(userId));
@@ -107,10 +107,10 @@ const MedicationTrackingPageOne = () => {
   };
   const handleDeleteWarningClosure = () => {
     setShowDeleteMedicineWarning(false);
-    setDeleteMedicineID('');
+    setDeleteMedicineIndex('');
   };
-  const openDeleteMedicineWarning = (id) => {
-    setDeleteMedicineID(id);
+  const openDeleteMedicineWarning = (index) => {
+    setDeleteMedicineIndex(index);
   };
   const handleHours = (target) => {
     setSelectedHours(target.value);
@@ -161,19 +161,19 @@ const MedicationTrackingPageOne = () => {
     setDeletingMedicine(true);
     const response = await dispatch(deleteMedicineData(id));
     if (response?.error) {
-      setDeleteMedicineID('');
+      setDeleteMedicineIndex('');
       setDeletingMedicine(false);
       setDeleteMedicineError('Process failed, please try again');
       return;
     }
     if (response.payload?.data?.status === 'success') {
-      setDeleteMedicineID('');
+      setDeleteMedicineIndex('');
       setDeletingMedicine(false);
       setShowDeleteMedicineWarning(false);
       fetchMedicine();
       return;
     } else {
-      setDeleteMedicineID('');
+      setDeleteMedicineIndex('');
       setDeletingMedicine(false);
       setDeleteMedicineError('Process failed, please try again');
       return;
@@ -260,7 +260,7 @@ const MedicationTrackingPageOne = () => {
                     </div>
                     <div
                       onClick={() => {
-                        openDeleteMedicineWarning(medicine.id);
+                        openDeleteMedicineWarning(index);
                       }}>
                       <MdDeleteSweep style={{ color: '#553791' }} />
                     </div>
@@ -287,10 +287,7 @@ const MedicationTrackingPageOne = () => {
               <Modal show={showDeleteMedicineWarning} closeModal={handleDeleteWarningClosure}>
                 <div className="DeleteMedicinWarning">
                   <div className="WarningText">
-                    Are your sure you want to delete this medicine{' '}
-                    {userMedicines[deleteMedicineID]?.name &&
-                      `, ${userMedicines[deleteMedicineID]?.name}`}
-                    ?
+                    Are you sure you want to delete {userMedicines[deleteMedicineIndex]?.name} ?
                   </div>
                   <div className="deleteButtonSection">
                     <button onClick={handleDeleteWarningClosure} className="customButton">
@@ -298,7 +295,7 @@ const MedicationTrackingPageOne = () => {
                     </button>
                     <button
                       onClick={(e) => {
-                        DeleteMedicine(e, deleteMedicineID);
+                        DeleteMedicine(e, userMedicines[deleteMedicineIndex].id);
                       }}
                       className="customButton">
                       {deletingMedicine ? <Spinner /> : 'Yes'}
