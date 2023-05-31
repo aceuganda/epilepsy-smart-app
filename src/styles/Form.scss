@@ -649,6 +649,54 @@ button{
     }
 
 }
+.DeleteMedicinWarning{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .WarningText{
+     width: 100%;
+     font-weight: 700;
+     font-size: 17px;
+     text-align: center;
+     padding-bottom: 2rem;
+    }
+    .deleteButtonSection{
+        display: flex;
+        width: 90%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        .customButton {
+            width: 7rem;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            background-color: #8C3E79;
+            border: 0px;
+            outline: 0px;
+            border-radius: 18px;
+            font-family: 'Lato';
+            font-size: 16px;
+            font-weight: 800;
+            line-height: 14px;
+            opacity: 0.9;
+            text-transform: capitalize;
+        }
+    }
+    .deleteFeedback{
+        margin-top: 2px;
+        margin-bottom: 1px;
+        align-self: center;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        font-size: 12px;
+    }
+}
   
 // END OF ASSESSMENT POPUP
 .eoa-container{
