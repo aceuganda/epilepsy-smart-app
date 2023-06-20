@@ -11,7 +11,7 @@ const ResilienceActivitiesPageComponent = (props) => {
   return (
     <div>
       <TopBar
-        title={props.title ? props.title : 'Resilience Activities'}
+        title={props.title ? props.title : 'Resilience Activities '}
         route={`${props.backroute}`}
       />
       <div className="resilience-activities">{props.children}</div>

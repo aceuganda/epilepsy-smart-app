@@ -38,7 +38,10 @@ import Journal from './components/journal/Journal';
 import NewJournal from './components/journal/NewJournal';
 import Journal2 from './components/journal/Journal2';
 import InspirationalQuotes from './pages/ResilienceActivities/Activities/InspirationalQuotes';
+import EnterEmail from './pages/EmailVerification/EnterEmail';
 import VerificationPage from './pages/EmailVerification/VerificationPage';
+import ResetPassword from './pages/EmailVerification/ResetPassword';
+
 // import InspirationalQuotes from './pages/ResilienceActivities/InspirationalQuotes';
 // import Grateful from './components/journal/Grateful';
 
@@ -62,7 +65,10 @@ const AppRoutes = () => (
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/privacy" element={<Privacy />} />
+        <Route path="/forgot-password/enter-email" element={<EnterEmail />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/email/verification" element={<VerificationPage />} />
+        <Route path="/email/reset-password" element={<ResetPassword />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/home" element={<HomePage />} />
           <Route path="/seizure-form" element={<StartPage />} />
@@ -88,9 +94,8 @@ const AppRoutes = () => (
           <Route path="/resilience-activities/journaling" element={<Journaling />} />
           <Route path="/resilience-activities/listening" element={<Listening />} />
           <Route path="/resilience-activities/meditation" element={<Meditation />} />
-          <Route path="/account" element={<Settings />} />
-          <Route path="/account/verify" element={<VerificationPage />} />
           <Route path="/resilience/tallies" element={<ResilienceTallies />} />
+          <Route path="/account" element={<Settings />} />
           <Route path="/account/settings" element={<UserDetailsEdit />} />
           <Route path="/account/password-reset" element={<PasswordReset />} />
           <Route path="/account/about" element={<About />} />

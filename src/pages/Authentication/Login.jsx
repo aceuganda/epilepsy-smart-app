@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import AuthPageComponent from '.';
 import { ReactComponent as LoginImg } from '../../assets/svg/Auth/Login.svg';
 import Spinner from '../../components/Spinner/Spinner';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const { loading, userInfo, error } = useSelector((state) => state.user);
@@ -66,6 +67,11 @@ const Login = () => {
         <button disabled={loading} className="o-btn">
           {loading ? <Spinner /> : 'Login'}{' '}
         </button>
+        <div className="toc">
+          <span style={{ fontSize: '14px', color: 'blue' }}>
+            <Link to="/forgot-password/enter-email">Forgot Password</Link>
+          </span>
+        </div>
       </form>
       {error && <p className="error">{error}</p>}
     </AuthPageComponent>

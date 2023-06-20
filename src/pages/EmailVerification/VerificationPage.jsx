@@ -14,9 +14,13 @@ const VerificationPage = () => {
           <p>You&apos;ve entered example@gmail.com as the email address for your account.</p>
         </span>
       </div>
-      <Link to="/home">
-        <button className="o-btn">Verify your email</button>
-      </Link>
+      <button
+        onClick={() => {
+          window.location.href = 'mailto:';
+        }}
+        className="o-btn">
+        Verify your email
+      </button>
     </div>
   );
 };
