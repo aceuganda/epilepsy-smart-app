@@ -21,11 +21,11 @@ const data = [
   },
   {
     id: 5,
-    text: 'Dehydration- depletion of bodily fluids.'
+    text: 'Dehydration - depletion of bodily fluids.'
   },
   {
     id: 6,
-    text: 'Imbalance of substances (electrolytes) that maintain the fluids inside or outside your body and are essential for muscle and nerve function'
+    text: 'Imbalance of substances (electrolytes) that maintain the fluids inside your body, and are essential for muscle and nerve function'
   },
   {
     id: 7,
@@ -89,14 +89,10 @@ const events = [
     id: 6,
     text: 'Adjusting Internet settings to control moving images.'
   }
-  
 ];
 
-const DATA_PER_PAGE = 10;
+const DATA_PER_PAGE = 4;
 const ManageYourTriggers = () => {
-  const [selectedTab, setSelectedTab] = useState('overall');
-  const onClickTabItem = (tab) => setSelectedTab(tab);
-
   const [currentPage, setCurrentPage] = useState(1);
 
   const numPages = Math.ceil(data.length / DATA_PER_PAGE);
@@ -104,7 +100,6 @@ const ManageYourTriggers = () => {
   const endIndex = startIndex + DATA_PER_PAGE;
 
   const dataToDisplay = data.slice(startIndex, endIndex);
-  const eventsToDisplay = data.slice(startIndex, endIndex);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -114,18 +109,14 @@ const ManageYourTriggers = () => {
     <>
       <div>
         <ResilienceActivitiesPageComponent backroute={'/resilience-activities'}>
-          <Form style={{ maxHeight: 'none', height: '680px' }}>
+          <Form style={{ maxHeight: 'none', height: '1020px' }}>
             <div className="text-page">
               <div className="title">
                 <h3>Manage Your Triggers</h3>
               </div>
               <div className="header-nav">
                 <span id="tab1">
-                  <button
-                    className={selectedTab === 'overall' ? 'selected' : ''}
-                    onClick={() => onClickTabItem('overall')}>
-                    Overall
-                  </button>
+                  <button className="selected">Overall</button>
                 </span>
               </div>
 
@@ -138,20 +129,6 @@ const ManageYourTriggers = () => {
                   {dataToDisplay.map((data) => (
                     <li key={data.id}>{data.text}</li>
                   ))}
-
-                  {currentPage === numPages && (
-                    <>
-                      <p>
-                        In order to reduce the likelihood of having a seizure due to any of these
-                        situations or events it is important to do all what you can to reduce your
-                        exposure to these seizure triggers by avoiding these stimuli. Some tips you
-                        could use include remembering the word ‘SLEEP’:{' '}
-                      </p>
-                      {eventsToDisplay.map((event) => (
-                        <li key={event.id}>{event.text}</li>
-                      ))}
-                    </>
-                  )}
 
                   {numPages > 1 && (
                     <div style={{ marginTop: '1rem', display: 'flex' }}>
@@ -174,6 +151,19 @@ const ManageYourTriggers = () => {
                     </div>
                   )}
                 </ul>
+                <div>
+                  <p>
+                    In order to reduce the likelihood of having a seizure due to any of these
+                    situations or events; it is important to do all you can to reduce your
+                    exposure to these seizure triggers by avoiding these stimuli. Some tips you
+                    could use:{' '}
+                  </p>
+                  <ul>
+                  {events.map((event) => (
+                    <li key={event.id}>{event.text}</li>
+                  ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </Form>
