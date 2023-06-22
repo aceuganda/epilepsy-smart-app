@@ -8,13 +8,13 @@ import { ReactComponent as AddTime } from '../../../assets/svg/Medication/addtim
 import {
   getAllUserGratefulls,
   getAllUserJournals,
-  postUserGratefuls
+  postUserGratefuls,
+  deleteUserGrateful
 } from '../../../redux/Actions/journalingActions';
 import { useDispatch } from 'react-redux';
 import Spinner from '../../../components/Spinner/Spinner.js';
-import CustomPopup from '../../../components/journal/CustomPopup';
-import { FiChevronRight } from 'react-icons/fi';
-import { HiEllipsisHorizontalCircle } from 'react-icons/hi2';
+import { MdClose } from 'react-icons/md';
+
 const QUOTES_PER_PAGE = 7; // adjust as needed
 
 const Journaling = () => {
@@ -29,7 +29,8 @@ const Journaling = () => {
   const [journalsList, setJournalsList] = useState([]);
   const [fetchJournalError, setFetchJournalError] = useState('');
   const [fetchingJournals, setFetchingJournals] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
+  //monitor Id of grateful being deleted
+  const [gratefulID, setGratefulID] = useState(-1);
 
   const dispatch = useDispatch();
 
@@ -42,6 +43,8 @@ const Journaling = () => {
     }
   };
 
+  // This is a very problematic way to style components as it is not reusable or scalable. Use StyleSheets cc: Brenda and Khalifan
+  // @Brenda
   const textAreaStyles = {
     width: '300px',
     height: '80px',
@@ -73,7 +76,6 @@ const Journaling = () => {
     const userData = JSON.parse(localStorage.getItem('userInfo'));
     const user_id = userData.data.id;
     const response = await dispatch(getAllUserGratefulls(user_id));
-    // console.log(response);
     if (response.error) {
       setFetchGrateFulError(response.payload);
       setFetchingGratefuls(false);
@@ -95,7 +97,6 @@ const Journaling = () => {
     const userData = JSON.parse(localStorage.getItem('userInfo'));
     const user_id = userData.data.id;
     const response = await dispatch(getAllUserJournals(user_id));
-    // console.log(response);
     if (response?.error) {
       setFetchJournalError(response.payload);
       setFetchingJournals(false);
@@ -149,6 +150,25 @@ const Journaling = () => {
     }
   };
 
+  const deleteGratefullItemId = async (e, id) => {
+    e.preventDefault();
+    setGratefulID(id);
+    const response = await dispatch(deleteUserGrateful(id));
+    if (response?.error) {
+      //setJournalActionError('Failed to delete journal');
+      setGratefulID(-1);
+      return;
+    }
+    if (response.payload?.status === 'success') {
+      fetchGratefuls();
+      setGratefulID(-1);
+      return;
+    } else {
+      setGratefulID(-1);
+      return;
+    }
+  };
+
   const [currentPage, setCurrentPage] = useState(1);
 
   const numPages = Math.ceil(journalsList?.length / QUOTES_PER_PAGE);
@@ -158,9 +178,7 @@ const Journaling = () => {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-  const showCustomPopup = () => {
-    setShowPopup(!showPopup);
-  };
+
   return (
     <ResilienceActivitiesPageComponent title={'Journaling'} backroute={'/resilience-activities'}>
       <Form>
@@ -185,21 +203,88 @@ const Journaling = () => {
               </div>
             </Link>
           )}
-          <div className="Grateful-tab">
-            <div className="tab-content">
-              <div className={`tab-pane ${activeTab === 1 ? 'active' : ''}`}>
-                {fetchingJournals && (
-                  <div
-                    style={{
-                      display: 'flex',
-                      width: '100%',
-                      justifyContent: 'center',
-                      alignItems: 'center'
-                    }}>
-                    <Spinner />
-                  </div>
-                )}
-                {journalsList?.length === 0 && fetchJournalError ? (
+          <div className="tab-content">
+            <div className={`tab-pane ${activeTab === 1 ? 'active' : ''}`}>
+              {fetchingJournals && (
+                <div
+                  style={{
+                    display: 'flex',
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}>
+                  <Spinner />
+                </div>
+              )}
+              {journalsList?.length === 0 && fetchJournalError ? (
+                <div
+                  style={{
+                    display: 'flex',
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    color: 'red',
+                    fontSize: '10px'
+                  }}>
+                  {fetchJournalError}
+                </div>
+              ) : (
+                journalsList
+                  ?.slice(startIndex, endIndex)
+                  ?.map((dta) => (
+                    <Journal
+                      id={dta.id}
+                      key={dta.id}
+                      title={dta.title}
+                      date={dta.timestamp}
+                      notes={dta.notes}
+                      color={`#${Math.floor(Math.random() * 16777215).toString(16)}`}
+                    />
+                  ))
+              )}
+
+              {numPages > 1 && (
+                <div style={{ marginTop: '1rem', display: 'flex' }}>
+                  {Array.from({ length: numPages }).map((_, index) => (
+                    <button
+                      key={index}
+                      style={{
+                        margin: '0.5rem',
+                        padding: '0.5rem',
+                        backgroundColor: index + 1 === currentPage ? '#553791' : 'white',
+                        color: index + 1 === currentPage ? 'white' : 'black',
+                        border: 'none',
+                        borderRadius: '0.25rem',
+                        cursor: 'pointer'
+                      }}
+                      onClick={() => handlePageChange(index + 1)}>
+                      {index + 1}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className={`tab-pane ${activeTab === 2 ? 'active' : ''}`}>
+              <h6 style={{ font: 'bold' }}>What are you grateful for?</h6>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '7px'
+                }}>
+                <div>
+                  <textarea
+                    style={textAreaStyles}
+                    value={grateful}
+                    onChange={(e) => setGrateful(e.target.value)}
+                    onFocus={(e) => {
+                      e.target.style.height = focusedStyles.height;
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.height = textAreaStyles.height;
+                    }}
+                    placeholder="Example: I am grateful to have a home to live in"
+                  />
                   <div
                     style={{
                       display: 'flex',
@@ -209,113 +294,99 @@ const Journaling = () => {
                       color: 'red',
                       fontSize: '10px'
                     }}>
-                    {fetchJournalError}
+                    {gratefulError}
                   </div>
-                ) : (
-                  journalsList
-                    ?.slice(startIndex, endIndex)
-                    ?.map((dta) => (
-                      <Journal
-                        id={dta.id}
-                        key={dta.id}
-                        title={dta.title}
-                        date={dta.timestamp}
-                        notes={dta.notes}
-                        color={`#${Math.floor(Math.random() * 16777215).toString(16)}`}
-                      />
-                    ))
-                )}
-
-                {numPages > 1 && (
-                  <div style={{ marginTop: '1rem', display: 'flex' }}>
-                    {Array.from({ length: numPages }).map((_, index) => (
-                      <button
-                        key={index}
-                        style={{
-                          margin: '0.5rem',
-                          padding: '0.5rem',
-                          backgroundColor: index + 1 === currentPage ? '#553791' : 'white',
-                          color: index + 1 === currentPage ? 'white' : 'black',
-                          border: 'none',
-                          borderRadius: '0.25rem',
-                          cursor: 'pointer'
-                        }}
-                        onClick={() => handlePageChange(index + 1)}>
-                        {index + 1}
-                      </button>
-                    ))}
-                  </div>
+                </div>
+                {grateful && (
+                  <button onClick={handleSubmit} style={buttonStyles}>
+                    {savingGrateful ? <Spinner /> : 'Save'}
+                  </button>
                 )}
               </div>
-              <div className={`tab-pane ${activeTab === 2 ? 'active' : ''}`}>
-                <h6 style={{ font: 'bold' }}>What are you grateful for?</h6>
-                {fetchingGratefuls && (
-                  <div className="load-spinner">
-                    <Spinner />
-                  </div>
-                )}
-                {gratefulsList?.length === 0 && fetchGrateFulError ? (
-                  <div className="grateful-error">{fetchGrateFulError}</div>
-                ) : (
-                  <div>
-                    {gratefulsList?.map((result) => (
-                      <div key={result.id}>
-                        <div className="grateful">
-                          {' '}
+              {fetchingGratefuls && (
+                <div
+                  style={{
+                    display: 'flex',
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}>
+                  <Spinner />
+                </div>
+              )}
+              {gratefulsList?.length === 0 && fetchGrateFulError ? (
+                <div
+                  style={{
+                    display: 'flex',
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    color: 'red',
+                    fontSize: '10px'
+                  }}>
+                  {fetchGrateFulError}
+                </div>
+              ) : (
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '2px'
+                  }}>
+                  {gratefulsList?.map((result) => (
+                    <div key={result.id}>
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          color: '#000'
+                        }}>
+                        {' '}
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            gap: '7px'
+                          }}>
                           <div
                             style={{
+                              width: '12px',
+                              height: '12px',
+                              gap: '15px',
+                              borderRadius: '50%',
+                              alignItems: 'center',
                               backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(
                                 16
                               )}`
-                            }}
-                            className="grateful-result"></div>
-                          <div> {result?.grateful}</div>
-                          <div
-                            onClick={showCustomPopup}
-                            style={{
-                              fontSize: '30px',
-                              color: '#53368E'
-                            }}>
-                            {' '}
-                            <HiEllipsisHorizontalCircle />
-                          </div>
-                          {showPopup && (
-                            <CustomPopup
-                            // onDeleteClick={deleteJournal}
-                            // deleteLoading={deleteLoading}
-                            // onUpdateClick={editJournal}
-                            // updateLoading={updateLoading}
-                            />
+                            }}></div>
+                          {result?.grateful}
+                        </div>
+                        <div
+                          onClick={(e) => {
+                            deleteGratefullItemId(e, result.id);
+                          }}>
+                          {' '}
+                          {gratefulID === result.id ? (
+                            <Spinner />
+                          ) : (
+                            <div
+                              style={{
+                                color: '#553791',
+                                fontSize: '24px'
+                              }}>
+                              {' '}
+                              <MdClose />{' '}
+                            </div>
                           )}
                         </div>
                       </div>
-                    ))}
-                  </div>
-                )}
-
-                <div className="save">
-                  {grateful && (
-                    <button onClick={handleSubmit} style={buttonStyles}>
-                      {savingGrateful ? <Spinner /> : 'Save'}
-                    </button>
-                  )}
-                  <div>
-                    <textarea
-                      style={textAreaStyles}
-                      value={grateful}
-                      onChange={(e) => setGrateful(e.target.value)}
-                      onFocus={(e) => {
-                        e.target.style.height = focusedStyles.height;
-                      }}
-                      onBlur={(e) => {
-                        e.target.style.height = textAreaStyles.height;
-                      }}
-                      placeholder="Example;I am grateful to have a roof over my head"
-                    />
-                    <div className="grateful-error">{gratefulError}</div>
-                  </div>
+                    </div>
+                  ))}
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
@@ -323,5 +394,4 @@ const Journaling = () => {
     </ResilienceActivitiesPageComponent>
   );
 };
-
 export default Journaling;

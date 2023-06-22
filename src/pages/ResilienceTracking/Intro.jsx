@@ -7,7 +7,10 @@ import Footer from '../../components/layouts/Footer';
 import { ReactComponent as RecordIcon } from '../../assets/svg/Seizure/RecordSeizure.svg';
 import { ReactComponent as MonitorIcon } from '../../assets/svg/Seizure/MonitorSeizure.svg';
 import { ReactComponent as InfoIcon } from '../../assets/svg/Form/Question/info.svg';
+import { getResilienceTallies } from '../../redux/Slices/ResilienceTracking';
+import store from '../../store';
 
+store.dispatch(getResilienceTallies);
 const ResilienceStartPage = () => {
   return (
     <div className="form start-page">

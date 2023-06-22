@@ -24,6 +24,10 @@ const AuthPageComponent = (props) => {
         <div>{props.children}</div>
       </div>
       <div className="bottom-text">
+        <div className="toc">
+          <span>Forgot password?</span>
+          <Link to="/forgot-password">Reset password</Link>
+        </div>
         <div className="call-to-action">
           <span>{props.callToAction}</span>
           <Link to={`${props.link}`}>{props.linkTitle}</Link>

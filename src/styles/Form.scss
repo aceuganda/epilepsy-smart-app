@@ -649,6 +649,54 @@ button{
     }
 
 }
+.DeleteMedicinWarning{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .WarningText{
+     width: 100%;
+     font-weight: 700;
+     font-size: 17px;
+     text-align: center;
+     padding-bottom: 2rem;
+    }
+    .deleteButtonSection{
+        display: flex;
+        width: 90%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        .customButton {
+            width: 7rem;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            background-color: #8C3E79;
+            border: 0px;
+            outline: 0px;
+            border-radius: 18px;
+            font-family: 'Lato';
+            font-size: 16px;
+            font-weight: 800;
+            line-height: 14px;
+            opacity: 0.9;
+            text-transform: capitalize;
+        }
+    }
+    .deleteFeedback{
+        margin-top: 2px;
+        margin-bottom: 1px;
+        align-self: center;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        font-size: 12px;
+    }
+}
   
 // END OF ASSESSMENT POPUP
 .eoa-container{
@@ -824,6 +872,34 @@ button{
         .chart-container {
             margin-top: 40px;
         }
+
+        .recommendations{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 14px;
+            .title{
+                color: $ema-lilac-1;
+                font-weight: 800;
+                font-size: 11px;
+                margin-top: 10px 0;
+                font-style: italic;
+            }
+            .activity-pill{
+                background-color: $ema-lilac-1;
+                box-shadow: 0px 2px 4px 0px #0000003D;
+                margin: 6px 0;
+                border-radius: 20px;
+                padding: 5px 10px;
+                width:75%;
+                height: 30px;
+                color: white;
+                font-size: 12px;
+                text-transform: capitalize;
+                text-align: center;
+            }
+        }
     }
 }
 
@@ -855,6 +931,10 @@ button{
     }
 
 
+}
+.MedicineListWrapper{
+    display: flex;
+    flex-direction: row;
 }
 
 .MedicineIconWrapper {
@@ -920,6 +1000,7 @@ button{
     }
 }
 
+// TRANSITIONS
 .tabTransition {
     transition: all;
     transition-delay: 400ms;
@@ -1241,5 +1322,51 @@ button{
                 box-shadow: 0px 8px 20px 0px rgba(153, 151, 151, 0.141);
             }
         }
+    }
+}
+
+// JOURNALLING
+.journal-page{
+    .content{
+        display: flex;
+        flex-direction: column;
+        .title{
+            input{
+                width: 100%;
+                border-radius: 5px;
+                height: 34px;
+                padding: 0 10px;
+            }
+        }
+    }
+    .error-field{
+        margin-top: 5px;
+        color: red;
+        font-size: 14px;
+    }
+    .text-area{
+        width: 100%;
+    }
+}
+.journal-entry{
+    .header{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        .title{
+            font-size: 18px;
+            text-transform: capitalize;
+        }
+    }
+    .entry{
+        textarea{
+            font-size: 15px;
+        }
+    }
+    .error-field{
+        margin-top: 5px;
+        color: red;
+        font-size: 14px;
     }
 }

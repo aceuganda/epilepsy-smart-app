@@ -6,6 +6,11 @@ const OneServiceGoal = () => {
   const [selectedTab, setSelectedTab] = useState('overall');
   const onClickTabItem = (tab) => setSelectedTab(tab);
 
+  const oneSocialGoal = [
+    'Choose something that you have not been asked to do.',
+    'Consider doing the service act without others getting to know sometimes.' 
+  ];
+
   return (
     <div>
       <ResilienceActivitiesPageComponent backroute={'/resilience-activities'}>
@@ -35,18 +40,27 @@ const OneServiceGoal = () => {
               </p>
               <h5>Tips:</h5>
               <ul>
-                <li>Choose something that you have not been asked to do.</li>
-                <li> Consider doing the service act without others getting to know sometimes. </li>
+                {oneSocialGoal ? (
+                  oneSocialGoal.map((affirmation, index) => (
+                    <li key={index}>
+                      {affirmation}
+                      {'.'}
+                    </li>
+                  ))
+                ) : (
+                  <span />
+                )}
               </ul>
               <h5>Examples:</h5>
               <ul>
-                <li>
-                  Carry groceries for an elder or mother with young children, volunteer at your
-                  church/mosque, help someone with their school or home tasks, collect water for use
-                  at home, wash up the plates and cups after a meal without being asked, clean/sweep
-                  the compound, wash or iron your parents or siblings’ clothes, or empty the dustbin
-                  in the designated waste area.
-                </li>
+                <li>Carry groceries for an elder or mother with young children</li>
+                <li>Volunteer at your church/mosque</li>
+                <li>Help someone with their school or home tasks</li>
+                <li>Collect water for use at home</li>
+                <li>Wash up the plates and cups after a meal without being asked</li>
+                <li>Clean/sweep the compound</li>
+                <li>Wash/iron your parents or siblings’ clothes</li>
+                <li>Empty the dustbin into the designated waste area</li>
               </ul>
             </div>
           </div>

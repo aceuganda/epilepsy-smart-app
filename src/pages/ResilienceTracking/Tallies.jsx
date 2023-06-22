@@ -7,12 +7,13 @@ import { useSelector } from 'react-redux';
 import { getResilienceTallies, loadUserTallies } from '../../redux/Slices/ResilienceTracking';
 import { useEffect } from 'react';
 import store from '../../store';
-
-store.dispatch(getResilienceTallies);
+import { Link } from 'react-router-dom';
+import ErrorImage from '../../assets/img/Resilience/error.webp'
 
 const ResilienceTallies = () => {
   const resilienceTalliesData = useSelector(loadUserTallies);
   const [resilienceTallies, setResilienceTallies] = useState([]);
+  const [selectedActivities, setSelectedActivities] = useState([]);
   const [moodTally, setMoodTally] = useState();
   const [socialTally, setSocialTally] = useState();
   const [treatedTally, setTreatedTally] = useState();
@@ -96,12 +97,71 @@ const ResilienceTallies = () => {
     pieStartAngle: -30
   };
 
+  // TODO: Profile update
+
+  const recommendedActivities = [
+    {
+      name: 'One service goal',
+      link: '/resilience-activities/one-service-goal',
+      outerLink: ''
+    },
+    {
+      name: 'Manage your triggers',
+      link: '/resilience-activities/manage-triggers',
+      outerLink: ''
+    },
+    {
+      name: 'positive affirmations',
+      link: '/resilience-activities/positive-affirmations'
+    },
+    {
+      name: 'One social goal',
+      link: '/resilience-activities/one-social-goal',
+      outerLink: ''
+    },
+    {
+      name: 'Journaling',
+      link: '/resilience-activities/journaling',
+      outerLink: ''
+    },
+    {
+      name: 'Epilepsy Education',
+      link: '#',
+      outerLink: 'https://www.youtube.com/watch?v=SshVn6MUGxA'
+    },
+    {
+      name: 'Inspirational Cultural quotes',
+      link: '/quotes',
+      outerLink: ''
+    },
+    {
+      name: 'Meditation',
+      link: '/resilience-activities/meditation',
+      outerLink: ''
+    },
+    {
+      name: 'Listening',
+      link: '/resilience-activities/listening',
+      outerLink: ''
+    }
+  ];
+
+  useEffect(() => {
+    while (selectedActivities.length < 3) {
+      const randomIndex = Math.floor(Math.random() * recommendedActivities.length);
+      const randomObject = recommendedActivities[randomIndex];
+      if (!selectedActivities.includes(randomObject)) {
+        selectedActivities.push(randomObject);
+      }
+    }
+  }, []);
+
   return (
     <div className="tallies">
       {resilienceTallies.length > 0 ? (
         <>
           <TopBar title="Tallies" route="/resilience-form" />
-          <Form>
+          <Form style={{ maxHeight: 'none', height: '600px' }}>
             <div className="tallies-body">
               <h2 id="header">Recent Assessment</h2>
               <div className="header-nav">
@@ -146,6 +206,18 @@ const ResilienceTallies = () => {
                     verdict={socialTally >= 3 ? true : false}
                     text={socialVerdict}
                   />
+                  {socialTally < 3 ? (
+                    <div className="recommendations">
+                      <div className="title">Recommended Resilience Activities</div>
+                      {selectedActivities.map((activity, index) => (
+                        <div key={index} className="activity-pill">
+                          <Link to={`${activity.link}`}>{activity.name}</Link>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <span />
+                  )}
                 </div>
               )}
               {selectedTab === 'Treated' && (
@@ -167,9 +239,11 @@ const ResilienceTallies = () => {
         <div>
           <TopBar title="Tallies" route="/resilience-form" />
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h4>Internal Server error</h4>
+            <div>
+              <img src={ErrorImage} alt=''/>
+            </div>
             <div style={{ width: '80%', textAlign: 'center', fontWeight: '300' }}>
-              Please check your network connection and try again later.
+              Something went wrong. Please try again later
             </div>
           </div>
         </div>

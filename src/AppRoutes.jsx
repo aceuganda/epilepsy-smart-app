@@ -39,6 +39,9 @@ import NewJournal from './components/journal/NewJournal';
 import Journal2 from './components/journal/Journal2';
 import InspirationalQuotes from './pages/ResilienceActivities/Activities/InspirationalQuotes';
 import VerificationPage from './pages/EmailVerification/VerificationPage';
+import ForgotPassword from './pages/Authentication/ForgotPassword';
+import ResetPassword from './pages/Authentication/ResetPassword';
+import ManageTriggers from './pages/ResilienceActivities/Activities/ManageTriggers';
 // import InspirationalQuotes from './pages/ResilienceActivities/InspirationalQuotes';
 // import Grateful from './components/journal/Grateful';
 
@@ -63,6 +66,8 @@ const AppRoutes = () => (
         <Route path="/register" element={<Register />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/home" element={<HomePage />} />
           <Route path="/seizure-form" element={<StartPage />} />
@@ -98,6 +103,7 @@ const AppRoutes = () => (
           <Route path="/journal/:journalId" element={<Journal2 />} />
           <Route path="/new-journal" element={<NewJournal />} />
           <Route path="/quotes" element={<InspirationalQuotes />} />
+          <Route path="/resilience-activities/manage-triggers" element={<ManageTriggers />} />
         </Route>
       </Routes>
     </Suspense>

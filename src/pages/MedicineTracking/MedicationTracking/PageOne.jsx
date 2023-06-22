@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import { Link } from 'react-router-dom';
 import MedicationComponent from '..';
 import Form from '../../../components/form/Form';
 import { ReactComponent as Arrow } from '../../../assets/svg/Form/Selectors/togglearrow.svg';
@@ -8,15 +7,16 @@ import TimeSelector from './TimeSelector';
 import { ReactComponent as AddTime } from '../../../assets/svg/Medication/addtime.svg';
 import Question from '../../../components/form/Question';
 import { useDispatch, useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
 import Modal from '../../../components/modal/index.jsx';
 import SingleOptionCheckbox from '../../../components/form/SingleOptionCheckbox';
 import Spinner from '../../../components/Spinner/Spinner';
+import { MdDeleteSweep } from 'react-icons/md';
 import {
   setMedicineName,
   postMedicineFormData,
   getMedicineData,
-  setUserID
+  setUserID,
+  deleteMedicineData
 } from '../../../redux/Slices/MedicineTracking';
 
 const medicineNames = ['Sodium Vaporate', 'Diclofenac', 'Gofen', 'Ibuprofen'];
@@ -30,6 +30,9 @@ const MedicationTrackingPageOne = () => {
   const [timerOuterFeedbackMessage, setOuterTimerFeedbackMessage] = useState('');
   const [medicineAccodianVisibilty, setMedicineAccodianVisibilty] = useState(false);
   const [showMedicineSelector, setShowMedicineSelector] = useState(false);
+  const [showDeleteMedicineWarning, setShowDeleteMedicineWarning] = useState(false);
+  const [deletingMedicine, setDeletingMedicine] = useState(false);
+  const [deleteMedicineError, setDeleteMedicineError] = useState('');
   const [checkedMedicine, setCheckedMedicine] = useState('');
   const [selectedAccodianMedicine, setSelectedAccodianMedicine] = useState('');
   const [selectedHours, setSelectedHours] = useState('00');
@@ -38,6 +41,7 @@ const MedicationTrackingPageOne = () => {
   const [userMedicines, setUserMedicines] = useState([]);
   const [userMedicinesFeedbackMessage, setUserMedicinesFeedbackMessage] = useState('');
   const [otherMedicine, setOtherMedicine] = useState('');
+  const [deleteMedicineIndex, setDeleteMedicineIndex] = useState('');
   const medicineTrackingData = useSelector((state) => state.medicineTracking);
   const userId = localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo')).data.id
@@ -49,14 +53,19 @@ const MedicationTrackingPageOne = () => {
   );
 
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
   dispatch(setUserID(userId));
+
   useEffect(() => {
     fetchMedicine();
   }, []);
 
+  useEffect(() => {
+    if (deleteMedicineIndex !== '') {
+      setShowDeleteMedicineWarning(true);
+    }
+  }, [deleteMedicineIndex]);
+
   const fetchMedicine = async () => {
-    // console.log(userId);
     const response = await dispatch(getMedicineData(userId));
     if (response.payload?.status === 'success') {
       setUserMedicines(response.payload.data.medicines);
@@ -96,6 +105,13 @@ const MedicationTrackingPageOne = () => {
   const handleUserMedsModalClosure = () => {
     setShowMedicineSelector(false);
   };
+  const handleDeleteWarningClosure = () => {
+    setShowDeleteMedicineWarning(false);
+    setDeleteMedicineIndex('');
+  };
+  const openDeleteMedicineWarning = (index) => {
+    setDeleteMedicineIndex(index);
+  };
   const handleHours = (target) => {
     setSelectedHours(target.value);
   };
@@ -123,7 +139,7 @@ const MedicationTrackingPageOne = () => {
     } else {
       // alert('Please select saved medicine for the reminder. Add a medicine if you dont have any.');
       setTimerFeedbackMessage(
-        'Please select saved medicine for the reminder. Add a medicine if you dont have any.'
+        'Please select saved medicine for the reminder. Add a medicine if you do not have any.'
       );
     }
   };
@@ -139,6 +155,29 @@ const MedicationTrackingPageOne = () => {
     remindersArray.splice(index, 1);
     localStorage.setItem(`${userId}Reminders`, JSON.stringify(remindersArray));
     setSavedReminders(remindersArray);
+  };
+  const DeleteMedicine = async (e, id) => {
+    e.preventDefault();
+    setDeletingMedicine(true);
+    const response = await dispatch(deleteMedicineData(id));
+    if (response?.error) {
+      setDeleteMedicineIndex('');
+      setDeletingMedicine(false);
+      setDeleteMedicineError('Process failed, please try again');
+      return;
+    }
+    if (response.payload?.data?.status === 'success') {
+      setDeleteMedicineIndex('');
+      setDeletingMedicine(false);
+      setShowDeleteMedicineWarning(false);
+      fetchMedicine();
+      return;
+    } else {
+      setDeleteMedicineIndex('');
+      setDeletingMedicine(false);
+      setDeleteMedicineError('Process failed, please try again');
+      return;
+    }
   };
 
   return (
@@ -210,12 +249,21 @@ const MedicationTrackingPageOne = () => {
                       borderBottom: '1px solid #ccc',
                       display: 'flex',
                       alignItems: 'center',
+                      justifyContent: 'space-between',
                       fontSize: '15px'
                     }}>
-                    <div className="MedicineIconWrapper">
-                      <div className="MedicineIconInnerYellow"></div>
+                    <div className="MedicineListWrapper">
+                      <div className="MedicineIconWrapper">
+                        <div className="MedicineIconInnerYellow"></div>
+                      </div>
+                      <div className="Medicine">{medicine.name}</div>
                     </div>
-                    <div className="Medicine">{medicine.name}</div>
+                    <div
+                      onClick={() => {
+                        openDeleteMedicineWarning(index);
+                      }}>
+                      <MdDeleteSweep style={{ color: '#553791' }} />
+                    </div>
                   </div>
                 ))}
               </div>
@@ -235,62 +283,89 @@ const MedicationTrackingPageOne = () => {
                 {userMedicinesFeedbackMessage}
               </div>
             )}
-            <Modal show={showMedicineSelector} closeModal={handleUserMedsModalClosure}>
-              <div>
-                <div className="ItemList">
-                  {medicineNames.map((label, index) => (
-                    <SingleOptionCheckbox
-                      key={index}
-                      label={label}
-                      id="default-checkbox"
-                      //since one can add one medicine at a time
-                      checked={label === checkedMedicine}
-                      onChange={() => {
-                        dispatch(setMedicineName(label));
-                        setCheckedMedicine(label);
+            {showDeleteMedicineWarning === true && (
+              <Modal show={showDeleteMedicineWarning} closeModal={handleDeleteWarningClosure}>
+                <div className="DeleteMedicinWarning">
+                  <div className="WarningText">
+                    Are you sure you want to delete {userMedicines[deleteMedicineIndex]?.name} ?
+                  </div>
+                  <div className="deleteButtonSection">
+                    <button onClick={handleDeleteWarningClosure} className="customButton">
+                      Cancel
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        DeleteMedicine(e, userMedicines[deleteMedicineIndex].id);
                       }}
-                    />
-                  ))}
-                  <SingleOptionCheckbox
-                    label={'other'}
-                    id="default-checkbox"
-                    //since one can add one medicine at a time
-                    checked={checkedMedicine === 'other'}
-                    onChange={() => {
-                      setCheckedMedicine('other');
-                    }}
-                  />
-                  {checkedMedicine === 'other' && (
-                    <input
-                      className="other-input"
-                      value={otherMedicine}
-                      onChange={(e) => {
-                        setOtherMedicine(e.target.value);
-                        dispatch(setMedicineName(e.target.value));
-                      }}
-                    />
+                      className="customButton">
+                      {deletingMedicine ? <Spinner /> : 'Yes'}
+                    </button>
+                  </div>
+                  {deleteMedicineError && (
+                    <div className="deleteFeedback">{deleteMedicineError}</div>
                   )}
                 </div>
-                <button onClick={handleMedicineSubmit} className="SaveButton">
-                  {addingMedicine ? <Spinner /> : 'Save'}
-                </button>
-                {addMedicineFeedback && (
-                  <div
-                    style={{
-                      marginTop: '2px',
-                      marginBottom: '1px',
-                      alignSelf: 'center',
-                      display: 'flex',
-                      alignItems: 'center',
-                      textAlign: 'center',
-                      justifyContent: 'center',
-                      fontSize: '12px'
-                    }}>
-                    {addMedicineFeedback}
+              </Modal>
+            )}
+            {showMedicineSelector === true && (
+              <Modal show={showMedicineSelector} closeModal={handleUserMedsModalClosure}>
+                <div>
+                  <div className="ItemList">
+                    {medicineNames.map((label, index) => (
+                      <SingleOptionCheckbox
+                        key={index}
+                        label={label}
+                        id="default-checkbox"
+                        //since one can add one medicine at a time
+                        checked={label === checkedMedicine}
+                        onChange={() => {
+                          dispatch(setMedicineName(label));
+                          setCheckedMedicine(label);
+                        }}
+                      />
+                    ))}
+                    <SingleOptionCheckbox
+                      label={'other'}
+                      id="default-checkbox"
+                      //since one can add one medicine at a time
+                      checked={checkedMedicine === 'other'}
+                      onChange={() => {
+                        setCheckedMedicine('other');
+                      }}
+                    />
+                    {checkedMedicine === 'other' && (
+                      <input
+                        className="other-input"
+                        value={otherMedicine}
+                        placeholder="Panadol.."
+                        onChange={(e) => {
+                          setOtherMedicine(e.target.value);
+                          dispatch(setMedicineName(e.target.value));
+                        }}
+                      />
+                    )}
                   </div>
-                )}
-              </div>
-            </Modal>
+                  <button onClick={handleMedicineSubmit} className="SaveButton">
+                    {addingMedicine ? <Spinner /> : 'Save'}
+                  </button>
+                  {addMedicineFeedback && (
+                    <div
+                      style={{
+                        marginTop: '2px',
+                        marginBottom: '1px',
+                        alignSelf: 'center',
+                        display: 'flex',
+                        alignItems: 'center',
+                        textAlign: 'center',
+                        justifyContent: 'center',
+                        fontSize: '12px'
+                      }}>
+                      {addMedicineFeedback}
+                    </div>
+                  )}
+                </div>
+              </Modal>
+            )}
           </form>
         ) : (
           <form className="tabTransition">
