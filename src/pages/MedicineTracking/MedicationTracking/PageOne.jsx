@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Modal from '../../../components/modal/index.jsx';
 import SingleOptionCheckbox from '../../../components/form/SingleOptionCheckbox';
 import Spinner from '../../../components/Spinner/Spinner';
-import { MdDeleteSweep } from 'react-icons/md';
+import { MdDelete } from 'react-icons/md';
 import {
   setMedicineName,
   postMedicineFormData,
@@ -262,7 +262,7 @@ const MedicationTrackingPageOne = () => {
                       onClick={() => {
                         openDeleteMedicineWarning(index);
                       }}>
-                      <MdDeleteSweep style={{ color: '#553791' }} />
+                      <MdDelete style={{ color: '#553791', fontSize: '22px' }} />
                     </div>
                   </div>
                 ))}
