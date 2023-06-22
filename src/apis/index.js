@@ -5,7 +5,8 @@ import {
   RESILIENCE_URL,
   MEDICINES_URL,
   MEDICATION_URL,
-  REGISTER_USER_URL
+  REGISTER_USER_URL,
+  MEDICINE_URL
 } from '../config/urls';
 
 // const userToken = JSON.parse(localStorage.getItem('userToken'));
@@ -20,7 +21,6 @@ export const postSeizureAssessment = async (data) =>
   await createAxiosInstance()
     .post(SEIZURE_URL, data)
     .then((response) => response.data);
-
 
 export const postResilience = async (data) =>
   await createAxiosInstance()
@@ -58,3 +58,6 @@ export const updatePassword = async (userId, data) =>
 // get single user
 export const getUserDetails = async (userId) =>
   await createAxiosInstance().get(`${REGISTER_USER_URL}/${userId}`);
+
+export const deleteMedicine = async (medicineID) =>
+  await createAxiosInstance().delete(`${MEDICINE_URL}/${medicineID}`);
