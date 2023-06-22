@@ -13,7 +13,7 @@ import {
 } from '../../../redux/Actions/journalingActions';
 import { useDispatch } from 'react-redux';
 import Spinner from '../../../components/Spinner/Spinner.js';
-import { MdDeleteSweep } from 'react-icons/md';
+import { MdClose } from 'react-icons/md';
 
 const QUOTES_PER_PAGE = 7; // adjust as needed
 
@@ -266,6 +266,43 @@ const Journaling = () => {
             </div>
             <div className={`tab-pane ${activeTab === 2 ? 'active' : ''}`}>
               <h6 style={{ font: 'bold' }}>What are you grateful for?</h6>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '7px'
+                }}>
+                <div>
+                  <textarea
+                    style={textAreaStyles}
+                    value={grateful}
+                    onChange={(e) => setGrateful(e.target.value)}
+                    onFocus={(e) => {
+                      e.target.style.height = focusedStyles.height;
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.height = textAreaStyles.height;
+                    }}
+                    placeholder="Example: I am grateful to have a home to live in"
+                  />
+                  <div
+                    style={{
+                      display: 'flex',
+                      width: '100%',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      color: 'red',
+                      fontSize: '10px'
+                    }}>
+                    {gratefulError}
+                  </div>
+                </div>
+                {grateful && (
+                  <button onClick={handleSubmit} style={buttonStyles}>
+                    {savingGrateful ? <Spinner /> : 'Save'}
+                  </button>
+                )}
+              </div>
               {fetchingGratefuls && (
                 <div
                   style={{
@@ -337,10 +374,11 @@ const Journaling = () => {
                           ) : (
                             <div
                               style={{
-                                color: '#553791'
+                                color: '#553791',
+                                fontSize: '24px'
                               }}>
                               {' '}
-                              <MdDeleteSweep />{' '}
+                              <MdClose />{' '}
                             </div>
                           )}
                         </div>
@@ -349,44 +387,6 @@ const Journaling = () => {
                   ))}
                 </div>
               )}
-
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '7px'
-                }}>
-                <div>
-                  <textarea
-                    style={textAreaStyles}
-                    value={grateful}
-                    onChange={(e) => setGrateful(e.target.value)}
-                    onFocus={(e) => {
-                      e.target.style.height = focusedStyles.height;
-                    }}
-                    onBlur={(e) => {
-                      e.target.style.height = textAreaStyles.height;
-                    }}
-                    placeholder="Example: I am grateful to have a home to live in"
-                  />
-                  <div
-                    style={{
-                      display: 'flex',
-                      width: '100%',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      color: 'red',
-                      fontSize: '10px'
-                    }}>
-                    {gratefulError}
-                  </div>
-                </div>
-                {grateful && (
-                  <button onClick={handleSubmit} style={buttonStyles}>
-                    {savingGrateful ? <Spinner /> : 'Save'}
-                  </button>
-                )}
-              </div>
             </div>
           </div>
         </div>
