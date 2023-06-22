@@ -24,7 +24,7 @@ const AllResilienceActivitiesPage = () => {
     {
       name: 'Manage your triggers',
       icon: <ManageTrigger />,
-      link: '/resilience-activities/manage-your-triggers',
+      link: '/resilience-activities/manage-triggers',
       outerLink: ''
     },
     {

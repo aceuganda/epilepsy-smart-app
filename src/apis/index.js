@@ -52,6 +52,9 @@ export const postMedication = async (data) =>
 export const editUserDetails = async (userId, data) =>
   await createAxiosInstance().patch(`${REGISTER_USER_URL}/${userId}`, data);
 
+export const updatePassword = async (userId, data) =>
+  await createAxiosInstance().patch(`${REGISTER_USER_URL}/${userId}/change_password`, data);
+
 // get single user
 export const getUserDetails = async (userId) =>
   await createAxiosInstance().get(`${REGISTER_USER_URL}/${userId}`);

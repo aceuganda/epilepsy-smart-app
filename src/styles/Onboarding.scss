@@ -90,4 +90,20 @@
             left: 10%;
         }
     }
+    .verify-section{
+        background-image: url("../assets/svg/Onboarding/Path3.svg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        height:480px;
+        margin-bottom: 36px;
+        img{
+            width: 130%;
+            height: auto;
+            position: absolute;
+            left: -56px;
+            right: 0;
+            margin: 0 auto;
+            top: 179px;
+        }
+    }
 }

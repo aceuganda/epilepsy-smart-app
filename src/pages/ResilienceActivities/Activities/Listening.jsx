@@ -7,7 +7,7 @@ const Listening = () => {
   const onClickTabItem = (tab) => setSelectedTab(tab);
   return (
     <ResilienceActivitiesPageComponent backroute={'/resilience-activities'}>
-      <Form style={{ maxHeight: 'none', height: '680px' }}>
+      <Form style={{ maxHeight: 'none', height: '580px' }}>
         <div className="text-page">
           <div className="title">
             <h3>Listening </h3>

@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import Avatar from './Avatar';
 import { capitalise } from '../../utils';
 import { LocalNotifications } from '@capacitor/local-notifications';
-import quotes from '../../resources/insipiration_quotes.json';
+import quotes from '../../resources/inspiration_quotes.json';
 import { Link } from 'react-router-dom';
 
 const HomePage = () => {
@@ -41,7 +41,6 @@ const HomePage = () => {
         ]
       });
     }
-    console.log('hasPermission', hasPermission);
   };
   //call the function every after 8 hours
   setInterval(() => {
@@ -83,7 +82,6 @@ const HomePage = () => {
             ]
           };
           await LocalNotifications.schedule(schedulingOptions);
-          console.log('Notifications Secheduled');
         }
       }
     } else {

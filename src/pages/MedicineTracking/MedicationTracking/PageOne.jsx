@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import { Link } from 'react-router-dom';
 import MedicationComponent from '..';
 import Form from '../../../components/form/Form';
 import { ReactComponent as Arrow } from '../../../assets/svg/Form/Selectors/togglearrow.svg';
@@ -8,7 +7,6 @@ import TimeSelector from './TimeSelector';
 import { ReactComponent as AddTime } from '../../../assets/svg/Medication/addtime.svg';
 import Question from '../../../components/form/Question';
 import { useDispatch, useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
 import Modal from '../../../components/modal/index.jsx';
 import SingleOptionCheckbox from '../../../components/form/SingleOptionCheckbox';
 import Spinner from '../../../components/Spinner/Spinner';
@@ -37,6 +35,7 @@ const MedicationTrackingPageOne = () => {
   const [selectedZone, setSelectedZone] = useState('AM');
   const [userMedicines, setUserMedicines] = useState([]);
   const [userMedicinesFeedbackMessage, setUserMedicinesFeedbackMessage] = useState('');
+  const [otherMedicine, setOtherMedicine] = useState('');
   const medicineTrackingData = useSelector((state) => state.medicineTracking);
   const userId = localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo')).data.id
@@ -48,14 +47,12 @@ const MedicationTrackingPageOne = () => {
   );
 
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
   dispatch(setUserID(userId));
   useEffect(() => {
     fetchMedicine();
   }, []);
 
   const fetchMedicine = async () => {
-    // console.log(userId);
     const response = await dispatch(getMedicineData(userId));
     if (response.payload?.status === 'success') {
       setUserMedicines(response.payload.data.medicines);
@@ -122,7 +119,7 @@ const MedicationTrackingPageOne = () => {
     } else {
       // alert('Please select saved medicine for the reminder. Add a medicine if you dont have any.');
       setTimerFeedbackMessage(
-        'Please select saved medicine for the reminder. Add a medicine if you dont have any.'
+        'Please select saved medicine for the reminder. Add a medicine if you do not have any.'
       );
     }
   };
@@ -250,6 +247,26 @@ const MedicationTrackingPageOne = () => {
                       }}
                     />
                   ))}
+                  <SingleOptionCheckbox
+                    label={'other'}
+                    id="default-checkbox"
+                    //since one can add one medicine at a time
+                    checked={checkedMedicine === 'other'}
+                    onChange={() => {
+                      setCheckedMedicine('other');
+                    }}
+                  />
+                  {checkedMedicine === 'other' && (
+                    <input
+                      className="other-input"
+                      value={otherMedicine}
+                      placeholder="Panadol.."
+                      onChange={(e) => {
+                        setOtherMedicine(e.target.value);
+                        dispatch(setMedicineName(e.target.value));
+                      }}
+                    />
+                  )}
                 </div>
                 <button onClick={handleMedicineSubmit} className="SaveButton">
                   {addingMedicine ? <Spinner /> : 'Save'}

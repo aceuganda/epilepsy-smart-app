@@ -29,7 +29,6 @@ const NewJournal = () => {
     if (title && notes) {
       setLoading(true);
       const response = await dispatch(postUserJournal(journal));
-      // console.log(response);
       if (response?.error) {
         setJournalActionError('Failed to delete journal');
         setLoading(false);
@@ -46,70 +45,38 @@ const NewJournal = () => {
         return;
       }
     } else {
-      setJournalActionError('All Fields must not be empty');
+      setJournalActionError('All Fields must be filled');
     }
   };
+
   return (
     <ResilienceActivitiesPageComponent
       title={'New Journal'}
       backroute={'/resilience-activities/Journaling'}>
       <Form style={{ backgroundColor: '#E8E8E8' }}>
-        <div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
-            {/* input */}
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                width: '120px'
-              }}>
-              <div style={{ borderBottom: '3px solid #F42C56' }}>
-                {' '}
-                <input
-                  style={{ backgroundColor: '#E8E8E8' }}
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  placeholder="Type here"
-                  type="text"
-                />
-                {/* {children} */}
-              </div>
-
-              <div style={{ marginTop: '7px', fontSize: '13px' }}>
-                <span>Today</span>
+        <div className="journal-page">
+          <div className="content">
+            <div className="title">
+              <input
+                type="text"
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Entry title"
+                value={title}
+              />
+            </div>
+            <div className="text-area">
+              <textarea
+                onChange={(e) => setNotes(e.target.value)}
+                value={notes}
+                placeholder="Type something here..."
+              />
+              <div>
+                <button onClick={handleSave} className="finish-btn">
+                  {loading ? <Spinner /> : 'Save'}
+                </button>
               </div>
             </div>
-
-            <div>
-              <button
-                onClick={handleSave}
-                style={{
-                  borderStyle: 'none',
-                  backgroundColor: '#E8E8E8',
-                  color: 'purple',
-                  fontWeight: 'bold'
-                }}>
-                {loading ? <Spinner /> : 'Save'}
-              </button>
-            </div>
-          </div>
-          <div>
-            <textarea
-              onChange={(e) => setNotes(e.target.value)}
-              value={notes}
-              placeholder="Tap to type something "
-            />
-            <div
-              style={{
-                display: 'flex',
-                width: '100%',
-                justifyContent: 'center',
-                alignItems: 'center',
-                color: 'red',
-                fontSize: '10px'
-              }}>
-              {journalActionError}
-            </div>
+            <div className="error-field">{journalActionError}</div>
           </div>
         </div>
       </Form>

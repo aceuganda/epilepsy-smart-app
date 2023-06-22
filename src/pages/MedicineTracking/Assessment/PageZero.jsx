@@ -37,7 +37,7 @@ const MedicationAssessmentPageZero = () => {
     } else if (response.payload.request?.status === 404) {
       setUserMedicinesFeedbackMessage(response.payload.response.data.message);
     } else {
-      setUserMedicinesFeedbackMessage('failed to fetct medicine');
+      setUserMedicinesFeedbackMessage('failed to fetch medicine');
     }
   };
   return (

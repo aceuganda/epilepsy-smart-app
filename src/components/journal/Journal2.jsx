@@ -4,10 +4,8 @@ import { useDispatch } from 'react-redux';
 import { updateUserJournal, deleteUserJournal } from '../../redux/Actions/journalingActions';
 import ResilienceActivitiesPageComponent from '../../pages/ResilienceActivities';
 import Form from '../form/Form';
-
 import { HiEllipsisHorizontalCircle } from 'react-icons/hi2';
 import CustomPopup from './CustomPopup';
-// import {withRouter} from 'react-router-dom'
 
 const Journal2 = () => {
   const location = useLocation();
@@ -51,14 +49,12 @@ const Journal2 = () => {
         return;
       }
     } else {
-      // console.log('no');
       return;
     }
   };
   const deleteJournal = async () => {
     setDeleteLoading(true);
     const response = await dispatch(deleteUserJournal(id));
-    // console.log(response);
     if (response?.error) {
       setJournalActionError('Failed to delete journal');
       setDeleteLoading(false);
@@ -81,26 +77,14 @@ const Journal2 = () => {
       title={'Journaling'}
       backroute={'/resilience-activities/Journaling'}>
       <Form>
-        <div>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              width: '100%',
-              padding: '8px'
-            }}>
-            <div>
-              <div style={{ borderBottom: '3px solid #F42C56', width: '9rem' }}>
-                {' '}
-                <input
-                  style={{ backgroundColor: '#E8E8E8', width: '9rem' }}
-                  value={titleInput}
-                  onChange={(e) => setTitleInput(e.target.value)}
-                  type="text"
-                />
-                {/* {children} */}
-              </div>
+        <div className="journal-entry">
+          <div className="header">
+            <div className="title">
+              <input
+                value={titleInput}
+                onChange={(e) => setTitleInput(e.target.value)}
+                type="text"
+              />
             </div>
             <div
               onClick={showCustomPopup}
@@ -108,11 +92,9 @@ const Journal2 = () => {
                 fontSize: '30px',
                 color: '#53368E'
               }}>
-              {' '}
               <HiEllipsisHorizontalCircle />
             </div>
           </div>
-
           {showPopup && (
             <CustomPopup
               onDeleteClick={deleteJournal}
@@ -121,24 +103,9 @@ const Journal2 = () => {
               updateLoading={updateLoading}
             />
           )}
-
-          <div>
-            <textarea
-              style={{ fontSize: '10px' }}
-              value={notesInput}
-              onChange={(e) => setNotesInput(e.target.value)}
-            />
-            <div
-              style={{
-                display: 'flex',
-                width: '100%',
-                justifyContent: 'center',
-                alignItems: 'center',
-                color: 'red',
-                fontSize: '10px'
-              }}>
-              {journalActionError}
-            </div>
+          <div className="entry">
+            <textarea value={notesInput} onChange={(e) => setNotesInput(e.target.value)} />
+            <div className="error-field">{journalActionError}</div>
           </div>
         </div>
       </Form>
