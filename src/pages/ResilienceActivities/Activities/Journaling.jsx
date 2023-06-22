@@ -394,4 +394,5 @@ const Journaling = () => {
     </ResilienceActivitiesPageComponent>
   );
 };
+
 export default Journaling;
