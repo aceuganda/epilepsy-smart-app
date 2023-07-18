@@ -12,3 +12,5 @@ export const JOURNALS_URL = `${BASE_URL}/journals`;
 export const GRATEFULLS_URL = `${BASE_URL}/gratefuls`;
 
 export const JOURNAL_URL = `${BASE_URL}/journal`;
+export const PASSWORD_RESET_URL = `${BASE_URL}/users/reset_password`;
+export const PASSWORD_RESET_INITIATIATION = `${BASE_URL}/users/forgot_password`;

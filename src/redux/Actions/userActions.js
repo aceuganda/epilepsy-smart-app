@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { REGISTER_USER_URL } from '../../config/urls';
-import { LOGIN_USER_URL } from '../../config/urls';
+import { LOGIN_USER_URL, REGISTER_USER_URL } from '../../config/urls';
+
 import axios from 'axios';
 
 export const registerUser = createAsyncThunk('user/register', async (data, { rejectWithValue }) => {
@@ -46,3 +46,42 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+
+// export const requestPasswordReset = async (data) => {
+//   try {
+//     const config = {
+//       headers: {
+//         'Content-Type': 'application/json'
+//       }
+//     };
+//     await axios.post(`${PASSWORD_RESET_INITIATIATION}`, data, config);
+//   } catch (err) {
+//     if (err.response && err.response.data) {
+//       // console.log(err.response.data);
+//       return err.response.data;
+//     } else {
+//       // console.log(err);
+//       return err;
+//     }
+//   }
+// };
+
+
+// export const resetPassword = async (token, data) => {
+//   try {
+//     const config = {
+//       headers: {
+//         'Content-Type': 'application/json'
+//       }
+//     };
+//     await axios.post(`${PASSWORD_RESET_URL}/${token}`, data, config);
+//   } catch (err) {
+//     if (err.response && err.response.data) {
+//       // console.log(err.response.data);
+//       return err.response.data;
+//     } else {
+//       // console.log(err);
+//       return err;
+//     }
+//   }
+// };
