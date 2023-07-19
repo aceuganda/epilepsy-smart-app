@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { registerUser, loginUser } from '../Actions/userActions';
-import { editUserDetails,getUserDetails,updatePassword } from '../../apis';
+import { editUserDetails, getUserDetails, updatePassword } from '../../apis';
 
 const userToken = localStorage.getItem('userToken')
   ? JSON.parse(localStorage.getItem('userToken'))
@@ -19,7 +19,8 @@ const initialState = {
   userInfo,
   error: null,
   userToken,
-  success: false
+  success: false,
+  userDetails: {}
 };
 
 export const editUserData = createAsyncThunk('user/edit', async (data) => {
@@ -35,7 +36,7 @@ export const updatePassWord = createAsyncThunk('user/password', async (data) => 
   delete data.id;
   const res = await updatePassword(userId, data);
   return res;
-})
+});
 
 export const getSingleUserDetails = createAsyncThunk('user/details', async () => {
   const userId = localStorage.getItem('userInfo')
@@ -58,36 +59,60 @@ export const usersSlice = createSlice({
       state.error = null;
     }
   },
-  extraReducers: {
-    //register user
-    [registerUser.pending]: (state) => {
-      state.loading = true;
-      state.error = null;
-    },
-    [registerUser.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.userInfo = action.payload;
-      state.success = true;
-    },
-    [registerUser.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    //login user
-    [loginUser.pending]: (state) => {
-      state.loading = true;
-      state.error = null;
-    },
-    [loginUser.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.userInfo = action.payload;
-      state.userToken = action.payload.data.access_token;
-      state.success = true;
-    },
-    [loginUser.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    }
+  extraReducers: (builder) => {
+    // register user
+    builder
+      .addCase(registerUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(registerUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userInfo = action.payload;
+        state.success = true;
+      })
+      .addCase(registerUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      //login user
+      .addCase(loginUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userInfo = action.payload;
+        state.userToken = action.payload.data.access_token;
+        state.success = true;
+      })
+      .addCase(loginUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      // get user details
+      .addCase(getSingleUserDetails.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getSingleUserDetails.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userDetails = action.payload.data.data;
+      })
+      .addCase(getSingleUserDetails.pending, (state) => {
+        state.loading = true;
+      })
+      // edit user
+      .addCase(editUserData.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(editUserData.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(editUserData.pending, (state) => {
+        state.loading = true;
+      });
   }
 });
 
