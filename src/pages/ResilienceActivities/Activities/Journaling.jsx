@@ -8,10 +8,12 @@ import { ReactComponent as AddTime } from '../../../assets/svg/Medication/addtim
 import {
   getAllUserGratefulls,
   getAllUserJournals,
-  postUserGratefuls
+  postUserGratefuls,
+  deleteUserGrateful
 } from '../../../redux/Actions/journalingActions';
 import { useDispatch } from 'react-redux';
 import Spinner from '../../../components/Spinner/Spinner.js';
+import { MdClose } from 'react-icons/md';
 
 const QUOTES_PER_PAGE = 7; // adjust as needed
 
@@ -27,6 +29,9 @@ const Journaling = () => {
   const [journalsList, setJournalsList] = useState([]);
   const [fetchJournalError, setFetchJournalError] = useState('');
   const [fetchingJournals, setFetchingJournals] = useState(false);
+  //monitor Id of grateful being deleted
+  const [gratefulID, setGratefulID] = useState(-1);
+
   const dispatch = useDispatch();
 
   const handleTabClick = (tabIndex) => {
@@ -39,6 +44,7 @@ const Journaling = () => {
   };
 
   // This is a very problematic way to style components as it is not reusable or scalable. Use StyleSheets cc: Brenda and Khalifan
+  // @Brenda
   const textAreaStyles = {
     width: '300px',
     height: '80px',
@@ -144,6 +150,25 @@ const Journaling = () => {
     }
   };
 
+  const deleteGratefullItemId = async (e, id) => {
+    e.preventDefault();
+    setGratefulID(id);
+    const response = await dispatch(deleteUserGrateful(id));
+    if (response?.error) {
+      //setJournalActionError('Failed to delete journal');
+      setGratefulID(-1);
+      return;
+    }
+    if (response.payload?.status === 'success') {
+      fetchGratefuls();
+      setGratefulID(-1);
+      return;
+    } else {
+      setGratefulID(-1);
+      return;
+    }
+  };
+
   const [currentPage, setCurrentPage] = useState(1);
 
   const numPages = Math.ceil(journalsList?.length / QUOTES_PER_PAGE);
@@ -241,69 +266,12 @@ const Journaling = () => {
             </div>
             <div className={`tab-pane ${activeTab === 2 ? 'active' : ''}`}>
               <h6 style={{ font: 'bold' }}>What are you grateful for?</h6>
-              {fetchingGratefuls && (
-                <div
-                  style={{
-                    display: 'flex',
-                    width: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}>
-                  <Spinner />
-                </div>
-              )}
-              {gratefulsList?.length === 0 && fetchGrateFulError ? (
-                <div
-                  style={{
-                    display: 'flex',
-                    width: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    color: 'red',
-                    fontSize: '10px'
-                  }}>
-                  {fetchGrateFulError}
-                </div>
-              ) : (
-                <div>
-                  {gratefulsList?.map((result) => (
-                    <div key={result.id}>
-                      <div
-                        style={{
-                          display: 'flex',
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          gap: '15px',
-                          color: '#000'
-                        }}>
-                        {' '}
-                        <div
-                          style={{
-                            display: 'flex',
-                            width: '12px',
-                            height: '12px',
-                            borderRadius: '50%',
-                            alignItems: 'center',
-                            backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`
-                          }}></div>
-                        {result?.grateful}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
               <div
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '7px'
                 }}>
-                {grateful && (
-                  <button onClick={handleSubmit} style={buttonStyles}>
-                    {savingGrateful ? <Spinner /> : 'Save'}
-                  </button>
-                )}
                 <div>
                   <textarea
                     style={textAreaStyles}
@@ -329,7 +297,96 @@ const Journaling = () => {
                     {gratefulError}
                   </div>
                 </div>
+                {grateful && (
+                  <button onClick={handleSubmit} style={buttonStyles}>
+                    {savingGrateful ? <Spinner /> : 'Save'}
+                  </button>
+                )}
               </div>
+              {fetchingGratefuls && (
+                <div
+                  style={{
+                    display: 'flex',
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}>
+                  <Spinner />
+                </div>
+              )}
+              {gratefulsList?.length === 0 && fetchGrateFulError ? (
+                <div
+                  style={{
+                    display: 'flex',
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    color: 'red',
+                    fontSize: '10px'
+                  }}>
+                  {fetchGrateFulError}
+                </div>
+              ) : (
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '2px'
+                  }}>
+                  {gratefulsList?.map((result) => (
+                    <div key={result.id}>
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          color: '#000'
+                        }}>
+                        {' '}
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            gap: '7px'
+                          }}>
+                          <div
+                            style={{
+                              width: '12px',
+                              height: '12px',
+                              gap: '15px',
+                              borderRadius: '50%',
+                              alignItems: 'center',
+                              backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(
+                                16
+                              )}`
+                            }}></div>
+                          {result?.grateful}
+                        </div>
+                        <div
+                          onClick={(e) => {
+                            deleteGratefullItemId(e, result.id);
+                          }}>
+                          {' '}
+                          {gratefulID === result.id ? (
+                            <Spinner />
+                          ) : (
+                            <div
+                              style={{
+                                color: '#553791',
+                                fontSize: '24px'
+                              }}>
+                              {' '}
+                              <MdClose />{' '}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
