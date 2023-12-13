@@ -13,6 +13,7 @@ import {
 } from '../../../redux/Actions/journalingActions';
 import { useDispatch } from 'react-redux';
 import Spinner from '../../../components/Spinner/Spinner.js';
+import Modal from '../../../components/modal';
 import { MdClose } from 'react-icons/md';
 
 const QUOTES_PER_PAGE = 7; // adjust as needed
@@ -31,6 +32,7 @@ const Journaling = () => {
   const [fetchingJournals, setFetchingJournals] = useState(false);
   //monitor Id of grateful being deleted
   const [gratefulID, setGratefulID] = useState(-1);
+  const [showModel, setShowModel] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -41,30 +43,6 @@ const Journaling = () => {
     } else {
       setShow(false);
     }
-  };
-
-  // This is a very problematic way to style components as it is not reusable or scalable. Use StyleSheets cc: Brenda and Khalifan
-  // @Brenda
-  const textAreaStyles = {
-    width: '300px',
-    height: '80px',
-    padding: '10px',
-    fontSize: '16px',
-    marginTop: '7px',
-    border: '1px solid rgba(0, 0, 0, 0.19)',
-    borderRadius: '8px',
-    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-    outline: 'none',
-    resize: 'none',
-    transition: 'height 0.3s ease-out'
-  };
-
-  const buttonStyles = {
-    borderStyle: 'none',
-    backgroundColor: 'transparent',
-    color: 'purple',
-    fontWeight: 'bold',
-    marginLeft: '240px'
   };
 
   const focusedStyles = {
@@ -150,23 +128,30 @@ const Journaling = () => {
     }
   };
 
-  const deleteGratefullItemId = async (e, id) => {
+  const deleteGratefullItemId = async (e) => {
     e.preventDefault();
-    setGratefulID(id);
-    const response = await dispatch(deleteUserGrateful(id));
-    if (response?.error) {
-      //setJournalActionError('Failed to delete journal');
-      setGratefulID(-1);
-      return;
+    setShowModel(false);
+    if (gratefulID > 0) {
+      const response = await dispatch(deleteUserGrateful(gratefulID));
+      if (response?.error) {
+        //setJournalActionError('Failed to delete journal');
+        setGratefulID(-1);
+        return;
+      }
+      if (response.payload?.status === 'success') {
+        fetchGratefuls();
+        setGratefulID(-1);
+        return;
+      } else {
+        setGratefulID(-1);
+        return;
+      }
     }
-    if (response.payload?.status === 'success') {
-      fetchGratefuls();
-      setGratefulID(-1);
-      return;
-    } else {
-      setGratefulID(-1);
-      return;
-    }
+  };
+  const selectGratefulItem = async (e, item) => {
+    e.preventDefault();
+    setGratefulID(item.id);
+    setShowModel(true);
   };
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -274,14 +259,14 @@ const Journaling = () => {
                 }}>
                 <div>
                   <textarea
-                    style={textAreaStyles}
+                    className='text-area-styles'
                     value={grateful}
                     onChange={(e) => setGrateful(e.target.value)}
                     onFocus={(e) => {
                       e.target.style.height = focusedStyles.height;
                     }}
                     onBlur={(e) => {
-                      e.target.style.height = textAreaStyles.height;
+                      e.target.style.height = '80px';
                     }}
                     placeholder="Example: I am grateful to have a home to live in"
                   />
@@ -298,7 +283,7 @@ const Journaling = () => {
                   </div>
                 </div>
                 {grateful && (
-                  <button onClick={handleSubmit} style={buttonStyles}>
+                  <button onClick={handleSubmit} className='button-styles'>
                     {savingGrateful ? <Spinner /> : 'Save'}
                   </button>
                 )}
@@ -366,7 +351,8 @@ const Journaling = () => {
                         </div>
                         <div
                           onClick={(e) => {
-                            deleteGratefullItemId(e, result.id);
+                            // deleteGratefullItemId(e, result.id);
+                            selectGratefulItem(e, result);
                           }}>
                           {' '}
                           {gratefulID === result.id ? (
@@ -391,6 +377,32 @@ const Journaling = () => {
           </div>
         </div>
       </Form>
+      <Modal
+        show={showModel}
+        closeModal={() => {
+          setShowModel(false);
+          setGratefulID(-1);
+        }}>
+        <div className="delete-modal">
+          <div className="modal-title">Delete Grateful.</div>
+          <div className="">Are you sure about this action?</div>
+
+          <div className="buttons-row">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setShowModel(false);
+                setGratefulID(-1);
+              }}
+              className="cancel-button">
+              Cancel
+            </button>
+            <button onClick={(e) => deleteGratefullItemId(e)} className="ok-button">
+              Sure
+            </button>
+          </div>
+        </div>
+      </Modal>
     </ResilienceActivitiesPageComponent>
   );
 };
