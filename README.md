@@ -1,6 +1,6 @@
 # Epilepsy Self Management and Resilience Techinical(SMART) App
 
-This repo contains source code for the Epilepsy SMART App
+This repo contains source code for the Epilepsy SMART App (<https://smartapp.aceuganda.org>)
 
 ![screenshots](documentation/images/app_screenshot.png)
 
