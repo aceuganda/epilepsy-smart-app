@@ -160,29 +160,6 @@ const MedicationTrackingPageOne = () => {
     setDeleteReminderConfirmationDialogIndex(-1);
     setSavedReminders(remindersArray);
   };
-  const DeleteMedicine = async (e, id) => {
-    e.preventDefault();
-    setDeletingMedicine(true);
-    const response = await dispatch(deleteMedicineData(id));
-    if (response?.error) {
-      setDeleteMedicineIndex('');
-      setDeletingMedicine(false);
-      setDeleteMedicineError('Process failed, please try again');
-      return;
-    }
-    if (response.payload?.data?.status === 'success') {
-      setDeleteMedicineIndex('');
-      setDeletingMedicine(false);
-      setShowDeleteMedicineWarning(false);
-      fetchMedicine();
-      return;
-    } else {
-      setDeleteMedicineIndex('');
-      setDeletingMedicine(false);
-      setDeleteMedicineError('Process failed, please try again');
-      return;
-    }
-  };
 
   const showDeleteReminderDialog = (index) => {
     setDeleteReminderConfirmationDialogIndex(index);

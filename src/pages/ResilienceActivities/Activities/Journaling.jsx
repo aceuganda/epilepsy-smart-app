@@ -46,7 +46,7 @@ const Journaling = () => {
   };
 
   const focusedStyles = {
-    height: '300px'
+    height: '200px'
   };
 
   const fetchGratefuls = async () => {
@@ -316,7 +316,10 @@ const Journaling = () => {
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: '2px'
+                    gap: '2px',
+                    marginTop: '20px',
+                    maxHeight: '200px',
+                    overflowY: 'auto'
                   }}>
                   {gratefulsList?.map((result) => (
                     <div key={result.id}>
