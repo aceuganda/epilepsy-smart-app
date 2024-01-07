@@ -16,8 +16,8 @@ const Settings = () => {
     {
       name: 'Profile',
       icon: <ProfileIcon />,
-      // link: '/account/settings'
-      link: null
+      link: '/account/settings'
+      //link: null
     },
     {
       name: 'Change password',
