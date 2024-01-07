@@ -8,10 +8,13 @@ import { ReactComponent as AddTime } from '../../../assets/svg/Medication/addtim
 import {
   getAllUserGratefulls,
   getAllUserJournals,
-  postUserGratefuls
+  postUserGratefuls,
+  deleteUserGrateful
 } from '../../../redux/Actions/journalingActions';
 import { useDispatch } from 'react-redux';
 import Spinner from '../../../components/Spinner/Spinner.js';
+import Modal from '../../../components/modal';
+import { MdClose } from 'react-icons/md';
 
 const QUOTES_PER_PAGE = 7; // adjust as needed
 
@@ -27,6 +30,10 @@ const Journaling = () => {
   const [journalsList, setJournalsList] = useState([]);
   const [fetchJournalError, setFetchJournalError] = useState('');
   const [fetchingJournals, setFetchingJournals] = useState(false);
+  //monitor Id of grateful being deleted
+  const [gratefulID, setGratefulID] = useState(-1);
+  const [showModel, setShowModel] = useState(false);
+
   const dispatch = useDispatch();
 
   const handleTabClick = (tabIndex) => {
@@ -36,29 +43,6 @@ const Journaling = () => {
     } else {
       setShow(false);
     }
-  };
-
-  // This is a very problematic way to style components as it is not reusable or scalable. Use StyleSheets cc: Brenda and Khalifan
-  const textAreaStyles = {
-    width: '300px',
-    height: '80px',
-    padding: '10px',
-    fontSize: '16px',
-    marginTop: '7px',
-    border: '1px solid rgba(0, 0, 0, 0.19)',
-    borderRadius: '8px',
-    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-    outline: 'none',
-    resize: 'none',
-    transition: 'height 0.3s ease-out'
-  };
-
-  const buttonStyles = {
-    borderStyle: 'none',
-    backgroundColor: 'transparent',
-    color: 'purple',
-    fontWeight: 'bold',
-    marginLeft: '240px'
   };
 
   const focusedStyles = {
@@ -142,6 +126,32 @@ const Journaling = () => {
         return;
       }
     }
+  };
+
+  const deleteGratefullItemId = async (e) => {
+    e.preventDefault();
+    setShowModel(false);
+    if (gratefulID > 0) {
+      const response = await dispatch(deleteUserGrateful(gratefulID));
+      if (response?.error) {
+        //setJournalActionError('Failed to delete journal');
+        setGratefulID(-1);
+        return;
+      }
+      if (response.payload?.status === 'success') {
+        fetchGratefuls();
+        setGratefulID(-1);
+        return;
+      } else {
+        setGratefulID(-1);
+        return;
+      }
+    }
+  };
+  const selectGratefulItem = async (e, item) => {
+    e.preventDefault();
+    setGratefulID(item.id);
+    setShowModel(true);
   };
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -241,6 +251,43 @@ const Journaling = () => {
             </div>
             <div className={`tab-pane ${activeTab === 2 ? 'active' : ''}`}>
               <h6 style={{ font: 'bold' }}>What are you grateful for?</h6>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '7px'
+                }}>
+                <div>
+                  <textarea
+                    className='text-area-styles'
+                    value={grateful}
+                    onChange={(e) => setGrateful(e.target.value)}
+                    onFocus={(e) => {
+                      e.target.style.height = focusedStyles.height;
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.height = '80px';
+                    }}
+                    placeholder="Example: I am grateful to have a home to live in"
+                  />
+                  <div
+                    style={{
+                      display: 'flex',
+                      width: '100%',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      color: 'red',
+                      fontSize: '10px'
+                    }}>
+                    {gratefulError}
+                  </div>
+                </div>
+                {grateful && (
+                  <button onClick={handleSubmit} className='button-styles'>
+                    {savingGrateful ? <Spinner /> : 'Save'}
+                  </button>
+                )}
+              </div>
               {fetchingGratefuls && (
                 <div
                   style={{
@@ -265,7 +312,12 @@ const Journaling = () => {
                   {fetchGrateFulError}
                 </div>
               ) : (
-                <div>
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '2px'
+                  }}>
                   {gratefulsList?.map((result) => (
                     <div key={result.id}>
                       <div
@@ -273,67 +325,84 @@ const Journaling = () => {
                           display: 'flex',
                           flexDirection: 'row',
                           alignItems: 'center',
-                          gap: '15px',
+                          justifyContent: 'space-between',
                           color: '#000'
                         }}>
                         {' '}
                         <div
                           style={{
                             display: 'flex',
-                            width: '12px',
-                            height: '12px',
-                            borderRadius: '50%',
+                            flexDirection: 'row',
                             alignItems: 'center',
-                            backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`
-                          }}></div>
-                        {result?.grateful}
+                            gap: '7px'
+                          }}>
+                          <div
+                            style={{
+                              width: '12px',
+                              height: '12px',
+                              gap: '15px',
+                              borderRadius: '50%',
+                              alignItems: 'center',
+                              backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(
+                                16
+                              )}`
+                            }}></div>
+                          {result?.grateful}
+                        </div>
+                        <div
+                          onClick={(e) => {
+                            // deleteGratefullItemId(e, result.id);
+                            selectGratefulItem(e, result);
+                          }}>
+                          {' '}
+                          {gratefulID === result.id ? (
+                            <Spinner />
+                          ) : (
+                            <div
+                              style={{
+                                color: '#553791',
+                                fontSize: '24px'
+                              }}>
+                              {' '}
+                              <MdClose />{' '}
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   ))}
                 </div>
               )}
-
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '7px'
-                }}>
-                {grateful && (
-                  <button onClick={handleSubmit} style={buttonStyles}>
-                    {savingGrateful ? <Spinner /> : 'Save'}
-                  </button>
-                )}
-                <div>
-                  <textarea
-                    style={textAreaStyles}
-                    value={grateful}
-                    onChange={(e) => setGrateful(e.target.value)}
-                    onFocus={(e) => {
-                      e.target.style.height = focusedStyles.height;
-                    }}
-                    onBlur={(e) => {
-                      e.target.style.height = textAreaStyles.height;
-                    }}
-                    placeholder="Example: I am grateful to have a home to live in"
-                  />
-                  <div
-                    style={{
-                      display: 'flex',
-                      width: '100%',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      color: 'red',
-                      fontSize: '10px'
-                    }}>
-                    {gratefulError}
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </Form>
+      <Modal
+        show={showModel}
+        closeModal={() => {
+          setShowModel(false);
+          setGratefulID(-1);
+        }}>
+        <div className="delete-modal">
+          <div className="modal-title">Delete Grateful.</div>
+          <div className="">Are you sure about this action?</div>
+
+          <div className="buttons-row">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setShowModel(false);
+                setGratefulID(-1);
+              }}
+              className="cancel-button">
+              Cancel
+            </button>
+            <button onClick={(e) => deleteGratefullItemId(e)} className="ok-button">
+              Sure
+            </button>
+          </div>
+        </div>
+      </Modal>
     </ResilienceActivitiesPageComponent>
   );
 };

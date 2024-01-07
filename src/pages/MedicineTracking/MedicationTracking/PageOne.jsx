@@ -43,6 +43,9 @@ const MedicationTrackingPageOne = () => {
   const [otherMedicine, setOtherMedicine] = useState('');
   const [deleteMedicineIndex, setDeleteMedicineIndex] = useState('');
   const medicineTrackingData = useSelector((state) => state.medicineTracking);
+  //-1 representing no selections
+  const [deleteReminderConfirmationDialogIndex, setDeleteReminderConfirmationDialogIndex] =
+    useState(-1);
   const userId = localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo')).data.id
     : null;
@@ -150,12 +153,45 @@ const MedicationTrackingPageOne = () => {
     setSavedReminders(remindersArray);
   };
 
-  const DeleteReminders = (index) => {
+  const DeleteReminders = () => {
     let remindersArray = [...savedReminders];
-    remindersArray.splice(index, 1);
+    remindersArray.splice(deleteReminderConfirmationDialogIndex, 1);
     localStorage.setItem(`${userId}Reminders`, JSON.stringify(remindersArray));
+    setDeleteReminderConfirmationDialogIndex(-1);
     setSavedReminders(remindersArray);
   };
+  const DeleteMedicine = async (e, id) => {
+    e.preventDefault();
+    setDeletingMedicine(true);
+    const response = await dispatch(deleteMedicineData(id));
+    if (response?.error) {
+      setDeleteMedicineIndex('');
+      setDeletingMedicine(false);
+      setDeleteMedicineError('Process failed, please try again');
+      return;
+    }
+    if (response.payload?.data?.status === 'success') {
+      setDeleteMedicineIndex('');
+      setDeletingMedicine(false);
+      setShowDeleteMedicineWarning(false);
+      fetchMedicine();
+      return;
+    } else {
+      setDeleteMedicineIndex('');
+      setDeletingMedicine(false);
+      setDeleteMedicineError('Process failed, please try again');
+      return;
+    }
+  };
+
+  const showDeleteReminderDialog = (index) => {
+    setDeleteReminderConfirmationDialogIndex(index);
+  };
+
+  const hideDeleteReminderDialog = () => {
+    setDeleteReminderConfirmationDialogIndex(-1);
+  };
+
   const DeleteMedicine = async (e, id) => {
     e.preventDefault();
     setDeletingMedicine(true);
@@ -406,7 +442,7 @@ const MedicationTrackingPageOne = () => {
                             active={reminder.active}
                             medicine={reminder.medicine}
                             handleToggleClickCallback={EditReminders}
-                            handleDeleteClickCallback={DeleteReminders}
+                            handleDeleteClickCallback={showDeleteReminderDialog}
                           />
                         ))}
                     </div>
@@ -414,81 +450,102 @@ const MedicationTrackingPageOne = () => {
                 </fieldset>
               </div>
             </div>
-            <Modal show={timePickerModalVisibility} closeModal={handleTimeSelectorModalClosure}>
-              <div className="contentContainer">
-                <div className="HeadSection">
-                  <div
-                    className="headerButton"
-                    onClick={() => {
-                      handleTimeSelectorModalClosure();
-                    }}>
-                    Cancel
-                  </div>
-                  <div className="heading">Add time</div>
-                  <div onClick={HandleSave} className="headerButton">
-                    Save
-                  </div>
-                </div>
-                <div className="ModalTimeSelector">
-                  <TimeSelector
-                    onChangeMinutesCallBack={handleMinutes}
-                    onChangeHoursCallBack={handleHours}
-                    onChangeZoneCallBack={handleZone}
-                  />
-                </div>
-                {timerFeedbackMessage && (
-                  <div
-                    style={{
-                      color: 'red',
-                      fontSize: '13px',
-                      padding: '2px',
-                      textAlign: 'center'
-                    }}>
-                    {timerFeedbackMessage}
-                  </div>
-                )}
-                <div className="MedicineSelection">
-                  <div className="SelectionHeadWrapper">
-                    <div className="MedicineSelectionheader">Medicine</div>
+            {timePickerModalVisibility && (
+              <Modal show={timePickerModalVisibility} closeModal={handleTimeSelectorModalClosure}>
+                <div className="contentContainer">
+                  <div className="HeadSection">
                     <div
+                      className="headerButton"
                       onClick={() => {
-                        setMedicineAccodianVisibilty(!medicineAccodianVisibilty);
-                        setTimerFeedbackMessage('');
-                      }}
-                      className={medicineAccodianVisibilty ? 'OpenArrowclass' : 'Arrowclass'}>
-                      <Arrow />
+                        handleTimeSelectorModalClosure();
+                      }}>
+                      Cancel
+                    </div>
+                    <div className="heading">Add time</div>
+                    <div onClick={HandleSave} className="headerButton">
+                      Save
                     </div>
                   </div>
-                  <div className="MedicineAccordianSections">
-                    <div className="timerMedicine">
-                      {selectedAccodianMedicine !== ''
-                        ? selectedAccodianMedicine
-                        : 'select medicine'}
+                  <div className="ModalTimeSelector">
+                    <TimeSelector
+                      onChangeMinutesCallBack={handleMinutes}
+                      onChangeHoursCallBack={handleHours}
+                      onChangeZoneCallBack={handleZone}
+                    />
+                  </div>
+                  {timerFeedbackMessage && (
+                    <div
+                      style={{
+                        color: 'red',
+                        fontSize: '13px',
+                        padding: '2px',
+                        textAlign: 'center'
+                      }}>
+                      {timerFeedbackMessage}
                     </div>
-                    {medicineAccodianVisibilty === true && (
-                      <div className="MedicineList">
-                        {userMedicines.length > 0 &&
-                          userMedicines.map((medicine, index) => (
-                            <div
-                              key={index}
-                              style={{
-                                color: '#000000',
-                                fontSize: '13px',
-                                padding: '2px'
-                              }}
-                              onClick={() => {
-                                setSelectedAccodianMedicine(medicine.name);
-                                setMedicineAccodianVisibilty(false);
-                              }}>
-                              {medicine.name}
-                            </div>
-                          ))}
+                  )}
+                  <div className="MedicineSelection">
+                    <div className="SelectionHeadWrapper">
+                      <div className="MedicineSelectionheader">Medicine</div>
+                      <div
+                        onClick={() => {
+                          setMedicineAccodianVisibilty(!medicineAccodianVisibilty);
+                          setTimerFeedbackMessage('');
+                        }}
+                        className={medicineAccodianVisibilty ? 'OpenArrowclass' : 'Arrowclass'}>
+                        <Arrow />
                       </div>
-                    )}
+                    </div>
+                    <div className="MedicineAccordianSections">
+                      <div className="timerMedicine">
+                        {selectedAccodianMedicine !== ''
+                          ? selectedAccodianMedicine
+                          : 'select medicine'}
+                      </div>
+                      {medicineAccodianVisibilty === true && (
+                        <div className="MedicineList">
+                          {userMedicines.length > 0 &&
+                            userMedicines.map((medicine, index) => (
+                              <div
+                                key={index}
+                                style={{
+                                  color: '#000000',
+                                  fontSize: '13px',
+                                  padding: '2px'
+                                }}
+                                onClick={() => {
+                                  setSelectedAccodianMedicine(medicine.name);
+                                  setMedicineAccodianVisibilty(false);
+                                }}>
+                                {medicine.name}
+                              </div>
+                            ))}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Modal>
+              </Modal>
+            )}
+            {deleteReminderConfirmationDialogIndex > -1 && (
+              <Modal
+                show={deleteReminderConfirmationDialogIndex > -1}
+                closeModal={hideDeleteReminderDialog}>
+                <div className="delete-modal">
+                  <div className="modal-title">Delete this Reminder.</div>
+                  <div className="">Are you sure you want to delete this reminder?</div>
+
+                  <div className="buttons-row">
+                    <button onClick={hideDeleteReminderDialog} className="cancel-button">
+                      Cancel
+                    </button>
+                    <button onClick={DeleteReminders} className="ok-button">
+                      Sure
+                    </button>
+                  </div>
+                </div>
+              </Modal>
+            )}
           </form>
         )}
       </Form>
