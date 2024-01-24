@@ -25,11 +25,13 @@
     "google-auth-library": "^8.7.0",
     "googleapis": "^113.0.0",
     "howler": "^2.2.3",
+    "i18next": "^23.7.16",
     "node-sass": "^7.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-google-charts": "^4.0.0",
     "react-hook-form": "^7.37.0",
+    "react-i18next": "^14.0.0",
     "react-icons": "^4.6.0",
     "react-redux": "^7.2.8",
     "react-router-dom": "^6.2.1",
@@ -47,6 +49,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "i18n:extract": "i18next-scanner",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "eslintConfig": {
@@ -72,6 +75,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
+    "i18next-scanner": "^4.4.0",
     "prettier": "^2.5.1"
   },
   "engines": {

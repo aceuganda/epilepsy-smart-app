@@ -14,8 +14,10 @@ import {
 import { ReactComponent as CheckedIcon } from '../../../assets/svg/Form/EndOfAssessment/CheckedIcon.svg';
 import CheckBox from '../../../components/form/CheckBox';
 import Spinner from '../../../components/Spinner/Spinner';
+import { useTranslation } from 'react-i18next';
 
 const PageThree = () => {
+  const { t } = useTranslation();
   const [seizure_impact, setFeel] = useState('');
   const [seizure_trigger, setTrigger] = useState('');
   const [other_reason, setOtherReason] = useState('');
@@ -147,7 +149,7 @@ const PageThree = () => {
                     {seizureTriggers.map((trigger) => (
                       <CheckBox
                         key={trigger.id}
-                        label={trigger.name}
+                        label={t(trigger.name)}
                         value={trigger.name}
                         checked={false}
                         onClick={(e) => {
@@ -172,7 +174,7 @@ const PageThree = () => {
                     setFeel(e.target.value);
                     dispatch(setSeizureImpact(e.target.value));
                   }}>
-                  Sleepy
+                  {t('Sleepy')}
                 </button>
                 <button
                   type="button"
@@ -182,7 +184,7 @@ const PageThree = () => {
                     setFeel(e.target.value);
                     dispatch(setSeizureImpact(e.target.value));
                   }}>
-                  Confused
+                  {t('Confused')}
                 </button>
                 <button
                   type="button"
@@ -196,7 +198,7 @@ const PageThree = () => {
                     setFeel(e.target.value);
                     dispatch(setSeizureImpact(e.target.value));
                   }}>
-                  Body Weakness
+                  {t('Body Weakness')}
                 </button>
                 <button
                   type="button"
@@ -206,7 +208,7 @@ const PageThree = () => {
                     setFeel(e.target.value);
                     dispatch(setSeizureImpact(e.target.value));
                   }}>
-                  Restless
+                  {t('Restless')}
                 </button>
                 <button
                   type="button"
@@ -216,7 +218,7 @@ const PageThree = () => {
                     setFeel(e.target.value);
                     dispatch(setSeizureImpact(e.target.value));
                   }}>
-                  Headache
+                  {t('Headache')}
                 </button>
                 <button
                   type="button"
@@ -226,7 +228,7 @@ const PageThree = () => {
                     setFeel(e.target.value);
                     dispatch(setSeizureImpact(e.target.value));
                   }}>
-                  Other
+                  {t('Other')}
                 </button>
                 {seizure_impact === 'other' ? (
                   <fieldset className="mt-2 mb-4">
@@ -257,7 +259,7 @@ const PageThree = () => {
                         dispatch(setSeizureImpact(other_reason));
                         setOtherReason('');
                       }}>
-                      Done
+                      {t('Done')}
                     </button>
                   </fieldset>
                 ) : (
@@ -265,7 +267,7 @@ const PageThree = () => {
                 )}
               </fieldset>
             </Question>
-            <Question question={'Did it upset you'}>
+            <Question question={t('Did it upset you')}>
               <fieldset style={{ marginTop: '10px', width: '93%', marginLeft: '10px' }}>
                 <Slider
                   aria-label="Default"
@@ -298,8 +300,8 @@ const PageThree = () => {
             {endOfAssessment && (
               <EndOfAssessmentModal
                 icon={<CheckedIcon />}
-                title={'Well Done!'}
-                subText={'Thank you for completing this assessment.'}
+                title={t('Well Done!')}
+                subText={t('Thank you for completing this assessment.')}
                 link={'/home'}
                 linkText={'home'}
                 showModal={true}

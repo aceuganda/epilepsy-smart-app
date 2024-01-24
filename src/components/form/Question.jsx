@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 const Question = ({ question, children }) => {
+  const { t } = useTranslation();
   Question.propTypes = {
     question: PropTypes.string,
     children: PropTypes.any
@@ -9,7 +11,7 @@ const Question = ({ question, children }) => {
   return (
     <div className="container">
       <span className="question-plain">
-        {question}?{children}
+        {t(question)}?{children}
       </span>
     </div>
   );

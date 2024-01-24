@@ -1,0 +1,472 @@
+{
+  "min": "min",
+  "sec": "sec",
+  "Edit": "Edit",
+  "Delete": "Delete",
+  "Journaling": "Journaling",
+  "New Journal": "New Journal",
+  "Save": "Save",
+  "Home": "Home",
+  "Forum": "Forum",
+  "Account": "Account",
+  "Forgot Password": "Forgot Password",
+  "Dont have an account?": "Dont have an account?",
+  "Register Now": "Register Now",
+  "Email Address you registered with": {
+    "": ""
+  },
+  "Send Email": "Send Email",
+  "Forgot password": "Forgot password",
+  "Reset password": "Reset password",
+  "By signing up you agree with our": "By signing up you agree with our",
+  "Terms & Conditions": "Terms & Conditions",
+  "To learn more about how we use your data, read our": "To learn more about how we use your data, read our",
+  "Privacy Policy": "Privacy Policy",
+  "Login": "Login",
+  "Email Address": "Email Address",
+  "Enter email address": "Enter email address",
+  "Email is required": "Email is required",
+  "Password": "Password",
+  "Password is required": "Password is required",
+  "Email": "Email",
+  "Enter your email address": "Enter your email address",
+  "Your email is required": "Your email is required",
+  "Username": "Username",
+  "Choose a username": "Choose a username",
+  "Username is required": "Username is required",
+  "Date of Birth": "Date of Birth",
+  "This is required field": "This is required field",
+  "Gender": "Gender",
+  "Female": "Female",
+  "Male": "Male",
+  "Prefer not to say": "Prefer not to say",
+  "This is a required field": "This is a required field",
+  "Age of seizure onset": "Age of seizure onset",
+  "Seizure Type": "Seizure Type",
+  "Check this field": "Check this field",
+  "Do you have a caregiver": "Do you have a caregiver",
+  "Yes": "Yes",
+  "No": "No",
+  "Name of Caregiver": "Name of Caregiver",
+  "Enter caregiver's name": "Enter caregiver's name",
+  "This field is required": "This field is required",
+  "Contact of Caregiver": "Contact of Caregiver",
+  "Enter caregiver's contact ": "Enter caregiver's contact ",
+  "Institution": "Institution",
+  "Institution is required": "Institution is required",
+  "Create Password": "Create Password",
+  "8 characters minimum": "8 characters minimum",
+  "Create a password": "Create a password",
+  "Confirm Password": "Confirm Password",
+  "Password does not match": "Password does not match",
+  "Register": "Register",
+  "New Password": "New Password",
+  "Verify your email address": "Verify your email address",
+  "You've entered example@gmail": {
+    "com as the email address for your account": "com as the email address for your account"
+  },
+  "Verify your email": "Verify your email",
+  "Holla": "Holla",
+  "Discover Activities": "Discover Activities",
+  "Give yourself a chance": "Give yourself a chance",
+  "seizure tracking": "seizure tracking",
+  "medication": "medication",
+  "resilience tracking": "resilience tracking",
+  "resilience activities": "resilience activities",
+  "Did you take all your doses today": "Did you take all your doses today",
+  "All doses": "All doses",
+  "Some doses": "Some doses",
+  "No doses": "No doses",
+  "I forgot to take the Doses": "I forgot to take the Doses",
+  "I forgot to refill the Doses": "I forgot to refill the Doses",
+  "I didn’t have the funds to refill the Doses": "I didn’t have the funds to refill the Doses",
+  "I didn’t have the medicine with me": "I didn’t have the medicine with me",
+  "I was told not to take any medicine": "I was told not to take any medicine",
+  "I was too sick": "I was too sick",
+  "Side Effects": "Side Effects",
+  "Finish": "Finish",
+  "Did you experience any side effects": "Did you experience any side effects",
+  "None": "None",
+  "Vomiting": "Vomiting",
+  "Drowsiness": "Drowsiness",
+  "Skin Rash": "Skin Rash",
+  "Headache": "Headache",
+  "Nausea": "Nausea",
+  "Diarrhoea": "Diarrhoea",
+  "Constipation": "Constipation",
+  "Other": "Other",
+  "Done": "Done",
+  "Select Medicine": "Select Medicine",
+  "delete": "delete",
+  "Please select saved medicine for the reminder": {
+    " Add a medicine if you do not have any": {
+      "": ""
+    }
+  },
+  "Add Medicine": "Add Medicine",
+  "Add Reminder": "Add Reminder",
+  "Are you sure you want to delete": "Are you sure you want to delete",
+  "Cancel": "Cancel",
+  "Add time": "Add time",
+  "Medicine": "Medicine",
+  "select medicine": "select medicine",
+  "Delete this Reminder": {
+    "": ""
+  },
+  "Are you sure you want to delete this reminder": "Are you sure you want to delete this reminder",
+  "Sure": "Sure",
+  "Quick Updates": "Quick Updates",
+  "The app is free, secure, and helps connect you to important resources for coping and\n            adapting": "The app is free, secure, and helps connect you to important resources for coping and\n            adapting",
+  "Next": "Next",
+  "Notify Quickly": "Notify Quickly",
+  "Receive alerts about your health in time": "Receive alerts about your health in time",
+  "Track Medicine": "Track Medicine",
+  "Quickly track your medication on the app": "Quickly track your medication on the app",
+  "Get Started": "Get Started",
+  "Quotes to inspire you ": "Quotes to inspire you ",
+  "Notebooks": "Notebooks",
+  "Gratefuls": "Gratefuls",
+  "What are you grateful for": "What are you grateful for",
+  "Delete Grateful": {
+    "": ""
+  },
+  "Are you sure about this action": "Are you sure about this action",
+  "Listening": "Listening",
+  "Overall": "Overall",
+  "Sometimes, when we are upset, we talk to others about our problems to gain advice and\n              support": {
+    "": ""
+  },
+  "But other times it is helpful to listen and support others instead": {
+    " When we put our\n              energy into thinking about another, it helps our own sense of well-being": {
+      "": ""
+    }
+  },
+  "To do this, one makes an effort to give rather than take, listen rather than talk,\n              offer positive thoughts rather than negative ones, to bring cheer rather than\n              complaints": {
+    "": ""
+  },
+  "It is an exercise that can impact our own mood, as well as those around us": "It is an exercise that can impact our own mood, as well as those around us",
+  "Manage Your Triggers": "Manage Your Triggers",
+  "Learning your triggers and avoiding them may take patient, thoughtful reflection\n                  to identify and learn ways to avoid or manage them": {
+    " Some common triggers include": " Some common triggers include"
+  },
+  "In order to reduce the likelihood of having a seizure due to any of these\n                    situations or events; it is important to do all you can to reduce your exposure\n                    to these seizure triggers by avoiding these stimuli": {
+    " Some tips you could use": " Some tips you could use"
+  },
+  "Choose something that you have not been asked to do": {
+    "": ""
+  },
+  "Consider doing the service act without others getting to know sometimes": {
+    "": ""
+  },
+  "One service goal": "One service goal",
+  "Doing acts of service which can be described as doing something for someone else\n                which you know they would like can have a profound positive impact on mood and\n                well-being": {
+    "": ""
+  },
+  "Pick one service goal to complete in the next few days": {
+    " Helping someone or a group\n                can benefit to your well-being": " Helping someone or a group\n                can benefit to your well-being"
+  },
+  "Tips": "Tips",
+  "Examples": "Examples",
+  "Carry groceries for an elder or mother with young children": "Carry groceries for an elder or mother with young children",
+  "Volunteer at your church/mosque": "Volunteer at your church/mosque",
+  "Help someone with their school or home tasks": "Help someone with their school or home tasks",
+  "Collect water for use at home": "Collect water for use at home",
+  "Wash up the plates and cups after a meal without being asked": "Wash up the plates and cups after a meal without being asked",
+  "Clean/sweep the compound": "Clean/sweep the compound",
+  "Wash/iron your parents or siblings’ clothes": "Wash/iron your parents or siblings’ clothes",
+  "Empty the dustbin into the designated waste area": "Empty the dustbin into the designated waste area",
+  "One Social goal": "One Social goal",
+  "Making friends or getting to know other people is an important part of well-being": {
+    "\n                Sometimes it is hard to make these connections because we are shy, we don’t know\n                others or we fear to be ignored, mistreated or laughed at": {
+      "": ""
+    }
+  },
+  "Try to build your social community in small steps one at a time": {
+    " Pick one social\n                goal and try to engage in a social activity in the next few days": {
+      "": ""
+    }
+  },
+  "Tip": "Tip",
+  "Spend time with a special family member, a friend, a schoolmate, or someone from the\n                church/mosque or prayer group": {
+    " Sometimes you can meet people from Epilepsy support\n                groups, like through the Epilepsy Support Association of Uganda or Purple Bench": {
+      "": ""
+    }
+  },
+  "Positive Affirmations": "Positive Affirmations",
+  "Positive affirmations are positive statements you make about yourself to help you to\n                remember your gifts, skills, and blessings": {
+    " Pick 3 affirmations to say each morning\n                and night for 3 days": " Pick 3 affirmations to say each morning\n                and night for 3 days"
+  },
+  "This is a very easy and fun way to change your self-image! If you have trouble you\n                have trouble thinking of positive ideas about yourself, ask you statements": {
+    "": ""
+  },
+  "Resilience Activities": "Resilience Activities",
+  "Resilience Tracking": "Resilience Tracking",
+  "Tallies updated every after 3 days": "Tallies updated every after 3 days",
+  "Did you engage socially today": "Did you engage socially today",
+  "yes": "yes",
+  "no": "no",
+  "Why not": "Why not",
+  "How did you feel today": "How did you feel today",
+  "Positive": "Positive",
+  "Negative": "Negative",
+  "Which emotions were felt": "Which emotions were felt",
+  "You can select upto six(6) feelings": "You can select upto six(6) feelings",
+  "Accomplished Goals": "Accomplished Goals",
+  "Family Acknowledged me": "Family Acknowledged me",
+  "Did Fun things": "Did Fun things",
+  "Engaged with others": "Engaged with others",
+  "Isolation": "Isolation",
+  "Conflict": "Conflict",
+  "I have no friends": "I have no friends",
+  "Respectfully": "Respectfully",
+  "Rudely": "Rudely",
+  "With Care": "With Care",
+  "Harshly": "Harshly",
+  "How did others treat you today": "How did others treat you today",
+  "Manage your triggers": "Manage your triggers",
+  "positive affirmations": "positive affirmations",
+  "One social goal": "One social goal",
+  "Epilepsy Education": "Epilepsy Education",
+  "Inspirational Cultural quotes": "Inspirational Cultural quotes",
+  "Meditation": "Meditation",
+  "Recent Assessment": "Recent Assessment",
+  "Mood": "Mood",
+  "Social": "Social",
+  "Treated": "Treated",
+  "Score": "Score",
+  "Recommended Resilience Activities": "Recommended Resilience Activities",
+  "Tallies": "Tallies",
+  "Something went wrong": {
+    " Please try again later": " Please try again later"
+  },
+  "text": "text",
+  "Record Seizure Details": "Record Seizure Details",
+  "mild": "mild",
+  "moderate": "moderate",
+  "severe": "severe",
+  "unknown": "unknown",
+  "morning": "morning",
+  "afternoon": "afternoon",
+  "evening": "evening",
+  "Sleepy": "Sleepy",
+  "Confused": "Confused",
+  "Body Weakness": "Body Weakness",
+  "Restless": "Restless",
+  "Did it upset you": "Did it upset you",
+  "Well Done!": "Well Done!",
+  "Thank you for completing this assessment": {
+    "": ""
+  },
+  "Sweet Smells": "Sweet Smells",
+  "Horrible Smells": "Horrible Smells",
+  "Deja-vu": "Deja-vu",
+  "The sensation of being in a familiar place or experiencing a very familiar situation": {
+    "": ""
+  },
+  "Jamais-vu": "Jamais-vu",
+  "An experience of being unfamiliar with a person or place or situation that is actually very familiar": {
+    "": ""
+  },
+  "Tingling Sensation": "Tingling Sensation",
+  "Flashing Lights": "Flashing Lights",
+  "Sensation of crawling insects": "Sensation of crawling insects",
+  "Seeing animals or people": "Seeing animals or people",
+  "About the App": "About the App",
+  "Terms of Service": "Terms of Service",
+  "Current password": "Current password",
+  "New password": "New password",
+  "Confirm new password": "Confirm new password",
+  "ACE Uganda built the EPILEPSY SMART app as a Free app": {
+    " This SERVICE is provided by ACE\n          Uganda at no cost and is intended for use as is": {
+      "": ""
+    }
+  },
+  "This page is used to inform visitors regarding my policies with the collection, use, and\n          disclosure of Personal Information if anyone decided to use my Service": {
+    "": ""
+  },
+  "If you choose to use our Service, then you agree to the collection and use of information\n          in relation to this policy": {
+    " The Personal Information that we collect is used for providing\n          and improving the Service": {
+      " We will not use or share your information with anyone except as\n          described in this Privacy Policy": {
+        "": ""
+      }
+    }
+  },
+  "The terms used in this Privacy Policy have the same meanings as in our Terms and\n          Conditions, which are accessible at EPILEPSY SMART app unless otherwise defined in this\n          Privacy Policy": {
+    "": ""
+  },
+  "Information Collection and Use": "Information Collection and Use",
+  "For a better experience, while using our Service, we may require you to provide us with\n          certain personally identifiable information, including but not limited to name, email\n          address, phone contact": {
+    " The information that we request will be retained on your device\n          and is not collected by us in any way": {
+      "": ""
+    }
+  },
+  "The app does use third-party services that declare their Terms and Conditions": "The app does use third-party services that declare their Terms and Conditions",
+  "Google Play Services": "Google Play Services",
+  "Log Data": "Log Data",
+  " We want to inform you that whenever you use our Service, in a case of an error in the app\n          we collect data and information (through third-party products) on your phone called Log\n          Data": {
+    " This Log Data may include information such as your device Internet Protocol (“IP”)\n          address, device name, operating system version, the configuration of the app when\n          utilizing my Service, the time and date of your use of the Service, and other statistics": {
+      "": ""
+    }
+  },
+  "Cookies": "Cookies",
+  "Cookies are files with a small amount of data that are commonly used as anonymous unique\n          identifiers": {
+    " These are sent to your browser from the websites that you visit and are\n          stored on your devices internal memory": {
+      "": ""
+    }
+  },
+  "This Service does not use these “cookies” explicitly": {
+    " However, the app may use third-party\n          code and libraries that use “cookies” to collect information and improve their services": {
+      "\n          You have the option to either accept or refuse these cookies and know when a cookie is\n          being sent to your device": {
+        " If you choose to refuse our cookies, you may not be able to use\n          some portions of this Service": {
+          "": ""
+        }
+      }
+    }
+  },
+  "Service Providers": "Service Providers",
+  "We may employ third-party companies and individuals due to the following reasons": "We may employ third-party companies and individuals due to the following reasons",
+  "To facilitate our Service": "To facilitate our Service",
+  "To provide the Service on our behalf": "To provide the Service on our behalf",
+  "To perform Service-related services": "To perform Service-related services",
+  "or": "or",
+  "To assist us in analyzing how our Service is used": {
+    "": ""
+  },
+  "We want to inform users of this Service that these third parties have access to their\n          Personal Information": {
+    " The reason is to perform the tasks assigned to them on our behalf": {
+      "\n          However, they are obligated not to disclose or use the information for any other purpose": {
+        "": ""
+      }
+    }
+  },
+  "Security": "Security",
+  "We value your trust in providing us your Personal Information, thus we are striving to use\n          commercially acceptable means of protecting it": {
+    " But remember that no method of\n          transmission over the internet, or method of electronic storage is 100% secure and\n          reliable, and we cannot guarantee its absolute security": {
+      "": ""
+    }
+  },
+  "Links to Other Sites": "Links to Other Sites",
+  "This Service may contain links to other sites": {
+    " If you click on a third-party link, you\n          will be directed to that site": {
+      " Note that these external sites are not operated by us": {
+        "\n          Therefore, we strongly advise you to review the Privacy Policy of these websites": {
+          " We have\n          no control over and assume no responsibility for the content, privacy policies, or\n          practices of any third-party sites or services": {
+            "": ""
+          }
+        }
+      }
+    }
+  },
+  "Children’s Privacy": "Children’s Privacy",
+  "These Services do not address anyone under the age of 13": {
+    " We do not knowingly collect\n            personally identifiable information from children under 13 years of age": {
+      " In the case we\n            discover that a child under 13 has provided me with personal information, we immediately\n            delete this from our servers": {
+        " If you are a parent or guardian and you are aware that\n            your child has provided us with personal information, please contact us so that we will\n            be able to do the necessary actions": {
+          "": ""
+        }
+      }
+    }
+  },
+  "Changes to this Privacy Policy": "Changes to this Privacy Policy",
+  "The owners of this application may update our Privacy Policy from time to time": {
+    " Thus, you\n          are advised to review this page periodically for any changes": {
+      " We will notify you of any\n          changes by posting the new Privacy Policy on this page": {
+        "": ""
+      }
+    }
+  },
+  "This policy is effective as of 2023-01-04": "This policy is effective as of 2023-01-04",
+  "Contact Us": "Contact Us",
+  "If you have any questions or suggestions about this Privacy Policy, do not hesitate to\n          contact us at": "If you have any questions or suggestions about this Privacy Policy, do not hesitate to\n          contact us at",
+  "Name": "Name",
+  "This is a required field<": "This is a required field<",
+  "Enter caregiver's contact": "Enter caregiver's contact",
+  "Loading user data": "Loading user data",
+  "Save updates": "Save updates",
+  "Updating you information will log you out automatically": "Updating you information will log you out automatically",
+  "Save & logout": "Save & logout",
+  "Welcome": "Welcome",
+  "Logout": "Logout",
+  "By downloading or using the app, these terms will automatically apply to you –you should make sure therefore that you read them carefully before using the app": {
+    " \n          You’re not allowed to copy, or modify the app, any part of the app, or our trademarks in any way": {
+      " You’re not\n          allowed to attempt to extract the source code of the app, and you also shouldn’t try to\n          translate the app into other languages, or make derivative versions": {
+        " The app itself, and\n          all the trade marks,": " The app itself, and\n          all the trade marks,"
+      }
+    }
+  },
+  "ACE Uganda is committed to ensuring that the app is as useful and efficient as possible": {
+    "\n          For that reason, we reserve the right to make changes to the app or to charge for its\n          services, at any time and for any reason": {
+      " We will never charge you for the app or its\n          services without making it very clear to you exactly what you’re paying for": {
+        "": ""
+      }
+    }
+  },
+  "The EPILEPSY SMART app stores and processes personal data that you have provided to us, to\n          provide its Service": {
+    " It’s your responsibility to keep your phone and access to the app\n          secure": {
+      " We therefore recommend that you do not jailbreak or root your phone, which is the\n          process of removing software restrictions and limitations imposed by the official\n          operating system of your device": {
+        " It could make your phone vulnerable to malware / viruses\n          / malicious programs, compromise your phone’s security features and it could mean that the\n          EPILEPSY SMART app won’t work properly or at all": {
+          "": ""
+        }
+      }
+    }
+  },
+  "MOBILE DATA USAGE": "MOBILE DATA USAGE",
+  " You should be aware that there are certain things that ACE Uganda will not take\n          responsibility for": {
+    " Certain functions of the app will require the app to have an active\n          internet connection": {
+      " The connection can be Wi-Fi or provided by your mobile network\n          provider, but ACE Uganda cannot take responsibility for the app not working at full\n          functionality if you don’t have access to Wi-Fi, and you don’t have any of your data\n          allowance left": {
+        "": ""
+      }
+    }
+  },
+  "If you’re using the app outside of an area with Wi-Fi, you should remember that the terms\n          of the agreement with your mobile network provider will still apply": {
+    " As a result, you may\n          be charged by your mobile provider for the cost of data for the duration of the connection\n          while accessing the app, or other third-party charges": {
+      " In using the app, you’re accepting\n          responsibility for any such charges, including roaming data charges if you use the app\n          outside of your home territory (i": {
+        "e": {
+          " region or country) without turning off data roaming": {
+            "\n          If you are not the bill payer for the device on which you’re using the app, please be\n          aware that we assume that you have received permission from the bill payer for using the\n          app": {
+              "": ""
+            }
+          }
+        }
+      }
+    }
+  },
+  "BATTERY USAGE": "BATTERY USAGE",
+  "Along the same lines, ACE Uganda cannot always take responsibility for the way you use the\n          app i": {
+    "e": {
+      " You need to make sure that your device stays charged – if it runs out of battery\n          and you can’t turn it on to avail the Service, ACE Uganda cannot accept responsibility": {
+        "": ""
+      }
+    }
+  },
+  "LIABILITIES": "LIABILITIES",
+  "With respect to ACE Uganda’s responsibility for your use of the app, when you’re using the\n          app, it’s important to bear in mind that although we endeavor to ensure that it is updated\n          and correct at all times, we do rely on third parties to provide information to us so that\n          we can make it available to you": {
+    " ACE Uganda accepts no liability for any loss, direct or\n          indirect, you experience as a result of relying wholly on the functionality of the app": {
+      "": ""
+    }
+  },
+  "APP UPDATES": "APP UPDATES",
+  " At some point, we may wish to update the app": {
+    " The app is currently available on Android –\n          the requirements for the system(and for any additional systems we decide to extend the\n          availability of the app to) may change, and you’ll need to download the updates if you\n          want to keep using the app": {
+      " ACE Uganda does not promise that it will always update the app\n          so that it is relevant to you and/or works with the Android version that you have\n          installed on your device": {
+        " However, you promise to always accept updates to the application\n          when offered to you": {
+          " We may also wish to stop providing the app, and may terminate use of\n          it at any time without giving notice of termination to you": {
+            " Unless we tell you otherwise,\n          upon any termination": " Unless we tell you otherwise,\n          upon any termination"
+          }
+        }
+      }
+    }
+  },
+  "the rights and licenses granted to you in these terms will end": "the rights and licenses granted to you in these terms will end",
+  "you must stop using the app, and (if needed) delete it from your device": "you must stop using the app, and (if needed) delete it from your device",
+  "Changes to These Terms and Conditions": "Changes to These Terms and Conditions",
+  "We may update our Terms and Conditions from time to time": {
+    " Thus, you are advised to review\n          this page periodically for any changes": {
+      " We will notify you of any changes by posting the\n          new Terms and Conditions on this page": {
+        "": ""
+      }
+    }
+  },
+  "These terms and conditions are effective as of 2023-01-04": "These terms and conditions are effective as of 2023-01-04",
+  "If you have any questions or suggestions about our Terms and Conditions, do not hesitate\n          to contact us at": "If you have any questions or suggestions about our Terms and Conditions, do not hesitate\n          to contact us at"
+}

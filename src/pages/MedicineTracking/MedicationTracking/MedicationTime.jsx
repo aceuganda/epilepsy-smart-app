@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 const MedicationTime = ({
   time,
@@ -9,6 +10,7 @@ const MedicationTime = ({
   handleDeleteClickCallback,
   handleToggleClickCallback
 }) => {
+  const { t } = useTranslation();
   MedicationTime.propTypes = {
     time: PropTypes.string,
     active: PropTypes.bool,
@@ -37,7 +39,7 @@ const MedicationTime = ({
           <div className="ToggleMoverActive"></div>
         </div>
         <div onClick={HandleDeleteReminder} className="RemoverReminder">
-          delete
+          {t('delete')}
         </div>
       </div>
     </div>

@@ -9,9 +9,12 @@ import { useEffect } from 'react';
 import AuthPageComponent from '.';
 import { ReactComponent as LoginImg } from '../../assets/svg/Auth/Login.svg';
 import Spinner from '../../components/Spinner/Spinner';
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
   const { loading, userInfo, error } = useSelector((state) => state.user);
+
+  const { t } = useTranslation();
 
   const dispatch = useDispatch();
 
@@ -36,24 +39,24 @@ const Login = () => {
 
   return (
     <AuthPageComponent
-      title={'Login'}
+      title={t('Login')}
       image={<LoginImg />}
-      callToAction={'Dont have an account?'}
+      callToAction={t('Dont have an account?')}
       link={'/register'}
-      linkTitle={'Register Now'}>
+      linkTitle={t('Register Now')}>
       <form onSubmit={handleSubmit(submitForm)}>
         <div className="form-group">
-          <label htmlFor="email">Email Address</label>
+          <label htmlFor="email">{t('Email Address')}</label>
           <input
             type="email"
             name="email"
             {...register('email', { required: true })}
-            placeholder="Enter email address"
+            placeholder={t("Enter email address")}
           />
-          {errors.email && <span className="error">Email is required</span>}
+          {errors.email && <span className="error">{t('Email is required')}</span>}
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">{t('Password')}</label>
           <input
             type="password"
             name="password"
@@ -61,10 +64,10 @@ const Login = () => {
             placeholder="Enter password"
             autoComplete="current-password"
           />
-          {errors.password && <span className="error">Password is required</span>}
+          {errors.password && <span className="error">{t('Password is required')}</span>}
         </div>
         <button disabled={loading} className="o-btn">
-          {loading ? <Spinner /> : 'Login'}{' '}
+          {loading ? <Spinner /> : t('Login')}{' '}
         </button>
       </form>
       {error && <p className="error">{error}</p>}

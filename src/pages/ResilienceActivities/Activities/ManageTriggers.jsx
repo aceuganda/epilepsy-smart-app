@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ResilienceActivitiesPageComponent from '..';
 import Form from '../../../components/form/Form';
+import { useTranslation } from 'react-i18next';
 
 const data = [
   {
@@ -93,6 +94,7 @@ const events = [
 
 const DATA_PER_PAGE = 4;
 const ManageYourTriggers = () => {
+  const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(1);
 
   const numPages = Math.ceil(data.length / DATA_PER_PAGE);
@@ -112,18 +114,18 @@ const ManageYourTriggers = () => {
           <Form style={{ maxHeight: 'none', height: '960px' }}>
             <div className="text-page">
               <div className="title">
-                <h3>Manage Your Triggers</h3>
+                <h3>{t('Manage Your Triggers')}</h3>
               </div>
               <div className="header-nav">
                 <span id="tab1">
-                  <button className="selected">Overall</button>
+                  <button className="selected">{t('Overall')}</button>
                 </span>
               </div>
 
               <div className="text-page-body">
                 <p>
-                  Learning your triggers and avoiding them may take patient, thoughtful reflection
-                  to identify and learn ways to avoid or manage them. Some common triggers include:
+                  {t(`Learning your triggers and avoiding them may take patient, thoughtful reflection
+                  to identify and learn ways to avoid or manage them. Some common triggers include`)}:
                 </p>
                 <ul>
                   {dataToDisplay.map((data) => (
@@ -153,13 +155,13 @@ const ManageYourTriggers = () => {
                 </ul>
                 <div>
                   <p>
-                    In order to reduce the likelihood of having a seizure due to any of these
+                    {t(`In order to reduce the likelihood of having a seizure due to any of these
                     situations or events; it is important to do all you can to reduce your exposure
-                    to these seizure triggers by avoiding these stimuli. Some tips you could use:{' '}
+                    to these seizure triggers by avoiding these stimuli. Some tips you could use`)}:{' '}
                   </p>
                   <ul>
                     {events.map((event) => (
-                      <li key={event.id}>{event.text}</li>
+                      <li key={event.id}>{t(event.text)}</li>
                     ))}
                   </ul>
                 </div>

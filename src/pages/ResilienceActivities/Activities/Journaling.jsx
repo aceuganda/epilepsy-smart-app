@@ -15,10 +15,12 @@ import { useDispatch } from 'react-redux';
 import Spinner from '../../../components/Spinner/Spinner.js';
 import Modal from '../../../components/modal';
 import { MdClose } from 'react-icons/md';
+import { useTranslation } from 'react-i18next';
 
 const QUOTES_PER_PAGE = 7; // adjust as needed
 
 const Journaling = () => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState(1);
   const [show, setShow] = useState(false);
   const [grateful, setGrateful] = useState('');
@@ -170,10 +172,10 @@ const Journaling = () => {
         <div className="tab-component">
           <div className="tab-header">
             <button className={activeTab === 1 ? 'active' : ''} onClick={() => handleTabClick(1)}>
-              Notebooks
+              {t('Notebooks')}
             </button>
             <button className={activeTab === 2 ? 'active' : ''} onClick={() => handleTabClick(2)}>
-              Gratefuls
+              {t('Gratefuls')}
             </button>
           </div>
           {activeTab === 1 && (
@@ -211,7 +213,7 @@ const Journaling = () => {
                     color: 'red',
                     fontSize: '10px'
                   }}>
-                  {fetchJournalError}
+                  {t(fetchJournalError)}
                 </div>
               ) : (
                 journalsList
@@ -250,7 +252,7 @@ const Journaling = () => {
               )}
             </div>
             <div className={`tab-pane ${activeTab === 2 ? 'active' : ''}`}>
-              <h6 style={{ font: 'bold' }}>What are you grateful for?</h6>
+              <h6 style={{ font: 'bold' }}>{t(`What are you grateful for`)}?</h6>
               <div
                 style={{
                   display: 'flex',
@@ -268,7 +270,7 @@ const Journaling = () => {
                     onBlur={(e) => {
                       e.target.style.height = '80px';
                     }}
-                    placeholder="Example: I am grateful to have a home to live in"
+                    placeholder={t("Example: I am grateful to have a home to live in")}
                   />
                   <div
                     style={{
@@ -284,7 +286,7 @@ const Journaling = () => {
                 </div>
                 {grateful && (
                   <button onClick={handleSubmit} className='button-styles'>
-                    {savingGrateful ? <Spinner /> : 'Save'}
+                    {savingGrateful ? <Spinner /> : t('Save')}
                   </button>
                 )}
               </div>
@@ -387,8 +389,8 @@ const Journaling = () => {
           setGratefulID(-1);
         }}>
         <div className="delete-modal">
-          <div className="modal-title">Delete Grateful.</div>
-          <div className="">Are you sure about this action?</div>
+          <div className="modal-title">{t('Delete Grateful.')}</div>
+          <div className="">{t('Are you sure about this action')}?</div>
 
           <div className="buttons-row">
             <button
@@ -398,10 +400,10 @@ const Journaling = () => {
                 setGratefulID(-1);
               }}
               className="cancel-button">
-              Cancel
+              {t('Cancel')}
             </button>
             <button onClick={(e) => deleteGratefullItemId(e)} className="ok-button">
-              Sure
+              {t('Sure')}
             </button>
           </div>
         </div>

@@ -11,8 +11,10 @@ import {
   setMedicineId
 } from '../../../redux/Slices/MedicationTracking';
 import Spinner from '../../../components/Spinner/Spinner';
+import { useTranslation } from 'react-i18next';
 
 const MedicationAssessmentPageZero = () => {
+  const { t } = useTranslation();
   const [selected_medicine, setSelectedMedicine] = useState(null);
   const [medicineList, setMedicineList] = useState([]);
   const [userMedicinesFeedbackMessage, setUserMedicinesFeedbackMessage] = useState('');
@@ -44,7 +46,7 @@ const MedicationAssessmentPageZero = () => {
     <MedicationComponent backroute={'/medication/'}>
       <Form>
         <form>
-          <Question question={'Select Medicine'}>
+          <Question question={t('Select Medicine')}>
             <fieldset className="mt-3 mb-4">
               <div
                 style={{

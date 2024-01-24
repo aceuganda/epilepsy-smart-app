@@ -11,8 +11,10 @@ import {
   setSeizureExperiencedAura,
   setTrigger
 } from '../../../redux/Slices/SeizureTrackingSlice';
+import { useTranslation } from 'react-i18next';
 
 const PageTwo = () => {
+  const { t } = useTranslation();
   const [experienced_aura, setAura] = useState(null);
   const [aura_kind_experienced, setAuraType] = useState('');
   const [seizure_trigger, setSeizureTrigger] = useState(null);
@@ -53,7 +55,7 @@ const PageTwo = () => {
                 onClick={(e) => {
                   setAura(e.target.value);
                 }}>
-                yes
+                {t('yes')}
               </button>
               <button
                 type="button"
@@ -62,7 +64,7 @@ const PageTwo = () => {
                 onClick={(e) => {
                   setAura(e.target.value);
                 }}>
-                no
+                {t('no')}
               </button>
             </fieldset>
           </PopQuestion>
@@ -76,7 +78,7 @@ const PageTwo = () => {
                   onClick={(e) => {
                     setAuraType(e.target.value);
                   }}>
-                  Sweet Smells
+                  {t('Sweet Smells')}
                 </button>
                 <button
                   type="button"
@@ -85,22 +87,22 @@ const PageTwo = () => {
                   onClick={(e) => {
                     setAuraType(e.target.value);
                   }}>
-                  Horrible Smells
+                  {t('Horrible Smells')}
                 </button>
                 <div onClick={() => setAuraType('deja-vu')}>
                   <PopButton
-                    popTitle={'Deja-vu'}
-                    popDescription={
+                    popTitle={t('Deja-vu')}
+                    popDescription={t(
                       'The sensation of being in a familiar place or experiencing a very familiar situation.'
-                    }
+                    )}
                   />
                 </div>
                 <div onClick={() => setAuraType('jamais-vu')}>
                   <PopButton
-                    popTitle={'Jamais-vu'}
-                    popDescription={
+                    popTitle={t('Jamais-vu')}
+                    popDescription={t(
                       'An experience of being unfamiliar with a person or place or situation that is actually very familiar.'
-                    }
+                    )}
                   />
                 </div>
                 <button
@@ -112,7 +114,7 @@ const PageTwo = () => {
                   onClick={(e) => {
                     setAuraType(e.target.value);
                   }}>
-                  Tingling Sensation
+                  {t('Tingling Sensation')}
                 </button>
                 <button
                   type="button"
@@ -121,7 +123,7 @@ const PageTwo = () => {
                   onClick={(e) => {
                     setAuraType(e.target.value);
                   }}>
-                  Flashing Lights
+                  {t('Flashing Lights')}
                 </button>
                 <button
                   type="button"
@@ -130,7 +132,7 @@ const PageTwo = () => {
                   onClick={(e) => {
                     setAuraType(e.target.value);
                   }}>
-                  Sensation of crawling insects
+                  {t('Sensation of crawling insects')}
                 </button>
                 <button
                   type="button"
@@ -139,7 +141,7 @@ const PageTwo = () => {
                   onClick={(e) => {
                     setAuraType(e.target.value);
                   }}>
-                  Seeing animals or people
+                  {t('Seeing animals or people')}
                 </button>
               </fieldset>
             </Question>
@@ -156,7 +158,7 @@ const PageTwo = () => {
                   onClick={(e) => {
                     setSeizureTrigger(e.target.value);
                   }}>
-                  yes
+                  {t('yes')}
                 </button>
                 <button
                   type="button"
@@ -165,7 +167,7 @@ const PageTwo = () => {
                   onClick={(e) => {
                     setSeizureTrigger(e.target.value);
                   }}>
-                  no
+                  {t('no')}
                 </button>
               </fieldset>
             </Question>

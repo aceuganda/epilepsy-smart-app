@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/svg/Form/Topbar/logo.svg';
 import { ReactComponent as ArrowLeft } from '../../assets/svg/Form/Topbar/arrow.svg';
+import { useTranslation } from 'react-i18next';
 
 const TopBar = (props) => {
   TopBar.propTypes = {
@@ -10,6 +11,7 @@ const TopBar = (props) => {
     route: PropTypes.string,
     logo: PropTypes.element
   };
+  const { t } = useTranslation();
   const navigate = useNavigate();
   return (
     <div className="form-top-bar">
@@ -23,7 +25,7 @@ const TopBar = (props) => {
         </span>
         <span className="row form-title">
           {props.logo ? props.logo : <Logo />}
-          <span>{props.title}</span>
+          <span>{t(props.title)}</span>
         </span>
       </div>
     </div>

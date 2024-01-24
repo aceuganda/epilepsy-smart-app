@@ -2,8 +2,10 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 import AuthPageComponent from '../index';
 import { ReactComponent as ResetImg } from '../../../assets/svg/Auth/Reset.svg';
+import { useTranslation } from 'react-i18next';
 
 const ResetPassword = () => {
+  const { t } = useTranslation();
   return (
     <AuthPageComponent
       title={'Reset Password'}
@@ -13,14 +15,14 @@ const ResetPassword = () => {
       linkTitle={'Register Now'}>
       <form onSubmit={() => {}}>
         <div className="form-group">
-          <label htmlFor="email">New Password</label>
+          <label htmlFor="email">{t('New Password')}</label>
           <input type="password" name="email" placeholder="******" />
         </div>
         <div className="form-group">
-          <label htmlFor="email">Confirm Password</label>
+          <label htmlFor="email">{t('Confirm Password')}</label>
           <input type="password" name="email" placeholder="*******" />
         </div>
-        <button className="o-btn">{'Reset passworrd'}</button>
+        <button className="o-btn">{t('Reset password')}</button>
       </form>
     </AuthPageComponent>
   );

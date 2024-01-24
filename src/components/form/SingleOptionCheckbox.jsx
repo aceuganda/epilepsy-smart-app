@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 const SingleOptionCheckbox = ({ label, id, checked, onChange, value, ...props }) => {
   SingleOptionCheckbox.propTypes = {
@@ -10,6 +11,7 @@ const SingleOptionCheckbox = ({ label, id, checked, onChange, value, ...props })
     value: PropTypes.string
   };
   // const [isChecked, setIsChecked] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <div>
@@ -23,7 +25,7 @@ const SingleOptionCheckbox = ({ label, id, checked, onChange, value, ...props })
           onChange={onChange}
           {...props}
         />
-        <span>{label}</span>
+        <span>{t(label)}</span>
       </label>
     </div>
   );

@@ -13,8 +13,10 @@ import {
 import Spinner from '../../../components/Spinner/Spinner';
 import EndOfAssessmentModal from '../../../components/form/EndOfAssessment';
 import { ReactComponent as CheckedIcon } from '../../../assets/svg/Form/EndOfAssessment/CheckedIcon.svg';
+import { useTranslation } from 'react-i18next';
 
 const MedicationAssessmentPageTwo = () => {
+  const { t } = useTranslation();
   const [side_effects, setSideEffect] = useState(null);
   const [other_reason, setOtherReason] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -45,7 +47,7 @@ const MedicationAssessmentPageTwo = () => {
     <MedicationComponent backroute={'/medication/assessment/1'}>
       <Form>
         <form>
-          <Question question={'Did you experience any side effects'}>
+          <Question question={t('Did you experience any side effects')}>
             <fieldset className="mt-3 mb-4" style={{ justifyContent: 'space-evenly' }}>
               {medicationTrackingData.reason_missed_dose !== 'Side Effects' && (
                 <button
@@ -57,7 +59,7 @@ const MedicationAssessmentPageTwo = () => {
                     dispatch(setExperiencedSideEffects(false));
                     dispatch(setSideEffects(e.target.value));
                   }}>
-                  None
+                  {t('None')}
                 </button>
               )}
               <button
@@ -69,7 +71,7 @@ const MedicationAssessmentPageTwo = () => {
                   dispatch(setExperiencedSideEffects(true));
                   dispatch(setSideEffects(e.target.value));
                 }}>
-                Vomiting
+                {t('Vomiting')}
               </button>
               <button
                 type="button"
@@ -80,7 +82,7 @@ const MedicationAssessmentPageTwo = () => {
                   dispatch(setExperiencedSideEffects(true));
                   dispatch(setSideEffects(e.target.value));
                 }}>
-                Drowsiness
+                {t('Drowsiness')}
               </button>
               <button
                 type="button"
@@ -91,7 +93,7 @@ const MedicationAssessmentPageTwo = () => {
                   dispatch(setExperiencedSideEffects(true));
                   dispatch(setSideEffects(e.target.value));
                 }}>
-                Skin Rash
+                {t('Skin Rash')}
               </button>
               <button
                 type="button"
@@ -102,7 +104,7 @@ const MedicationAssessmentPageTwo = () => {
                   dispatch(setExperiencedSideEffects(true));
                   dispatch(setSideEffects(e.target.value));
                 }}>
-                Headache
+                {t('Headache')}
               </button>
               <button
                 type="button"
@@ -113,7 +115,7 @@ const MedicationAssessmentPageTwo = () => {
                   dispatch(setExperiencedSideEffects(true));
                   dispatch(setSideEffects(e.target.value));
                 }}>
-                Nausea
+                {t('Nausea')}
               </button>
               <button
                 type="button"
@@ -124,7 +126,7 @@ const MedicationAssessmentPageTwo = () => {
                   dispatch(setExperiencedSideEffects(true));
                   dispatch(setSideEffects(e.target.value));
                 }}>
-                Diarrhoea
+                {t('Diarrhoea')}
               </button>
               <button
                 type="button"
@@ -135,7 +137,7 @@ const MedicationAssessmentPageTwo = () => {
                   dispatch(setExperiencedSideEffects(true));
                   dispatch(setSideEffects(e.target.value));
                 }}>
-                Constipation
+                {t('Constipation')}
               </button>
               <button
                 type="button"
@@ -146,7 +148,7 @@ const MedicationAssessmentPageTwo = () => {
                   dispatch(setExperiencedSideEffects(true));
                   dispatch(setSideEffects(e.target.value));
                 }}>
-                Other
+                {t('Other')}
               </button>
             </fieldset>
           </Question>
@@ -176,7 +178,7 @@ const MedicationAssessmentPageTwo = () => {
                 type="submit"
                 className="button form-button-pill"
                 onClick={(e) => handleSubmit(e)}>
-                Done
+                {t('Done')}
               </button>
             </fieldset>
           ) : (

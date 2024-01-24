@@ -2,9 +2,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiChevronRight } from 'react-icons/fi';
+import { useTranslation } from 'react-i18next';
 
 const Journal = ({ title, date, color, id, notes }) => {
   const newDate = new Date(date);
+  const { t } = useTranslation();
   const formattedDate = `${newDate.toLocaleDateString()} ${newDate.toLocaleTimeString()}`;
   return (
     <Link to={`/Journal/${id}`} state={{ title, date, color, id, notes }}>
@@ -26,7 +28,7 @@ const Journal = ({ title, date, color, id, notes }) => {
               alignItems: 'center',
               marginLeft: 7
             }}>
-            <h4 style={{ fontSize: 'small' }}>{title}</h4>
+            <h4 style={{ fontSize: 'small' }}>{t(title)}</h4>
             <p style={{ fontSize: 'x-small' }}>{formattedDate}</p>
           </div>
           <div>

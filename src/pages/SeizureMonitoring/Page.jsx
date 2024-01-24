@@ -6,15 +6,17 @@ import { ReactComponent as SeizureImg } from '../../assets/svg/Seizure/seizure.s
 import Largebtn from '../../components/form/Buttons/Largebtn';
 import { ReactComponent as RecordIcon } from '../../assets/svg/Seizure/RecordSeizure.svg';
 import { ReactComponent as MonitorIcon } from '../../assets/svg/Seizure/MonitorSeizure.svg';
+import { useTranslation } from 'react-i18next';
 
 const StartPage = () => {
+  const { t } = useTranslation();
   return (
     <div className="form start-page">
       <SeizureComponent backroute={'/home'}>
         <Form>
           <SeizureImg className="image" />
           <Largebtn
-            title="Record Seizure Details"
+            title={t("Record Seizure Details")}
             link="/seizure-form/assessment/1"
             icon={<MonitorIcon />}
           />

@@ -5,8 +5,10 @@ import Avatar from '../HomePage/Avatar';
 import Spinner from '../../components/Spinner/Spinner';
 import { editUserData, getSingleUserDetails, logout } from '../../redux/Slices/UsersSlice';
 import Modal from '../../components/modal';
+import { useTranslation } from 'react-i18next';
 
 const UserDetailsEdit = () => {
+  const { t } = useTranslation();
   const { userInfo } = useSelector((state) => state.user);
   const [userName, setUserName] = useState(userInfo.data.username);
   const [userEmail, setUserEmail] = useState(userInfo.data.email);
@@ -135,7 +137,7 @@ const UserDetailsEdit = () => {
               <Avatar name={userInfo.data.username} alt={''} />
             </div>
             <div className="form-group">
-              <label htmlFor="username">Name</label>
+              <label htmlFor="username">{t('Name')}</label>
               <input
                 type="text"
                 name="username"
@@ -144,7 +146,7 @@ const UserDetailsEdit = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="username">Email</label>
+              <label htmlFor="username">{t('Email')}</label>
               <input
                 type="email"
                 name="email"
@@ -156,7 +158,7 @@ const UserDetailsEdit = () => {
               <>
                 <div className="form-select-group">
                   <div>
-                    <label htmlFor="dob">Date of Birth</label>
+                    <label htmlFor="dob">{t('Date of Birth')}</label>
                     <input
                       type="date"
                       value={dob}
@@ -164,24 +166,26 @@ const UserDetailsEdit = () => {
                         setDob(e.target.value);
                       }}
                     />
-                    {!dob && <span className="error">This is required field</span>}
+                    {!dob && <span className="error">{t('This is required field')}</span>}
                   </div>
                   <div>
-                    <label htmlFor="gender">Gender</label>
+                    <label htmlFor="gender">{t('Gender')}</label>
                     <select
                       value={gender}
                       onChange={(e) => {
                         setGender(e.target.value);
                       }}>
-                      <option value="female">Female</option>
-                      <option value="male">Male</option>
-                      <option value="other">Prefer not to say</option>
+                      <option value="female">{t('Female')}</option>
+                      <option value="male">{t('Male')}</option>
+                      <option value="other">{t('Prefer not to say')}</option>
                     </select>
-                    {gender === '' && <span className="error">This is a required field</span>}
+                    {gender === '' && (
+                      <span className="error">{t('This is a required field<')}</span>
+                    )}
                   </div>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="age_of_onset">Age of seizure onset</label>
+                  <label htmlFor="age_of_onset">{t('Age of seizure onset')}</label>
                   <input
                     type="number"
                     min="0"
@@ -192,10 +196,12 @@ const UserDetailsEdit = () => {
                     }}
                     placeholder="00"
                   />
-                  {onsetAge === '' && <span className="error">This is a required field</span>}
+                  {onsetAge === '' && (
+                    <span className="error">{t('This is a required field')}</span>
+                  )}
                 </div>
                 <div className="form-group">
-                  <label htmlFor="seizure_type">Seizure Type</label>
+                  <label htmlFor="seizure_type">{t('Seizure Type')}</label>
                   <select
                     value={seizureType}
                     onChange={(e) => {
@@ -209,7 +215,7 @@ const UserDetailsEdit = () => {
                   </select>
                 </div>
                 <div className="form-checkbox-group">
-                  <label htmlFor="caregiverOption">Do you have a caregiver?</label>
+                  <label htmlFor="caregiverOption">{t('Do you have a caregiver')}?</label>
                   <div>
                     <span
                       //empty "" to prevent console error
@@ -217,21 +223,21 @@ const UserDetailsEdit = () => {
                       onClick={() => {
                         sethasCaregiver('yes');
                       }}>
-                      Yes
+                      {t('Yes')}
                     </span>
                     <span
                       className={hasCaregiver === 'no' ? 'Selected' : ''}
                       onClick={() => {
                         sethasCaregiver('no');
                       }}>
-                      No
+                      {t('No')}
                     </span>
                   </div>
                 </div>
                 {hasCaregiver === 'yes' ? (
                   <div>
                     <div className="form-group">
-                      <label htmlFor="caregiver_name">Name of Caregiver</label>
+                      <label htmlFor="caregiver_name">{t('Name of Caregiver')}</label>
                       <input
                         type="text"
                         name="caregiver_name"
@@ -239,14 +245,14 @@ const UserDetailsEdit = () => {
                         onChange={(e) => {
                           setCaregiver(e.target.value);
                         }}
-                        placeholder="Enter caregiver's name "
+                        placeholder={t("Enter caregiver's name")}
                       />
                       {caregiver === '' && hasCaregiver === 'yes' && (
-                        <span className="error">This field is required</span>
+                        <span className="error">{t('This field is required')}</span>
                       )}
                     </div>
                     <div className="form-group">
-                      <label htmlFor="caregiver_contact">Contact of Caregiver</label>
+                      <label htmlFor="caregiver_contact">{t('Contact of Caregiver')}</label>
                       <input
                         type="text"
                         name="caregiver_contact"
@@ -254,10 +260,10 @@ const UserDetailsEdit = () => {
                         onChange={(e) => {
                           setCaregiverContact(e.target.value);
                         }}
-                        placeholder="Enter caregiver's contact "
+                        placeholder={t("Enter caregiver's contact")}
                       />
                       {caregiverContact === '' && hasCaregiver === 'yes' && (
-                        <span className="error">This field is required</span>
+                        <span className="error">{t('This field is required')}</span>
                       )}
                     </div>
                   </div>
@@ -265,7 +271,7 @@ const UserDetailsEdit = () => {
                   <span />
                 )}
                 <div className="form-group">
-                  <label htmlFor="institution">Institution</label>
+                  <label htmlFor="institution">{t('Institution')}</label>
                   <input
                     type="text"
                     name="institution"
@@ -275,7 +281,9 @@ const UserDetailsEdit = () => {
                     }}
                     placeholder="Enter institution name"
                   />
-                  {institute === '' && <span className="error">Institution is required</span>}
+                  {institute === '' && (
+                    <span className="error">{t('Institution is required')}</span>
+                  )}
                 </div>
 
                 {errors && <span className="error">{errors}</span>}
@@ -286,19 +294,19 @@ const UserDetailsEdit = () => {
                   className="o-btn"
                   onClick={openWarningForm}
                   style={{ bottom: '10px' }}>
-                  Save
+                  {t('Save')}
                 </button>
               </>
             ) : (
-              <div>Loading user data...</div>
+              <div>{t('Loading user data')}...</div>
             )}
 
             {updateWarning && (
               <Modal show={updateWarning} closeModal={() => setUpdateWarning(false)}>
                 <div>
-                  <h3>Save updates</h3>
-                  <div>Updating you information will log you out automatically</div>
-                  <button onClick={submitData}>{loading ? <Spinner /> : 'Save & logout'}</button>
+                  <h3>{t('Save updates')}</h3>
+                  <div>{t('Updating you information will log you out automatically')}</div>
+                  <button onClick={submitData}>{loading ? <Spinner /> : t('Save & logout')}</button>
                 </div>
               </Modal>
             )}

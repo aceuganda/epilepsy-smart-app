@@ -16,8 +16,11 @@ import {
 import { ReactComponent as MorningIcon } from '../../../assets/svg/Seizure/Morning.svg';
 import { ReactComponent as AfternoonIcon } from '../../../assets/svg/Seizure/afternon.svg';
 import { ReactComponent as NightIcon } from '../../../assets/svg/Seizure/night.svg';
+import { useTranslation } from 'react-i18next';
+
 
 const PageOne = () => {
+  const { t } = useTranslation();
   const [seizure_severity, setSeverity] = useState('');
   const [seizure_duration, setDuration] = useState('');
   const [seizure_time_of_day, setTime] = useState('');
@@ -67,7 +70,7 @@ const PageOne = () => {
                 onClick={(e) => {
                   setSeverity(e.target.value);
                 }}>
-                mild
+                {t('mild')}
               </button>
               <button
                 type="button"
@@ -76,7 +79,7 @@ const PageOne = () => {
                 onClick={(e) => {
                   setSeverity(e.target.value);
                 }}>
-                moderate
+                {t('moderate')}
               </button>
               <button
                 type="button"
@@ -85,7 +88,7 @@ const PageOne = () => {
                 onClick={(e) => {
                   setSeverity(e.target.value);
                 }}>
-                severe
+                {t('severe')}
               </button>
             </fieldset>
           </Question>
@@ -108,7 +111,7 @@ const PageOne = () => {
                   onClick={(e) => {
                     setDuration(e.target.value);
                   }}>
-                  unknown
+                  {t('unknown')}
                 </button>
               </div>
             </Question>
@@ -128,7 +131,7 @@ const PageOne = () => {
                     onClick={(e) => {
                       setTime(e.target.value);
                     }}>
-                    morning
+                    {t('morning')}
                   </button>
                 </div>
                 <div className="flex-column-center">
@@ -141,7 +144,7 @@ const PageOne = () => {
                     onClick={(e) => {
                       setTime(e.target.value);
                     }}>
-                    afternoon
+                    {t('afternoon')}
                   </button>
                 </div>
                 <div className="flex-column-center">
@@ -154,7 +157,7 @@ const PageOne = () => {
                     onClick={(e) => {
                       setTime(e.target.value);
                     }}>
-                    evening
+                    {t('evening')}
                   </button>
                 </div>
               </fieldset>
@@ -172,7 +175,7 @@ const PageOne = () => {
                   onClick={(e) => {
                     setAwareness(e.target.value);
                   }}>
-                  yes
+                  {t('yes')}
                 </button>
                 <button
                   type="button"
@@ -181,7 +184,7 @@ const PageOne = () => {
                   onClick={(e) => {
                     setAwareness(e.target.value);
                   }}>
-                  no
+                  {t('no')}
                 </button>
               </fieldset>
             </Question>

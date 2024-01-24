@@ -12,6 +12,7 @@ import { ReactComponent as Education } from '../../assets/svg/Resilience/educati
 import { ReactComponent as Inspiration } from '../../assets/svg/Resilience/Inspirational_icon.svg';
 import { ReactComponent as Listening } from '../../assets/svg/Resilience/listening.svg';
 import { ReactComponent as Affirm } from '../../assets/svg/Resilience/todays_positive.svg';
+import { useTranslation } from 'react-i18next';
 
 const AllResilienceActivitiesPage = () => {
   const ResilienceActivities = [
@@ -81,6 +82,7 @@ const AllResilienceActivitiesPage = () => {
       outerLink: 'https://www.cdc.gov/hrqol/wellbeing.htm'
     }
   ];
+  const { t } = useTranslation();
   return (
     <div>
       <ResilienceActivitiesPageComponent backroute={'/home'}>
@@ -88,7 +90,7 @@ const AllResilienceActivitiesPage = () => {
           {ResilienceActivities.map((activity, key) => (
             <ResilienceActivityPill
               key={key}
-              title={activity.name}
+              title={t(activity.name)}
               icon={activity.icon}
               link={activity.link}
               outerLink={activity.outerLink}

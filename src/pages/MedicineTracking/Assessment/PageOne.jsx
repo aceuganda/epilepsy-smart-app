@@ -11,8 +11,10 @@ import {
   postMedicationFormData
 } from '../../../redux/Slices/MedicationTracking';
 import Spinner from '../../../components/Spinner/Spinner';
+import { useTranslation } from 'react-i18next';
 
 const MedicationAssessmentPageOne = () => {
+  const { t } = useTranslation();
   const [medicine_doses, setMedicineDoses] = useState(null);
   const [some_doses, setSomeDoses] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -43,7 +45,7 @@ const MedicationAssessmentPageOne = () => {
     <MedicationComponent backroute={'/medication/assessment/0'}>
       <Form>
         <form>
-          <Question question={'Did you take all your doses today'}>
+          <Question question={t('Did you take all your doses today')}>
             <fieldset className="mt-3 mb-4">
               <button
                 type="button"
@@ -53,7 +55,7 @@ const MedicationAssessmentPageOne = () => {
                   setMedicineDoses(e.target.value);
                   dispatch(setTookMedicine(e.target.value));
                 }}>
-                All doses
+                {t('All doses')}
               </button>
               <button
                 type="button"
@@ -63,7 +65,7 @@ const MedicationAssessmentPageOne = () => {
                   setMedicineDoses(e.target.value);
                   dispatch(setTookMedicine(e.target.value));
                 }}>
-                Some doses
+                {t('Some doses')}
               </button>
               <button
                 type="button"
@@ -73,7 +75,7 @@ const MedicationAssessmentPageOne = () => {
                   setMedicineDoses(e.target.value);
                   dispatch(setTookMedicine(e.target.value));
                 }}>
-                No doses
+                {t('No doses')}
               </button>
             </fieldset>
           </Question>
@@ -92,7 +94,7 @@ const MedicationAssessmentPageOne = () => {
                     setSomeDoses(e.target.value);
                     dispatch(setReasonForMissingDose(e.target.value));
                   }}>
-                  I forgot to take the Doses
+                  {t('I forgot to take the Doses')}
                 </button>
                 <button
                   type="button"
@@ -106,7 +108,7 @@ const MedicationAssessmentPageOne = () => {
                     setSomeDoses(e.target.value);
                     dispatch(setReasonForMissingDose(e.target.value));
                   }}>
-                  I forgot to refill the Doses
+                  {t('I forgot to refill the Doses')}
                 </button>
                 <button
                   type="button"
@@ -120,7 +122,7 @@ const MedicationAssessmentPageOne = () => {
                     setSomeDoses(e.target.value);
                     dispatch(setReasonForMissingDose(e.target.value));
                   }}>
-                  I didn’t have the funds to refill the Doses
+                  {t('I didn’t have the funds to refill the Doses')}
                 </button>
                 <button
                   type="button"
@@ -134,7 +136,7 @@ const MedicationAssessmentPageOne = () => {
                     setSomeDoses(e.target.value);
                     dispatch(setReasonForMissingDose(e.target.value));
                   }}>
-                  I didn’t have the medicine with me
+                  {t('I didn’t have the medicine with me')}
                 </button>
                 <button
                   type="button"
@@ -148,7 +150,7 @@ const MedicationAssessmentPageOne = () => {
                     setSomeDoses(e.target.value);
                     dispatch(setReasonForMissingDose(e.target.value));
                   }}>
-                  I was told not to take any medicine
+                  {t('I was told not to take any medicine')}
                 </button>
                 <button
                   type="button"
@@ -162,7 +164,7 @@ const MedicationAssessmentPageOne = () => {
                     setSomeDoses(e.target.value);
                     dispatch(setReasonForMissingDose(e.target.value));
                   }}>
-                  I was too sick
+                  {t('I was too sick')}
                 </button>
                 <button
                   type="button"
@@ -176,7 +178,7 @@ const MedicationAssessmentPageOne = () => {
                     setSomeDoses(e.target.value);
                     dispatch(setReasonForMissingDose(e.target.value));
                   }}>
-                  Side Effects
+                  {t('Side Effects')}
                 </button>
               </fieldset>
             </Question>
@@ -195,7 +197,7 @@ const MedicationAssessmentPageOne = () => {
           )}
           {medicine_doses === 'all doses' ? (
             <button onClick={handleSubmit} className="finish-btn" type="submit">
-              {loading ? <Spinner /> : 'Finish'}
+              {loading ? <Spinner /> : t('Finish')}
             </button>
           ) : (
             <span></span>

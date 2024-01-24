@@ -8,10 +8,12 @@ import { getResilienceTallies, loadUserTallies } from '../../redux/Slices/Resili
 import { useEffect } from 'react';
 import store from '../../store';
 import { Link } from 'react-router-dom';
-import ErrorImage from '../../assets/img/Resilience/error.webp'
+import ErrorImage from '../../assets/img/Resilience/error.webp';
+import { useTranslation } from 'react-i18next';
 
 const ResilienceTallies = () => {
   const resilienceTalliesData = useSelector(loadUserTallies);
+  const { t } = useTranslation();
   const [resilienceTallies, setResilienceTallies] = useState([]);
   const [selectedActivities, setSelectedActivities] = useState([]);
   const [moodTally, setMoodTally] = useState();
@@ -101,46 +103,46 @@ const ResilienceTallies = () => {
 
   const recommendedActivities = [
     {
-      name: 'One service goal',
+      name: t('One service goal'),
       link: '/resilience-activities/one-service-goal',
       outerLink: ''
     },
     {
-      name: 'Manage your triggers',
+      name: t('Manage your triggers'),
       link: '/resilience-activities/manage-triggers',
       outerLink: ''
     },
     {
-      name: 'positive affirmations',
+      name: t('positive affirmations'),
       link: '/resilience-activities/positive-affirmations'
     },
     {
-      name: 'One social goal',
+      name: t('One social goal'),
       link: '/resilience-activities/one-social-goal',
       outerLink: ''
     },
     {
-      name: 'Journaling',
+      name: t('Journaling'),
       link: '/resilience-activities/journaling',
       outerLink: ''
     },
     {
-      name: 'Epilepsy Education',
+      name: t('Epilepsy Education'),
       link: '#',
       outerLink: 'https://www.youtube.com/watch?v=SshVn6MUGxA'
     },
     {
-      name: 'Inspirational Cultural quotes',
+      name: t('Inspirational Cultural quotes'),
       link: '/quotes',
       outerLink: ''
     },
     {
-      name: 'Meditation',
+      name: t('Meditation'),
       link: '/resilience-activities/meditation',
       outerLink: ''
     },
     {
-      name: 'Listening',
+      name: t('Listening'),
       link: '/resilience-activities/listening',
       outerLink: ''
     }
@@ -163,33 +165,33 @@ const ResilienceTallies = () => {
           <TopBar title="Tallies" route="/resilience-form" />
           <Form style={{ maxHeight: 'none', height: '600px' }}>
             <div className="tallies-body">
-              <h2 id="header">Recent Assessment</h2>
+              <h2 id="header">{t('Recent Assessment')}</h2>
               <div className="header-nav">
                 <span id="tab1">
                   <button
                     className={selectedTab === 'Mood' ? 'selected' : ''}
                     onClick={() => onClickTabItem('Mood')}>
-                    Mood
+                    {t('Mood')}
                   </button>
                 </span>
                 <span id="tab2">
                   <button
                     className={selectedTab === 'Social' ? 'selected' : ''}
                     onClick={() => onClickTabItem('Social')}>
-                    Social
+                    {t('Social')}
                   </button>
                 </span>
                 <span id="tab3">
                   <button
                     className={selectedTab === 'Treated' ? 'selected' : ''}
                     onClick={() => onClickTabItem('Treated')}>
-                    Treated
+                    {t('Treated')}
                   </button>
                 </span>
               </div>
               {selectedTab === 'Mood' && (
                 <div className="chart-body">
-                  <h2>Score</h2>
+                  <h2>{t('Score')}</h2>
                   <div className="chart-container">
                     <Chart chartType="PieChart" data={moodData} options={options} />
                   </div>
@@ -198,7 +200,7 @@ const ResilienceTallies = () => {
               )}
               {selectedTab === 'Social' && (
                 <div className="chart-body">
-                  <h2>Score</h2>
+                  <h2>{t('Score')}</h2>
                   <div className="chart-container">
                     <Chart chartType="PieChart" data={socialData} options={options} />
                   </div>
@@ -208,10 +210,10 @@ const ResilienceTallies = () => {
                   />
                   {socialTally < 3 ? (
                     <div className="recommendations">
-                      <div className="title">Recommended Resilience Activities</div>
+                      <div className="title">{t('Recommended Resilience Activities')}</div>
                       {selectedActivities.map((activity, index) => (
                         <div key={index} className="activity-pill">
-                          <Link to={`${activity.link}`}>{activity.name}</Link>
+                          <Link to={`${activity.link}`}>{t(activity.name)}</Link>
                         </div>
                       ))}
                     </div>
@@ -222,7 +224,7 @@ const ResilienceTallies = () => {
               )}
               {selectedTab === 'Treated' && (
                 <div className="chart-body">
-                  <h2>Score</h2>
+                  <h2>{t('Score')}</h2>
                   <div className="chart-container">
                     <Chart chartType="PieChart" data={treatedData} options={options} />
                   </div>
@@ -237,13 +239,13 @@ const ResilienceTallies = () => {
         </>
       ) : (
         <div>
-          <TopBar title="Tallies" route="/resilience-form" />
+          <TopBar title={t('Tallies')} route="/resilience-form" />
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <div>
-              <img src={ErrorImage} alt=''/>
+              <img src={ErrorImage} alt="" />
             </div>
             <div style={{ width: '80%', textAlign: 'center', fontWeight: '300' }}>
-              Something went wrong. Please try again later
+              {t('Something went wrong. Please try again later')}
             </div>
           </div>
         </div>
