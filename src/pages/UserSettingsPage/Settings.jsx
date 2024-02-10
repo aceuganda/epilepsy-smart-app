@@ -13,32 +13,32 @@ import { ReactComponent as AboutIcon } from '../../assets/svg/UserAccount/about_
 import { useTranslation } from 'react-i18next';
 
 const Settings = () => {
+  const { t } = useTranslation();
   const settingsCategories = [
     {
-      name: 'Profile',
+      name: t('Profile'),
       icon: <ProfileIcon />,
       link: '/account/settings'
       //link: null
     },
     {
-      name: 'Change password',
+      name: t('Change password'),
       icon: <PasswordIcon />,
       link: '/account/password-reset'
     },
     {
-      name: 'Settings',
+      name: t('Settings'),
       icon: <SettingsIcon />,
       link: null
     },
     {
-      name: 'About',
+      name: t('About'),
       icon: <AboutIcon />,
       link: '/account/about'
     }
   ];
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.user);
-  const { t } = useTranslation();
 
   return (
     <UserSettingsPageComponent backroute={'/home'}>

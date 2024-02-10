@@ -80,7 +80,7 @@ const MedicationAssessmentPageOne = () => {
             </fieldset>
           </Question>
           {medicine_doses === 'some' || medicine_doses === 'none' ? (
-            <Question question={'What was the reason for missing'}>
+            <Question question={t('What was the reason for missing')}>
               <fieldset className="mt-3 mb-4">
                 <button
                   type="button"

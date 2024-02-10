@@ -61,7 +61,7 @@ const PageOne = () => {
     <SeizureComponent backroute={'/seizure-form/'}>
       <Form>
         <form>
-          <Question question={'How severe was it'}>
+          <Question question={t('How severe was it')}>
             <fieldset className="mt-3 mb-4">
               <button
                 type="button"
@@ -93,7 +93,7 @@ const PageOne = () => {
             </fieldset>
           </Question>
           {seizure_severity !== '' ? (
-            <Question question={'How long did it last'}>
+            <Question question={t('How long did it last')}>
               <div className="timefieldset mt-3 mb-4">
                 <TimePicker
                   onChangeMinutesCallBack={handleMinutesChange}
@@ -119,7 +119,7 @@ const PageOne = () => {
             <span></span>
           )}
           {seizure_duration !== '' || minutesValue !== '0' || secondsValue !== '0' ? (
-            <Question question={'What time of day did it occur'}>
+            <Question question={t('What time of the day did it occur')}>
               <fieldset className="mt-3 mb-4">
                 <div className="flex-column-center">
                   <MorningIcon />
@@ -166,7 +166,7 @@ const PageOne = () => {
             <span></span>
           )}
           {seizure_time_of_day !== '' ? (
-            <Question question={'Did you lose awareness'}>
+            <Question question={t('Did you lose awareness')}>
               <fieldset className="mt-3 mb-4" style={{ justifyContent: 'space-evenly' }}>
                 <button
                   type="button"

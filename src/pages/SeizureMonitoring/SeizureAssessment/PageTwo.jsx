@@ -42,10 +42,10 @@ const PageTwo = () => {
       <Form>
         <form>
           <PopQuestion
-            question={'Before the seizure, did you have an '}
-            popTitle={'Aura'}
+            question={t('Before the seizure, did you have an')}
+            popTitle={t('Aura')}
             popDescription={
-              ' An aura is unusual feeling, experience, or sensation that signals an upcoming seizure'
+              t('An aura is unusual feeling, experience, or sensation that signals an upcoming seizure')
             }>
             <fieldset className="mt-3 mb-4">
               <button
@@ -69,7 +69,7 @@ const PageTwo = () => {
             </fieldset>
           </PopQuestion>
           {experienced_aura === 'yes' ? (
-            <Question question={'What kind of aura was it'}>
+            <Question question={t('What kind of aura was it')}>
               <fieldset className="mt-3 mb-4">
                 <button
                   type="button"
@@ -149,7 +149,7 @@ const PageTwo = () => {
             <span></span>
           )}
           {aura_kind_experienced !== '' || experienced_aura === 'no' ? (
-            <Question question={'Was there a trigger for your seizure'}>
+            <Question question={t('Was there a trigger for your seizure')}>
               <fieldset className="mt-3 mb-4" style={{ justifyContent: 'space-evenly' }}>
                 <button
                   type="button"

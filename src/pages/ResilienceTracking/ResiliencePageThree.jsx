@@ -30,27 +30,27 @@ const ResiliencePageThree = () => {
   const dispatch = useDispatch();
 
   const positiveLabels = [
-    'happy',
-    'encouraged',
-    'joyful',
-    'cheerful',
-    'appreciated',
-    'confident',
-    'inspired',
-    'grateful'
+    'Happy',
+    'Encouraged',
+    'Joyful',
+    'Cheerful',
+    'Appreciated',
+    'Confident',
+    'Inspired',
+    'Grateful'
   ];
 
   const negativeLabels = [
-    'sad',
-    'angry',
-    'irritable',
-    'worried',
-    'confused',
-    'impatient',
-    'envious',
-    'hopeless',
-    'lonely',
-    'discouraged'
+    'Sad',
+    'Angry',
+    'Irritable',
+    'Worried',
+    'Confused',
+    'Impatient',
+    'Envious',
+    'Hopeless',
+    'Lonely',
+    'Discouraged'
   ];
 
   const handleSubmit = async (e) => {
@@ -123,7 +123,7 @@ const ResiliencePageThree = () => {
                   {positiveLabels.map((label, key) => (
                     <CheckBox
                       key={key}
-                      label={label}
+                      label={t(label)}
                       value={label}
                       checked={false}
                       onClick={(e) => {
@@ -148,7 +148,7 @@ const ResiliencePageThree = () => {
                   {negativeLabels.map((label, key) => (
                     <CheckBox
                       key={key}
-                      label={label}
+                      label={t(label)}
                       value={label}
                       checked={false}
                       onClick={(e) => {
@@ -214,7 +214,7 @@ const ResiliencePageThree = () => {
             <span />
           )}
           {type_of_feelings === 'negative' && feeling_today.length !== 0 ? (
-            <Question question={'Why did you feel this way'}>
+            <Question question={t('Why did you feel this way')}>
               <fieldset className="mt-3 mb-4">
                 <button
                   type="button"
@@ -276,10 +276,10 @@ const ResiliencePageThree = () => {
           {endOfAssessment && (
             <EndOfAssessmentModal
               icon={<CheckedIcon />}
-              title={'Well Done!'}
-              subText={'Thank you for completing this assessment.'}
+              title={t('Well Done!')}
+              subText={t('Thank you for completing this assessment')}
               link={'/home'}
-              linkText={'home'}
+              linkText={t('home')}
               showModal={true}
             />
           )}

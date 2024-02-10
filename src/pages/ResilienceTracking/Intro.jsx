@@ -19,8 +19,8 @@ const ResilienceStartPage = () => {
       <ResilienceComponent backroute={'/home'}>
         <Form>
           <ResilienceImg className="image" />
-          <Largebtn title="Track Resilience" link="/resilience-form/1" icon={<RecordIcon />} />
-          <Largebtn title="View tallies" link="/resilience/tallies" icon={<MonitorIcon />} />
+          <Largebtn title={t("Track Resilience")} link="/resilience-form/1" icon={<RecordIcon />} />
+          <Largebtn title={t("View tallies")} link="/resilience/tallies" icon={<MonitorIcon />} />
           <div className="disclaimer">
             <InfoIcon />
             <span>{t('Tallies updated every after 3 days')}</span>

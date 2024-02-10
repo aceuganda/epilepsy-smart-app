@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../modal';
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 
 const EndOfAssessmentModal = ({ icon, title, subText, link, linkText, showModal }) => {
   const [show, setShow] = useState(showModal);
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   EndOfAssessmentModal.propTypes = {
     icon: PropTypes.element,
     title: PropTypes.string,
@@ -22,10 +22,10 @@ const EndOfAssessmentModal = ({ icon, title, subText, link, linkText, showModal 
         <Modal show={show} closeModal={() => setShow(false)}>
           <div className="eoa-wrapper">
             <div className="eoa-icon">{icon}</div>
-            <div className="eoa-title">{t(title)}</div>
-            <div className="eoa-subtext">{t(subText)}</div>
+            <div className="eoa-title">{title}</div>
+            <div className="eoa-subtext">{subText}</div>
             <Link to={`${link}`}>
-              <button className="finish-btn">{t(linkText)}</button>
+              <button className="finish-btn">{linkText}</button>
             </Link>
           </div>
         </Modal>

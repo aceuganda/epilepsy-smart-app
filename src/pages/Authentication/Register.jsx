@@ -144,6 +144,9 @@ const Register = () => {
             <span
               //empty "" to prevent console error
               className={hasCaregiver === 'yes' ? 'Selected' : ''}
+              style={{
+                fontSize: '11px'
+              }}
               onClick={() => {
                 sethasCaregiver('yes');
               }}>
@@ -151,6 +154,9 @@ const Register = () => {
             </span>
             <span
               className={hasCaregiver === 'no' ? 'Selected' : ''}
+              style={{
+                fontSize: '11px'
+              }}
               onClick={() => {
                 sethasCaregiver('no');
               }}>

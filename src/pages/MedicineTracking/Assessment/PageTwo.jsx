@@ -25,7 +25,7 @@ const MedicationAssessmentPageTwo = () => {
 
   const medicationTrackingData = useSelector((state) => state.medicationTracking);
   const [endOfAssessment, setEndOfAssessment] = useState(false);
-  const [buttonStatement, setButtonStatement] = useState('Finish');
+  const [buttonStatement, setButtonStatement] = useState(t('Finish'));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -194,10 +194,10 @@ const MedicationAssessmentPageTwo = () => {
           {endOfAssessment && (
             <EndOfAssessmentModal
               icon={<CheckedIcon />}
-              title={'Well Done!'}
-              subText={'Thank you for completing this assessment.'}
+              title={t('Well Done!')}
+              subText={t('Thank you for completing this assessment')}
               link={'/home'}
-              linkText={'home'}
+              linkText={t('home')}
               showModal={true}
             />
           )}

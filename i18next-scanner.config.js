@@ -1,6 +1,6 @@
 module.exports = {
   input: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx', '!node_modules/**', '!build/**'],
-  output: './public/locales/$LOCALE/$NAMESPACE.json',
+  output: '',
   options: {
     debug: true,
     func: {
@@ -16,12 +16,13 @@ module.exports = {
     ns: ['translation'], // namespaces
     defaultLng: 'en',
     defaultNs: 'translation',
+    keySeparator: false,
     defaultValue: function (lng, ns, key) {
       return key;
     },
     resource: {
-      loadPath: 'public/locales/{{lng}}/{{ns}}.json',
-      savePath: 'public/locales/{{lng}}/{{ns}}.json'
+      loadPath: './src/assets/locales/{{lng}}/{{ns}}.json',
+      savePath: './src/assets/locales/{{lng}}/{{ns}}.json'
     }
   }
 };

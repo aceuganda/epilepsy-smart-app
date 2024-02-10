@@ -85,7 +85,7 @@ const UserDetailsEdit = () => {
       dispatch(logout());
       setLoading(false);
     } else {
-      setErrors('Something went wrong, please try again');
+      setErrors(t('Something went wrong, please try again'));
       setUpdateWarning(false);
       setLoading(false);
     }

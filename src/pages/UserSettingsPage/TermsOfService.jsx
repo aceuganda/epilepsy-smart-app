@@ -75,7 +75,7 @@ const Terms = () => {
         </p>{' '}
         <h1>{t('APP UPDATES')}</h1>
         <p>
-          {t(` At some point, we may wish to update the app. The app is currently available on Android –
+          {t(`At some point, we may wish to update the app. The app is currently available on Android –
           the requirements for the system(and for any additional systems we decide to extend the
           availability of the app to) may change, and you’ll need to download the updates if you
           want to keep using the app. ACE Uganda does not promise that it will always update the app

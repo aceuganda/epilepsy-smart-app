@@ -33,34 +33,34 @@ const ResiliencePageOne = () => {
   const positiveLabels = [
     {
       id: 1,
-      name: 'School'
+      name: t('School')
     },
     {
       id: 2,
-      name: 'Family'
+      name: t('Family')
     },
     {
       id: 3,
-      name: 'Friends visit at home'
+      name: t('Friends visit at home')
     },
     {
       id: 4,
-      name: 'Outing with my friends'
+      name: t('Outing with my friends')
     },
     {
       id: 5,
-      name: 'Other'
+      name: t('Other')
     }
   ];
 
   const negativeLabels = [
     {
       id: 1,
-      name: 'Bad Company'
+      name: t('Bad Company')
     },
     {
       id: 2,
-      name: 'Isolation'
+      name: t('Isolation')
     }
   ];
 

@@ -9,16 +9,16 @@ const PositiveAffirmations = () => {
   const { t } = useTranslation();
 
   const positiveAffirmations = [
-    'I am kind',
-    'I am clever',
-    'I am giving',
-    'I try hard',
-    'My smile makes others smile',
-    'I am worthy',
-    'I love who I am and can not wait to see who I am becoming',
-    'I will get through this',
-    'I am deserving',
-    'I get better day by day'
+    t('I am kind'),
+    t('I am clever'),
+    t('I am giving'),
+    t('I try hard'),
+    t('My smile makes others smile'),
+    t('I am worthy'),
+    t('I love who I am and can not wait to see who I am becoming'),
+    t('I will get through this'),
+    t('I am deserving'),
+    t('I get better day by day')
   ];
 
   return (

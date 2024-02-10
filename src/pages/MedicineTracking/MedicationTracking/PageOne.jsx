@@ -220,7 +220,7 @@ const MedicationTrackingPageOne = () => {
         </div>
         {activeTab === 'medicine' ? (
           <form className="tabTransition">
-            <Question question={'What medication are you taking'}>
+            <Question question={t('What medication are you taking')}>
               <fieldset style={{ marginTop: '10px' }}>
                 <div
                   style={{

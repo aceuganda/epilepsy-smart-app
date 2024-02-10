@@ -24,7 +24,7 @@ const PageThree = () => {
   const [upsetRange, setUpsetRange] = useState(0);
   const [endOfAssessment, setEndOfAssessment] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [buttonStatement, setButtonStatement] = useState('Finish');
+  const [buttonStatement, setButtonStatement] = useState(t('Finish'));
 
   const [selectedTriggers, setSelectedTriggers] = useState([].concat(seizure_trigger));
 
@@ -90,39 +90,39 @@ const PageThree = () => {
   const seizureTriggers = [
     {
       id: 1,
-      name: 'stress'
+      name: 'Stress'
     },
     {
       id: 2,
-      name: 'laughter'
+      name: 'Laughter'
     },
     {
       id: 3,
-      name: 'music'
+      name: 'Music'
     },
     {
       id: 4,
-      name: 'noise'
+      name: 'Noise'
     },
     {
       id: 5,
-      name: 'hunger'
+      name: 'Hunger'
     },
     {
       id: 6,
-      name: 'anger'
+      name: 'Anger'
     },
     {
       id: 7,
-      name: 'high fever'
+      name: 'High Fever'
     },
     {
       id: 8,
-      name: 'missed medication'
+      name: 'Missed medication'
     },
     {
       id: 9,
-      name: 'flashing lights'
+      name: 'Flashing lights'
     }
   ];
 
@@ -301,9 +301,9 @@ const PageThree = () => {
               <EndOfAssessmentModal
                 icon={<CheckedIcon />}
                 title={t('Well Done!')}
-                subText={t('Thank you for completing this assessment.')}
+                subText={t('Thank you for completing this assessment')}
                 link={'/home'}
-                linkText={'home'}
+                linkText={t('home')}
                 showModal={true}
               />
             )}
