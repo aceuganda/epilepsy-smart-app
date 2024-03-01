@@ -185,7 +185,12 @@ const MedicationAssessmentPageTwo = () => {
             <span></span>
           )}
           {side_effects !== null ? (
-            <button onClick={handleSubmit} className="finish-btn" type="submit" disabled={loading}>
+            <button
+              onClick={handleSubmit}
+              style={{ marginTop: 70 }}
+              className="finish-btn"
+              type="submit"
+              disabled={loading}>
               {loading ? <Spinner /> : buttonStatement}
             </button>
           ) : (
