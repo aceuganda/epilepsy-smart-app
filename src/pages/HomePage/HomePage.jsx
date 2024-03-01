@@ -12,9 +12,12 @@ import { capitalise } from '../../utils';
 import { LocalNotifications } from '@capacitor/local-notifications';
 import quotes from '../../resources/inspiration_quotes.json';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import LanguageToggle from '../../components/Language/switchLanguage';
 
 const HomePage = () => {
   const { userInfo } = useSelector((state) => state.user);
+  const { t } = useTranslation();
   const [savedReminders] = useState(
     localStorage.getItem(`${userInfo.data.id}   Reminders`)
       ? JSON.parse(localStorage.getItem(`${userInfo.data.id} Reminders`))
@@ -93,8 +96,11 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <header className="row justify-content-between">
-        <h4>Holla!</h4>
-        <div className="row justify-content-between">
+        <h4>{t('Holla')}!</h4>
+        <div className="notification-badge">
+          <>
+            <LanguageToggle />
+          </>
           <NotificationsNoneIcon />
           <br />
         </div>
@@ -108,16 +114,20 @@ const HomePage = () => {
         </span>
         <div>
           <h3>
-            Discover Activities <hr />
+            {t('Discover Activities')} <hr />
           </h3>
-          <span>Give yourself a chance</span>
+          <span>{t('Give yourself a chance')}</span>
         </div>
       </div>
       <div className="cards">
-        <Card title="seizure tracking" img={SeizureImg} link="/seizure-form" />
-        <Card title="medication" img={MedicineImg} link="/medication" />
-        <Card title="resilience tracking" img={TrackImg} link="/resilience-form" />
-        <Card title="resilience activities" img={ActivitiesImg} link="/resilience-activities" />
+        <Card title={t('seizure tracking')} img={SeizureImg} link="/seizure-form" />
+        <Card title={t('medication')} img={MedicineImg} link="/medication" />
+        <Card title={t('resilience tracking')} img={TrackImg} link="/resilience-form" />
+        <Card
+          title={t('resilience activities')}
+          img={ActivitiesImg}
+          link="/resilience-activities"
+        />
       </div>
       <Footer />
     </div>

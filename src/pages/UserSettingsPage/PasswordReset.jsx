@@ -6,8 +6,10 @@ import { ReactComponent as ClosedEye } from '../../assets/svg/UserAccount/closed
 import { ReactComponent as OpenEye } from '../../assets/svg/UserAccount/open-eye.svg';
 import { updatePassWord } from '../../redux/Slices/UsersSlice';
 import Spinner from '../../components/Spinner/Spinner';
+import { useTranslation } from 'react-i18next';
 
 const PasswordReset = () => {
+  const { t } = useTranslation();
   const { userInfo } = useSelector((state) => state.user);
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -68,7 +70,7 @@ const PasswordReset = () => {
               {showPasswords ? <OpenEye /> : <ClosedEye />}
             </div>
             <div className="form-group">
-              <label htmlFor="username">Current password</label>
+              <label htmlFor="username">{t('Current password')}</label>
               <input
                 type={showPasswords ? 'text' : 'password'}
                 onChange={(e) => {
@@ -79,7 +81,7 @@ const PasswordReset = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="current-passowrd">New password</label>
+              <label htmlFor="current-passowrd">{t('New password')}</label>
               <input
                 type={showPasswords ? 'text' : 'password'}
                 onChange={(e) => {
@@ -91,7 +93,7 @@ const PasswordReset = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="current-passowrd">Confirm new password</label>
+              <label htmlFor="current-passowrd">{t('Confirm new password')}</label>
               <input
                 type={showPasswords ? 'text' : 'password'}
                 onChange={(e) => {

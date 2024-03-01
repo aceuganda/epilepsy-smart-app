@@ -134,5 +134,22 @@ $cardHeight: 230px;
             }
         }
     }
+    .notification-badge{
+       display: flex;
+       align-items: flex-end;
+       gap: 1rem;
+       
+    }
+    .language-selector-container{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0.3rem;
+        select{
+            border-radius: 4px;
+            font-size: 14px;
+            padding: 3px;
+        }
+    }
+   
     
 }

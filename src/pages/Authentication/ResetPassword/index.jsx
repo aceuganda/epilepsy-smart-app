@@ -5,8 +5,10 @@ import { ReactComponent as ResetImg } from '../../../assets/svg/Auth/Reset.svg';
 import { PASSWORD_RESET_URL } from '../../../config/urls';
 import axios from 'axios';
 import Spinner from '../../../components/Spinner/Spinner';
+import { useTranslation } from 'react-i18next';
 
 const ResetPassword = () => {
+  const { t } = useTranslation();
   const { token } = useParams();
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -39,10 +41,10 @@ const ResetPassword = () => {
       setLoader(false);
     } catch (err) {
       if (err.response && err.response.data) {
-        setFeedback(<div style={{ color: 'red' }}>Failed to reset password</div>);
+        setFeedback(<div style={{ color: 'red' }}>{(t('Failed to reset password)'))}</div>);
         setLoader(false);
       } else {
-        setFeedback(<div style={{ color: 'red' }}>Failed to reset password</div>);
+        setFeedback(<div style={{ color: 'red' }}>{(t('Failed to reset password)'))}</div>);
         setLoader(false);
       }
     }
@@ -60,14 +62,14 @@ const ResetPassword = () => {
 
   return (
     <AuthPageComponent
-      title={'Reset Password'}
+      title={t('Reset Password')}
       image={<ResetImg />}
-      callToAction={"Don't have an account?"}
+      callToAction={t("Don't have an account?")}
       link={'/register'}
-      linkTitle={'Register Now'}>
+      linkTitle={t('Register Now')}>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="newPassword">New Password</label>
+          <label htmlFor="newPassword">{t('New Password')}</label>
           <input
             type="password"
             name="newPassword"
@@ -77,7 +79,7 @@ const ResetPassword = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="confirmPassword">Confirm Password</label>
+          <label htmlFor="confirmPassword">{t('Confirm Password')}</label>
           <input
             type="password"
             name="confirmPassword"
@@ -87,7 +89,7 @@ const ResetPassword = () => {
           />
         </div>
         <button disabled={loading} className="o-btn" type="submit">
-          {loading ? <Spinner /> : 'Reset'}
+          {loading ? <Spinner /> : t('Reset password')}
         </button>
         {feedBack && <p className="feedBackText">{feedBack}</p>}
       </form>

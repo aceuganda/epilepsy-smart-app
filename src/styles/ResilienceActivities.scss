@@ -82,9 +82,11 @@
       .pagination{
         display: flex;
         flex-flow: row wrap;
-        justify-content: flex-start;
-        position: absolute;
-        bottom: 20px;
+        justify-content: center;
+
+        position: relative;
+        bottom: 10px;
+        margin-top: 40px;
         button{
           padding: 4px 10px;
           width: 36px;

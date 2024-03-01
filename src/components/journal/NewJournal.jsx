@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { postUserJournal } from '../../redux/Actions/journalingActions';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../Spinner/Spinner';
+import { useTranslation } from 'react-i18next';
 
 const NewJournal = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const NewJournal = () => {
   const [notes, setNotes] = useState('');
   const [loading, setLoading] = useState(false);
   const [journalActionError, setJournalActionError] = useState('');
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -51,7 +53,7 @@ const NewJournal = () => {
 
   return (
     <ResilienceActivitiesPageComponent
-      title={'New Journal'}
+      title={t('New Journal')}
       backroute={'/resilience-activities/Journaling'}>
       <Form style={{ backgroundColor: '#E8E8E8' }}>
         <div className="journal-page">
@@ -60,7 +62,7 @@ const NewJournal = () => {
               <input
                 type="text"
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="Entry title"
+                placeholder="Title"
                 value={title}
               />
             </div>
@@ -72,11 +74,11 @@ const NewJournal = () => {
               />
               <div>
                 <button onClick={handleSave} className="finish-btn">
-                  {loading ? <Spinner /> : 'Save'}
+                  {loading ? <Spinner /> : t('Save')}
                 </button>
               </div>
             </div>
-            <div className="error-field">{journalActionError}</div>
+            <div className="error-field">{t(journalActionError)}</div>
           </div>
         </div>
       </Form>

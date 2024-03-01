@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../modal';
 import { Link } from 'react-router-dom';
+// import { useTranslation } from 'react-i18next';
 
 const EndOfAssessmentModal = ({ icon, title, subText, link, linkText, showModal }) => {
   const [show, setShow] = useState(showModal);
-
+  // const { t } = useTranslation();
   EndOfAssessmentModal.propTypes = {
     icon: PropTypes.element,
     title: PropTypes.string,

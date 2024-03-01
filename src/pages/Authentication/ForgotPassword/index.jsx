@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 // import { Link } from 'react-router-dom';
 import AuthPageComponent from '../index';
 import { ReactComponent as ResetImg } from '../../../assets/svg/Auth/Reset.svg';
+import { useTranslation } from 'react-i18next';
 import { PASSWORD_RESET_INITIATIATION } from '../../../config/urls';
 import axios from 'axios';
 import Spinner from '../../../components/Spinner/Spinner';
 
+
 const ForgotPassword = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [feedBack, setFeedBack] = useState('');
   const [loading, setLoading] = useState(false);
@@ -46,14 +49,14 @@ const ForgotPassword = () => {
   };
   return (
     <AuthPageComponent
-      title={'Forgot Password'}
+      title={t('Forgot Password')}
       image={<ResetImg />}
-      callToAction={'Dont have an account?'}
+      callToAction={t('Dont have an account?')}
       link={'/register'}
-      linkTitle={'Register Now'}>
+      linkTitle={t('Register Now')}>
       <form onSubmit={() => {}}>
         <div className="form-group">
-          <label htmlFor="email">Email Address you registered with.</label>
+          <label htmlFor="email">{t('Email Address you registered with.')}</label>
           <input
             type="email"
             value={email}
@@ -65,7 +68,7 @@ const ForgotPassword = () => {
           />
         </div>
         <button onClick={submitRequest} className="o-btn">
-          {loading ? <Spinner /> : 'Send Email'}
+          {loading ? <Spinner /> : t('Send Email')}
         </button>
         <div className="feedBackText">{feedBack}</div>
       </form>

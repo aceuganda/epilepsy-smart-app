@@ -10,27 +10,29 @@ import { ReactComponent as ProfileIcon } from '../../assets/svg/UserAccount/prof
 import { ReactComponent as PasswordIcon } from '../../assets/svg/UserAccount/password_icon.svg';
 import { ReactComponent as SettingsIcon } from '../../assets/svg/UserAccount/settings_icon.svg';
 import { ReactComponent as AboutIcon } from '../../assets/svg/UserAccount/about_icon.svg';
+import { useTranslation } from 'react-i18next';
 
 const Settings = () => {
+  const { t } = useTranslation();
   const settingsCategories = [
     {
-      name: 'Profile',
+      name: t('Profile'),
       icon: <ProfileIcon />,
       link: '/account/settings'
       //link: null
     },
     {
-      name: 'Change password',
+      name: t('Change password'),
       icon: <PasswordIcon />,
       link: '/account/password-reset'
     },
     {
-      name: 'Settings',
+      name: t('Settings'),
       icon: <SettingsIcon />,
       link: null
     },
     {
-      name: 'About',
+      name: t('About'),
       icon: <AboutIcon />,
       link: '/account/about'
     }
@@ -44,13 +46,13 @@ const Settings = () => {
         <div className="left">
           <Avatar name={userInfo.data.username} alt={''} />
           <div className="user-details">
-            <span className="welcome">Welcome</span>
+            <span className="welcome">{t('Welcome')}</span>
             <span className="user-name">{userInfo.data.username}</span>
           </div>
         </div>
         <div className="right" onClick={() => dispatch(logout())}>
           <LogoutIcon />
-          <div>Logout</div>
+          <div>{t('Logout')}</div>
         </div>
       </div>
       {settingsCategories &&

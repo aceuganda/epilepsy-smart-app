@@ -16,8 +16,11 @@ import {
 import { ReactComponent as MorningIcon } from '../../../assets/svg/Seizure/Morning.svg';
 import { ReactComponent as AfternoonIcon } from '../../../assets/svg/Seizure/afternon.svg';
 import { ReactComponent as NightIcon } from '../../../assets/svg/Seizure/night.svg';
+import { useTranslation } from 'react-i18next';
+
 
 const PageOne = () => {
+  const { t } = useTranslation();
   const [seizure_severity, setSeverity] = useState('');
   const [seizure_duration, setDuration] = useState('');
   const [seizure_time_of_day, setTime] = useState('');
@@ -58,7 +61,7 @@ const PageOne = () => {
     <SeizureComponent backroute={'/seizure-form/'}>
       <Form>
         <form>
-          <Question question={'How severe was it'}>
+          <Question question={t('How severe was it')}>
             <fieldset className="mt-3 mb-4">
               <button
                 type="button"
@@ -67,7 +70,7 @@ const PageOne = () => {
                 onClick={(e) => {
                   setSeverity(e.target.value);
                 }}>
-                mild
+                {t('mild')}
               </button>
               <button
                 type="button"
@@ -76,7 +79,7 @@ const PageOne = () => {
                 onClick={(e) => {
                   setSeverity(e.target.value);
                 }}>
-                moderate
+                {t('moderate')}
               </button>
               <button
                 type="button"
@@ -85,12 +88,12 @@ const PageOne = () => {
                 onClick={(e) => {
                   setSeverity(e.target.value);
                 }}>
-                severe
+                {t('severe')}
               </button>
             </fieldset>
           </Question>
           {seizure_severity !== '' ? (
-            <Question question={'How long did it last'}>
+            <Question question={t('How long did it last')}>
               <div className="timefieldset mt-3 mb-4">
                 <TimePicker
                   onChangeMinutesCallBack={handleMinutesChange}
@@ -108,7 +111,7 @@ const PageOne = () => {
                   onClick={(e) => {
                     setDuration(e.target.value);
                   }}>
-                  unknown
+                  {t('unknown')}
                 </button>
               </div>
             </Question>
@@ -116,7 +119,7 @@ const PageOne = () => {
             <span></span>
           )}
           {seizure_duration !== '' || minutesValue !== '0' || secondsValue !== '0' ? (
-            <Question question={'What time of day did it occur'}>
+            <Question question={t('What time of the day did it occur')}>
               <fieldset className="mt-3 mb-4">
                 <div className="flex-column-center">
                   <MorningIcon />
@@ -128,7 +131,7 @@ const PageOne = () => {
                     onClick={(e) => {
                       setTime(e.target.value);
                     }}>
-                    morning
+                    {t('morning')}
                   </button>
                 </div>
                 <div className="flex-column-center">
@@ -141,7 +144,7 @@ const PageOne = () => {
                     onClick={(e) => {
                       setTime(e.target.value);
                     }}>
-                    afternoon
+                    {t('afternoon')}
                   </button>
                 </div>
                 <div className="flex-column-center">
@@ -154,7 +157,7 @@ const PageOne = () => {
                     onClick={(e) => {
                       setTime(e.target.value);
                     }}>
-                    evening
+                    {t('evening')}
                   </button>
                 </div>
               </fieldset>
@@ -163,7 +166,7 @@ const PageOne = () => {
             <span></span>
           )}
           {seizure_time_of_day !== '' ? (
-            <Question question={'Did you lose awareness'}>
+            <Question question={t('Did you lose awareness')}>
               <fieldset className="mt-3 mb-4" style={{ justifyContent: 'space-evenly' }}>
                 <button
                   type="button"
@@ -172,7 +175,7 @@ const PageOne = () => {
                   onClick={(e) => {
                     setAwareness(e.target.value);
                   }}>
-                  yes
+                  {t('yes')}
                 </button>
                 <button
                   type="button"
@@ -181,7 +184,7 @@ const PageOne = () => {
                   onClick={(e) => {
                     setAwareness(e.target.value);
                   }}>
-                  no
+                  {t('no')}
                 </button>
               </fieldset>
             </Question>

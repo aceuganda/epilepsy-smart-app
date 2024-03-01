@@ -1,9 +1,11 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { timeData } from '../../config/utils';
+import { useTranslation } from 'react-i18next';
 
 const TimePicker = ({ onChangeMinutesCallBack, onChangeSecondsCallBack, fontSize }) => {
   const [scrollTop, setScrollTop] = useState(0);
+  const { t } = useTranslation();
   const [scrollTopSeconds, setscrollTopSeconds] = useState(0);
   const minuteReferences = useRef([]);
   const secondsReferences = useRef([]);
@@ -86,7 +88,7 @@ const TimePicker = ({ onChangeMinutesCallBack, onChangeSecondsCallBack, fontSize
                 padding: '6px'
               }}></div>
           </ul>
-          <div className="label">min</div>
+          <div className="label">{t('min')}</div>
         </div>
         <div className="timeUnit">
           <ul
@@ -120,7 +122,7 @@ const TimePicker = ({ onChangeMinutesCallBack, onChangeSecondsCallBack, fontSize
                 padding: '6px'
               }}></div>
           </ul>
-          <div className="label">sec</div>
+          <div className="label">{t('sec')}</div>
         </div>
         <div id="container" className="stayStill"></div>
       </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ReactComponent as ActivityIcon } from '../../assets/svg/Form/Topbar/logo.svg';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const ResilienceActivityPill = ({ title, icon, link, outerLink }) => {
   ResilienceActivityPill.propTypes = {
@@ -10,6 +11,7 @@ const ResilienceActivityPill = ({ title, icon, link, outerLink }) => {
     link: PropTypes.string,
     outerLink: PropTypes.string
   };
+  const { t } = useTranslation();
 
   return (
     <div className="resilience-a-pill">
@@ -23,15 +25,14 @@ const ResilienceActivityPill = ({ title, icon, link, outerLink }) => {
         )}
       </div>
       <Link to={link ? `${link}` : '#'}>
-        <div className="act-title">{title}</div>
+        <div className="act-title">{t(title)}</div>
       </Link>
       {outerLink && (
         <a
           style={{
             width: '100%',
             height: '100%',
-            position: 'absolute',
-            
+            position: 'absolute'
           }}
           href={outerLink}
           target="blank"></a>

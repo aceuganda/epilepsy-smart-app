@@ -9,19 +9,21 @@ import { ReactComponent as MonitorIcon } from '../../assets/svg/Seizure/MonitorS
 import { ReactComponent as InfoIcon } from '../../assets/svg/Form/Question/info.svg';
 import { getResilienceTallies } from '../../redux/Slices/ResilienceTracking';
 import store from '../../store';
+import { useTranslation } from 'react-i18next';
 
 store.dispatch(getResilienceTallies);
 const ResilienceStartPage = () => {
+  const { t } = useTranslation();
   return (
     <div className="form start-page">
       <ResilienceComponent backroute={'/home'}>
         <Form>
           <ResilienceImg className="image" />
-          <Largebtn title="Track Resilience" link="/resilience-form/1" icon={<RecordIcon />} />
-          <Largebtn title="View tallies" link="/resilience/tallies" icon={<MonitorIcon />} />
+          <Largebtn title={t("Track Resilience")} link="/resilience-form/1" icon={<RecordIcon />} />
+          <Largebtn title={t("View tallies")} link="/resilience/tallies" icon={<MonitorIcon />} />
           <div className="disclaimer">
             <InfoIcon />
-            <span>Tallies updated every after 3 days</span>
+            <span>{t('Tallies updated every after 3 days')}</span>
           </div>
         </Form>
       </ResilienceComponent>

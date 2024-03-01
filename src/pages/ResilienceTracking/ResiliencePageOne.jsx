@@ -11,8 +11,10 @@ import {
   setUserID
 } from '../../redux/Slices/ResilienceTracking';
 import CheckBox from '../../components/form/CheckBox';
+import { useTranslation } from 'react-i18next';
 
 const ResiliencePageOne = () => {
+  const { t } = useTranslation();
   const [engaged_socially, setSocialEngagement] = useState(null);
   const [engagement, setEngagedType] = useState([]);
   const dispatch = useDispatch();
@@ -31,34 +33,34 @@ const ResiliencePageOne = () => {
   const positiveLabels = [
     {
       id: 1,
-      name: 'School'
+      name: t('School')
     },
     {
       id: 2,
-      name: 'Family'
+      name: t('Family')
     },
     {
       id: 3,
-      name: 'Friends visit at home'
+      name: t('Friends visit at home')
     },
     {
       id: 4,
-      name: 'Outing with my friends'
+      name: t('Outing with my friends')
     },
     {
       id: 5,
-      name: 'Other'
+      name: t('Other')
     }
   ];
 
   const negativeLabels = [
     {
       id: 1,
-      name: 'Bad Company'
+      name: t('Bad Company')
     },
     {
       id: 2,
-      name: 'Isolation'
+      name: t('Isolation')
     }
   ];
 
@@ -78,7 +80,7 @@ const ResiliencePageOne = () => {
     <ResilienceComponent backroute={'/resilience-form'}>
       <Form>
         <form>
-          <Question question={'Did you engage socially today'}>
+          <Question question={t('Did you engage socially today')}>
             <fieldset className="mt-3 mb-4" style={{ justifyContent: 'space-evenly' }}>
               <button
                 type="button"
@@ -88,7 +90,7 @@ const ResiliencePageOne = () => {
                   setEngagedType([]);
                   setSocialEngagement(e.target.value);
                 }}>
-                yes
+                {t('yes')}
               </button>
               <button
                 type="button"
@@ -98,7 +100,7 @@ const ResiliencePageOne = () => {
                   setEngagedType([]);
                   setSocialEngagement(e.target.value);
                 }}>
-                no
+                {t('no')}
               </button>
             </fieldset>
           </Question>
@@ -128,7 +130,7 @@ const ResiliencePageOne = () => {
             <span />
           )}
           {engaged_socially === 'no' ? (
-            <Question question={'Why not'}>
+            <Question question={t('Why not')}>
               <fieldset className="mt-3 mb-4">
                 <div className="ItemList">
                   {negativeLabels.map((label) => (
@@ -151,7 +153,7 @@ const ResiliencePageOne = () => {
             <span />
           )}
         </form>
-        {engagement !== [] ? (
+        {engagement.length !== 0 ? (
           <Pagination
             page_number={1}
             total_number={3}

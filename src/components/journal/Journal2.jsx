@@ -6,8 +6,10 @@ import ResilienceActivitiesPageComponent from '../../pages/ResilienceActivities'
 import Form from '../form/Form';
 import { HiEllipsisHorizontalCircle } from 'react-icons/hi2';
 import CustomPopup from './CustomPopup';
+import { useTranslation } from 'react-i18next';
 
 const Journal2 = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const { title, notes, id } = location.state;
   const dispatch = useDispatch();
@@ -74,7 +76,7 @@ const Journal2 = () => {
 
   return (
     <ResilienceActivitiesPageComponent
-      title={'Journaling'}
+      title={t('Journaling')}
       backroute={'/resilience-activities/Journaling'}>
       <Form>
         <div className="journal-entry">
@@ -105,7 +107,7 @@ const Journal2 = () => {
           )}
           <div className="entry">
             <textarea value={notesInput} onChange={(e) => setNotesInput(e.target.value)} />
-            <div className="error-field">{journalActionError}</div>
+            <div className="error-field">{t(journalActionError)}</div>
           </div>
         </div>
       </Form>

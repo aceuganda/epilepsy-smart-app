@@ -3,10 +3,12 @@ import React, { useState } from 'react';
 import ResilienceActivitiesPageComponent from '..';
 import Form from '../../../components/form/Form';
 import quotes from '../../../resources/inspiration_quotes.json';
+import { useTranslation } from 'react-i18next';
 
 const QUOTES_PER_PAGE = 9; // adjust as needed
 
 const InspirationalQuotes = () => {
+  const { t } = useTranslation();
   const colors = ['#CAEB0E', '#17804B', '#F42C56', '#8C3E79', '#8a2be2', 'pink', '#553791'];
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,7 +32,7 @@ const InspirationalQuotes = () => {
       <Form style={{ maxHeight: 'none', height: '730px' }}>
         <div className="text-page">
           <div className="title">
-            <h3>Quotes to inspire you </h3>
+            <h3>{t('Quotes to inspire you')}</h3>
           </div>
           {quotesToDisplay.map((quote, index) => (
             <div key={startIndex + index} className="quotes-body">
@@ -39,7 +41,7 @@ const InspirationalQuotes = () => {
                   key={index}
                   className="circle"
                   style={{ backgroundColor: `${quote.color}` }}></div>
-                <p className="text">{quote.title}</p>
+                <p className="text">{t(quote.title)}</p>
               </div>
             </div>
           ))}

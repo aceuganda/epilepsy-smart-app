@@ -3,11 +3,12 @@
 
 .smart.form-layout {
     z-index: 99;
-
-    height: 565px;
-    max-height: 640px;
+    height: max-content;
+    min-height: 640px;
     max-width: $max-width;
     background-color: $ema-white-0;
+    overflow-y: scroll;
+    overflow-x: hidden;
 
     position: absolute;
     top: 110px;
@@ -17,6 +18,7 @@
     margin: 0 auto;
     padding: 0 10px;
     padding-top: 20px;
+    padding-bottom: 30px;
 
     border-radius: 20px;
     box-shadow: 0px 10px 45px 0px #00000024;
@@ -84,10 +86,13 @@
         display: flex;
         justify-content: center;
         align-items: center;  
+        margin-left: 2rem;
         span{
             font-family: 'Poppins';
-            font-size: 16px;
+            max-width: 14rem;
+            font-size: 13px;
             font-weight: 500;
+            text-align: center;
             line-height: 24px;
             color: $ema-white-0;
             padding-left: 5px;
@@ -107,9 +112,9 @@ button{
     button {
         background-color: $ema-lilac-1;
         width: 240px;
-        height: 40px;
+        min-height: 40px;
         color: $ema-white-0;
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 500;
         line-height: 21px;
 
@@ -135,9 +140,9 @@ button{
 }
 
 .form-button-pill {
-    width: 80px;
+    width: fit-content;
     height: 28px;
-    max-width: 130px;
+    min-width: 70px;
 
     display: flex;
     align-items: center;
@@ -171,9 +176,9 @@ button{
 }
 
 .selectedLongPill {
-    width: auto;
-    height: 28px;
-    max-width: 200px;
+    width: fit-content;
+    min-height: 28px;
+    min-width: 150px;
     padding: 2px 10px;
     display: flex;
     align-items: center;
@@ -211,9 +216,9 @@ button{
 }
 
 .form-button-lg {
-    width: auto;
-    height: 28px;
-    max-width: 200px;
+    width: fit-content;
+    min-height: 28px;
+    min-width: 150px;
     padding: 2px 10px;
 
     display: flex;
@@ -272,9 +277,9 @@ button{
 }
 
 .pop-button {
-    width: 110px;
-    height: 26px;
-    max-width: 130px;
+    width: fit-content;
+   min-height: 26px;
+    min-width: 130px;
 
     display: flex;
     align-items: center;
@@ -312,11 +317,9 @@ button{
 }
 
 .finish-btn {
-    position: absolute;
-    bottom: 35px;
     right: 20px;
     margin: 0 auto;
-    width: 90%;
+    min-width: 10rem;
     height: 38px;
 
     display: flex;
@@ -433,9 +436,9 @@ button{
         }
 
         .form-button-pill-no-margin {
-            width: 80px;
+            width: fit-content;
             height: 28px;
-            max-width: 130px;
+            min-width: 70px;
 
             display: flex;
             align-items: center;
@@ -498,7 +501,7 @@ button{
 // PAGINATION
 .paginate {
     position: absolute;
-    bottom: 25px;
+    bottom: 14px;
     right: 0px;
     margin: 0 auto;
     font-family: 'Lato';
@@ -892,8 +895,8 @@ button{
                 margin: 6px 0;
                 border-radius: 20px;
                 padding: 5px 10px;
-                width:75%;
-                height: 30px;
+                width: fit-content;
+                min-height: 30px;
                 color: white;
                 font-size: 12px;
                 text-transform: capitalize;
@@ -1069,14 +1072,14 @@ button{
                         color: #8C3E79;
                         font-style: normal;
                         font-weight: 700;
-                        font-size: 17px;
+                        font-size: 12px;
                         line-height: 25px;
                     }
 
                     .heading {
                         font-style: normal;
                         font-weight: 700;
-                        font-size: 17px;
+                        font-size: 14px;
                         line-height: 25px;
                         color: #553791;
                     }

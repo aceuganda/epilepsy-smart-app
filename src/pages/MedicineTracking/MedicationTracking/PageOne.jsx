@@ -18,10 +18,13 @@ import {
   setUserID,
   deleteMedicineData
 } from '../../../redux/Slices/MedicineTracking';
+import { useTranslation } from 'react-i18next';
+
 
 const medicineNames = ['Sodium Vaporate', 'Diclofenac', 'Gofen', 'Ibuprofen'];
 
 const MedicationTrackingPageOne = () => {
+  const { t } = useTranslation();
   const [addingMedicine, setAddingMedicine] = useState(false);
   const [addMedicineFeedback, setAddMedicineFeedback] = useState('');
   const [timePickerModalVisibility, setTimePickerModalVisibility] = useState(false);
@@ -142,7 +145,7 @@ const MedicationTrackingPageOne = () => {
     } else {
       // alert('Please select saved medicine for the reminder. Add a medicine if you dont have any.');
       setTimerFeedbackMessage(
-        'Please select saved medicine for the reminder. Add a medicine if you do not have any.'
+        t('Please select saved medicine for the reminder. Add a medicine if you do not have any.')
       );
     }
   };
@@ -202,7 +205,7 @@ const MedicationTrackingPageOne = () => {
             onClick={() => {
               setActiveTab('medicine');
             }}>
-            Add Medicine
+            {t('Add Medicine')}
           </div>
           <div
             className={activeTab === 'reminder' ? 'medicineTabActive' : 'medicineTabInactive'}
@@ -212,12 +215,12 @@ const MedicationTrackingPageOne = () => {
             style={{
               paddingRight: '0.9rem'
             }}>
-            Add Reminder
+            {t('Add Reminder')}
           </div>
         </div>
         {activeTab === 'medicine' ? (
           <form className="tabTransition">
-            <Question question={'What medication are you taking'}>
+            <Question question={t('What medication are you taking')}>
               <fieldset style={{ marginTop: '10px' }}>
                 <div
                   style={{
@@ -300,18 +303,18 @@ const MedicationTrackingPageOne = () => {
               <Modal show={showDeleteMedicineWarning} closeModal={handleDeleteWarningClosure}>
                 <div className="DeleteMedicinWarning">
                   <div className="WarningText">
-                    Are you sure you want to delete {userMedicines[deleteMedicineIndex]?.name} ?
+                    {t('Are you sure you want to delete')} {userMedicines[deleteMedicineIndex]?.name} ?
                   </div>
                   <div className="deleteButtonSection">
                     <button onClick={handleDeleteWarningClosure} className="customButton">
-                      Cancel
+                      {t('Cancel')}
                     </button>
                     <button
                       onClick={(e) => {
                         DeleteMedicine(e, userMedicines[deleteMedicineIndex].id);
                       }}
                       className="customButton">
-                      {deletingMedicine ? <Spinner /> : 'Yes'}
+                      {deletingMedicine ? <Spinner /> : t('Yes')}
                     </button>
                   </div>
                   {deleteMedicineError && (
@@ -359,7 +362,7 @@ const MedicationTrackingPageOne = () => {
                     )}
                   </div>
                   <button onClick={handleMedicineSubmit} className="SaveButton">
-                    {addingMedicine ? <Spinner /> : 'Save'}
+                    {addingMedicine ? <Spinner /> : t('Save')}
                   </button>
                   {addMedicineFeedback && (
                     <div
@@ -436,11 +439,11 @@ const MedicationTrackingPageOne = () => {
                       onClick={() => {
                         handleTimeSelectorModalClosure();
                       }}>
-                      Cancel
+                      {t('Cancel')}
                     </div>
-                    <div className="heading">Add time</div>
+                    <div className="heading">{t('Add time')}</div>
                     <div onClick={HandleSave} className="headerButton">
-                      Save
+                      {t('Save')}
                     </div>
                   </div>
                   <div className="ModalTimeSelector">
@@ -463,7 +466,7 @@ const MedicationTrackingPageOne = () => {
                   )}
                   <div className="MedicineSelection">
                     <div className="SelectionHeadWrapper">
-                      <div className="MedicineSelectionheader">Medicine</div>
+                      <div className="MedicineSelectionheader">{t('Medicine')}</div>
                       <div
                         onClick={() => {
                           setMedicineAccodianVisibilty(!medicineAccodianVisibilty);
@@ -477,7 +480,7 @@ const MedicationTrackingPageOne = () => {
                       <div className="timerMedicine">
                         {selectedAccodianMedicine !== ''
                           ? selectedAccodianMedicine
-                          : 'select medicine'}
+                          : t('select medicine')}
                       </div>
                       {medicineAccodianVisibilty === true && (
                         <div className="MedicineList">
@@ -509,15 +512,15 @@ const MedicationTrackingPageOne = () => {
                 show={deleteReminderConfirmationDialogIndex > -1}
                 closeModal={hideDeleteReminderDialog}>
                 <div className="delete-modal">
-                  <div className="modal-title">Delete this Reminder.</div>
-                  <div className="">Are you sure you want to delete this reminder?</div>
+                  <div className="modal-title">{t('Delete this Reminder.')}</div>
+                  <div className="">{t('Are you sure you want to delete this reminder')}?</div>
 
                   <div className="buttons-row">
                     <button onClick={hideDeleteReminderDialog} className="cancel-button">
-                      Cancel
+                      {t('Cancel')}
                     </button>
                     <button onClick={DeleteReminders} className="ok-button">
-                      Sure
+                      {t('Sure')}
                     </button>
                   </div>
                 </div>

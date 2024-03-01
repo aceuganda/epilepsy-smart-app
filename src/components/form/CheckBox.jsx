@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 const CheckBox = ({ label, id, onClick, checked, ...props }) => {
   CheckBox.propTypes = {
@@ -12,6 +13,7 @@ const CheckBox = ({ label, id, onClick, checked, ...props }) => {
 
   const defaultChecked = checked ? checked : false;
   const [isChecked, setIsChecked] = useState(defaultChecked);
+  const { t } = useTranslation();
 
   return (
     <div>
@@ -25,7 +27,7 @@ const CheckBox = ({ label, id, onClick, checked, ...props }) => {
           onChange={() => setIsChecked((prev) => !prev)}
           {...props}
         />
-        <span>{label}</span>
+        <span>{t(label)}</span>
       </label>
     </div>
   );

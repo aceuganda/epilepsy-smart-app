@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const AuthPageComponent = (props) => {
   AuthPageComponent.propTypes = {
@@ -11,13 +12,14 @@ const AuthPageComponent = (props) => {
     link: PropTypes.string,
     linkTitle: PropTypes.string
   };
+  const { t } = useTranslation();
   return (
     <div className="Auth">
       <div className="header">
         <Link to="/">
           <span>{'<'}</span>
         </Link>
-        <span>{props.title}</span>
+        <span>{t(props.title)}</span>
       </div>
       <div className="auth-body">
         <div className="image">{props.image}</div>
@@ -25,21 +27,21 @@ const AuthPageComponent = (props) => {
       </div>
       <div className="bottom-text">
         <div className="toc">
-          <span>Forgot password?</span>
-          <Link to="/forgot-password">Reset password</Link>
+          <span>{t('Forgot password')}?</span>
+          <Link to="/forgot-password">{t('Reset password')}</Link>
         </div>
         <div className="call-to-action">
-          <span>{props.callToAction}</span>
-          <Link to={`${props.link}`}>{props.linkTitle}</Link>
+          <span>{t(props.callToAction)}</span>
+          <Link to={`${props.link}`}>{t(props.linkTitle)}</Link>
         </div>
         <div className="toc">
-          <span>By signing up you agree with our</span>
-          <Link to="/terms">Terms & Conditions</Link>
+          <span>{t('By signing up you agree with our')}</span>
+          <Link to="/terms">{t('Terms & Conditions')}</Link>
         </div>
         <div className="toc">
           <span>
-            To learn more about how we use your data, read our{' '}
-            <Link to="/privacy">Privacy Policy</Link>
+            {t('To learn more about how we use your data, read our')}{' '}
+            <Link to="/privacy">{t('Privacy Policy')}</Link>
           </span>
         </div>
       </div>

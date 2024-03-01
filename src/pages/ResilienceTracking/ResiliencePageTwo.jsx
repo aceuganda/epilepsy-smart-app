@@ -6,10 +6,13 @@ import Question from '../../components/form/Question';
 import Pagination from '../../components/pagination';
 import { setTreatmentScaleByOthers } from '../../redux/Slices/ResilienceTracking';
 import { Slider } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { WrapText } from '@mui/icons-material';
 
 const ResiliencePageTwo = () => {
   const [treatment_scale_one, setTreatmentScaleOne] = useState(0);
   const [treatment_scale_two, setTreatmentScaleTwo] = useState(0);
+  const { t } = useTranslation();
 
   const dispatch = useDispatch();
 
@@ -38,7 +41,7 @@ const ResiliencePageTwo = () => {
       },
       '& .MuiSlider-valueLabel': {
         lineHeight: 1.2,
-        fontSize: 14,
+        fontSize: '9px',
         background: 'unset',
         padding: 0,
         width: 32,
@@ -56,6 +59,12 @@ const ResiliencePageTwo = () => {
         '& > *': {
           transform: 'rotate(45deg)'
         }
+      },'& .MuiSlider-markLabel':{
+        fontSize: 10,
+        marginLeft: '10px',
+        left: '40px',
+        maxWidth: '70px',
+        textWrap: 'wrap'
       }
     }
   };
@@ -63,22 +72,22 @@ const ResiliencePageTwo = () => {
   const marksOne = [
     {
       value: 0,
-      label: 'Respectfully'
+      label: t('Respectfully')
     },
     {
       value: 100,
-      label: 'Rudely'
+      label: t('Rudely')
     }
   ];
 
   const marksTwo = [
     {
       value: 0,
-      label: 'With Care'
+      label: t('With Care')
     },
     {
       value: 100,
-      label: 'Harshly'
+      label: t('Harshly')
     }
   ];
 
@@ -86,8 +95,8 @@ const ResiliencePageTwo = () => {
     <ResilienceComponent backroute={'/resilience-form/1'}>
       <Form>
         <form>
-          <Question question={'How did others treat you today'}>
-            <fieldset style={{ marginTop: '35px', width: '93%', marginLeft: '10px' }}>
+          <Question question={t('How did others treat you today')}>
+            <fieldset style={{ gap: '30px', marginTop: '35px', width: '93%', marginLeft: '10px' }}>
               <Slider
                 aria-label="Default"
                 defaultValue={0}

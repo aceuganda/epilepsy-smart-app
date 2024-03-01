@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { HiPencil } from 'react-icons/hi';
 import { MdDeleteSweep } from 'react-icons/md';
 import Spinner from '../Spinner/Spinner';
+import { useTranslation } from 'react-i18next';
 
 const CustomPopup = ({ onDeleteClick, onUpdateClick, deleteLoading, updateLoading }) => {
   CustomPopup.propTypes = {
@@ -11,6 +12,7 @@ const CustomPopup = ({ onDeleteClick, onUpdateClick, deleteLoading, updateLoadin
     deleteLoading: PropTypes.bool,
     updateLoading: PropTypes.bool
   };
+  const { t } = useTranslation();
 
   return (
     <div
@@ -34,7 +36,7 @@ const CustomPopup = ({ onDeleteClick, onUpdateClick, deleteLoading, updateLoadin
           marginTop: '11px'
         }}
         onClick={onUpdateClick}>
-        <div>{updateLoading ? <Spinner /> : <p>Edit</p>}</div>
+        <div>{updateLoading ? <Spinner /> : <p>{t('Edit')}</p>}</div>
         <div style={{ color: '#553791', marginLeft: '80px', marginTop: '-48px' }}>
           <HiPencil />
         </div>
@@ -43,7 +45,7 @@ const CustomPopup = ({ onDeleteClick, onUpdateClick, deleteLoading, updateLoadin
       <div
         style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: '8px' }}
         onClick={onDeleteClick}>
-        <div>{deleteLoading ? <Spinner /> : <p>Delete</p>}</div>
+        <div>{deleteLoading ? <Spinner /> : <p>{t('Delete')}</p>}</div>
         <div style={{ color: '#553791', marginLeft: '80px', marginTop: '-45px' }}>
           <MdDeleteSweep />
         </div>
