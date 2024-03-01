@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { JOURNALS_URL, GRATEFULLS_URL, JOURNAL_URL } from '../../config/urls';
+import { JOURNALS_URL, GRATEFULLS_URL, JOURNAL_URL,GRATEFULL_URL } from '../../config/urls';
 import createAxiosInstance from '../../axios';
 
 export const getAllUserGratefulls = createAsyncThunk(
@@ -23,6 +23,23 @@ export const postUserGratefuls = createAsyncThunk(
   async (gratefulData, { rejectWithValue }) => {
     try {
       const { data } = await createAxiosInstance().post(`${GRATEFULLS_URL}`, gratefulData);
+      return data;
+    } catch (err) {
+      if (err.response && err.response.data) {
+        return rejectWithValue(err.response.data.message);
+      } else {
+        return rejectWithValue(err.message);
+      }
+    }
+  }
+);
+
+
+export const deleteUserGrateful = createAsyncThunk(
+  'grateful/deleteData',
+  async (Id, { rejectWithValue }) => {
+    try {
+      const { data } = await createAxiosInstance().delete(`${GRATEFULL_URL}/${Id}`);
       return data;
     } catch (err) {
       if (err.response && err.response.data) {

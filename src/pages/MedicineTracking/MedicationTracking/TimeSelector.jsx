@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import PropTypes from 'prop-types';
 import { timeData, hours } from '../../../config/utils';
 
@@ -15,6 +15,9 @@ const TimeSelector = ({
     onChangeZoneCallBack: PropTypes.func,
     fontSize: PropTypes.number
   };
+  // useEffect(()=>{
+  //   setScrollTop(4);
+  // },[])
   const onScrolling = (event) => {
     //keeps re-render all items scrolling
     setScrollTop(scrollTop + event.target.scrollTop);
@@ -28,7 +31,7 @@ const TimeSelector = ({
       // prevent re-rendering two components simulteniously
       setTimeout(() => onChangeMinutesCallBack(item), 1000);
     }
-    return !(container.top > element.bottom - 5 || container.bottom < element.top + 5);
+    return !(container.top > element.bottom - 5 || container.bottom < element.top + 2);
   };
   const hoursOverlap = (el1, el2, item) => {
     if (!el1 || !el2) return;
@@ -38,7 +41,7 @@ const TimeSelector = ({
       // prevent re-rendering two components simulteniously
       setTimeout(() => onChangeHoursCallBack(item), 1000);
     }
-    return !(container.top > element.bottom - 5 || container.bottom < element.top + 5);
+    return !(container.top > element.bottom - 5 || container.bottom < element.top + 2);
   };
   const timeZoneOverlap = (el1, el2, item) => {
     if (!el1 || !el2) return;
@@ -83,7 +86,7 @@ const TimeSelector = ({
             ))}
             <div
               style={{
-                padding: '10px'
+                padding: '5px'
               }}></div>
           </div>
         </div>
@@ -117,7 +120,7 @@ const TimeSelector = ({
             ))}
             <div
               style={{
-                padding: '10px'
+                padding: '5px'
               }}></div>
           </div>
         </div>
