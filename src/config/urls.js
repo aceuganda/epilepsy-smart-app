@@ -14,3 +14,5 @@ export const VERIFY_USER = `${BASE_URL}/users/verify`;
 export const GRATEFULL_URL = `${BASE_URL}/grateful`;
 
 export const JOURNAL_URL = `${BASE_URL}/journal`;
+export const PASSWORD_RESET_URL = `${BASE_URL}/users/reset_password`;
+export const PASSWORD_RESET_INITIATIATION = `${BASE_URL}/users/forgot_password`;
