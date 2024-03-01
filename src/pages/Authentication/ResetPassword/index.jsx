@@ -9,10 +9,6 @@ import { useTranslation } from 'react-i18next';
 
 const ResetPassword = () => {
   const { t } = useTranslation();
-
-
-
-const ResetPassword = () => {
   const { token } = useParams();
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
