@@ -1229,9 +1229,10 @@ button{
                 }
 
                 .Separator {
-                    font-size: 35px;
+                    font-size: 47px;
                     color: #553791;
                     font-weight: 900;
+                    padding-top: .8rem;
                 }
 
             }
@@ -1344,8 +1345,18 @@ button{
         color: red;
         font-size: 14px;
     }
+
     .text-area{
-        width: 100%;
+        textarea{
+        padding: 10px;
+        margin-top: 30px;
+        width: 270px;
+        height:260px;
+        border-radius: 10px;
+        background-color:white ;
+        border: 1px solid #f4f1f1;
+        box-shadow: 1px 1px 1px	#F5F5F5;
+        }
     }
 }
 .journal-entry{
