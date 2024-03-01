@@ -210,7 +210,7 @@ const ResilienceTallies = () => {
                   />
                   {socialTally < 3 ? (
                     <div className="recommendations">
-                      <div className="title">{t('Recommended Resilience Activities')}</div>
+                      <div style={{textAlign:'center'}} className="title">{t('Recommended Resilience Activities')}</div>
                       {selectedActivities.map((activity, index) => (
                         <div key={index} className="activity-pill">
                           <Link to={`${activity.link}`}>{t(activity.name)}</Link>

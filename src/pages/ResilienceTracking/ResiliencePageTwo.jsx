@@ -7,6 +7,7 @@ import Pagination from '../../components/pagination';
 import { setTreatmentScaleByOthers } from '../../redux/Slices/ResilienceTracking';
 import { Slider } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { WrapText } from '@mui/icons-material';
 
 const ResiliencePageTwo = () => {
   const [treatment_scale_one, setTreatmentScaleOne] = useState(0);
@@ -40,7 +41,7 @@ const ResiliencePageTwo = () => {
       },
       '& .MuiSlider-valueLabel': {
         lineHeight: 1.2,
-        fontSize: 14,
+        fontSize: '9px',
         background: 'unset',
         padding: 0,
         width: 32,
@@ -58,6 +59,12 @@ const ResiliencePageTwo = () => {
         '& > *': {
           transform: 'rotate(45deg)'
         }
+      },'& .MuiSlider-markLabel':{
+        fontSize: 10,
+        marginLeft: '10px',
+        left: '40px',
+        maxWidth: '70px',
+        textWrap: 'wrap'
       }
     }
   };
@@ -89,7 +96,7 @@ const ResiliencePageTwo = () => {
       <Form>
         <form>
           <Question question={t('How did others treat you today')}>
-            <fieldset style={{ marginTop: '35px', width: '93%', marginLeft: '10px' }}>
+            <fieldset style={{ gap: '30px', marginTop: '35px', width: '93%', marginLeft: '10px' }}>
               <Slider
                 aria-label="Default"
                 defaultValue={0}

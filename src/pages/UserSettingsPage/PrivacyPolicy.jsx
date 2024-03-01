@@ -47,7 +47,7 @@ const Privacy = () => {
         </div>{' '}
         <h1>{t('Log Data')}</h1>
         <p>
-          {t(` We want to inform you that whenever you use our Service, in a case of an error in the app
+          {t(`We want to inform you that whenever you use our Service, in a case of an error in the app
           we collect data and information (through third-party products) on your phone called Log
           Data. This Log Data may include information such as your device Internet Protocol (“IP”)
           address, device name, operating system version, the configuration of the app when

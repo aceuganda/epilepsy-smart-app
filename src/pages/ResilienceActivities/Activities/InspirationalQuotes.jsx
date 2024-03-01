@@ -32,7 +32,7 @@ const InspirationalQuotes = () => {
       <Form style={{ maxHeight: 'none', height: '730px' }}>
         <div className="text-page">
           <div className="title">
-            <h3>{t('Quotes to inspire you ')}</h3>
+            <h3>{t('Quotes to inspire you')}</h3>
           </div>
           {quotesToDisplay.map((quote, index) => (
             <div key={startIndex + index} className="quotes-body">
