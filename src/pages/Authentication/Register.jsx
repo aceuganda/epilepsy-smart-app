@@ -54,7 +54,7 @@ const Register = () => {
       return;
     }
     submittion.email = submittion.email.toLowerCase();
-    submittion.age = Number(submittion.age);
+    // submittion.age = Number(submittion.age);
     submittion.age_of_onset = Number(submittion.age_of_onset);
     delete submittion.confirmPassword;
     if (imageObject !== null) {

@@ -10,6 +10,9 @@ export const LOGIN_USER_URL = `${BASE_URL}/users/login`;
 export const RESILIENCE_TALLIES_URL = `${BASE_URL}/resiliences`;
 export const JOURNALS_URL = `${BASE_URL}/journals`;
 export const GRATEFULLS_URL = `${BASE_URL}/gratefuls`;
+export const VERIFY_USER = `${BASE_URL}/users/verify`;
 export const GRATEFULL_URL = `${BASE_URL}/grateful`;
 
 export const JOURNAL_URL = `${BASE_URL}/journal`;
+export const PASSWORD_RESET_URL = `${BASE_URL}/users/reset_password`;
+export const PASSWORD_RESET_INITIATIATION = `${BASE_URL}/users/forgot_password`;
