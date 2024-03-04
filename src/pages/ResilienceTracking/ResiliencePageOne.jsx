@@ -105,7 +105,7 @@ const ResiliencePageOne = () => {
             </fieldset>
           </Question>
           {engaged_socially === 'yes' ? (
-            <Question question={'How did you engage today'}>
+            <Question question={t('How did you engage today')}>
               <fieldset className="mt-3 mb-4">
                 <div className="checkbox-input">
                   <div className="ItemList">
