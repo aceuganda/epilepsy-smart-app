@@ -216,6 +216,11 @@ const Register = () => {
             minLength="8"
             maxLength="20"
           />
+          <span className="error">
+            {t(
+              'Password should include uppercase letter, lowercase letter, a number and a special character(&,@,#)'
+            )}
+          </span>
           {errors.password && <span className="error">{t('Password is required')}</span>}
         </div>
         <div className="form-group">
