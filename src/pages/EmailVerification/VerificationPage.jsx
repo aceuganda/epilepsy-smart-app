@@ -39,7 +39,7 @@ const VerificationPage = () => {
   return (
     <div className="onboarding">
       <div className="verify-section">
-        <img src={VerifyImg} alt="" />
+        <img src={VerifyImg} alt=""  />
       </div>
       <div className="bottom-section">
         <h4>Account Verification</h4>

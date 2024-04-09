@@ -30,7 +30,8 @@ export const postResilience = async (data) =>
 export const getAllResilienceTallies = async (userId) =>
   await createAxiosInstance()
     .get(`${RESILIENCE_TALLIES_URL}/${userId}`)
-    .then((response) => response.data);
+    .then((response) => response.data)
+    .catch((error) => error);
 
 export const postMedicine = async (data) =>
   await createAxiosInstance()

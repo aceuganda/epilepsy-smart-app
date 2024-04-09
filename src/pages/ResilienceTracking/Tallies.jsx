@@ -27,34 +27,34 @@ const ResilienceTallies = () => {
   const onClickTabItem = (tab) => setSelectedTab(tab);
 
   useEffect(() => {
-    if (resilienceTalliesData.length < 0) {
+    if (resilienceTalliesData?.length < 0) {
       store.dispatch(getResilienceTallies);
     }
-    setResilienceTallies(resilienceTalliesData.resiliences);
+    setResilienceTallies(resilienceTalliesData?.resiliences);
   }, [resilienceTalliesData]);
 
   useEffect(() => {
     setMoodTally(
-      resilienceTallies.length > 0
+      resilienceTallies?.length > 0
         ? resilienceTallies[4].three_day_av_positive_feeling_percentage
         : null
     );
     setTreatedTally(
-      resilienceTallies.length > 0 ? resilienceTallies[2].three_day_av_treatment : null
+      resilienceTallies?.length > 0 ? resilienceTallies[2].three_day_av_treatment : null
     );
     setSocialTally(
-      resilienceTallies.length > 0 ? resilienceTallies[0].three_day_social_activity_count : null
+      resilienceTallies?.length > 0 ? resilienceTallies[0].three_day_social_activity_count : null
     );
     setMoodVerdict(
-      resilienceTallies.length > 0 ? resilienceTallies[5].three_day_av_feeling_comment : 'Undefined'
+      resilienceTallies?.length > 0 ? resilienceTallies[5].three_day_av_feeling_comment : 'Undefined'
     );
     setSocialVerdict(
-      resilienceTallies.length > 0
+      resilienceTallies?.length > 0
         ? resilienceTallies[1].three_day_social_activity_comment
         : 'Undefined'
     );
     setTreatedVerdict(
-      resilienceTallies.length > 0
+      resilienceTallies?.length > 0
         ? resilienceTallies[3].three_day_av_treatment_comment
         : 'Undefined'
     );
@@ -149,8 +149,8 @@ const ResilienceTallies = () => {
   ];
 
   useEffect(() => {
-    while (selectedActivities.length < 3) {
-      const randomIndex = Math.floor(Math.random() * recommendedActivities.length);
+    while (selectedActivities?.length < 3) {
+      const randomIndex = Math.floor(Math.random() * recommendedActivities?.length);
       const randomObject = recommendedActivities[randomIndex];
       if (!selectedActivities.includes(randomObject)) {
         selectedActivities.push(randomObject);
@@ -160,7 +160,7 @@ const ResilienceTallies = () => {
 
   return (
     <div className="tallies">
-      {resilienceTallies.length > 0 ? (
+      {resilienceTallies?.length > 0 ? (
         <>
           <TopBar title="Tallies" route="/resilience-form" />
           <Form style={{ maxHeight: 'none', height: '600px' }}>
@@ -242,10 +242,10 @@ const ResilienceTallies = () => {
           <TopBar title={t('Tallies')} route="/resilience-form" />
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <div>
-              <img src={ErrorImage} alt="" />
+              <img src={ErrorImage} alt="" width={300} height={260} />
             </div>
             <div style={{ width: '80%', textAlign: 'center', fontWeight: '300' }}>
-              {t('Something went wrong. Please try again later')}
+              {t("Tallies aren't available for you as yet.")}
             </div>
           </div>
         </div>
