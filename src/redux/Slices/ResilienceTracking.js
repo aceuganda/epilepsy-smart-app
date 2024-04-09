@@ -19,6 +19,8 @@ export const getResilienceTallies = async (dispatch) => {
     const res = dispatch(getUserTallies(response.data));
     return res;
   } catch (error) {
+    console.log(error);
+    console.log(response.message);
     const res = dispatch(getUserTallies(response.message));
     return res;
   }

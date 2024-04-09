@@ -215,3 +215,15 @@
 
     }
   }
+
+  @media only screen and (min-width: 768px) {
+    .tab-component {
+        max-width: 17rem; 
+    }
+    .tab-header {
+      max-width: 17rem;
+    }
+    .text-area-styles {
+      width: 90%;
+    }
+}

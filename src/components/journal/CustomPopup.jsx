@@ -17,7 +17,7 @@ const CustomPopup = ({ onDeleteClick, onUpdateClick, deleteLoading, updateLoadin
   return (
     <div
       style={{
-        width: '28vw',
+        width: '90%',
         backgroundColor: '#FFFFFF',
         padding: '0 6px',
         flexDirection: 'column',

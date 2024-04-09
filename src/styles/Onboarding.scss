@@ -107,3 +107,21 @@
         }
     }
 }
+
+@media only screen and (min-width: 768px) {
+    .onboarding {
+        width: 100vw; 
+        max-width: 100vw; 
+        height:100vh;
+        display: block;
+        align-items: center;
+    }
+    .verify-section{
+        img{
+            display: none;
+        }
+    
+}
+    
+    
+}
