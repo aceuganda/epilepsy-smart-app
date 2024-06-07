@@ -1,4 +1,4 @@
-package com.epilepsy.smartapp;
+package com.smartapp.epilepsy;
 
 import com.getcapacitor.BridgeActivity;
 

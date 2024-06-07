@@ -1,5 +1,5 @@
 {
-	"appId": "com.epilepsy.smartapp",
+	"appId": "com.smartapp.epilepsy",
 	"appName": "epilespy-smart-app",
 	"webDir": "build",
 	"bundledWebRuntime": false

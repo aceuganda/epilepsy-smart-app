@@ -4,7 +4,7 @@
 .smart.form-layout {
     z-index: 99;
     height: max-content;
-    min-height: 640px;
+    min-height: 70%;
     max-width: $max-width;
     background-color: $ema-white-0;
     overflow-y: scroll;
@@ -1363,6 +1363,7 @@ button{
     }
 }
 .journal-entry{
+    max-width: 15rem;
     .header{
         display: flex;
         flex-direction: row;

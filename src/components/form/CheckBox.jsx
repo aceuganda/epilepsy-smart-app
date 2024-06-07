@@ -22,7 +22,7 @@ const CheckBox = ({ label, id, onClick, checked, ...props }) => {
           type="checkbox"
           className={isChecked ? 'checked' : ''}
           id={id}
-          checked={isChecked}
+          checked={isChecked ? true : false}
           onClick={onClick}
           onChange={() => setIsChecked((prev) => !prev)}
           {...props}
