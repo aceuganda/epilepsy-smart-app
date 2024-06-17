@@ -261,7 +261,7 @@ const Journaling = () => {
                 }}>
                 <div>
                   <textarea
-                    className='text-area-styles'
+                    className="text-area-styles"
                     value={grateful}
                     onChange={(e) => setGrateful(e.target.value)}
                     onFocus={(e) => {
@@ -270,7 +270,7 @@ const Journaling = () => {
                     onBlur={(e) => {
                       e.target.style.height = '80px';
                     }}
-                    placeholder={t("Example: I am grateful to have a home to live in")}
+                    placeholder={t('Example: I am grateful to have a home to live in')}
                   />
                   <div
                     style={{
@@ -285,7 +285,7 @@ const Journaling = () => {
                   </div>
                 </div>
                 {grateful && (
-                  <button onClick={handleSubmit} className='button-styles'>
+                  <button onClick={handleSubmit} className="button-styles">
                     {savingGrateful ? <Spinner /> : t('Save')}
                   </button>
                 )}

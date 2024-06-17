@@ -54,13 +54,29 @@ const ResiliencePageOne = () => {
   ];
 
   const negativeLabels = [
+    // {
+    //   id: 1,
+    //   name: t('Bad Company')
+    // },
+    // {
+    //   id: 2,
+    //   name: t('Isolation')
+    // }
     {
       id: 1,
-      name: t('Bad Company')
+      name: t('No one available to visit with')
     },
     {
       id: 2,
-      name: t('Isolation')
+      name: t('Do not feel like socializing')
+    },
+    {
+      id: 3,
+      name: t('Very busy with other things')
+    },
+    {
+      id: 4,
+      name: t('Others')
     }
   ];
 

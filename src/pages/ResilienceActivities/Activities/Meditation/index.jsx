@@ -21,31 +21,31 @@ const Meditations = () => {
       title: 'Stress Relief',
       subTitle: 'Play 1',
       src: [require('./tracks/meditationAudio.mp3')]
-    },
-    {
-      soundLink: '',
-      title: 'Inspiration',
-      subTitle: 'Play 2',
-      src: [require('./tracks/meditate2.mp3')]
-    },
-    {
-      soundLink: '',
-      title: 'Meditate',
-      subTitle: 'Play 3',
-      src: [require('./tracks/meditationAudio.mp3')]
-    },
-    {
-      soundLink: '',
-      title: 'Stress Relief',
-      subTitle: 'Play 4',
-      src: [require('./tracks/meditate2.mp3')]
-    },
-    {
-      soundLink: '',
-      title: 'Stress Relief',
-      subTitle: 'Play 5',
-      src: [require('./tracks/meditationAudio.mp3')]
     }
+    // {
+    //   soundLink: '',
+    //   title: 'Inspiration',
+    //   subTitle: 'Play 2',
+    //   src: [require('./tracks/meditate2.mp3')]
+    // },
+    // {
+    //   soundLink: '',
+    //   title: 'Meditate',
+    //   subTitle: 'Play 3',
+    //   src: [require('./tracks/meditationAudio.mp3')]
+    // },
+    // {
+    //   soundLink: '',
+    //   title: 'Stress Relief',
+    //   subTitle: 'Play 4',
+    //   src: [require('./tracks/meditate2.mp3')]
+    // },
+    // {
+    //   soundLink: '',
+    //   title: 'Stress Relief',
+    //   subTitle: 'Play 5',
+    //   src: [require('./tracks/meditationAudio.mp3')]
+    // }
   ];
   const [songModalOpen, setSongModalOpen] = useState(false);
 

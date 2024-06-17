@@ -19,8 +19,8 @@ const HomePage = () => {
   const { userInfo } = useSelector((state) => state.user);
   const { t } = useTranslation();
   const [savedReminders] = useState(
-    localStorage.getItem(`${userInfo.data.id}   Reminders`)
-      ? JSON.parse(localStorage.getItem(`${userInfo.data.id} Reminders`))
+    localStorage.getItem(`${userInfo.data.id}Reminders`)
+      ? JSON.parse(localStorage.getItem(`${userInfo.data.id}Reminders`))
       : []
   );
 
@@ -51,7 +51,7 @@ const HomePage = () => {
   }, 28800000);
   useEffect(() => {
     //shedule all available offline notification on start
-    sheduleReminderLocalNotification();
+    scheduleReminderLocalNotification();
   }, []);
 
   //You can use the below code to test the local notification functionality
@@ -61,7 +61,7 @@ const HomePage = () => {
     sendLocalNotification();
   }, 5000);
 */
-  const sheduleReminderLocalNotification = async () => {
+  const scheduleReminderLocalNotification = async () => {
     const hasPermission = await LocalNotifications.requestPermissions();
     if (savedReminders.length > 0) {
       for (let i = 0; i < savedReminders.length; i++) {
@@ -71,20 +71,27 @@ const HomePage = () => {
         date.setHours(period === 'AM' ? parseInt(hours, 10) : parseInt(hours, 10) + 12);
         date.setMinutes(parseInt(minutes, 10));
         if (hasPermission && savedReminders[i].active === true) {
-          const schedulingOptions = {
+          console.log({ hour: date.getHours(), minute: date.getMinutes() });
+          LocalNotifications.schedule({
             notifications: [
               {
                 title: 'Daily Medicine Reminder',
                 body: `Don't forget to take your medicine dose for ${savedReminders[i].medicine}`,
-                id: 1,
+                id: i,
+                sound: null,
+                attachments: null,
+                actionTypeId: '',
+                extra: null,
                 schedule: {
-                  at: new Date(date.getTime() + 5 * 1000),
-                  every: 'day'
+                  on: { hour: date.getHours(), minute: date.getMinutes() },
+                  every: 'day',
+                  repeats: true
                 }
               }
             ]
-          };
-          await LocalNotifications.schedule(schedulingOptions);
+          })
+        //  const set =  await LocalNotifications.schedule(schedulingOptions);
+        //  console.log(set)
         }
       }
     } else {

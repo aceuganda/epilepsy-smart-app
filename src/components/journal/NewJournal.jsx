@@ -8,6 +8,7 @@ import { postUserJournal } from '../../redux/Actions/journalingActions';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../Spinner/Spinner';
 import { useTranslation } from 'react-i18next';
+import { ReactComponent as InfoIcon } from '../../assets/svg/Form/Question/info.svg';
 
 const NewJournal = () => {
   const dispatch = useDispatch();
@@ -80,6 +81,23 @@ const NewJournal = () => {
             </div>
             <div className="error-field">{t(journalActionError)}</div>
           </div>
+        </div>
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '45px',
+            fontSize: '11px',
+            fontStyle: 'italic',
+            width: '66%',
+            display: 'flex',
+            justifyContent: 'space-evenly'
+          }}>
+          <InfoIcon />
+          <span>
+            {t(
+              'Some people find that journaling about their experiences and perceptions offers calm and clarity. In the space above, reflect upon matters of importance to you'
+            )}
+          </span>
         </div>
       </Form>
     </ResilienceActivitiesPageComponent>
