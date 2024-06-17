@@ -78,12 +78,13 @@ const Journal2 = () => {
     <ResilienceActivitiesPageComponent
       title={t('Journaling')}
       backroute={'/resilience-activities/Journaling'}>
-      <Form>
+      <Form style={{ maxWidth: '400px' }}>
         <div className="journal-entry">
           <div className="header">
             <div className="title">
               <input
                 value={titleInput}
+                style={{ maxWidth: '7rem' }}
                 onChange={(e) => setTitleInput(e.target.value)}
                 type="text"
               />

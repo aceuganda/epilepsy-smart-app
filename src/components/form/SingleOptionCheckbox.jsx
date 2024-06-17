@@ -21,7 +21,7 @@ const SingleOptionCheckbox = ({ label, id, checked, onChange, value, ...props })
           value={value}
           className={checked ? 'checked' : ''}
           type="checkbox"
-          checked={checked}
+          checked={checked ? true : false}
           onChange={onChange}
           {...props}
         />

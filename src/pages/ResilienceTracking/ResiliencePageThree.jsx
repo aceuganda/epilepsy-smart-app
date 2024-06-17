@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ResilienceComponent from './index';
 import Form from '../../components/form/Form';
@@ -20,7 +20,7 @@ const ResiliencePageThree = () => {
   const { t } = useTranslation();
   const [type_of_feelings, setFeelingType] = useState();
   const [feeling_today, setFeelings] = useState([]);
-  const [reason_for_feeling, setReason] = useState(null);
+  const [reason_for_feeling, setReasons] = useState([]);
 
   const [loading, setLoading] = useState(false);
   const [endOfAssessment, setEndOfAssessment] = useState(false);
@@ -53,6 +53,17 @@ const ResiliencePageThree = () => {
     'Discouraged'
   ];
 
+  const reasonOptions = [
+    'accomplished goals',
+    'family acknowledged me',
+    'did fun things',
+    'engaged with others',
+    'isolation',
+    'conflict',
+    'i have no friends',
+    'other'
+  ];
+
   const handleSubmit = async (e) => {
     setLoading(true);
     try {
@@ -71,17 +82,17 @@ const ResiliencePageThree = () => {
       ? 'button form-button-pill text-uppercase selectedPill'
       : 'button form-button-pill text-uppercase';
   };
-  const selectedLongButtonStyle = (selected) => {
-    return selected
-      ? 'button selectedLongPill text-uppercase'
-      : 'button form-button-lg text-uppercase';
+
+  const handleCheckboxChange = (value, setState, state) => {
+    state.includes(value)
+      ? setState(state.filter((item) => item !== value))
+      : setState((state) => [...state, value]);
   };
 
-  const handleCheckboxChange = (value) => {
-    feeling_today.includes(value)
-      ? setFeelings(feeling_today.filter((item) => item !== value))
-      : setFeelings((feeling_today) => [...feeling_today, value]);
-  };
+  // useEffect(() => {
+  //   const reasonsString = reason_for_feeling.join(', ');
+  //   dispatch(setReasons(reasonsString));
+  // }, [reason_for_feeling]);
 
   return (
     <ResilienceComponent backroute={'/resilience-form/2'}>
@@ -127,7 +138,7 @@ const ResiliencePageThree = () => {
                       value={label}
                       checked={false}
                       onClick={(e) => {
-                        handleCheckboxChange(e.target.value);
+                        handleCheckboxChange(e.target.value, setFeelings, feeling_today);
                         dispatch(setFeelingToday(feeling_today));
                       }}
                     />
@@ -152,7 +163,7 @@ const ResiliencePageThree = () => {
                       value={label}
                       checked={false}
                       onClick={(e) => {
-                        handleCheckboxChange(e.target.value);
+                        handleCheckboxChange(e.target.value, setFeelings, feeling_today);
                         dispatch(setFeelingToday(feeling_today));
                       }}
                     />
@@ -164,104 +175,28 @@ const ResiliencePageThree = () => {
             <span />
           )}
           {type_of_feelings === 'positive' && feeling_today.length !== 0 ? (
-            <Question question={'Why did you feel this way'}>
-              <fieldset className="mt-3 mb-4">
-                <button
-                  type="button"
-                  className={selectedLongButtonStyle(reason_for_feeling === 'accomplished goals')}
-                  value={'accomplished goals'}
-                  onClick={(e) => {
-                    setReason(e.target.value);
-                    dispatch(setReasonForFeeling(e.target.value));
-                  }}>
-                  {t('Accomplished Goals')}
-                </button>
-                <button
-                  type="button"
-                  className={selectedLongButtonStyle(
-                    reason_for_feeling === 'family acknowledged me'
-                  )}
-                  value={'family acknowledged me'}
-                  onClick={(e) => {
-                    setReason(e.target.value);
-                    dispatch(setReasonForFeeling(e.target.value));
-                  }}>
-                  {t('Family Acknowledged me')}
-                </button>
-                <button
-                  type="button"
-                  className={selectedLongButtonStyle(reason_for_feeling === 'did fun things')}
-                  value={'did fun things'}
-                  onClick={(e) => {
-                    setReason(e.target.value);
-                    dispatch(setReasonForFeeling(e.target.value));
-                  }}>
-                  {t('Did Fun things')}
-                </button>
-                <button
-                  type="button"
-                  className={selectedLongButtonStyle(reason_for_feeling === 'engaged with others')}
-                  value={'engaged with others'}
-                  onClick={(e) => {
-                    setReason(e.target.value);
-                    dispatch(setReasonForFeeling(e.target.value));
-                  }}>
-                  {t('Engaged with others')}
-                </button>
-              </fieldset>
-            </Question>
-          ) : (
-            <span />
-          )}
-          {type_of_feelings === 'negative' && feeling_today.length !== 0 ? (
             <Question question={t('Why did you feel this way')}>
               <fieldset className="mt-3 mb-4">
-                <button
-                  type="button"
-                  className={selectedLongButtonStyle(reason_for_feeling === 'isolation')}
-                  value={'isolation'}
-                  onClick={(e) => {
-                    setReason(e.target.value);
-                    dispatch(setReasonForFeeling(e.target.value));
-                  }}>
-                  {t('Isolation')}
-                </button>
-                <button
-                  type="button"
-                  className={selectedLongButtonStyle(reason_for_feeling === 'conflict')}
-                  value={'conflict'}
-                  onClick={(e) => {
-                    setReason(e.target.value);
-                    dispatch(setReasonForFeeling(e.target.value));
-                  }}>
-                  {t('Conflict')}
-                </button>
-                <button
-                  type="button"
-                  className={selectedLongButtonStyle(reason_for_feeling === 'i have no friends')}
-                  value={'i have no friends'}
-                  onClick={(e) => {
-                    setReason(e.target.value);
-                    dispatch(setReasonForFeeling(e.target.value));
-                  }}>
-                  {t('I have no friends')}
-                </button>
-                <button
-                  type="button"
-                  className={selectedLongButtonStyle(reason_for_feeling === 'engaged with others')}
-                  value={'engaged with others'}
-                  onClick={(e) => {
-                    setReason(e.target.value);
-                    dispatch(setReasonForFeeling(e.target.value));
-                  }}>
-                  {t('Other')}
-                </button>
+                <div className="ItemContainer">
+                  {reasonOptions.map((option, key) => (
+                    <CheckBox
+                      key={key}
+                      label={t(option)}
+                      value={option}
+                      checked={false}
+                      onClick={(e) => {
+                        handleCheckboxChange(e.target.value, setReasons, reason_for_feeling);
+                        dispatch(setReasonForFeeling(reason_for_feeling.join(',')));
+                      }}
+                    />
+                  ))}
+                </div>
               </fieldset>
             </Question>
           ) : (
             <span />
           )}
-          {reason_for_feeling !== null ? (
+          {reason_for_feeling.length > 0 ? (
             <button
               type="submit"
               disabled={loading}
