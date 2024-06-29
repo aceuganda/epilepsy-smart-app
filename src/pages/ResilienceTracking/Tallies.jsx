@@ -46,7 +46,9 @@ const ResilienceTallies = () => {
       resilienceTallies?.length > 0 ? resilienceTallies[0].three_day_social_activity_count : null
     );
     setMoodVerdict(
-      resilienceTallies?.length > 0 ? resilienceTallies[5].three_day_av_feeling_comment : 'Undefined'
+      resilienceTallies?.length > 0
+        ? resilienceTallies[5].three_day_av_feeling_comment
+        : 'Undefined'
     );
     setSocialVerdict(
       resilienceTallies?.length > 0
@@ -210,7 +212,9 @@ const ResilienceTallies = () => {
                   />
                   {socialTally < 3 ? (
                     <div className="recommendations">
-                      <div style={{textAlign:'center'}} className="title">{t('Recommended Resilience Activities')}</div>
+                      <div style={{ textAlign: 'center' }} className="title">
+                        {t('Recommended Resilience Activities')}
+                      </div>
                       {selectedActivities.map((activity, index) => (
                         <div key={index} className="activity-pill">
                           <Link to={`${activity.link}`}>{t(activity.name)}</Link>

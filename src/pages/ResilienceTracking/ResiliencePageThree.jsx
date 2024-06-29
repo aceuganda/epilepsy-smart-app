@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ResilienceComponent from './index';
 import Form from '../../components/form/Form';
@@ -15,12 +15,15 @@ import EndOfAssessmentModal from '../../components/form/EndOfAssessment';
 import { ReactComponent as CheckedIcon } from '../../assets/svg/Form/EndOfAssessment/CheckedIcon.svg';
 import CheckBox from '../../components/form/CheckBox';
 import { useTranslation } from 'react-i18next';
+import { TextField } from '@mui/material';
 
 const ResiliencePageThree = () => {
   const { t } = useTranslation();
   const [type_of_feelings, setFeelingType] = useState();
   const [feeling_today, setFeelings] = useState([]);
   const [reason_for_feeling, setReasons] = useState([]);
+  const [others, setOthers] = useState('');
+  const [otherReasons, setOtherReasons] = useState([]);
 
   const [loading, setLoading] = useState(false);
   const [endOfAssessment, setEndOfAssessment] = useState(false);
@@ -58,10 +61,17 @@ const ResiliencePageThree = () => {
     'family acknowledged me',
     'did fun things',
     'engaged with others',
+    'others'
+  ];
+
+  const negativeReasonOptions = [
+    'unmet goals',
+    'family neglected me',
+    'did tedious things',
     'isolation',
     'conflict',
     'i have no friends',
-    'other'
+    'others'
   ];
 
   const handleSubmit = async (e) => {
@@ -89,10 +99,20 @@ const ResiliencePageThree = () => {
       : setState((state) => [...state, value]);
   };
 
-  // useEffect(() => {
-  //   const reasonsString = reason_for_feeling.join(', ');
-  //   dispatch(setReasons(reasonsString));
-  // }, [reason_for_feeling]);
+  const handleOtherSubmit = () => {
+    if (others && !reason_for_feeling.includes(others)) {
+      setOtherReasons([...otherReasons, others]);
+      handleCheckboxChange(others, setReasons, reason_for_feeling);
+      dispatch(setReasonForFeeling([...reason_for_feeling, others].join(',')));
+      setOthers('');
+    }
+  };
+
+  const handleRemoveOtherReason = (reason) => {
+    setOtherReasons(otherReasons.filter((item) => item !== reason));
+    setReasons(reason_for_feeling.filter((item) => item !== reason));
+    dispatch(setReasonForFeeling(reason_for_feeling.filter((item) => item !== reason).join(',')));
+  };
 
   return (
     <ResilienceComponent backroute={'/resilience-form/2'}>
@@ -108,6 +128,7 @@ const ResiliencePageThree = () => {
                   setFeelings([]);
                   setFeelingType(e.target.value);
                   dispatch(setTypeOfFeelings('positive'));
+                  setReasons([]);
                 }}>
                 {t('Positive')}
               </button>
@@ -119,6 +140,7 @@ const ResiliencePageThree = () => {
                   setFeelings([]);
                   setFeelingType(e.target.value);
                   dispatch(setTypeOfFeelings('negative'));
+                  setReasons([]);
                 }}>
                 {t('Negative')}
               </button>
@@ -191,7 +213,109 @@ const ResiliencePageThree = () => {
                     />
                   ))}
                 </div>
+                {reason_for_feeling.includes('others') && (
+                  <>
+                    <TextField
+                      label="Why did you feel this way?"
+                      variant="outlined"
+                      value={others}
+                      onChange={(e) => setOthers(e.target.value)}
+                      fullWidth
+                      multiline={true}
+                      sx={{ marginLeft: '2px' }}
+                    />
+                    <button
+                      style={{
+                        marginTop: '20px',
+                        borderRadius: '8px',
+                        background: '#8C3E79',
+                        color: '#fff',
+                        boxShadow: '0.8px 2px 2px 0.8px #e4e4e4'
+                      }}
+                      className="button form-button-pill"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleOtherSubmit();
+                      }}>
+                      {t('Add')}
+                    </button>
+                  </>
+                )}
               </fieldset>
+              <div>
+                {otherReasons.map((reason, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    className={selectedButtonStyle(true)}
+                    value={reason}
+                    onClick={() => handleRemoveOtherReason(reason)}>
+                    {t(reason.charAt(0).toUpperCase() + reason.slice(1))}
+                  </button>
+                ))}
+              </div>
+            </Question>
+          ) : (
+            <span />
+          )}
+          {type_of_feelings === 'negative' && feeling_today.length !== 0 ? (
+            <Question question={t('Why did you feel this way')}>
+              <fieldset className="mt-3 mb-4">
+                <div className="ItemContainer">
+                  {negativeReasonOptions.map((option, key) => (
+                    <CheckBox
+                      key={key}
+                      label={t(option)}
+                      value={option}
+                      checked={false}
+                      onClick={(e) => {
+                        handleCheckboxChange(e.target.value, setReasons, reason_for_feeling);
+                        dispatch(setReasonForFeeling(reason_for_feeling.join(',')));
+                      }}
+                    />
+                  ))}
+                </div>
+                {reason_for_feeling.includes('others') && (
+                  <>
+                    <TextField
+                      label="Why did you feel this way?"
+                      variant="outlined"
+                      value={others}
+                      onChange={(e) => setOthers(e.target.value)}
+                      fullWidth
+                      multiline={true}
+                      sx={{ marginLeft: '2px' }}
+                    />
+                    <button
+                      style={{
+                        marginTop: '20px',
+                        borderRadius: '8px',
+                        background: '#8C3E79',
+                        color: '#fff',
+                        boxShadow: '0.8px 2px 2px 0.8px #e4e4e4'
+                      }}
+                      className="button form-button-pill"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleOtherSubmit();
+                      }}>
+                      {t('Add')}
+                    </button>
+                  </>
+                )}
+              </fieldset>
+              <div>
+                {otherReasons.map((reason, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    className={selectedButtonStyle(true)}
+                    value={reason}
+                    onClick={() => handleRemoveOtherReason(reason)}>
+                    {t(reason.charAt(0).toUpperCase() + reason.slice(1))}
+                  </button>
+                ))}
+              </div>
             </Question>
           ) : (
             <span />
@@ -202,7 +326,7 @@ const ResiliencePageThree = () => {
               disabled={loading}
               className="finish-btn"
               onClick={handleSubmit}
-              style={{ bottom: '10px' }}>
+              style={{ marginBottom: '2rem' }}>
               {loading ? <Spinner /> : t(buttonStatement)}
             </button>
           ) : (

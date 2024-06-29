@@ -59,6 +59,22 @@ const NewJournal = () => {
       <Form style={{ backgroundColor: '#E8E8E8' }}>
         <div className="journal-page">
           <div className="content">
+            <div
+              style={{
+                fontSize: '11px',
+                marginBottom: '20px',
+                fontStyle: 'italic',
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'space-evenly'
+              }}>
+              <InfoIcon />
+              <span>
+                {t(
+                  'Some people find that journaling about their experiences and perceptions offers calm and clarity. In the space above, reflect upon matters of importance to you'
+                )}
+              </span>
+            </div>
             <div className="title">
               <input
                 type="text"
@@ -81,23 +97,6 @@ const NewJournal = () => {
             </div>
             <div className="error-field">{t(journalActionError)}</div>
           </div>
-        </div>
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '45px',
-            fontSize: '11px',
-            fontStyle: 'italic',
-            width: '66%',
-            display: 'flex',
-            justifyContent: 'space-evenly'
-          }}>
-          <InfoIcon />
-          <span>
-            {t(
-              'Some people find that journaling about their experiences and perceptions offers calm and clarity. In the space above, reflect upon matters of importance to you'
-            )}
-          </span>
         </div>
       </Form>
     </ResilienceActivitiesPageComponent>
