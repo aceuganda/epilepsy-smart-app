@@ -24,6 +24,7 @@ export const seizureTrackingSlice = createSlice({
     aura_kind_experienced: '',
     seizure_trigger: '',
     seizure_impact: '',
+    seizure_start_site: '',
     was_seizure_triggered: false,
     seizure_impact_upset_you: 0
   },
@@ -60,6 +61,9 @@ export const seizureTrackingSlice = createSlice({
     },
     setSeizureID: (state, action) => {
       state.user_id = parseInt(action.payload);
+    },
+    setStartSite: (state, action) => {
+      state.seizure_start_site = action.payload;
     }
   },
   extraReducers: {
@@ -81,7 +85,8 @@ export const {
   setTrigger,
   setSeizureTrigger,
   setSeizureID,
-  setSeizureUpsetRange
+  setSeizureUpsetRange,
+  setStartSite
 } = seizureTrackingSlice.actions;
 
 export default seizureTrackingSlice.reducer;
