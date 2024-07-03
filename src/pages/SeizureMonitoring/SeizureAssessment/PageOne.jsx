@@ -10,14 +10,15 @@ import {
   setSeizureDuration,
   setSeizureSeverity,
   setSeizureTimeOfDay,
-  setSeizureID
+  setSeizureID,
+  setStartSite
 } from '../../../redux/Slices/SeizureTrackingSlice';
 
 import { ReactComponent as MorningIcon } from '../../../assets/svg/Seizure/Morning.svg';
 import { ReactComponent as AfternoonIcon } from '../../../assets/svg/Seizure/afternon.svg';
 import { ReactComponent as NightIcon } from '../../../assets/svg/Seizure/night.svg';
 import { useTranslation } from 'react-i18next';
-
+import { TextField } from '@mui/material';
 
 const PageOne = () => {
   const { t } = useTranslation();
@@ -27,6 +28,7 @@ const PageOne = () => {
   const [secondsValue, setSecondsValue] = useState('0');
   const [minutesValue, setMinutesValue] = useState('0');
   const [lost_awareness, setAwareness] = useState(null);
+  const [seizure_start, setSeizureStart] = useState('');
   const dispatch = useDispatch();
   const userId = localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo')).data.id
@@ -40,6 +42,7 @@ const PageOne = () => {
     dispatch(setSeizureSeverity(seizure_severity));
     dispatch(setSeizureTimeOfDay(seizure_time_of_day));
     dispatch(setSeizureID(userId));
+    dispatch(setStartSite(seizure_start));
     lost_awareness === 'yes' ? dispatch(setLostAwareness(true)) : dispatch(setLostAwareness(false));
   };
   useEffect(() => {}, []);
@@ -186,6 +189,22 @@ const PageOne = () => {
                   }}>
                   {t('no')}
                 </button>
+              </fieldset>
+            </Question>
+          ) : (
+            <span></span>
+          )}
+          {lost_awareness !== null ? (
+            <Question question={t('Where did your seizure start from')}>
+              <fieldset className="mt-3 mb-4" style={{ justifyContent: 'space-evenly' }}>
+                <TextField
+                  label={t('Enter the starting point of your seizure')}
+                  variant="outlined"
+                  onChange={(e) => setSeizureStart(e.target.value)}
+                  fullWidth
+                  multiline={true}
+                  sx={{ marginLeft: '2px' }}
+                />
               </fieldset>
             </Question>
           ) : (

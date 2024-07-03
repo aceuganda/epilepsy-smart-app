@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import ResilienceComponent from './index';
-
 import Form from '../../components/form/Form';
 import Question from '../../components/form/Question';
 import Pagination from '../../components/pagination';
@@ -12,11 +11,14 @@ import {
 } from '../../redux/Slices/ResilienceTracking';
 import CheckBox from '../../components/form/CheckBox';
 import { useTranslation } from 'react-i18next';
+import { TextField } from '@mui/material';
 
 const ResiliencePageOne = () => {
   const { t } = useTranslation();
   const [engaged_socially, setSocialEngagement] = useState(null);
   const [engagement, setEngagedType] = useState([]);
+  const [others, setOthers] = useState('');
+  const [otherReasons, setOtherReasons] = useState([]);
   const dispatch = useDispatch();
   const userId = localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo')).data.id
@@ -49,18 +51,26 @@ const ResiliencePageOne = () => {
     },
     {
       id: 5,
-      name: t('Other')
+      name: t('Others')
     }
   ];
 
   const negativeLabels = [
     {
       id: 1,
-      name: t('Bad Company')
+      name: t('No one available to visit with')
     },
     {
       id: 2,
-      name: t('Isolation')
+      name: t('Do not feel like socializing')
+    },
+    {
+      id: 3,
+      name: t('Very busy with other things')
+    },
+    {
+      id: 4,
+      name: t('Others')
     }
   ];
 
@@ -76,6 +86,21 @@ const ResiliencePageOne = () => {
       : setEngagedType((engagement) => [...engagement, value]);
   };
 
+  const handleOtherSubmit = () => {
+    if (others && !engagement.includes(others)) {
+      setOtherReasons([...otherReasons, others]);
+      handleCheckboxChange(others);
+      dispatch(setEngagement([...engagement, others].join(',')));
+      setOthers('');
+    }
+  };
+
+  const handleRemoveOtherReason = (reason) => {
+    setOtherReasons(otherReasons.filter((item) => item !== reason));
+    setEngagedType(engagement.filter((item) => item !== reason));
+    dispatch(setEngagement(engagement.filter((item) => item !== reason).join(',')));
+  };
+
   return (
     <ResilienceComponent backroute={'/resilience-form'}>
       <Form>
@@ -89,6 +114,7 @@ const ResiliencePageOne = () => {
                 onClick={(e) => {
                   setEngagedType([]);
                   setSocialEngagement(e.target.value);
+                  setOthers('');
                 }}>
                 {t('yes')}
               </button>
@@ -99,6 +125,7 @@ const ResiliencePageOne = () => {
                 onClick={(e) => {
                   setEngagedType([]);
                   setSocialEngagement(e.target.value);
+                  setOthers('');
                 }}>
                 {t('no')}
               </button>
@@ -124,7 +151,47 @@ const ResiliencePageOne = () => {
                     ))}
                   </div>
                 </div>
+                {engagement.includes('Others') && (
+                  <>
+                    <TextField
+                      label="How else did you engage?"
+                      variant="outlined"
+                      value={others}
+                      onChange={(e) => setOthers(e.target.value)}
+                      fullWidth
+                      multiline={true}
+                      sx={{ marginLeft: '2px' }}
+                    />
+                    <button
+                      style={{
+                        marginTop: '20px',
+                        borderRadius: '8px',
+                        background: '#8C3E79',
+                        color: '#fff',
+                        boxShadow: '0.8px 2px 2px 0.8px #e4e4e4'
+                      }}
+                      className="button form-button-pill"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleOtherSubmit();
+                      }}>
+                      {t('Add')}
+                    </button>
+                  </>
+                )}
               </fieldset>
+              <div>
+                {otherReasons.map((reason, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    className={selectedButtonStyle(true)}
+                    value={reason}
+                    onClick={() => handleRemoveOtherReason(reason)}>
+                    {t(reason.charAt(0).toUpperCase() + reason.slice(1))}
+                  </button>
+                ))}
+              </div>
             </Question>
           ) : (
             <span />
@@ -147,7 +214,47 @@ const ResiliencePageOne = () => {
                     />
                   ))}
                 </div>
+                {engagement.includes('Others') && (
+                  <>
+                    <TextField
+                      label="Why did you not engage?"
+                      variant="outlined"
+                      value={others}
+                      onChange={(e) => setOthers(e.target.value)}
+                      fullWidth
+                      multiline={true}
+                      sx={{ marginLeft: '2px' }}
+                    />
+                    <button
+                      style={{
+                        marginTop: '20px',
+                        borderRadius: '8px',
+                        background: '#8C3E79',
+                        color: '#fff',
+                        boxShadow: '0.8px 2px 2px 0.8px #e4e4e4'
+                      }}
+                      className="button form-button-pill"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleOtherSubmit();
+                      }}>
+                      {t('Add')}
+                    </button>
+                  </>
+                )}
               </fieldset>
+              <div>
+                {otherReasons.map((reason, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    className={selectedButtonStyle(true)}
+                    value={reason}
+                    onClick={() => handleRemoveOtherReason(reason)}>
+                    {t(reason.charAt(0).toUpperCase() + reason.slice(1))}
+                  </button>
+                ))}
+              </div>
             </Question>
           ) : (
             <span />

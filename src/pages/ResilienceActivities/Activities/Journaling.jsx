@@ -252,6 +252,22 @@ const Journaling = () => {
               )}
             </div>
             <div className={`tab-pane ${activeTab === 2 ? 'active' : ''}`}>
+              <div
+                style={{
+                  fontSize: '11px',
+                  marginBottom: '20px',
+                  fontStyle: 'italic',
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'space-evenly'
+                }}>
+                {/* <InfoIcon /> */}
+                <span>
+                  {t(
+                    'Taking a moment to appreciate the good things in life can boost your mood and perspective. Share your gratitude in this space, big or small.'
+                  )}
+                </span>
+              </div>
               <h6 style={{ font: 'bold' }}>{t(`What are you grateful for`)}?</h6>
               <div
                 style={{
@@ -261,7 +277,7 @@ const Journaling = () => {
                 }}>
                 <div>
                   <textarea
-                    className='text-area-styles'
+                    className="text-area-styles"
                     value={grateful}
                     onChange={(e) => setGrateful(e.target.value)}
                     onFocus={(e) => {
@@ -270,7 +286,7 @@ const Journaling = () => {
                     onBlur={(e) => {
                       e.target.style.height = '80px';
                     }}
-                    placeholder={t("Example: I am grateful to have a home to live in")}
+                    placeholder={t('Example: I am grateful to have a home to live in')}
                   />
                   <div
                     style={{
@@ -285,7 +301,7 @@ const Journaling = () => {
                   </div>
                 </div>
                 {grateful && (
-                  <button onClick={handleSubmit} className='button-styles'>
+                  <button onClick={handleSubmit} className="button-styles">
                     {savingGrateful ? <Spinner /> : t('Save')}
                   </button>
                 )}
@@ -333,7 +349,6 @@ const Journaling = () => {
                           justifyContent: 'space-between',
                           color: '#000'
                         }}>
-                        {' '}
                         <div
                           style={{
                             display: 'flex',
@@ -351,25 +366,28 @@ const Journaling = () => {
                               backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(
                                 16
                               )}`
-                            }}></div>
-                          {result?.grateful}
+                            }}
+                          />
+                          <span
+                            style={{
+                              whiteSpace: 'nowrap',
+                              overflow: 'hidden',
+                              maxWidth: '15rem',
+                              textOverflow: 'ellipsis'
+                            }}>
+                            {result.grateful}
+                          </span>
                         </div>
                         <div
                           onClick={(e) => {
                             // deleteGratefullItemId(e, result.id);
                             selectGratefulItem(e, result);
                           }}>
-                          {' '}
                           {gratefulID === result.id ? (
                             <Spinner />
                           ) : (
-                            <div
-                              style={{
-                                color: '#553791',
-                                fontSize: '24px'
-                              }}>
-                              {' '}
-                              <MdClose />{' '}
+                            <div style={{ color: '#553791', fontSize: '24px' }}>
+                              <MdClose />
                             </div>
                           )}
                         </div>

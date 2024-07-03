@@ -20,8 +20,15 @@ import {
 } from '../../../redux/Slices/MedicineTracking';
 import { useTranslation } from 'react-i18next';
 
-
-const medicineNames = ['Sodium Vaporate', 'Diclofenac', 'Gofen', 'Ibuprofen'];
+const medicineNames = [
+  'Sodium valproate',
+  'Lamitrogine',
+  'Phenytoin',
+  'Carbamazepine',
+  'Phenobarbital',
+  'Levetiracetam',
+  'Diazepam'
+];
 
 const MedicationTrackingPageOne = () => {
   const { t } = useTranslation();

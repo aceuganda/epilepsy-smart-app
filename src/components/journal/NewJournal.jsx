@@ -8,6 +8,7 @@ import { postUserJournal } from '../../redux/Actions/journalingActions';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../Spinner/Spinner';
 import { useTranslation } from 'react-i18next';
+import { ReactComponent as InfoIcon } from '../../assets/svg/Form/Question/info.svg';
 
 const NewJournal = () => {
   const dispatch = useDispatch();
@@ -58,6 +59,22 @@ const NewJournal = () => {
       <Form style={{ backgroundColor: '#E8E8E8' }}>
         <div className="journal-page">
           <div className="content">
+            <div
+              style={{
+                fontSize: '11px',
+                marginBottom: '20px',
+                fontStyle: 'italic',
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'space-evenly'
+              }}>
+              <InfoIcon />
+              <span>
+                {t(
+                  'Some people find that journaling about their experiences and perceptions offers calm and clarity. In the space above, reflect upon matters of importance to you'
+                )}
+              </span>
+            </div>
             <div className="title">
               <input
                 type="text"

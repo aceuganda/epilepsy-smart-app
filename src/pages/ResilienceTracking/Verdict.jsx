@@ -15,7 +15,7 @@ const VerdictComponent = ({ verdict, text }) => {
       <div className="row">
         {verdict ? <img src={happyEmoji} alt="" /> : <img src={sadEmoji} alt="" />}
         <div className="text-body">
-          <p>{t('text')}</p>
+          <p>{t(text)}</p>
         </div>
       </div>
     </div>

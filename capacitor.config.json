@@ -2,5 +2,23 @@
   "appId": "com.smartapp.epilepsy",
   "appName": "SMART epilepsy app",
   "webDir": "build",
-  "bundledWebRuntime": false
+  "bundledWebRuntime": false,
+  "plugins": {
+    "LocalNotifications": {
+      "iconColor": "#8a2be2"
+    },
+    "SplashScreen": {
+      "launchShowDuration": 3000,
+      "launchAutoHide": true,
+      "backgroundColor": "#8a2be2",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "androidSpinnerStyle": "large",
+      "iosSpinnerStyle": "small",
+      "spinnerColor": "#8C3E79",
+      "showSpinner": true,
+      "splashFullScreen": true,
+      "splashImmersive": true
+    }
+  }
 }
