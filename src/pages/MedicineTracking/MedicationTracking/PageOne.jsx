@@ -136,13 +136,15 @@ const MedicationTrackingPageOne = () => {
   };
   const HandleSave = () => {
     // collect time data medicine
+    const randomId = Math.floor(Math.random() * 100000) + 1;
     let fullTime = selectedHours + ':' + selectedMins + ':' + selectedZone;
     let remindersArray = savedReminders;
     if (selectedAccodianMedicine) {
       let currentReminderObject = {
         time: fullTime,
         medicine: selectedAccodianMedicine,
-        active: true
+        active: true,
+        id: randomId
       };
       remindersArray.push(currentReminderObject);
       localStorage.setItem(`${userId}Reminders`, JSON.stringify(remindersArray));

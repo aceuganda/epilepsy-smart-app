@@ -104,9 +104,9 @@ const HomePage = () => {
         return;
       }
 
-      const chanelRandomId = Math.floor(Math.random() * 1000000) + 1;
+      // const chanelRandomId = Math.floor(Math.random() * 1000000) + 1;
       await safeLocalNotifications.createChannel({
-        id: `epilepsy-smart-app-${chanelRandomId}`,
+        id: `epilepsy-smart-app-44889`,
         name: "Epilepsy Smart App",
         description: "Epilepsy SMART app Notification",
       });
@@ -115,44 +115,31 @@ const HomePage = () => {
         const reminder = savedReminders[i];
         if (!reminder.active) continue;
 
-        // let [hours, minutes, period] = reminder.time.split(':');
-        const currentDate = new Date();
-        const timeParts = reminder.time.match(/(\d+):(\d+):(\w+)/);
-        let hours = parseInt(timeParts[1], 10);
-        const minutes = parseInt(timeParts[2], 10);
-        const period = timeParts[3];
+        let [hours, minutes, period] = reminder.time.split(':');
+        hours = parseInt(hours, 10);
+        minutes = parseInt(minutes, 10);
 
-        if (period === "PM" && hours < 12) {
-            hours += 12;
-        }
-        if (period === "AM" && hours === 12) {
-            hours = 0;
-        }
+        if (period === 'PM' && hours !== 12) hours += 12;
+        if (period === 'AM' && hours === 12) hours = 0;
 
-        currentDate.setHours(hours);
-        currentDate.setMinutes(minutes);
-        currentDate.setSeconds(0);
-        currentDate.setMilliseconds(0);
-
-        console.log(`Scheduling reminder for ${currentDate}`);
-        const randomId = Math.floor(Math.random() * 1000000) + 1;
+        console.log(`Scheduling reminder for ${hours}:${minutes}`);
+        // const randomId = Math.floor(Math.random() * 1000000) + 1;
 
         await safeLocalNotifications.schedule({
           notifications: [
             {
               title: 'Daily Medicine Reminder',
               body: `Don't forget to take your medicine dose for ${reminder.medicine}`,
-              id: randomId,
+              id: reminder.id,
               schedule: {
-                at: currentDate,
-                every: 'day',
-                repeats: true,
+                on: { hour: hours, minute: minutes },
+                // every: 'day',
+                // repeats: true,
                 allowWhileIdle: true
               }
             }
           ]
         });
-
         console.log(`Scheduled reminder for ${reminder.medicine}`);
       }
 
