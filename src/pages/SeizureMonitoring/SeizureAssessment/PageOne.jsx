@@ -195,16 +195,44 @@ const PageOne = () => {
             <span></span>
           )}
           {lost_awareness !== null ? (
-            <Question question={t('Where did your seizure start from')}>
+            <Question question={t('Where did your seizure START from')}>
               <fieldset className="mt-3 mb-4" style={{ justifyContent: 'space-evenly' }}>
-                <TextField
-                  label={t('Enter the starting point of your seizure')}
-                  variant="outlined"
-                  onChange={(e) => setSeizureStart(e.target.value)}
-                  fullWidth
-                  multiline={true}
-                  sx={{ marginLeft: '2px' }}
-                />
+                <button
+                  type="button"
+                  className={selectedButtonStyle(seizure_start === 'Left side')}
+                  value={'Left side'}
+                  onClick={(e) => {
+                    setSeizureStart(e.target.value);
+                  }}>
+                  {t('Right side')}
+                </button>
+                <button
+                  type="button"
+                  className={selectedButtonStyle(seizure_start === 'Right side')}
+                  value={'Right side'}
+                  onClick={(e) => {
+                    setSeizureStart(e.target.value);
+                  }}>
+                  {t('Right side')}
+                </button>
+                <button
+                  type="button"
+                  className={selectedButtonStyle(seizure_start === 'Both sides')}
+                  value={'Both sides'}
+                  onClick={(e) => {
+                    setSeizureStart(e.target.value);
+                  }}>
+                  {t('Both sides')}
+                </button>
+                <button
+                  type="button"
+                  className={selectedButtonStyle(seizure_start === "I don't know")}
+                  value={"I don't know"}
+                  onClick={(e) => {
+                    setSeizureStart(e.target.value);
+                  }}>
+                  {t("I don't know")}
+                </button>
               </fieldset>
             </Question>
           ) : (

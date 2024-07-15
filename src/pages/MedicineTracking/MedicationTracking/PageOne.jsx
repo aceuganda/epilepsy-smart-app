@@ -22,7 +22,7 @@ import { useTranslation } from 'react-i18next';
 
 const medicineNames = [
   'Sodium valproate',
-  'Lamitrogine',
+  'Lamotrigine',
   'Phenytoin',
   'Carbamazepine',
   'Phenobarbital',
@@ -310,7 +310,8 @@ const MedicationTrackingPageOne = () => {
               <Modal show={showDeleteMedicineWarning} closeModal={handleDeleteWarningClosure}>
                 <div className="DeleteMedicinWarning">
                   <div className="WarningText">
-                    {t('Are you sure you want to delete')} {userMedicines[deleteMedicineIndex]?.name} ?
+                    {t('Are you sure you want to delete')}{' '}
+                    {userMedicines[deleteMedicineIndex]?.name} ?
                   </div>
                   <div className="deleteButtonSection">
                     <button onClick={handleDeleteWarningClosure} className="customButton">

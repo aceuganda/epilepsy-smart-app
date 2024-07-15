@@ -89,9 +89,9 @@ const HomePage = () => {
                 }
               }
             ]
-          })
-        //  const set =  await LocalNotifications.schedule(schedulingOptions);
-        //  console.log(set)
+          });
+          //  const set =  await LocalNotifications.schedule(schedulingOptions);
+          //  console.log(set)
         }
       }
     } else {
