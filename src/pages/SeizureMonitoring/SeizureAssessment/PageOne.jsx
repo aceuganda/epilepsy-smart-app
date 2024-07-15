@@ -204,7 +204,7 @@ const PageOne = () => {
                   onClick={(e) => {
                     setSeizureStart(e.target.value);
                   }}>
-                  {t('Right side')}
+                  {t('Left side')}
                 </button>
                 <button
                   type="button"

@@ -14,6 +14,7 @@ import quotes from '../../resources/inspiration_quotes.json';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageToggle from '../../components/Language/switchLanguage';
+import { Capacitor } from '@capacitor/core';
 
 const HomePage = () => {
   const { userInfo } = useSelector((state) => state.user);
@@ -23,26 +24,54 @@ const HomePage = () => {
       ? JSON.parse(localStorage.getItem(`${userInfo.data.id}Reminders`))
       : []
   );
+  const isNotificationsSupported = () => {
+    return Capacitor.isNativePlatform() && LocalNotifications;
+  };
+  const safeLocalNotifications = {
+    requestPermissions: async () => {
+      return await LocalNotifications.requestPermissions();
+    },
+    createChannel: async (options) => {
+      if (isNotificationsSupported()) {
+        return await LocalNotifications.createChannel(options);
+      }
+    },
+    schedule: async (options) => {
+      return await LocalNotifications.schedule(options);
+    }
+  };
 
   //request permission to send local notification
   const sendLocalNotification = async () => {
-    const hasPermission = await LocalNotifications.requestPermissions();
+    const hasPermission = await safeLocalNotifications.requestPermissions();
+    const randomId = Math.floor(Math.random() * 1000000) + 1;
+
     if (hasPermission) {
-      LocalNotifications.schedule({
-        notifications: [
-          {
-            //select the notification title and body from the json file randomly
-            title: 'Quote of the day',
-            body: quotes[Math.floor(Math.random() * quotes.length)].title,
-            id: 1,
-            //schedule: { at: new Date(Date.now() + 5000) },
-            sound: null,
-            attachments: null,
-            actionTypeId: '',
-            extra: null
-          }
-        ]
-      });
+      try {
+        await safeLocalNotifications.createChannel({
+          id: `epilepsy-smart-app-${randomId}`,
+          name: "Epilepsy Smart App",
+          description: "Epilepsy SMART app Notification",
+        });
+
+        await safeLocalNotifications.schedule({
+          notifications: [
+            {
+              title: 'Quote of the day',
+              body: quotes[Math.floor(Math.random() * quotes.length)].title,
+              id: randomId,
+              sound: null,
+              attachments: null,
+              actionTypeId: '',
+              extra: null
+            }
+          ]
+        });
+      } catch (error) {
+        console.error('Error sending notification:', error);
+      }
+    } else {
+      console.log('No permission to send notifications');
     }
   };
   //call the function every after 8 hours
@@ -62,42 +91,75 @@ const HomePage = () => {
   }, 5000);
 */
   const scheduleReminderLocalNotification = async () => {
-    const hasPermission = await LocalNotifications.requestPermissions();
-    if (savedReminders.length > 0) {
-      for (let i = 0; i < savedReminders.length; i++) {
-        const timeString = savedReminders[i].time;
-        const [hours, minutes, period] = timeString.split(':');
-        const date = new Date();
-        date.setHours(period === 'AM' ? parseInt(hours, 10) : parseInt(hours, 10) + 12);
-        date.setMinutes(parseInt(minutes, 10));
-        if (hasPermission && savedReminders[i].active === true) {
-          console.log({ hour: date.getHours(), minute: date.getMinutes() });
-          LocalNotifications.schedule({
-            notifications: [
-              {
-                title: 'Daily Medicine Reminder',
-                body: `Don't forget to take your medicine dose for ${savedReminders[i].medicine}`,
-                id: i,
-                sound: null,
-                attachments: null,
-                actionTypeId: '',
-                extra: null,
-                schedule: {
-                  on: { hour: date.getHours(), minute: date.getMinutes() },
-                  every: 'day',
-                  repeats: true
-                }
-              }
-            ]
-          });
-          //  const set =  await LocalNotifications.schedule(schedulingOptions);
-          //  console.log(set)
-        }
+    try {
+      const hasPermission = await safeLocalNotifications.requestPermissions();
+      console.log('Has permission:', hasPermission);
+
+      if (!hasPermission) {
+        console.log('No permission to schedule notifications');
+        return;
       }
-    } else {
-      console.log('no running reminders');
+      if (savedReminders.length === 0) {
+        console.log('No running reminders');
+        return;
+      }
+
+      const chanelRandomId = Math.floor(Math.random() * 1000000) + 1;
+      await safeLocalNotifications.createChannel({
+        id: `epilepsy-smart-app-${chanelRandomId}`,
+        name: "Epilepsy Smart App",
+        description: "Epilepsy SMART app Notification",
+      });
+
+      for (let i = 0; i < savedReminders.length; i++) {
+        const reminder = savedReminders[i];
+        if (!reminder.active) continue;
+
+        // let [hours, minutes, period] = reminder.time.split(':');
+        const currentDate = new Date();
+        const timeParts = reminder.time.match(/(\d+):(\d+):(\w+)/);
+        let hours = parseInt(timeParts[1], 10);
+        const minutes = parseInt(timeParts[2], 10);
+        const period = timeParts[3];
+
+        if (period === "PM" && hours < 12) {
+            hours += 12;
+        }
+        if (period === "AM" && hours === 12) {
+            hours = 0;
+        }
+
+        currentDate.setHours(hours);
+        currentDate.setMinutes(minutes);
+        currentDate.setSeconds(0);
+        currentDate.setMilliseconds(0);
+
+        console.log(`Scheduling reminder for ${currentDate}`);
+        const randomId = Math.floor(Math.random() * 1000000) + 1;
+
+        await safeLocalNotifications.schedule({
+          notifications: [
+            {
+              title: 'Daily Medicine Reminder',
+              body: `Don't forget to take your medicine dose for ${reminder.medicine}`,
+              id: randomId,
+              schedule: {
+                at: currentDate,
+                every: 'day',
+                repeats: true,
+                allowWhileIdle: true
+              }
+            }
+          ]
+        });
+
+        console.log(`Scheduled reminder for ${reminder.medicine}`);
+      }
+
+      console.log('All reminders scheduled');
+    } catch (error) {
+      console.error('Error scheduling notifications:', error);
     }
-    console.log('hasPermission', hasPermission);
   };
 
   return (

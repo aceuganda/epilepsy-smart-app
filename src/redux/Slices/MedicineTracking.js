@@ -40,12 +40,17 @@ export const medicineTrackingSlice = createSlice({
       state.name = action.payload;
     }
   },
-  extraReducers: {
-    //Post medicine Data
-    [postMedicineFormData.fulfilled]: (state, action) => {
-      state = action.payload;
-    }
+  extraReducers: (builder) => {
+    builder.addCase(postMedicineFormData.fulfilled, (state, action) => {
+      return action.payload;
+    });
   }
+  // extraReducers: {
+  //   //Post medicine Data
+  //   [postMedicineFormData.fulfilled]: (state, action) => {
+  //     state = action.payload;
+  //   }
+  // }
 });
 
 export const { setMedicineName, setUserID } = medicineTrackingSlice.actions;

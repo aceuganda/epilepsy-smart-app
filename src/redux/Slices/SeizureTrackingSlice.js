@@ -66,12 +66,12 @@ export const seizureTrackingSlice = createSlice({
       state.seizure_start_site = action.payload;
     }
   },
-  extraReducers: {
-    //Post Seizure Data
-    [postSeizureFormData.fulfilled]: (state, action) => {
-      state = action.payload;
-    }
+  extraReducers: (builder) => {
+    builder.addCase(postSeizureFormData.fulfilled, (state, action) => {
+      return action.payload;
+    });
   }
+
 });
 
 export const {
