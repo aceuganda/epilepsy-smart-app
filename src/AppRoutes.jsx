@@ -42,6 +42,7 @@ import VerificationPage from './pages/EmailVerification/VerificationPage';
 import ForgotPassword from './pages/Authentication/ForgotPassword';
 import ResetPassword from './pages/Authentication/ResetPassword';
 import ManageTriggers from './pages/ResilienceActivities/Activities/ManageTriggers';
+import UpdatesPage from './pages/UserSettingsPage/UpdatePage';
 // import InspirationalQuotes from './pages/ResilienceActivities/InspirationalQuotes';
 // import Grateful from './components/journal/Grateful';
 
@@ -64,7 +65,8 @@ const AppRoutes = () => (
         <Route path="/onboarding/track" element={<Track />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/privacy" element={<Privacy/>} />
+        <Route path="/version-updates" element={<UpdatesPage />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/verify/:token" element={<VerificationPage />} />

@@ -47,12 +47,17 @@ export const medicationTrackingSlice = createSlice({
       state.took_medicine = action.payload;
     }
   },
-  extraReducers: {
-    //Post medication Data
-    [postMedicationFormData.fulfilled]: (state, action) => {
-      state = action.payload;
-    }
+  extraReducers: (builder) => {
+    builder.addCase(postMedicationFormData.fulfilled, (state, action) => {
+      return action.payload;
+    });
   }
+  // extraReducers: {
+  //   //Post medication Data
+  //   [postMedicationFormData.fulfilled]: (state, action) => {
+  //     state = action.payload;
+  //   }
+  // }
 });
 
 export const {

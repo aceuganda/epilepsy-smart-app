@@ -20,5 +20,8 @@
 			"splashFullScreen": true,
 			"splashImmersive": true
 		}
-	}
+	},
+	"packageClassList": [
+		"LocalNotificationsPlugin"
+	]
 }

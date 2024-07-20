@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'font-awesome/css/font-awesome.min.css';
@@ -9,13 +9,16 @@ import store from './store';
 import i18n from './i18n';
 import { I18nextProvider } from 'react-i18next';
 
-ReactDOM.render(
-  <Provider store={store}>
-    <I18nextProvider i18n={i18n}>
-      <App />
-    </I18nextProvider>
-  </Provider>,
-  document.getElementById('root')
+const root = createRoot(document.getElementById('root'));
+
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <I18nextProvider i18n={i18n}>
+        <App />
+      </I18nextProvider>
+    </Provider>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

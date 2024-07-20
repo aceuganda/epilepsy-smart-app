@@ -22,7 +22,7 @@ import { useTranslation } from 'react-i18next';
 
 const medicineNames = [
   'Sodium valproate',
-  'Lamitrogine',
+  'Lamotrigine',
   'Phenytoin',
   'Carbamazepine',
   'Phenobarbital',
@@ -136,13 +136,15 @@ const MedicationTrackingPageOne = () => {
   };
   const HandleSave = () => {
     // collect time data medicine
+    const randomId = Math.floor(Math.random() * 100000) + 1;
     let fullTime = selectedHours + ':' + selectedMins + ':' + selectedZone;
     let remindersArray = savedReminders;
     if (selectedAccodianMedicine) {
       let currentReminderObject = {
         time: fullTime,
         medicine: selectedAccodianMedicine,
-        active: true
+        active: true,
+        id: randomId
       };
       remindersArray.push(currentReminderObject);
       localStorage.setItem(`${userId}Reminders`, JSON.stringify(remindersArray));
@@ -310,7 +312,8 @@ const MedicationTrackingPageOne = () => {
               <Modal show={showDeleteMedicineWarning} closeModal={handleDeleteWarningClosure}>
                 <div className="DeleteMedicinWarning">
                   <div className="WarningText">
-                    {t('Are you sure you want to delete')} {userMedicines[deleteMedicineIndex]?.name} ?
+                    {t('Are you sure you want to delete')}{' '}
+                    {userMedicines[deleteMedicineIndex]?.name} ?
                   </div>
                   <div className="deleteButtonSection">
                     <button onClick={handleDeleteWarningClosure} className="customButton">

@@ -64,12 +64,18 @@ export const resilienceTrackingSlice = createSlice({
       state.resilience_tallies = action.payload;
     }
   },
-  extraReducers: {
-    //Post Resilience Data
-    [postResilienceFormData.fulfilled]: (state, action) => {
-      state = action.payload;
-    }
+  extraReducers: (builder) => {
+    builder.addCase(postResilienceFormData.fulfilled, (state, action) => {
+      return action.payload;
+    });
   }
+
+  // extraReducers: {
+  //   //Post Resilience Data
+  //   [postResilienceFormData.fulfilled]: (state, action) => {
+  //     state = action.payload;
+  //   }
+  // }
 });
 
 export const {
