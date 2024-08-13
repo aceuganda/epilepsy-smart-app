@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next';
 
 const Updates = () => {
   const { t } = useTranslation();
-  const path = require('./apks/smart_app_9.0.apk')
+  const path = require('./apks/smart_app_10.0.apk')
   return (
     <div>
       <UserSettingsPageComponent backroute={'/'} title={t('App Version')}>
         <AboutImg style={{ marginTop: '50px' }} />
-        <div>Current Version is (9.0)</div>
+        <div>Current Version is (10.0)</div>
         <a href={path} download>
           <button style={{backgroundColor:'blueviolet', marginTop: '23px', borderRadius: '10px', color: 'white' }}>{t('Download version 9.0')}</button>
         </a>
