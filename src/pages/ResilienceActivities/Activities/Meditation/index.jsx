@@ -10,8 +10,10 @@ import { ReactComponent as PauseWhite } from '../../../../assets/svg/Resilience/
 import { ReactComponent as SkipBack } from '../../../../assets/svg/Resilience/SkipBack.svg';
 import { ReactComponent as SkipForword } from '../../../../assets/svg/Resilience/SkipFwd.svg';
 // import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../../../hooks/screenLogger';
 
 const Meditations = () => {
+  useFirebaseScreenTracking('MeditationPage');
   const [currentTrackIndex, setCurrentTrackIndex] = useState(null);
   // const { t } = useTranslation();
   const [selectedSong, setSelectedSong] = useState(null);

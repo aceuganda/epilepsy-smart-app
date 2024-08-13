@@ -6,8 +6,10 @@ import Spinner from '../../components/Spinner/Spinner';
 import { editUserData, getSingleUserDetails, logout } from '../../redux/Slices/UsersSlice';
 import Modal from '../../components/modal';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../hooks/screenLogger';
 
 const UserDetailsEdit = () => {
+  useFirebaseScreenTracking('ProfilePage');
   const { t } = useTranslation();
   const { userInfo } = useSelector((state) => state.user);
   const [userName, setUserName] = useState(userInfo.data.username);
@@ -38,24 +40,27 @@ const UserDetailsEdit = () => {
     return result;
   }, []);
 
-  useEffect(async () => {
-    const response = await getUserDetails;
-    // console.log(response)
-    //set user details
-    if (response) {
-      setServerDetails({ ...serverDetails, response });
-      setDob(response.dob);
-      setCaregiver(response.caregiver_name);
-      setGender(response.gender);
-      setOnsetAge(response.age_of_onset);
-      setInstitute(response.institution);
-      setSeizureType(response.seizure_type);
-      setCaregiverContact(response.caregiver_contact);
-      if (response.caregiver_name && response.caregiver_contact) {
-        sethasCaregiver('yes');
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      const response = await dispatch(getSingleUserDetails());
+      if (response?.payload?.status === 200) {
+        const userDetails = response.payload.data.data.user;
+        setServerDetails(userDetails);
+        setDob(userDetails.dob);
+        setCaregiver(userDetails.caregiver_name);
+        setGender(userDetails.gender);
+        setOnsetAge(userDetails.age_of_onset);
+        setInstitute(userDetails.institution);
+        setSeizureType(userDetails.seizure_type);
+        if (userDetails.caregiver_name && userDetails.caregiver_contact) {
+          sethasCaregiver('yes');
+        }
       }
-    }
-  }, []);
+    };
+    fetchUserDetails();
+  }, [dispatch]);
+
 
   const submitData = async (e) => {
     e.preventDefault();

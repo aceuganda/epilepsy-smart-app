@@ -15,8 +15,11 @@ import { ReactComponent as CheckedIcon } from '../../../assets/svg/Form/EndOfAss
 import CheckBox from '../../../components/form/CheckBox';
 import Spinner from '../../../components/Spinner/Spinner';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../../hooks/screenLogger';
+
 
 const PageThree = () => {
+  useFirebaseScreenTracking('SeizureAssessmentPage3');
   const { t } = useTranslation();
   const originalFeelings = ['sleepy', 'confused', 'body weakness', 'restless', 'headache', 'other'];
   const [selectedFeelings, setSelectedFeelings] = useState([]);

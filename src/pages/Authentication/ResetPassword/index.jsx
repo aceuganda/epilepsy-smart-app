@@ -6,8 +6,10 @@ import { PASSWORD_RESET_URL } from '../../../config/urls';
 import axios from 'axios';
 import Spinner from '../../../components/Spinner/Spinner';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../../hooks/screenLogger';
 
 const ResetPassword = () => {
+  useFirebaseScreenTracking('ResetPasswordPage');
   const { t } = useTranslation();
   const { token } = useParams();
   const [newPassword, setNewPassword] = useState('');

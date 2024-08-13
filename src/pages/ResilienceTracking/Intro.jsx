@@ -10,9 +10,11 @@ import { ReactComponent as InfoIcon } from '../../assets/svg/Form/Question/info.
 import { getResilienceTallies } from '../../redux/Slices/ResilienceTracking';
 import store from '../../store';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../hooks/screenLogger';
 
 store.dispatch(getResilienceTallies);
 const ResilienceStartPage = () => {
+  useFirebaseScreenTracking('ResilienceTrackingIntroPage');
   const { t } = useTranslation();
   return (
     <div className="form start-page">

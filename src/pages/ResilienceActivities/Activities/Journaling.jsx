@@ -16,10 +16,12 @@ import Spinner from '../../../components/Spinner/Spinner.js';
 import Modal from '../../../components/modal';
 import { MdClose } from 'react-icons/md';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../../hooks/screenLogger';
 
 const QUOTES_PER_PAGE = 7; // adjust as needed
 
 const Journaling = () => {
+  useFirebaseScreenTracking('Journaling');
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState(1);
   const [show, setShow] = useState(false);

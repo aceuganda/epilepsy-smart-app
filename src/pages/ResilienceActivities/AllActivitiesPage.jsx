@@ -13,8 +13,10 @@ import { ReactComponent as Inspiration } from '../../assets/svg/Resilience/Inspi
 import { ReactComponent as Listening } from '../../assets/svg/Resilience/listening.svg';
 import { ReactComponent as Affirm } from '../../assets/svg/Resilience/todays_positive.svg';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../hooks/screenLogger';
 
 const AllResilienceActivitiesPage = () => {
+  useFirebaseScreenTracking('ResilienceActivitiesListPage');
   const ResilienceActivities = [
     {
       name: 'One service goal',

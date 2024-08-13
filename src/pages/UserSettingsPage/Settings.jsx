@@ -11,8 +11,10 @@ import { ReactComponent as PasswordIcon } from '../../assets/svg/UserAccount/pas
 import { ReactComponent as SettingsIcon } from '../../assets/svg/UserAccount/settings_icon.svg';
 import { ReactComponent as AboutIcon } from '../../assets/svg/UserAccount/about_icon.svg';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../hooks/screenLogger';
 
 const Settings = () => {
+  useFirebaseScreenTracking('SettingsPage');
   const { t } = useTranslation();
   const settingsCategories = [
     {

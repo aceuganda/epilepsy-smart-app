@@ -19,8 +19,10 @@ import { ReactComponent as AfternoonIcon } from '../../../assets/svg/Seizure/aft
 import { ReactComponent as NightIcon } from '../../../assets/svg/Seizure/night.svg';
 import { useTranslation } from 'react-i18next';
 import { TextField } from '@mui/material';
+import useFirebaseScreenTracking from '../../../hooks/screenLogger';
 
 const PageOne = () => {
+  useFirebaseScreenTracking('SeizureAssessmentPage1');
   const { t } = useTranslation();
   const [seizure_severity, setSeverity] = useState('');
   const [seizure_duration, setDuration] = useState('');

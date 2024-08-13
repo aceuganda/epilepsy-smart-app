@@ -11,6 +11,7 @@ import { I18nextProvider } from 'react-i18next';
 
 const root = createRoot(document.getElementById('root'));
 
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>

@@ -1,8 +1,10 @@
 import React from 'react';
 import UserSettingsPageComponent from '.';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../hooks/screenLogger';
 
 const Privacy = () => {
+  useFirebaseScreenTracking('PrivacyPage');
   const { t } = useTranslation();
   return (
     <UserSettingsPageComponent backroute={'/account/about'} title="Privacy Policy">

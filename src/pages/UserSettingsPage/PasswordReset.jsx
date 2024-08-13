@@ -7,8 +7,10 @@ import { ReactComponent as OpenEye } from '../../assets/svg/UserAccount/open-eye
 import { updatePassWord } from '../../redux/Slices/UsersSlice';
 import Spinner from '../../components/Spinner/Spinner';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../hooks/screenLogger';
 
 const PasswordReset = () => {
+  useFirebaseScreenTracking('PasswordsChangePage');
   const { t } = useTranslation();
   const { userInfo } = useSelector((state) => state.user);
   const [currentPassword, setCurrentPassword] = useState('');

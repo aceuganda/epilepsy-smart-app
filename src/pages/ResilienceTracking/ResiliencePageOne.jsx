@@ -12,8 +12,10 @@ import {
 import CheckBox from '../../components/form/CheckBox';
 import { useTranslation } from 'react-i18next';
 import { TextField } from '@mui/material';
+import useFirebaseScreenTracking from '../../hooks/screenLogger';
 
 const ResiliencePageOne = () => {
+  useFirebaseScreenTracking('ResilienceTrackingPage1');
   const { t } = useTranslation();
   const [engaged_socially, setSocialEngagement] = useState(null);
   const [engagement, setEngagedType] = useState([]);
