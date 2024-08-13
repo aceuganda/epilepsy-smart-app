@@ -12,7 +12,7 @@ const Updates = () => {
         <AboutImg style={{ marginTop: '50px' }} />
         <div>Current Version is (10.0)</div>
         <a href={path} download>
-          <button style={{backgroundColor:'blueviolet', marginTop: '23px', borderRadius: '10px', color: 'white' }}>{t('Download version 9.0')}</button>
+          <button style={{backgroundColor:'blueviolet', marginTop: '23px', borderRadius: '10px', color: 'white' }}>{t('Download version 10.0')}</button>
         </a>
       </UserSettingsPageComponent>
     </div>
