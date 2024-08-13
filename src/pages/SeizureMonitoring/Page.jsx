@@ -7,8 +7,10 @@ import Largebtn from '../../components/form/Buttons/Largebtn';
 import { ReactComponent as RecordIcon } from '../../assets/svg/Seizure/RecordSeizure.svg';
 import { ReactComponent as MonitorIcon } from '../../assets/svg/Seizure/MonitorSeizure.svg';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../hooks/screenLogger';
 
 const StartPage = () => {
+  useFirebaseScreenTracking('SeizureAssessmentStartPage');
   const { t } = useTranslation();
   return (
     <div className="form start-page">

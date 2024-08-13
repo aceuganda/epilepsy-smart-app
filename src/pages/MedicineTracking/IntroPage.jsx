@@ -7,8 +7,10 @@ import MedicationComponent from '.';
 import { ReactComponent as RecordIcon } from '../../assets/svg/Seizure/RecordSeizure.svg';
 import { ReactComponent as AddMedication } from '../../assets/svg/Medication/addMedication.svg';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../hooks/screenLogger';
 
 const IntroPage = () => {
+  useFirebaseScreenTracking('MedicineTrackingIntroPage');
   const { t } = useTranslation();
   return (
     <div className="form start-page">

@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { PASSWORD_RESET_INITIATIATION } from '../../../config/urls';
 import axios from 'axios';
 import Spinner from '../../../components/Spinner/Spinner';
+import useFirebaseScreenTracking from '../../../hooks/screenLogger';
 
 
 const ForgotPassword = () => {
@@ -13,6 +14,7 @@ const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [feedBack, setFeedBack] = useState('');
   const [loading, setLoading] = useState(false);
+  useFirebaseScreenTracking('ForgotPasswordPage');
 
   const submitRequest = async (e) => {
     e.preventDefault();

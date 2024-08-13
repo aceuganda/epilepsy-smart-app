@@ -19,6 +19,7 @@ import {
   deleteMedicineData
 } from '../../../redux/Slices/MedicineTracking';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../../hooks/screenLogger';
 
 const medicineNames = [
   'Sodium valproate',
@@ -31,6 +32,7 @@ const medicineNames = [
 ];
 
 const MedicationTrackingPageOne = () => {
+  useFirebaseScreenTracking('MedicineTrackingRemindersPage');
   const { t } = useTranslation();
   const [addingMedicine, setAddingMedicine] = useState(false);
   const [addMedicineFeedback, setAddMedicineFeedback] = useState('');

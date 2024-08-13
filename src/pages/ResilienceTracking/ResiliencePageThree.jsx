@@ -16,8 +16,10 @@ import { ReactComponent as CheckedIcon } from '../../assets/svg/Form/EndOfAssess
 import CheckBox from '../../components/form/CheckBox';
 import { useTranslation } from 'react-i18next';
 import { TextField } from '@mui/material';
+import useFirebaseScreenTracking from '../../hooks/screenLogger';
 
 const ResiliencePageThree = () => {
+  useFirebaseScreenTracking('ResilienceTrackingPage3');
   const { t } = useTranslation();
   const [type_of_feelings, setFeelingType] = useState();
   const [feeling_today, setFeelings] = useState([]);

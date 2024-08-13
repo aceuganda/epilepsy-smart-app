@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import ResilienceActivitiesPageComponent from '..';
 import Form from '../../../components/form/Form';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../../hooks/screenLogger';
 
 const Listening = () => {
+  useFirebaseScreenTracking('Listening');
   const [selectedTab, setSelectedTab] = useState('overall');
   const onClickTabItem = (tab) => setSelectedTab(tab);
   const { t } = useTranslation();

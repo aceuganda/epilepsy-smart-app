@@ -12,8 +12,10 @@ import {
   setTrigger
 } from '../../../redux/Slices/SeizureTrackingSlice';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../../hooks/screenLogger';
 
 const PageTwo = () => {
+  useFirebaseScreenTracking('SeizureAssessmentPage2');
   const { t } = useTranslation();
   const [experienced_aura, setAura] = useState(null);
   const [aura_kind_experienced, setAuraType] = useState('');

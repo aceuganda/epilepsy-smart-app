@@ -4,8 +4,10 @@ import VerifyImg from '../../assets/img/Onboarding/verification.png';
 import axios from 'axios';
 import { VERIFY_USER } from '../../config/urls';
 import Spinner from '../../components/Spinner/Spinner';
+import useFirebaseScreenTracking from '../../hooks/screenLogger';
 
 const VerificationPage = () => {
+  useFirebaseScreenTracking('EmailVerificationPage');
   const { token } = useParams();
   const [loader, setLoader] = useState(false);
   const [feedback, setFeedback] = useState('');

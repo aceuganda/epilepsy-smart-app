@@ -8,8 +8,10 @@ import { setTreatmentScaleByOthers } from '../../redux/Slices/ResilienceTracking
 import { Slider } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { WrapText } from '@mui/icons-material';
+import useFirebaseScreenTracking from '../../hooks/screenLogger';
 
 const ResiliencePageTwo = () => {
+  useFirebaseScreenTracking('ResilienceTrackingPage2');
   const [treatment_scale_one, setTreatmentScaleOne] = useState(0);
   const [treatment_scale_two, setTreatmentScaleTwo] = useState(0);
   const { t } = useTranslation();

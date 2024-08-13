@@ -10,8 +10,10 @@ import store from '../../store';
 import { Link } from 'react-router-dom';
 import ErrorImage from '../../assets/img/Resilience/error.webp';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../hooks/screenLogger';
 
 const ResilienceTallies = () => {
+  useFirebaseScreenTracking('ResilienceTrackingTalliesPage');
   const resilienceTalliesData = useSelector(loadUserTallies);
   const { t } = useTranslation();
   const [resilienceTallies, setResilienceTallies] = useState([]);

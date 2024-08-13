@@ -49,70 +49,73 @@ import PageNotFound from './pages/PageNotFound';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
-const AppRoutes = () => (
-  <Router>
-    <Suspense
-      fallback={
-        <div className="d-flex justify-content-center text-center load-spinner">
-          <div className="loader" role="status">
-            <span className="sr-only">Loading...</span>
+const AppRoutes = () => {
+  
+  return (
+    <Router>
+      <Suspense
+        fallback={
+          <div className="d-flex justify-content-center text-center load-spinner">
+            <div className="loader" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
           </div>
-        </div>
-      }>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/onboarding" element={<Onboarding />} />
-        <Route path="/onboarding/notify" element={<Notify />} />
-        <Route path="/onboarding/track" element={<Track />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/version-updates" element={<UpdatesPage />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/verify/:token" element={<VerificationPage />} />
-        <Route path="/reset-password/:token" element={<ResetPassword />} />
-        <Route element={<ProtectedRoute />}>
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/seizure-form" element={<StartPage />} />
-          <Route path="/seizure-form/assessment/1" element={<PageOne />} />
-          <Route path="/seizure-form/assessment/2" element={<PageTwo />} />
-          <Route path="/seizure-form/assessment/3" element={<PageThree />} />
-          <Route path="/medication" element={<IntroPage />} />
-          <Route path="/medication/assessment/0" element={<MedicationAssessmentPageZero />} />
-          <Route path="/medication/assessment/1" element={<MedicationAssessmentPageOne />} />
-          <Route path="/medication/assessment/2" element={<MedicationAssessmentPageTwo />} />
-          <Route path="/medication/tracking" element={<MedicationTrackingPageOne />} />
-          <Route path="/resilience-form" element={<ResilienceStartPage />} />
-          <Route path="/resilience-form/1" element={<ResiliencePageOne />} />
-          <Route path="/resilience-form/2" element={<ResiliencePageTwo />} />
-          <Route path="/resilience-form/3" element={<ResiliencePageThree />} />
-          <Route path="/resilience-activities" element={<AllResilienceActivitiesPage />} />
-          <Route
-            path="/resilience-activities/positive-affirmations"
-            element={<PositiveAffirmations />}
-          />
-          <Route path="/resilience-activities/one-social-goal" element={<OneSocialGoal />} />
-          <Route path="/resilience-activities/one-service-goal" element={<OneServiceGoal />} />
-          <Route path="/resilience-activities/journaling" element={<Journaling />} />
-          <Route path="/resilience-activities/listening" element={<Listening />} />
-          <Route path="/resilience-activities/meditation" element={<Meditation />} />
-          <Route path="/account" element={<Settings />} />
-          {/* <Route path="/account/verify" element={<VerificationPage />} /> */}
-          <Route path="/resilience/tallies" element={<ResilienceTallies />} />
-          <Route path="/account/settings" element={<UserDetailsEdit />} />
-          <Route path="/account/password-reset" element={<PasswordReset />} />
-          <Route path="/account/about" element={<About />} />
-          <Route path="/journal" element={<Journal />} />
-          <Route path="/journal/:journalId" element={<Journal2 />} />
-          <Route path="/new-journal" element={<NewJournal />} />
-          <Route path="/quotes" element={<InspirationalQuotes />} />
-          <Route path="/resilience-activities/manage-triggers" element={<ManageTriggers />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Route>
-      </Routes>
-    </Suspense>
-  </Router>
-);
+        }>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/onboarding/notify" element={<Notify />} />
+          <Route path="/onboarding/track" element={<Track />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/version-updates" element={<UpdatesPage />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/verify/:token" element={<VerificationPage />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/seizure-form" element={<StartPage />} />
+            <Route path="/seizure-form/assessment/1" element={<PageOne />} />
+            <Route path="/seizure-form/assessment/2" element={<PageTwo />} />
+            <Route path="/seizure-form/assessment/3" element={<PageThree />} />
+            <Route path="/medication" element={<IntroPage />} />
+            <Route path="/medication/assessment/0" element={<MedicationAssessmentPageZero />} />
+            <Route path="/medication/assessment/1" element={<MedicationAssessmentPageOne />} />
+            <Route path="/medication/assessment/2" element={<MedicationAssessmentPageTwo />} />
+            <Route path="/medication/tracking" element={<MedicationTrackingPageOne />} />
+            <Route path="/resilience-form" element={<ResilienceStartPage />} />
+            <Route path="/resilience-form/1" element={<ResiliencePageOne />} />
+            <Route path="/resilience-form/2" element={<ResiliencePageTwo />} />
+            <Route path="/resilience-form/3" element={<ResiliencePageThree />} />
+            <Route path="/resilience-activities" element={<AllResilienceActivitiesPage />} />
+            <Route
+              path="/resilience-activities/positive-affirmations"
+              element={<PositiveAffirmations />}
+            />
+            <Route path="/resilience-activities/one-social-goal" element={<OneSocialGoal />} />
+            <Route path="/resilience-activities/one-service-goal" element={<OneServiceGoal />} />
+            <Route path="/resilience-activities/journaling" element={<Journaling />} />
+            <Route path="/resilience-activities/listening" element={<Listening />} />
+            <Route path="/resilience-activities/meditation" element={<Meditation />} />
+            <Route path="/account" element={<Settings />} />
+            {/* <Route path="/account/verify" element={<VerificationPage />} /> */}
+            <Route path="/resilience/tallies" element={<ResilienceTallies />} />
+            <Route path="/account/settings" element={<UserDetailsEdit />} />
+            <Route path="/account/password-reset" element={<PasswordReset />} />
+            <Route path="/account/about" element={<About />} />
+            <Route path="/journal" element={<Journal />} />
+            <Route path="/journal/:journalId" element={<Journal2 />} />
+            <Route path="/new-journal" element={<NewJournal />} />
+            <Route path="/quotes" element={<InspirationalQuotes />} />
+            <Route path="/resilience-activities/manage-triggers" element={<ManageTriggers />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Route>
+        </Routes>
+      </Suspense>
+    </Router>
+  );
+};
 
 export default AppRoutes;

@@ -11,10 +11,12 @@ import { useEffect } from 'react';
 import AuthPageComponent from '.';
 import { ReactComponent as RegisterImg } from '../../assets/svg/Auth/Register.svg';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../hooks/screenLogger';
 
 const Register = () => {
   //const [customError, setCustomError] = useState(null);
   const { t } = useTranslation();
+  useFirebaseScreenTracking('RegisterPage');
   const { loading, userInfo, error, success } = useSelector((state) => state.user);
   const [imageObject, setImageObject] = useState(null);
   const [hasCaregiver, sethasCaregiver] = useState(null);

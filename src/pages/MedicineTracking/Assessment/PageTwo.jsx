@@ -14,8 +14,10 @@ import Spinner from '../../../components/Spinner/Spinner';
 import EndOfAssessmentModal from '../../../components/form/EndOfAssessment';
 import { ReactComponent as CheckedIcon } from '../../../assets/svg/Form/EndOfAssessment/CheckedIcon.svg';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../../hooks/screenLogger';
 
 const MedicationAssessmentPageTwo = () => {
+  useFirebaseScreenTracking('MedicineTrackingPage2');
   const { t } = useTranslation();
   const [side_effects, setSideEffect] = useState(null);
   const [other_reason, setOtherReason] = useState(null);

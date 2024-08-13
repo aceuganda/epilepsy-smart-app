@@ -3,8 +3,10 @@ import UpdateImg from '../../assets/img/Onboarding/getStarted.png';
 import Dotted from '../../assets/img/Onboarding/btn1.png';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../hooks/screenLogger';
 
 const Onboarding = () => {
+  useFirebaseScreenTracking('Onboarding');
   const { t } = useTranslation();
   return (
     <div className="onboarding">

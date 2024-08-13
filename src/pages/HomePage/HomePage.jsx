@@ -15,10 +15,12 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageToggle from '../../components/Language/switchLanguage';
 import { Capacitor } from '@capacitor/core';
+import useFirebaseScreenTracking from '../../hooks/screenLogger';
 
 const HomePage = () => {
   const { userInfo } = useSelector((state) => state.user);
   const { t } = useTranslation();
+  useFirebaseScreenTracking('HomePage');
   const [savedReminders] = useState(
     localStorage.getItem(`${userInfo.data.id}Reminders`)
       ? JSON.parse(localStorage.getItem(`${userInfo.data.id}Reminders`))
@@ -50,8 +52,8 @@ const HomePage = () => {
       try {
         await safeLocalNotifications.createChannel({
           id: `epilepsy-smart-app-${randomId}`,
-          name: "Epilepsy Smart App",
-          description: "Epilepsy SMART app Notification",
+          name: 'Epilepsy Smart App',
+          description: 'Epilepsy SMART app Notification'
         });
 
         await safeLocalNotifications.schedule({
@@ -107,8 +109,8 @@ const HomePage = () => {
       // const chanelRandomId = Math.floor(Math.random() * 1000000) + 1;
       await safeLocalNotifications.createChannel({
         id: `epilepsy-smart-app-44889`,
-        name: "Epilepsy Smart App",
-        description: "Epilepsy SMART app Notification",
+        name: 'Epilepsy Smart App',
+        description: 'Epilepsy SMART app Notification'
       });
 
       for (let i = 0; i < savedReminders.length; i++) {

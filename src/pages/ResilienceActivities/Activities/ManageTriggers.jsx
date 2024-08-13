@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import ResilienceActivitiesPageComponent from '..';
 import Form from '../../../components/form/Form';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../../hooks/screenLogger';
 
 
 
 const DATA_PER_PAGE = 4;
 const ManageYourTriggers = () => {
+  useFirebaseScreenTracking('ManageYourTriggers');
   const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(1);
   const data = [

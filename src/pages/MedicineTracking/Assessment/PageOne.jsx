@@ -12,8 +12,10 @@ import {
 } from '../../../redux/Slices/MedicationTracking';
 import Spinner from '../../../components/Spinner/Spinner';
 import { useTranslation } from 'react-i18next';
+import  useFirebaseScreenTracking  from '../../../hooks/screenLogger';
 
 const MedicationAssessmentPageOne = () => {
+  useFirebaseScreenTracking('MedicineTrackingPage1');
   const { t } = useTranslation();
   const [medicine_doses, setMedicineDoses] = useState(null);
   const [some_doses, setSomeDoses] = useState(null);

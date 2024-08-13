@@ -4,10 +4,12 @@ import ResilienceActivitiesPageComponent from '..';
 import Form from '../../../components/form/Form';
 import quotes from '../../../resources/inspiration_quotes.json';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../../hooks/screenLogger';
 
 const QUOTES_PER_PAGE = 9; // adjust as needed
 
 const InspirationalQuotes = () => {
+  useFirebaseScreenTracking('ResilienceActivitiesListPage');
   const { t } = useTranslation();
   const colors = ['#CAEB0E', '#17804B', '#F42C56', '#8C3E79', '#8a2be2', 'pink', '#553791'];
 

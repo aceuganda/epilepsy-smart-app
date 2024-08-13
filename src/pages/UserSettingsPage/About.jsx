@@ -3,8 +3,10 @@ import UserSettingsPageComponent from '.';
 import { ReactComponent as AboutImg } from '../../assets/svg/Resilience/resilience.svg';
 import Largebtn from '../../components/form/Buttons/Largebtn';
 import { useTranslation } from 'react-i18next';
+import useFirebaseScreenTracking from '../../hooks/screenLogger';
 
 const About = () => {
+  useFirebaseScreenTracking('AboutPage');
   const { t } = useTranslation();
   return (
     <div>
