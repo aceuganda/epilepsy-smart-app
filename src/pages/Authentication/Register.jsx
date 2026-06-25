@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../../redux/Actions/userActions';
 import ProfilePlaceholder from '../../assets/img/HomePage/UserProfile.png';
 import { useDispatch, useSelector } from 'react-redux';
-import Spinner from '../../components/Spinner/Spinner';
+import Spinner from '../../components/Spinner/Spinner.jsx';
 //import Error from '../../components/Error/Error';
 
 import { useEffect } from 'react';

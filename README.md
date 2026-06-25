@@ -10,7 +10,7 @@ This repo contains source code for the Epilepsy SMART App (<https://smartapp.ace
 
     This will be used to download the repository
 
-2. Download and install [Node.js](https://nodejs.org/en/download/) version 16 +
+2. Download and install [Node.js](https://nodejs.org/en/download/) version 24
 
     This is the programming language required to run the project
 
@@ -20,25 +20,50 @@ This repo contains source code for the Epilepsy SMART App (<https://smartapp.ace
 
     ```cd epilepsy-smart-app```
 
+- Use the project Node version:
+
+    ```nvm use```
+
 - Installing dependencies:
 
-    ```npm install```
+    ```yarn install```
 
 - Running the development server:
 
-    ```npm start```
+    ```yarn start```
 
 ## Building the app for production
 - To build the app for production, run the following command:
 
-    ```npm run build```
+    ```yarn build```
 
 - To build the app for android & IOS, run the following commands:
 
 
-    ```npm run app:build```
+    ```yarn app:build```
 
-    This will generate a production build which will later be converted to a native app using CapacitorJS
+    This generates a production web build in `build/` and syncs it into the native Capacitor projects.
+
+## Android build commands
+- Build and sync Android assets:
+
+    ```yarn android:sync```
+
+- Open the Android project in Android Studio:
+
+    ```yarn android:studio```
+
+- Build a debug APK from the command line:
+
+    ```yarn android:apk```
+
+    The APK is generated at `android/app/build/outputs/apk/debug/app-debug.apk`.
+
+- Build a release APK from the command line:
+
+    ```yarn android:release```
+
+    The APK is generated at `android/app/build/outputs/apk/release/app-release.apk` if Android signing is configured.
 
 ## Running the app on a device
 - To run the app on a device, run the following command:

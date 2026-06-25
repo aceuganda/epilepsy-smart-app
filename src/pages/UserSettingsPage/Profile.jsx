@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import UserSettingsPageComponent from '.';
 import Avatar from '../HomePage/Avatar';
-import Spinner from '../../components/Spinner/Spinner';
+import Spinner from '../../components/Spinner/Spinner.jsx';
 import { editUserData, getSingleUserDetails, logout } from '../../redux/Slices/UsersSlice';
 import Modal from '../../components/modal';
 import { useTranslation } from 'react-i18next';

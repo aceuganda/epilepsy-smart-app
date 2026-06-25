@@ -9,7 +9,7 @@ import Question from '../../../components/form/Question';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from '../../../components/modal/index.jsx';
 import SingleOptionCheckbox from '../../../components/form/SingleOptionCheckbox';
-import Spinner from '../../../components/Spinner/Spinner';
+import Spinner from '../../../components/Spinner/Spinner.jsx';
 import { MdDeleteSweep } from 'react-icons/md';
 import {
   setMedicineName,

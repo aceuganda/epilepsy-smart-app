@@ -1,5 +1,5 @@
-@import './library/colors.scss';
-@import './library/variables.scss';
+@use './library/colors' as *;
+@use './library/variables' as *;
 
 .Auth{
     height: 100%;

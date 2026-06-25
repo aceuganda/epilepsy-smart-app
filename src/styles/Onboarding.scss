@@ -1,4 +1,4 @@
-@import './library/colors.scss';
+@use './library/colors' as *;
 
 .onboarding{
     overflow: hidden !important;

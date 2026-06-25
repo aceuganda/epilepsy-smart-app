@@ -10,7 +10,7 @@ import {
   setReasonForMissingDose,
   postMedicationFormData
 } from '../../../redux/Slices/MedicationTracking';
-import Spinner from '../../../components/Spinner/Spinner';
+import Spinner from '../../../components/Spinner/Spinner.jsx';
 import { useTranslation } from 'react-i18next';
 import  useFirebaseScreenTracking  from '../../../hooks/screenLogger';
 

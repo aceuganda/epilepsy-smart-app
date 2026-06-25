@@ -13,7 +13,7 @@ import {
 } from '../../../redux/Slices/SeizureTrackingSlice';
 import { ReactComponent as CheckedIcon } from '../../../assets/svg/Form/EndOfAssessment/CheckedIcon.svg';
 import CheckBox from '../../../components/form/CheckBox';
-import Spinner from '../../../components/Spinner/Spinner';
+import Spinner from '../../../components/Spinner/Spinner.jsx';
 import { useTranslation } from 'react-i18next';
 import useFirebaseScreenTracking from '../../../hooks/screenLogger';
 

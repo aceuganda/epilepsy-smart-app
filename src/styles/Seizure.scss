@@ -1,3 +1,6 @@
+@use './library/colors' as *;
+@use './library/variables' as *;
+
 .modal-wrapper{
     z-index: 999;
     overflow-x: hidden;

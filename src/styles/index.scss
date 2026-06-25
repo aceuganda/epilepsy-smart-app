@@ -1,31 +1,31 @@
+@use 'HomePage' as *;
+
+@use 'Landing' as *;
+
+@use 'Onboarding' as *;
+
+@use 'Footer' as *;
+
+@use 'Form' as *;
+
+@use 'Seizure' as *;
+
+@use 'Auth' as *;
+
+@use 'UserSettings' as *;
+
+@use 'Spinner' as *;
+
+@use 'ResilienceActivities' as *;
+
+@use 'Meditation' as *;
+
+@use 'Legal' as *;
+
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-
-@import 'HomePage';
-
-@import 'Landing';
-
-@import 'Onboarding';
-
-@import 'Footer';
-
-@import 'Form.scss';
-
-@import 'Seizure.scss';
-
-@import 'Auth.scss';
-
-@import 'UserSettings.scss';
-
-@import 'Spinner.scss';
-
-@import 'ResilienceActivities.scss';
-
-@import 'Meditation.scss';
-
-@import 'Legal.scss';
 
 $maxWidth: 580px;
 

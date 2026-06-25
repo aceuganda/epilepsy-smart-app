@@ -72,14 +72,20 @@ const HomePage = () => {
       } catch (error) {
         console.error('Error sending notification:', error);
       }
-    } else {
-      console.log('No permission to send notifications');
     }
   };
-  //call the function every after 8 hours
-  setInterval(() => {
-    sendLocalNotification();
-  }, 28800000);
+
+  useEffect(() => {
+    //call the function every after 8 hours
+    const notificationInterval = setInterval(() => {
+      sendLocalNotification();
+    }, 28800000);
+
+    return () => {
+      clearInterval(notificationInterval);
+    };
+  }, []);
+
   useEffect(() => {
     //shedule all available offline notification on start
     scheduleReminderLocalNotification();
@@ -95,14 +101,11 @@ const HomePage = () => {
   const scheduleReminderLocalNotification = async () => {
     try {
       const hasPermission = await safeLocalNotifications.requestPermissions();
-      console.log('Has permission:', hasPermission);
 
       if (!hasPermission) {
-        console.log('No permission to schedule notifications');
         return;
       }
       if (savedReminders.length === 0) {
-        console.log('No running reminders');
         return;
       }
 
@@ -124,7 +127,6 @@ const HomePage = () => {
         if (period === 'PM' && hours !== 12) hours += 12;
         if (period === 'AM' && hours === 12) hours = 0;
 
-        console.log(`Scheduling reminder for ${hours}:${minutes}`);
         // const randomId = Math.floor(Math.random() * 1000000) + 1;
 
         await safeLocalNotifications.schedule({
@@ -142,10 +144,7 @@ const HomePage = () => {
             }
           ]
         });
-        console.log(`Scheduled reminder for ${reminder.medicine}`);
       }
-
-      console.log('All reminders scheduled');
     } catch (error) {
       console.error('Error scheduling notifications:', error);
     }
