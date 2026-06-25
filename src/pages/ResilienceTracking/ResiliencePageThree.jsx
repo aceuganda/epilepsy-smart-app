@@ -10,7 +10,7 @@ import {
   setReasonForFeeling,
   postResilienceFormData
 } from '../../redux/Slices/ResilienceTracking';
-import Spinner from '../../components/Spinner/Spinner';
+import Spinner from '../../components/Spinner/Spinner.jsx';
 import EndOfAssessmentModal from '../../components/form/EndOfAssessment';
 import { ReactComponent as CheckedIcon } from '../../assets/svg/Form/EndOfAssessment/CheckedIcon.svg';
 import CheckBox from '../../components/form/CheckBox';

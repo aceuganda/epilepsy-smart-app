@@ -12,7 +12,7 @@ import {
   deleteUserGrateful
 } from '../../../redux/Actions/journalingActions';
 import { useDispatch } from 'react-redux';
-import Spinner from '../../../components/Spinner/Spinner.js';
+import Spinner from '../../../components/Spinner/Spinner.jsx';
 import Modal from '../../../components/modal';
 import { MdClose } from 'react-icons/md';
 import { useTranslation } from 'react-i18next';

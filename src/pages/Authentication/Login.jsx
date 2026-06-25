@@ -8,7 +8,7 @@ import { loginUser } from '../../redux/Actions/userActions';
 import { useEffect } from 'react';
 import AuthPageComponent from '.';
 import { ReactComponent as LoginImg } from '../../assets/svg/Auth/Login.svg';
-import Spinner from '../../components/Spinner/Spinner';
+import Spinner from '../../components/Spinner/Spinner.jsx';
 import { useTranslation } from 'react-i18next';
 import useFirebaseScreenTracking from '../../hooks/screenLogger';
 

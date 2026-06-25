@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { HiPencil } from 'react-icons/hi';
 import { MdDeleteSweep } from 'react-icons/md';
-import Spinner from '../Spinner/Spinner';
+import Spinner from '../Spinner/Spinner.jsx';
 import { useTranslation } from 'react-i18next';
 
 const CustomPopup = ({ onDeleteClick, onUpdateClick, deleteLoading, updateLoading }) => {

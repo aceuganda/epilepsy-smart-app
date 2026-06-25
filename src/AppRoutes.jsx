@@ -18,7 +18,7 @@ import ResiliencePageTwo from './pages/ResilienceTracking/ResiliencePageTwo';
 import ResiliencePageThree from './pages/ResilienceTracking/ResiliencePageThree';
 import Login from './pages/Authentication/Login';
 import Register from './pages/Authentication/Register';
-import ProtectedRoute from './routing/ProtectedRoute';
+import ProtectedRoute from './routing/ProtectedRoute.jsx';
 import AllResilienceActivitiesPage from './pages/ResilienceActivities/AllActivitiesPage';
 import PositiveAffirmations from './pages/ResilienceActivities/Activities/PositiveAffirmations';
 import OneServiceGoal from './pages/ResilienceActivities/Activities/OneServiceGoal';

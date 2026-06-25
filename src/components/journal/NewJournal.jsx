@@ -6,7 +6,7 @@ import Form from '../form/Form';
 import { useDispatch } from 'react-redux';
 import { postUserJournal } from '../../redux/Actions/journalingActions';
 import { useNavigate } from 'react-router-dom';
-import Spinner from '../Spinner/Spinner';
+import Spinner from '../Spinner/Spinner.jsx';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as InfoIcon } from '../../assets/svg/Form/Question/info.svg';
 

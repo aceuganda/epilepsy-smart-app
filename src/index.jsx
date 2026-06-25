@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App';
+import App from './App.jsx';
 import reportWebVitals from './reportWebVitals';
 import 'font-awesome/css/font-awesome.min.css';
 import { Provider } from 'react-redux';
@@ -10,7 +10,6 @@ import i18n from './i18n';
 import { I18nextProvider } from 'react-i18next';
 
 const root = createRoot(document.getElementById('root'));
-
 
 root.render(
   <React.StrictMode>

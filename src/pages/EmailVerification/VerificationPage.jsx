@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import VerifyImg from '../../assets/img/Onboarding/verification.png';
 import axios from 'axios';
 import { VERIFY_USER } from '../../config/urls';
-import Spinner from '../../components/Spinner/Spinner';
+import Spinner from '../../components/Spinner/Spinner.jsx';
 import useFirebaseScreenTracking from '../../hooks/screenLogger';
 
 const VerificationPage = () => {

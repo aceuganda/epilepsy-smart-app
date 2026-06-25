@@ -5,7 +5,7 @@ import Avatar from '../HomePage/Avatar';
 import { ReactComponent as ClosedEye } from '../../assets/svg/UserAccount/closed-eye.svg';
 import { ReactComponent as OpenEye } from '../../assets/svg/UserAccount/open-eye.svg';
 import { updatePassWord } from '../../redux/Slices/UsersSlice';
-import Spinner from '../../components/Spinner/Spinner';
+import Spinner from '../../components/Spinner/Spinner.jsx';
 import { useTranslation } from 'react-i18next';
 import useFirebaseScreenTracking from '../../hooks/screenLogger';
 

@@ -11,6 +11,8 @@ import { ReactComponent as SkipBack } from '../../../../assets/svg/Resilience/Sk
 import { ReactComponent as SkipForword } from '../../../../assets/svg/Resilience/SkipFwd.svg';
 // import { useTranslation } from 'react-i18next';
 import useFirebaseScreenTracking from '../../../../hooks/screenLogger';
+import meditationAudio from './tracks/meditationAudio.mp3';
+// import meditate2 from './tracks/meditate2.mp3';
 
 const Meditations = () => {
   useFirebaseScreenTracking('MeditationPage');
@@ -22,31 +24,31 @@ const Meditations = () => {
       soundLink: '',
       title: 'Stress Relief',
       subTitle: 'Play 1',
-      src: [require('./tracks/meditationAudio.mp3')]
+      src: [meditationAudio]
     }
     // {
     //   soundLink: '',
     //   title: 'Inspiration',
     //   subTitle: 'Play 2',
-    //   src: [require('./tracks/meditate2.mp3')]
+    //   src: [meditate2]
     // },
     // {
     //   soundLink: '',
     //   title: 'Meditate',
     //   subTitle: 'Play 3',
-    //   src: [require('./tracks/meditationAudio.mp3')]
+    //   src: [meditationAudio]
     // },
     // {
     //   soundLink: '',
     //   title: 'Stress Relief',
     //   subTitle: 'Play 4',
-    //   src: [require('./tracks/meditate2.mp3')]
+    //   src: [meditate2]
     // },
     // {
     //   soundLink: '',
     //   title: 'Stress Relief',
     //   subTitle: 'Play 5',
-    //   src: [require('./tracks/meditationAudio.mp3')]
+    //   src: [meditationAudio]
     // }
   ];
   const [songModalOpen, setSongModalOpen] = useState(false);

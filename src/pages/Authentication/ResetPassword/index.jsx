@@ -4,7 +4,7 @@ import AuthPageComponent from '../index';
 import { ReactComponent as ResetImg } from '../../../assets/svg/Auth/Reset.svg';
 import { PASSWORD_RESET_URL } from '../../../config/urls';
 import axios from 'axios';
-import Spinner from '../../../components/Spinner/Spinner';
+import Spinner from '../../../components/Spinner/Spinner.jsx';
 import { useTranslation } from 'react-i18next';
 import useFirebaseScreenTracking from '../../../hooks/screenLogger';
 
