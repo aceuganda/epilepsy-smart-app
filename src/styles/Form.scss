@@ -65,17 +65,31 @@
 .form-top-bar {
     background-color: $ema-lilac-1;
     height: 140px;
-    width: auto;
+    width: 100%;
+    max-width: 100%;
     color: $ema-white-0;
+    position: relative;
 
     border-bottom-left-radius: 35px;
     border-bottom-right-radius: 35px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(-1 * env(safe-area-inset-top, 0px));
+        height: env(safe-area-inset-top, 0px);
+        background-color: $ema-lilac-1;
+    }
 
     .container-fluid {
         display: flex;
         align-items: center;
         justify-content: center;
         padding-top: 63px;
+        margin-left: 0;
+        margin-right: 0;
     }
     .icon {
         position: absolute;
@@ -1386,8 +1400,8 @@ button{
 
 @media only screen and (min-width: 768px) {
     .form-top-bar {
-        width: 100vw;
-        max-width: 100vw; 
+        width: 100%;
+        max-width: 100%;
     }
     .journal-entry{
         max-width: 17rem;
